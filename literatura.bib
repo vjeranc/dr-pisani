@@ -1,20 +1,95 @@
-@manual{oetiket2007lshort,
-    author = {Oetiket, T. and Partl, H. and Hyna and Schlegl, E.},
-    title = {The not-so-short introduction to Latex},
-    url = {http://www.ctan.org/tex-archive/info/lshort/english/lshort.pdf}
+@article{daume09searn,
+  author =       {Hal {Daum\'e III} and John Langford and Daniel Marcu},
+  title =        {Search-based Structured Prediction},
+  year =         {2009},
+  booktitle =    {Machine Learning Journal (MLJ)},
+  abstract =     {
+    We present Searn, an algorithm for integrating search and
+    learning to solve complex structured prediction problems such
+    as those that occur in natural language, speech, computational
+    biology, and vision.  Searn is a meta-algorithm that transforms
+    these complex problems into simple classification problems to which
+    any binary classifier may be applied.  Unlike current algorithms for
+    structured learning that require decomposition of both the loss
+    function and the feature functions over the predicted structure,
+    Searn is able to learn prediction functions for any loss
+    function and any class of features.  Moreover, Searn comes
+    with a strong, natural theoretical guarantee: good performance on the
+    derived classification problems implies good performance on the
+    structured prediction problem.
+  },
+
 }
 
-@Manual{downes2002shortams,
-  title = 	 {{Short Math Guide for \LaTeX{}}},
-  author = 	 {Downes,, Michael},
-  organization = {American Mathematical Society},
-  year = 	 {2002},
-  url = 	 {ftp://ftp.ams.org/pub/tex/doc/amsmath/short-math-guide.pdf}
+@PhdThesis{daume06thesis,
+  author =       {Hal {Daum\'e III}},
+  title =        {Practical Structured Learning Techniques for Natural Language Processing},
+  school =       {University of Southern California},
+  year =         {2006},
+  address =      {Los Angeles, CA},
+  month =        {Kolovoz},
+  keywords = {sp nlp ml},
+  tagline = {<i>Committee:</i> <a href="http://www.isi.edu/~marcu/"><font color="8866DD">D. Marcu</font></a>, <a href="http://www.isi.edu/~knight/"><font color="8866DD">K. Knight</font></a>, <a href="http://www.isi.edu/~hovy/"><font color="8866DD">E. Hovy</font></a>, <a href="http://www-clmc.usc.edu/~sschaal/"><font color="8866DD">S. Schaal</font></a>, <a href="http://www-rcf.usc.edu/~gareth/"><font color="8866DD">G. James</font></a>, <a href="http://www.cs.umass.edu/~mccallum/"><font color="8866DD">A. McCallum</font></a>.<br> This thesis describes an algorithm for solving many of the complex prediction problems encountered in NLP applications. The algorithm comes with strong theoretical guarentees, is empirically effective in applications such as IE and summarization, is efficient and is easy to implement.},
+
 }
 
-@Book{ungar2002uvod,
-  author = 	 {Šime Ungar},
-  title = 	 {{Uvod u \TeX{} s naglaskom na \LaTeX 2$\epsilon$}},
-  publisher = 	 {Odjel za matematiku, Sveučilište J.J.\ Strossmayera u Osijeku},
-  year = 	 {2002}
+@unpublished{daume06searn-practice,
+  author =       {Hal {Daum\'e III} and John Langford and Daniel Marcu},
+  title =        {Searn in Practice},
+  year =         {2006},
+  abstract = {
+    We recently introduced an algorithm, Searn, for solving hard
+    structured prediction problems.  This algorithm
+    enjoys many nice properties: efficiency, wide applicability,
+    theoretical justification and simplicity.  However, under a desire to
+    fit a lot of information into the original paper,
+    it may not be so clear how simple the technique is.  This report is
+    designed to showcase how Searn can be applied to a wide variety of
+    techniques and what really goes on behind the scenes.  We will
+    make use of three example problems, ranging from simple to complex.
+    These are: (1) sequence labeling, (2) parsing and (3) machine
+    translation.  (These were chosen to be as widely understandable,
+    especially in the NLP community, as possible.)  In the end, we will
+    come back to discuss Searn for general problems.
+  },
+  keywords = {nlp ml sp},
+  tagline = {We recently introduced an algorithm, Searn, for solving hard structured prediction problems. This report is designed to showcase how Searn can be applied to a wide variety of techniques and what really goes on behind the scenes. We show how to apply Searn to three common NLP problems: (1) sequence labeling, (2) parsing and (3) machine translation.},
+
+}
+
+@inproceedings{daume15reductions,
+    title     = {Learning Reductions that Really Work},
+    author = {Alina Beygelzimer and Hal {Daum\'e III} and John Langford and Paul
+                    Mineiro},
+    booktitle = {IEEE Proceedings},
+    year      = {2015},
+
+}
+
+@inproceedings{daume15lols,
+    title     = {Learning to search better than your teacher},
+    author = {Kai-Wei Chang and Akshay Krishnamurthy and Alekh Agarwal and Hal
+                    {Daum\'e III} and John Langford},
+    booktitle = {Proceedings of the International Conference on Machine Learning
+                    (ICML)},
+    year      = {2015},
+
+}
+
+@inproceedings{daume15rewrite,
+    title     = {Syntax-based Rewriting for Simultaneous Machine Translation},
+    author    = {He He and Alvin Grissom II and Jordan Boyd Graber and me},
+    booktitle = {Proceedings of the Conference on Empirical Methods in Natural
+                    Language Processing (EMNLP)},
+    year      = {2015},
+    
+}
+
+@inproceedings{daume14lts,
+    title     = {Efficient programmable learning to search},
+    author = {Kai-Wei Chang and Hal {Daum\'e III} and John Langford and St\'ephane
+                    Ross},
+    booktitle = {arXiv},
+    year      = {2014},
+
 }
