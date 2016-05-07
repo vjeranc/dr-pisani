@@ -1,11 +1,11 @@
-Združeno učenje i predviđanje \engl{joint learning and prediction} naziv je
-za metode koje rade učenje i predviđanje jednog primjera mjereći ili
-minimizirajući funkciju gubitka združeno. Naziv strukturnog učenja i predviđanja
+Združeno učenje i predviđanje \engl{joint learning and prediction} naziv je za
+metode koje rade učenje i predviđanje jednog primjera mjereći ili minimizirajući
+funkciju gubitka združeno. Naziv strukturnog učenja i predviđanja
 \engl{structured learning and prediction} implicira da se funkcija gubitka
 raspoređuje po komponentama strukture i da se na strukturi koja je razbijena u
 svoje dijelove predviđa i uči -- rečenica u \bq{značke}{token?}, slika u piksele
-i sl. \citet{daume14lts} jednostavno definiraju strukturno predviđanje kao
-donošenje niza združenih odluka koristeći združenu funkciju gubitka, a
+i sl. \citet{daume14lts} daju jednostavnu definiciju strukturnog predvi]anja kao
+donošenja niza združenih odluka koristeći združenu funkciju gubitka, a
 pretpostavka o tome kakav je ulaz i ima li neku strukturu ne postoji. U
 \citep{daume15naacltalk} odustaju od naziva \emph{strukturno predviđanje} i
 počinju probleme kategorizirati pod nazivom združeno predviđanje upravo zbog
@@ -13,16 +13,16 @@ razloga što se vrši združeni niz odluka koristeći funkciju gubitka koja će 
 taj niz izračunati gubitak i ona nema nužno dekompoziciju preko niza tog odluka.
 Naziv onda može uključivati združene probleme poput istovremenog označavanja
 vrste riječi u rečenici i ovisnosnog parsanja rečenice, ali i svaki problem
-zasebno. Kako bi nastavak bio konzistentan sa starijom literaturom koristiti se
+zasebno. Kako bi nastavak bio konzistentan sa starijom literaturom koristi se
 staro ime, a definicija \ref{jointlearndef} je zapravo definicija združenog
 učenja.
 
 U literaturi koja je koristila naziv za problem strukturnog predviđanja problem
-nije jasno bio definiran~\citep{mccallum2000maximum, punyakanok2001use,
-lafferty2001conditional, collins2002discriminative, taskar2003maximum,
-mcallester2004case, tsochantaridis2005large}. \citet{daume06thesis} definira
-jasnije problem, ali kako bi pažljivo definirao problem strukturnog predviđanja
-postavlja dva uvjeta.
+nije jasno bio definiran nego je objašnjen kroz ilustrativne
+primjere~\citep{mccallum2000maximum, punyakanok2001use, lafferty2001conditional,
+collins2002discriminative, taskar2003maximum, mcallester2004case,
+tsochantaridis2005large}. \citet{daume06thesis} definira jasnije problem, ali
+kako bi pažljivo definirao problem strukturnog predviđanja postavlja dva uvjeta.
 
 \begin{condition}
 
