@@ -1,7 +1,37 @@
 \usepackage[unicode]{hyperref}
-\usepackage[croatian]{babel}
 \usepackage{tikz-dependency}
+\usepackage{tkz-graph}
 %% times math
 \usepackage{newtxmath}
+
+\usepackage{xcolor}
+\usepackage{textcomp}
 %% bolds the math consistently (italic, functions)
 \newcommand{\mbold}[1]{{\boldmath #1}}
+
+%% for notes
+\newcommand{\bq}[2]{{\fbox{#1}\colorbox{red}{~#2}}}
+
+%% for exponents to differantiate outputs inputs and hypotheses
+%% x\ssymbol{1} called like this
+\def\@fnsymbol#1{\ensuremath{\ifcase#1\or *\or \dagger\or \ddagger\or
+   \mathsection\or \mathparagraph\or \|\or **\or \dagger\dagger
+   \or \ddagger\ddagger \else\@ctrerr\fi}}
+
+\newcommand{\ssymbol}[1]{^{\@fnsymbol{#1}}}
+
+
+%% argmin argmax operator
+\DeclareMathOperator*{\argmax}{argmax}
+\DeclareMathOperator*{\argmin}{argmin}
+
+%% condition
+\newtheorem{condition}{Uvjet}
+%% definition
+\newtheorem{definition}{Definicija}
+
+%% fields
+\newcommand*{\field}[1]{\mathbb{#1}}
+
+%% text underscript
+\newcommand{\textunderscript}[2]{$\text{#1}_{\text{#2}}$}

@@ -1,1 +1,62 @@
-Ovdje uvodim.
+Metode učenja pretraživanja \engl{learning to search, abbrev.~\textsc{L2S}}
+novija su pojava u strojnom učenju, ali u zadnjih deset godina istraživači su
+metode primijenili na probleme u različitim granama računarske znanosti,
+uključujući i obradu prirodnog jezika. Vrlo uspješna je primjena vezana uz
+probleme gdje se učenje i zaključivanje odvija na primjerima koji sadrže
+određenu strukturu. Učenje pretraživanja spada u metode strukturnog učenja
+\engl{structured learning} ili predviđanja strukturiranog izlaza
+\engl{structured output prediction}. U obradi prirodnog jezika jedni od
+glavnih problema koji uključuju predviđanje strukturiranog izlaza su označavanje
+vrste riječi \engl{part-of-speech tagging}, ovisnosno parsanje
+\engl{dependency parsing}, prepoznavanje imenovanih entiteta \engl{named
+entity recognition}, prepoznavanje i praćenje entiteta \engl{entity tracking
+and detection}, razrješavanje koreference \engl{coreference resolution},
+izlučivanje relacija između entiteta \engl{entity relation extraction},
+inkrementalna prevođenje \engl{incremental translation}, inkrementalno
+odgovaranje na pitanja \engl{incremental question answering} i mnoštvo
+drugih. Ostale primjene metoda učenja pretraživanja su aktivno i interaktivno
+učenje \engl{active and interactive learning}, algoritmi grananja i granice
+\engl{branch-and-bound}, robotika, segmentacija slike \engl{image
+segmentation}, predviđanje sekundarne strukture proteina \engl{protein
+secondary structure prediction} itd.
+
+Jedan razlog mnoštvu primjena u tako kratkom vremenskom roku je matematička
+priroda metoda. Metode učenja pretraživanja vuku inspiraciju iz područja
+podržanog učenja \engl{reinforcement learning} gdje je zadatak sustava
+naučiti dobru \bq{policu}{Dobar prijevod -- \emph{policy}?}, a u slučaju učenja
+pretraživanja cilj je iskoristiti prisutne podatke, dok su ti podaci zanemareni
+ili se postepeno izgrađuju kod primjene podržanog učenja. Drugi razlog je
+primjena matematičkog aparata koji je nastao da bi objasnio podržano učenje i
+moć redukcija. Redukcija u području strojnog učenja je slična redukcijama u
+drugim područjima računarske znanosti. Redukcija 3-SAT problema na problem
+pronalaženja Hamiltonovog ciklusa, gdje je prethodni također redukcijom dokazano
+NP-potpun, omogućuje zaključak da je i problem Hamiltonovog ciklusa NP-potpun
+(precizno je reći da dokaz NP-potpunosti mora uključivati i algoritam
+polinomijalne složenosti za provjeru rješenja). U kontekstu strojnog učenja
+redukcije se razlikuju. Pitanje je možemo li neki teži problem kao što je
+višerazredna klasifikacija izvesti s dobrim garancijama koristeći binarni
+klasifikator. Također, pitanje je kako reducirati združeno učenje i predviđanje
+\engl{joint learning and prediction} na jednostavniji problem. Naposljetku,
+glavni razlog široke primjene je vrlo jednostavna implementacija koja
+iskorištava svojstvo modularnosti koje je prirodno u procesu redukcije (za
+implementaciju višerazredne klasifikacije potreban nam je samo dobar binarni
+klasifikator). Implementacija je ostvarena u brzom sustavu za strojno učenje
+zvanom Vowpal Wabbit, a \textsc{L2S} razvojni okvir omogućava da u jako malo
+linija programskog koda istraživač može napisati algoritam učenja i
+zaključivanja za specifični problem. Slični sustavi koji implementiraju
+algoritme učenja i zaključivanja za vjerojatnosne grafičke modele zahtijevaju
+puno više linija programskog koda i vjerojatnija je pojava bugova, a nemodularna
+priroda onemogućuje njihovo izbjegavanje. Pokušaj generalizacije i
+iskorištavanja programskog koda općenitijim metodama učenja i zaključivanja kod
+vjerojatnosnih grafičkih modela rezultiralo je pojavom vjerojatnosnih
+programskih jezika \engl{probabilistic programming languages}, ali brzina
+učenja i zaključivanja nije ni blizu algoritama \textsc{L2S}.
+
+Ovaj diplomski rad nudi sažet pregled metoda učenja pretraživanja i njihovu
+primjenu na probleme obrade prirodnog jezika. Uz njihovu matematičku podlogu
+obrađene su i usporedbe s ostalim metodama strojnog učenja koje se uspješno
+primjenjuju na istim problemima. Dani su i odgovori na prijašnja postavljena
+pitanja te opisi konkretne implementacije koji pažljivije argumentiraju
+prednosti nad ostalim pristupima.
+
+U \bq{$\ldots$}{tom poglavlju nađemo ovo i ono, blabla.}
