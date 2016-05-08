@@ -24,7 +24,7 @@ collins2002discriminative, taskar2003maximum, mcallester2004case,
 tsochantaridis2005large}. \citet{daume06thesis} definira jasnije problem, ali
 kako bi pažljivo definirao problem strukturnog predviđanja postavlja dva uvjeta.
 
-\begin{condition}
+\begin{condition} \label{uvjet1}
 
   U problemu strukturnog predviđanja izlazni elementi $y \in \mathcal{Y}$
   dekomponiraju u vektore varijabilnih duljina preko konačnog skupa. Tj.,
@@ -41,12 +41,16 @@ funkciju gubitka nije moguće dekomponirati preko vektorskih reprezentacija, a
 kako je uvijek moguće osmisliti vektorsku reprezentaciju preko koje će funkcija
 gubitka dekomponirati slijedi uvjet.
 
-\begin{condition} U problemu strukturnog predviđanja funkcija gubitka nema
-dekompoziciju preko vektora $v_y$ za $y \in \mathcal{Y}$. Tj., $l(x, y,
-y\ssymbol{1})$ nije invarijantna na identične permutacije $y$ i $y\ssymbol{1}$.
-Ne postoji mapiranje $y \to v_y$ takvo da funkcija ima dekompoziciju za koju je
-duljina vektora $|v_y|$ polinomijalne funkcije koja ovisi o broju izlaznih
-elemenata $|y|$. \end{condition}
+\begin{condition}
+
+  U problemu strukturnog predviđanja funkcija gubitka nema dekompoziciju preko
+  vektora $v_y$ za $y \in \mathcal{Y}$. Tj., $l(x, y, y\ssymbol{1})$ nije
+  invarijantna na identične permutacije $y$ i $y\ssymbol{1}$. Ne postoji
+  mapiranje $y \to v_y$ takvo da funkcija ima dekompoziciju za koju je duljina
+  vektora $|v_y|$ polinomijalne funkcije koja ovisi o broju izlaznih elemenata
+  $|y|$.
+
+\end{condition}
 
 Ovaj uvjet uspješno isključuje binarnu klasifikaciju i ostale klasifikacijske
 probleme, ali isključuje i problem označavanje nizova koristeći Hammingovu
@@ -86,8 +90,12 @@ reprezentacija nije prisutna u konkretnoj implementaciji.
   L(D, h) = \mathbb{E}_{(x, \mathbf{c}) \sim \mathcal{D}} \{c_{h(x)}\}
 \end{equation}
 
+Sve metode strukturnog predviđanja u ovom poglavlju nakon što je naučen vektor
+težina $\mathbf{w}$ trebaju riješiti $\argmax$ problem \ref{argmaxproblem}.
 
-
-\begin{equation}
+\begin{equation} \label{argmaxproblem}
   y\ssymbol{1} = \argmax_{y \in \mathcal{Y}} \mathbf{w}^\top \phi(x, y)
 \end{equation}
+
+Ovaj problem u generalnom slučaju nije izračunljiv u dovoljno kratkom vremenu.
+Ako postoji prikladan $\mathcal{Y}$ i prikladna funkcija značajki $\phi$ onda se mogu primijeniti dinamičko programiranje \engl{dynamic programming} ili cjelobrojno linearno programiranje \engl{integerl linear programming} za pronalaženje dobrih rješenja. Recimo, ako $\phi$ ima takvu dekompoziciju preko vektorske reprezentacije $\mathcal{Y}$ da ni jedna značajka ne ovisi o elementima $y$ koji su više od $k+1$ pozicija udaljeni, onda možemo iskoristiti Viterbi algoritam za rješenje \ref{argmaxproblem}, a složenost će biti $O(M^k |y|)$ (gdje je $M$ broj mogućih oznaka, definiran u uvjetu \ref{uvjet1}).
