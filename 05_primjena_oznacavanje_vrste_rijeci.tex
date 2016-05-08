@@ -1,0 +1,14 @@
+\begin{algorithm}
+\caption{Algoritam označavanja vrste riječi u okviru \textsc{L2S}.}\label{taggingalg}
+\begin{algorithmic}[1]
+\Function{Run}{\textit{riječi}}
+\State $\textit{izlaz} \gets \text{[]}$
+\For{$n \gets 1$ \textbf{to} \Call{Len}{riječi}}
+  \State \textit{ref} $\gets$ \text{riječi[n].točna\_oznaka}
+  \State \textit{izlaz[n]} $\gets$ \Call{Predict}{riječi[i], ref, izlaz[:n-1]}
+\EndFor
+\State \Call{Gubitak}{\# izlaz[n] $\neq$ riječi[n].točna\_oznaka}
+\State \textbf{return} izlaz
+\EndFunction
+\end{algorithmic}
+\end{algorithm}
