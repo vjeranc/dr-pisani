@@ -4,7 +4,7 @@ funkciju gubitka združeno. Naziv strukturnog učenja i predviđanja
 \engl{structured learning and prediction} implicira da se funkcija gubitka
 raspoređuje po komponentama strukture i da se na strukturi koja je razbijena u
 svoje dijelove predviđa i uči -- rečenica u \bq{značke}{token?}, slika u piksele
-i sl. \citet{daume14lts} daju jednostavnu definiciju strukturnog predvi]anja kao
+i sl. \citet{daume14lts} daju jednostavnu definiciju strukturnog predviđanja kao
 donošenja niza združenih odluka koristeći združenu funkciju gubitka, a
 pretpostavka o tome kakav je ulaz i ima li neku strukturu ne postoji. U
 \citep{daume15naacltalk} odustaju od naziva \emph{strukturno predviđanje} i
@@ -81,10 +81,7 @@ $y\ssymbol{1}$. Cilj strukturnog predviđanja je pronaći funkciju $h: \mathcal{
 \rightarrow \mathcal{Y}$ koja minimizira funkciju gubitka \ref{funcloss}. Bitno
 je napomenuti kako funkcija gubitka \textunderscript{F}{1} nema dekompoziciju
 preko zasebnih odluka nego se računa nakon što izgradimo cijelo stablo za
-pojedinu rečenicu, u tom slučaju $\mathbf{c}$ sadrži za svako moguće stablo $y$
-odgovarajuću vrijednost \textunderscript{F}{1} gubitka. Kako postoji
-eksponencijalan broj različitih stabala s određenim brojem čvorova ovakva
-reprezentacija nije prisutna u konkretnoj implementaciji.
+pojedinu rečenicu.
 
 \begin{equation} \label{funcloss}
   L(D, h) = \mathbb{E}_{(x, \mathbf{c}) \sim \mathcal{D}} \{c_{h(x)}\}
@@ -98,4 +95,12 @@ težina $\mathbf{w}$ trebaju riješiti $\argmax$ problem \ref{argmaxproblem}.
 \end{equation}
 
 Ovaj problem u generalnom slučaju nije izračunljiv u dovoljno kratkom vremenu.
-Ako postoji prikladan $\mathcal{Y}$ i prikladna funkcija značajki $\phi$ onda se mogu primijeniti dinamičko programiranje \engl{dynamic programming} ili cjelobrojno linearno programiranje \engl{integerl linear programming} za pronalaženje dobrih rješenja. Recimo, ako $\phi$ ima takvu dekompoziciju preko vektorske reprezentacije $\mathcal{Y}$ da ni jedna značajka ne ovisi o elementima $y$ koji su više od $k+1$ pozicija udaljeni, onda možemo iskoristiti Viterbi algoritam za rješenje \ref{argmaxproblem}, a složenost će biti $O(M^k |y|)$ (gdje je $M$ broj mogućih oznaka, definiran u uvjetu \ref{uvjet1}).
+Ako postoji prikladan $\mathcal{Y}$ i prikladna funkcija značajki $\phi$ onda se
+mogu primijeniti dinamičko programiranje \engl{dynamic programming} ili
+cjelobrojno linearno programiranje \engl{integer linear programming} za
+pronalaženje dobrih rješenja. Recimo, ako $\phi$ ima takvu dekompoziciju preko
+vektorske reprezentacije $\mathcal{Y}$ da ni jedna značajka ne ovisi o
+elementima $y$ koji su više od $k+1$ pozicija udaljeni, onda možemo iskoristiti
+Viterbi algoritam za rješenje \ref{argmaxproblem}, a složenost će biti $O(M^k
+T)$ -- gdje je $M$ broj mogućih oznaka, definiran u uvjetu \ref{uvjet1}, a $T$
+duljina vektora na koji se dekomponira $y$ iz definicije \ref{jointlearndef}.
