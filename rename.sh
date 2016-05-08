@@ -10,6 +10,8 @@ awk 'BEGIN{i=1}
      END {
        for (f in a) {
          split(f, k, " ")
-         system("git mv " k[1]k[2] " " sprintf("%02d%s", a[f], k[2]))
+         old_name=k[1]k[2]
+         new_name=sprintf("%02d%s", a[f], k[2])
+         if (old_name != new_name) system("git mv " old_name " " new_name)
        }
      }' "${1:-/dev/stdin}"
