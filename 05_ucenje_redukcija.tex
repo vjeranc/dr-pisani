@@ -16,6 +16,14 @@ tree} gdje se svaki razred može binarno kodirati, a bitovi predstavljaju koje
 kodiranog razreda. Ovo je eksponencijalno ubrzanje s obzirom prethodne redukcije
 u vremenu, a i broj klasifikatora je puno manji -- $\lceil \log n \rceil$.
 
+Pitanje je jesu li redukcije učinkovit pristup za rješavanje složenih problema
+strojnog učenja? Odgovor nije očit jer je teško opisati reprezentaciju na
+trivijalan matematički način. Moguće je da redukcija stvori jednostavne probleme
+koje nije lako riješiti. Trivijalan primjer je trorazredne klasifikacije s
+jednom značajkom i linearnim binarnim klasifikatorom. U slučaju \textsc{ova}
+pristupa nećemo moći odvojiti razrede s dovoljno malom pogreškom, a \textsc{ovo}
+u ovom slučaju neće imati problema.
+
 Redukcije nisu toliko trivijalne kao ovi primjeri. Postoje tri potrebne
 komponente: preslikavanje hipoteze, preslikavanje primjera i ograda.
 Preslikavanje hipoteze opisuje postupak kako pretvoriti rješenje za jednostavan

@@ -1,7 +1,6 @@
 \begin{algorithm}
 \caption{\textsc{Run}(\textit{riječi})}\label{taggingalg}
 \begin{algorithmic}[1]
-\Function{Run}{\textit{riječi}}
 \State $\textit{izlaz} \gets \text{[]}$
 \For{$n \gets 1$ \textbf{to} \Call{Len}{riječi}}
   \State \textit{ref} $\gets$ \text{riječi[n].točna\_oznaka}
@@ -9,6 +8,5 @@
 \EndFor
 \State \Call{Gubitak}{\# izlaz[n] $\neq$ riječi[n].točna\_oznaka}
 \State \textbf{return} izlaz
-\EndFunction
 \end{algorithmic}
 \end{algorithm}
