@@ -5,6 +5,12 @@
 \usepackage{tikz-dependency}
 \usepackage{tkz-graph}
 
+%% rollin-rollout graphs
+\usepackage{tikz}
+\usetikzlibrary{arrows.meta,decorations.pathreplacing,matrix}
+\colorlet{lightblue}{blue!60!white}
+\colorlet{darkgreen}{green!60!black}
+
 %% times math
 \usepackage{newtxmath}
 
@@ -14,7 +20,7 @@
 \newcommand{\mbold}[1]{{\boldmath #1}}
 
 %% l2s
-\newcommand{\lts}{\textsc{l2s}}
+\def \lts {\textsc{l2s}}
 
 %% for notes
 \newcommand{\bq}[2]{{\fbox{#1}\colorbox{red}{~#2}}}

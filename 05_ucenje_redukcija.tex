@@ -49,17 +49,16 @@ probleme koji su šumoviti onda bilo kakve tvrdnje o težem problemu su isprazne
 
 Potrebno je znati je li redukcija konzistentna \engl{consistent} da bi se
 uvjerili da će redukcija raditi dobro \citep{beygelzimer2009error,
-daume15reductions}. Neformalno, redukcija za problem višerazredne klasifikacije
-je nekonzistentna ako skup optimalnih binarnih klasifikatora nultog žaljenja
-\engl{optimal (zero-regret) binary classifer} ne može ostvariti optimalnog
-višerazrednog klasifikatora u prisustvu šuma. Ispostavlja se da su gore navedene
-jednostavne redukcije na stablo odluke i \textsc{ova} pristup nekonzistentne.
-Navedene uvjete nekad je moguće zadovoljiti ne samo odabirom načina
-zaključivanja (\textsc{ovo}, \textsc{ova} itd.) nego i načinom učenja
-\citep{abe2004iterative, beygelzimer2005weighted}. Konzistentnost je osnovni
-uvjet za dobru redukciju, a na žalost redukcije s ograničenjem pogreške su
-uglavnom nekonzistentne. Čitatelja se upućuje na sustavni pregled zadnjih deset
-godina redukcije u strojnom učenju \citep{daume15reductions}.
+daume15reductions}. Neformalno, redukcija koja transformira bilo koje optimalno
+rješenje za osnovni jednostavni problem u optimalno rješenje za složeniji
+problem je \textit{konzistentna}. Ispostavlja se da su gore navedene jednostavne
+redukcije na stablo odluke i \textsc{ova} pristup nekonzistentne. Navedene
+uvjete nekad je moguće zadovoljiti ne samo odabirom načina zaključivanja
+(\textsc{ovo}, \textsc{ova} itd.) nego i načinom učenja \citep{abe2004iterative,
+beygelzimer2005weighted}. Konzistentnost je osnovni uvjet za dobru redukciju, a
+na žalost redukcije s ograničenjem pogreške su uglavnom nekonzistentne.
+Čitatelja se upućuje na sustavni pregled zadnjih deset godina redukcije u
+strojnom učenju \citep{daume15reductions}.
 
 Redukcije su bitna sastavnica u najuspješnijim \lts{} metodama jer bez njih ne
 bi imali informaciju o tome zašto su toliko uspješne nego bi pretpostavljali da

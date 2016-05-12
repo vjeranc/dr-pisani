@@ -1,0 +1,23 @@
+\begin{algorithm}
+\caption{Lokalno optimalno učenje pretraživanja (\textsc{lols})}\label{lolsalg}
+\begin{algorithmic}[1]
+\Require Skup podataka $\{x_i, y_i\}_{i=1}^N$ uzet iz distribucije $\mathcal{D}$
+         i $\beta \geq 0$. %% -- parametar mješavine za rollout.
+\State Inicijaliziraj policu $\hat{\pi}_1$.
+\ForAll{$i \in \{1,2,\ldots,N\}$}
+  \State Generiraj referentnu policu $\pi^{\text{ref}}$ temeljenu na $y_i$.
+  \State Inicijaliziraj $\Gamma = \emptyset$. \Comment{skup primjera osjetljivih na trošak.}
+  \ForAll{$t \in \{0,1,2,\ldots,T-1\}$}
+    \State Primijeniti $t$ puta policu $\pi_{i}^{\text{in}} = \hat{\pi}_i$  i stići do $s_t$. \Comment{Rollin.}
+    \ForAll{$a \in A(s_t)$}
+      \State Neka je  $\pi_{i}^{\text{out}} = \pi^{\text{ref}}$ s vjerojatnošću $\beta$, inače $\hat{\pi}_i$.
+      \State Procjeni trošak $c_{i,t}(a)$ koristeći $T-t-1$ puta policu $\pi_{i}^{\text{out}}$. \Comment{Rollout.}
+    \EndFor
+    \State Generiraj vektor značajki $\phi(x_i, s_t)$.
+    \State Postavi $\Gamma = \Gamma \cup \{\langle c_{i,t}, \phi(x_i, s_t) \rangle\}$.
+  \EndFor
+  \State $\hat{\pi}_{i+1} \gets \textsc{Train}(\hat{\pi}_i, \Gamma)$.
+\EndFor
+\State Vrati usrednjenu policu preko svih $\hat{\pi}_1, \hat{\pi}_2, \ldots, \hat{\pi}_N$.
+\end{algorithmic}
+\end{algorithm}

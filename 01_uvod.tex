@@ -1,23 +1,23 @@
-Metode učenja pretraživanja \engl{learning to search, abbrev.~\lts{}}
-novija su pojava u strojnom učenju, ali u zadnjih deset godina istraživači su
-metode primijenili na probleme u različitim granama računarske znanosti,
-uključujući i obradu prirodnog jezika. Vrlo uspješna je primjena vezana uz
-probleme gdje se učenje i zaključivanje odvija na primjerima koji sadrže
-određenu strukturu. Učenje pretraživanja spada u metode strukturnog učenja
-\engl{structured learning} ili predviđanja strukturiranog izlaza
-\engl{structured output prediction}. U obradi prirodnog jezika jedni od glavnih
-problema koji uključuju predviđanje strukturiranog izlaza su označavanje vrste
-riječi \engl{part-of-speech tagging}, ovisnosno parsanje \engl{dependency
-parsing}, prepoznavanje imenovanih entiteta \engl{named entity recognition},
-prepoznavanje i praćenje entiteta \engl{entity tracking and detection},
-razrješavanje koreference \engl{coreference resolution}, izlučivanje relacija
-između entiteta \engl{entity relation extraction}, inkrementalna prevođenje
-\engl{incremental translation}, inkrementalno odgovaranje na pitanja
-\engl{incremental question answering} i mnoštvo drugih. Ostale primjene metoda
-učenja pretraživanja su aktivno i interaktivno učenje \engl{active and
-interactive learning}, algoritmi grananja i granice \engl{branch-and-bound},
-robotika, segmentacija slike \engl{image segmentation}, predviđanje sekundarne
-strukture proteina \engl{protein secondary structure prediction} itd.
+Metode učenja pretraživanja \engl{learning to search, abbrev.~\lts{}} novija su
+pojava u strojnom učenju, ali u zadnjih deset godina istraživači su metode
+primijenili na probleme u različitim granama računarske znanosti, uključujući i
+obradu prirodnog jezika. Vrlo uspješna je primjena vezana uz probleme gdje se
+učenje i zaključivanje odvija na primjerima koji sadrže određenu strukturu.
+Učenje pretraživanja spada u metode strukturnog učenja \engl{structured
+learning} ili predviđanja strukturiranog izlaza \engl{structured output
+prediction}. U obradi prirodnog jezika jedni od glavnih problema koji uključuju
+predviđanje strukturiranog izlaza su označavanje vrste riječi
+\engl{part-of-speech tagging}, ovisnosno parsanje \engl{dependency parsing},
+prepoznavanje imenovanih entiteta \engl{named entity recognition}, prepoznavanje
+i praćenje entiteta \engl{entity tracking and detection}, razrješavanje
+koreference \engl{coreference resolution}, izlučivanje relacija između entiteta
+\engl{entity relation extraction}, inkrementalna prevođenje \engl{incremental
+translation}, inkrementalno odgovaranje na pitanja \engl{incremental question
+answering} i mnoštvo drugih. Ostale primjene metoda učenja pretraživanja su
+aktivno i interaktivno učenje \engl{active and interactive learning}, algoritmi
+grananja i granice \engl{branch-and-bound}, robotika, segmentacija slike
+\engl{image segmentation}, predviđanje sekundarne strukture proteina
+\engl{protein secondary structure prediction} itd.
 
 Jedan razlog mnoštvu primjena u tako kratkom vremenskom roku je matematička
 priroda metoda. Metode učenja pretraživanja vuku inspiraciju iz područja
@@ -41,17 +41,16 @@ iskorištava svojstvo modularnosti koje je prirodno u procesu redukcije (za
 implementaciju višerazredne klasifikacije potreban nam je samo dobar binarni
 klasifikator). Implementacija je ostvarena u brzom sustavu za strojno učenje
 zvanom Vowpal Wabbit
-\footnote{\url{https://github.com/JohnLangford/vowpal_wabbit/wiki}}, a
-\lts{} razvojni okvir omogućava da u jako malo linija programskog koda
-istraživač može napisati algoritam učenja i zaključivanja za specifični problem.
-Slični sustavi koji implementiraju algoritme učenja i zaključivanja za
-vjerojatnosne grafičke modele zahtijevaju puno više linija programskog koda i
-vjerojatnija je pojava bugova, a nemodularna priroda onemogućuje njihovo
-izbjegavanje. Pokušaj generalizacije i iskorištavanja programskog koda
-općenitijim metodama učenja i zaključivanja kod vjerojatnosnih grafičkih modela
-rezultirao je pojavom vjerojatnosnih programskih jezika \engl{probabilistic
-programming languages}, ali brzina učenja i zaključivanja nije ni blizu
-algoritama \lts{}.
+\footnote{\url{https://github.com/JohnLangford/vowpal_wabbit/wiki}}, a \lts{}
+razvojni okvir omogućava da u jako malo linija programskog koda istraživač može
+napisati algoritam učenja i zaključivanja za specifični problem. Slični sustavi
+koji implementiraju algoritme učenja i zaključivanja za vjerojatnosne grafičke
+modele zahtijevaju puno više linija programskog koda i vjerojatnija je pojava
+bugova, a nemodularna priroda onemogućuje njihovo izbjegavanje. Pokušaj
+generalizacije i iskorištavanja programskog koda općenitijim metodama učenja i
+zaključivanja kod vjerojatnosnih grafičkih modela rezultirao je pojavom
+vjerojatnosnih programskih jezika \engl{probabilistic programming languages},
+ali brzina učenja i zaključivanja nije ni blizu algoritama \lts{}.
 
 Ovaj diplomski rad nudi sažet pregled metoda učenja pretraživanja i njihovu
 primjenu na probleme obrade prirodnog jezika. Uz njihovu matematičku podlogu

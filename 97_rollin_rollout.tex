@@ -1,0 +1,60 @@
+\begin{figure}
+\centering
+\begin{tikzpicture}[
+  >={Triangle[]},
+  b/.style = {lightblue,fill=lightblue!40},
+  g/.style = {darkgreen,fill=darkgreen!40}
+  ]
+  \matrix[
+  matrix of nodes,column sep=1cm,row sep=.1cm,
+  nodes={
+    lightgray,draw,thick,fill=lightgray!40,circle,
+    minimum size=3ex, inner sep=1pt,anchor=south
+  }] (m) {
+          &       &       &       &     {}&     {}\\
+          &       &       &       &     {}&     {}\\
+          &     {}&     {}&|[g]|{}&|[g]|{}&|[g]|E \\
+          &       &       &       &     {}&     {}\\
+   |[b]|S &|[b]|{}&|[b]|R &|[b]|{}&|[b]|{}&|[b]|E \\
+          &       &       &       &     {}&     {}\\
+          &     {}&     {}&|[g]|{}&|[g]|E &       \\
+          &       &       &       &     {}&       \\
+          &       &       &       &     {}&       \\
+  };
+    % Green arrows
+  \draw[darkgreen,->, line width=1.2pt] (m-5-3.east) to[bend left] (m-3-4.west);
+  \draw[darkgreen,->, line width=1.2pt] (m-5-3.east) to[bend right] (m-7-4.west);
+  % Gray arrows
+  \foreach \i[evaluate=\i as \j using int(\i+1)] in {1,2} {
+    \foreach \row/\bend in {3/left, 7/right}
+      \draw[lightgray,->, line width=1.2pt] (m-5-\i.east) to[bend \bend]  (m-\row-\j.west);
+  }
+  \foreach \i[evaluate=\i as \j using int(\i+1)] in {4,5} {
+    \foreach \row/\bend in {1/left, 2/left}
+      \draw[lightgray,->, line width=1.2pt] (m-3-\i.east) to[bend \bend]  (m-\row-\j.west);
+  }
+  \foreach \i[evaluate=\i as \j using int(\i+1)] in {4,5} {
+    \foreach \row/\bend in {4/left, 6/right}
+      \draw[lightgray,->, line width=1.2pt] (m-5-\i.east) to[bend \bend]  (m-\row-\j.west);
+  }
+  \foreach \row/\bend in {8/right, 9/right}
+    \draw[lightgray,->, line width=1.2pt] (m-7-4.east) to[bend \bend]  (m-\row-5.west);
+  % Black arrows
+  \foreach \i [remember=\i as \lasti (initially 4)] in {5,6}
+    \draw[->, line width=1.2pt] (m-3-\lasti.east) to (m-3-\i.west);
+  \foreach \i [remember=\i as \lasti (initially 1)] in {2,...,6}
+    \draw[->, line width=1.2pt] (m-5-\lasti.east) to (m-5-\i.west);
+  \draw[->, line width=1.2pt] (m-7-4.east) to (m-7-5.west);
+  % Loss
+  \node[right of=m-3-6, text width=17ex, align=right] {gubitak $=$ 0};
+  \node[right of=m-5-6, text width=20ex, align=right] {gubitak $=$ 0.2};
+  \node[right of=m-7-5, text width=20ex, align=right] {gubitak $=$ 0.8};
+  % Braces
+  \draw[decorate,decoration={brace,amplitude=10pt},lightblue,thick]
+    (m-7-3 |- m-7-3.south) -- node[below=10pt] (rollin) {rollin} (m-5-1 |- m-7-3.south);
+  \draw[decorate,decoration={brace,amplitude=10pt},lightblue,thick]
+    (m-5-6 |- m-9-5.south) -- node[below=10pt] (rollout) {rollout} (m-5-4 |- m-9-5.south);
+  \path (rollin) -- node[lightblue,align=right,rotate=90] {odstupanja od \\ jednog koraka} (rollout);
+\end{tikzpicture}
+\caption{Prikaz postupka \textit{rollin} i \textit{rollout} kod učenja pretraživanja.} \label{rollinoutfig}
+\end{figure}
