@@ -1,3 +1,12 @@
+Lokalno optimalno učenje pretraživanja \engl{locally optimal learning to search}
+najnoviji je pristup i primjer je redukcije združenog učenja koja je
+konzistentna s najmanje pretpostavki o raspoloživoj polici.
+
+\cite{daume15lols} daju teoretsku i empirijsku potvrdu te redukcije združenog
+pretraživanja. Izvedeni su pokusi na tri zadatka: višerazredna klasifikacija
+osjetljiva na trošak \engl{cost-sensitive multiclass classification},
+označavanje vrste riječi i ovisnosno parsanje.
+
 \begin{algorithm}
 \caption{Lokalno optimalno učenje pretraživanja (\textsc{lols})}\label{lolsalg}
 \begin{algorithmic}[1]
@@ -21,3 +30,6 @@
 \State Vrati usrednjenu policu preko svih $\hat{\pi}_1, \hat{\pi}_2, \ldots, \hat{\pi}_N$.
 \end{algorithmic}
 \end{algorithm}
+
+Iz pseudokoda algoritma \ref{lolsalg} možemo primijetiti veliku sličnost sa
+Searn algoritmom \ref{searnalg}.
