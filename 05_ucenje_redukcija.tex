@@ -40,12 +40,12 @@ ograničava žaljenje, ograda tvrdi da malo žaljenje\footnote{Žaljenje hipotez
 $h$ na problemu $\mathcal{D}$ je razlika u pogrešci kod korištenja $h$ i
 korištenja najboljeg mogućeg klasifikatora. Formalno, $R(\mathcal{D}, h) =
 L(\mathcal{D}, h) - \min_{h\ssymbol{1}} L(\mathcal{D}, h\ssymbol{1})$.} na
-jednostavnom problemu podrayumijeva malo žaljenje na teškom. Zadovoljavajuća je
-činjenica da ograde imaju kompoziciju \cite{beygelzimer2005error}. Ako možemo
+jednostavnom problemu podrazumijeva malo žaljenje na teškom. Zadovoljavajuća je
+činjenica da ograde imaju kompoziciju \citep{beygelzimer2005error}. Ako možemo
 reducirati problem $X$ u problem $Y$ s ogradom $f$ i problem $B$ u problem $C$ s
 ogradom $g$ onda kompozicija $X \circ Y$ je redukcija s ogradom $f \circ g$.
 Bitna razlika je ta što ako redukcija s ograničenjem pogreške kreira jednostavne
-probleme koji su šumoviti onda bilo kakve tvrdnje o težem problemu su isprazne.
+probleme koji su šumoviti onda su bilo kakve tvrdnje o težem problemu isprazne.
 
 Potrebno je znati je li redukcija konzistentna \engl{consistent} da bi se
 uvjerili da će redukcija raditi dobro \citep{beygelzimer2009error,
@@ -64,5 +64,6 @@ Redukcije su bitna sastavnica u najuspješnijim \lts{} metodama jer bez njih ne
 bi imali informaciju o tome zašto su toliko uspješne nego bi pretpostavljali da
 koristimo heurističke metode. Heurističke metode prisutne su u izobilju kod
 primjena na probleme združenog predviđanja i bez teorije postoji samo empirijska
-potvrda njihove uspješnosti (dobar primjer je razvoj metoda za ovisnosno
-parsanje).
+potvrda njihove uspješnosti.\footnote{Dobar primjer je razvoj metoda za
+ovisnosno parsanje koje koriste \textit{beam} pretragu i time eksperimentalno
+poboljšavaju performanse \citep{zhang2011transition, bohnet2012transition}.}
