@@ -1,0 +1,87 @@
+Perceptron \citep{rosenblatt1958perceptron} je moguće proširiti tako da je s
+njime moguće rješavati probleme strukturnog predviđanja. Ovo je model koji
+dozvoljava učenje primjer po primjer \engl{online learning}, a najbrža varijanta
+s najboljom generalizacijom uzima prosjek težina koje smo dobili svakim
+primjerom \citep{freund1999large,gentile2002new} -- dan je pseudokod
+\ref{alg:avgperceptron}.
+
+\begin{algorithm}
+\caption{Perceptron algoritam s usrednjavanjem}\label{alg:avgperceptron}
+\begin{algorithmic}[1]
+\Require Skup podataka $\{x_i, y_i\}_{i=1}^N$ i broj prolaza $I$.
+\State $\mathbf{w}_0 \gets \langle 0, \ldots, 0 \rangle$, $b_0 \gets 0$
+\State $\mathbf{w}_a \gets \langle 0, \ldots, 0 \rangle$, $b_a \gets 0$
+\State $c \gets 1$
+
+\ForAll{$i \in \{1,2,\ldots,I\}$}
+
+  \ForAll{$n \in \{1,2,\ldots,N\}$}
+    \If{$y_n \cdot ({\mathbf{w}_0}^\top \phi(x_n) + b_0) \leq 0$}
+    \State $\mathbf{w}_0 \gets \mathbf{w}_0 + y_n \phi(x_n)$, $b_0 \gets b_0 + y_n$
+    \State $\mathbf{w}_a \gets \mathbf{w}_a + c y_n \phi(x_n)$, $b_a \gets b_a + c y_n$
+    \EndIf
+    \State $c \gets c + 1$
+  \EndFor
+
+\EndFor
+
+\State \Return{$(\mathbf{w}_0 - \mathbf{w}_a/c, b_0 - b_a/c)$}
+\end{algorithmic}
+\end{algorithm}
+
+Algoritam bez usrednjavanja vraća samo $\mathbf{w}_0$ i $b_0$.
+
+Proširenje potrebno za rješavanje problema strukturnog predviđanja je prikazano
+na pseudokodu \ref{alg:avgstructuredperceptron}.
+\citet{collins2002discriminative} uvodi model strukturnog perceptrona
+\engl{structured perceptron} kao zamjenu za uvjetna slučajna polja gdje je i
+dalje moguće imati vrlo bogatu reprezentaciju ulaza, ali je učenje puno
+jednostavnije i brže.
+
+\begin{algorithm}
+\caption{Strukturirani perceptron algoritam s usrednjavanjem}
+\label{alg:avgstructuredperceptron}
+\begin{algorithmic}[1]
+\Require Skup strukturiranih podataka $\{x_i, y_i\}_{i=1}^N$ i broj prolaza $I$.
+\State $\mathbf{w}_0 \gets \langle 0, \ldots, 0 \rangle$
+\State $\mathbf{w}_a \gets \langle 0, \ldots, 0 \rangle$
+\State $c \gets 1$
+
+\ForAll{$i \in \{1,2,\ldots,I\}$}
+  \ForAll{$n \in \{1,2,\ldots,N\}$}
+    \State $\hat{y}_n \gets \argmax_{y \in \mathcal{Y}} {\mathbf{w}_0}^\top \phi(x_n, y)$ \label{alg:avgstructuredperceptron:argmax}
+    \If{$y_n \neq \hat{y}_n$}
+    \State $\mathbf{w}_0 \gets \mathbf{w}_0 + \phi(x_n, y_n) - \phi(x_n, \hat{y}_n)$
+    \State $\mathbf{w}_a \gets \mathbf{w}_a + \phi(x_n, y_n) - \phi(x_n, \hat{y}_n)$
+    \EndIf
+    \State $c \gets c + 1$
+  \EndFor
+
+\EndFor
+
+\State \Return{$\mathbf{w}_0 - \mathbf{w}_a/c$}
+\end{algorithmic}
+\end{algorithm}
+
+Zahtjeva samo da se $\argmax$ problem na liniji
+\ref{alg:avgstructuredperceptron:argmax} može riješiti efikasno. U većini
+slučajeva rješava se algoritmom Viterbi ili aproksimativno. Pretpostavka je i da
+je problem koji rješavamo lako dekomponirati na Hammingov gubitak što je malo
+bolje nego njegova aproksimacija log-gubitkom -- kao što je slučaj kod uvjetnih
+slučajnih polja -- jer se optimizira pogrešna dodjela oznake izlaza (0 ili 1), a
+ne stupanj dodjele.
+
+Prva pojava pretraživanja u strukturnom predviđanju pojavljuje se u
+\citep{collins2004incremental} gdje je strukturni perceptron korišten za
+ovisnosno parsanje. Jedina razlika je u tome što se $\argmax$ problem rješava
+koristeći algoritam \textit{beam} pretrage stoga se linija
+\ref{alg:avgstructuredperceptron:argmax} zamijenjuje s $\hat{y}_n \gets
+\textsc{BreamPretraga}(x_n, \mathbf{w}_0)$. Algoritam umjesto da ima samo jedno
+stablo kao hipotezu ima ih više i time pokušava izbjeći pristranost oznakama.
+Slična ideja korištena je u trenutno najtočnijem ovisnosnom parseru opisanom u
+\citep{andor2016globally}. Uz \textit{beam} pretragu koriste neuronsku mrežu sa
+dva sloja gdje svaki ima 1024 neurona koju treniraju s globalnom normalizacijom
+(umjesto da maksimiziraju uspješnost na pojedinim odlukama koriste gubitak nakon
+što dobiju cijelo stablo), ali umjesto Hammingovog gubitka koriste aproksimaciju
+log-gubitkom. Ostaje i ograničenje da izlaz $y \in \mathcal{Y}$ mora imati
+dekompoziciju.

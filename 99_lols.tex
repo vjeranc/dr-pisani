@@ -16,7 +16,7 @@ označavanje vrste riječi i ovisnosno parsanje.
 \ForAll{$i \in \{1,2,\ldots,N\}$}
   \State Generiraj referentnu policu $\pi^{\text{ref}}$ temeljenu na $y_i$.
   \State Inicijaliziraj $\Gamma = \emptyset$. \Comment{skup primjera osjetljivih na trošak.}
-  \ForAll{$t \in \{0,1,2,\ldots,T-1\}$}
+  \ForAll{$t \in \{0,1,2,\ldots,T_i-1\}$}
     \State Primijeniti $t$ puta policu $\pi_{i}^{\text{in}} = \hat{\pi}_i$  i stići do $s_t$. \Comment{Rollin.}
     \ForAll{$a \in A(s_t)$}
       \State Neka je  $\pi_{i}^{\text{out}} = \pi^{\text{ref}}$ s vjerojatnošću $\beta$, inače $\hat{\pi}_i$.
