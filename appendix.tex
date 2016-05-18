@@ -1,0 +1,125 @@
+\begin{appendix}
+%% TODO dodati linkove na implementaciju
+\chapter{Označivači vrste riječi}
+\section{Običan označivač vrste riječi}
+\label{appendix:postagging}
+\begin{lstlisting}[language=C++,
+                   basicstyle=\tiny\ttfamily]{Name=msd-one-by-one}
+void run(Search::search& sch, vector<example*>& ec)
+{ Search::predictor P(sch, (ptag)0);
+  for (size_t i=0; i<ec.size(); i++)
+  { action oracle     = ec[i]->l.multi.label;
+    size_t prediction = P.set_tag((ptag)i+1)
+                         .set_input(*ec[i])
+                         .set_oracle(oracle)
+                         .set_condition_range((ptag)i, sch.get_history_length(), 'p')
+                         .predict();
+
+    if (sch.output().good())
+      sch.output() << sch.pretty_label((uint32_t)prediction) << ' ';
+  }
+}
+\end{lstlisting}
+\newpage
+\section{MSD sljedni označivač po komponentama}\label{code:msdcomp}
+\begin{lstlisting}[language=C++,
+                   basicstyle=\tiny\ttfamily]{Name=msd-one-by-one}
+void run(Search::search& sch, vector<example*>& ec)
+{ Search::predictor P(sch, (ptag)0);
+ task_data * data = sch.get_task_data<task_data>();
+ resize_tags(data, ec.size());
+ size_t pass = 0, shift = 1;
+ for (size_t i=0; i<ec.size(); i++)
+ {
+   while (has_positional_decision(data, i, pass)) {
+     ptag p = (ptag)shift;
+     action oracle     = get_label(ec[i], pass);
+     v_array<action> & allowed = get_allowed(data, pass, i);
+     P.set_tag(p).set_input(*ec[i]).set_oracle(oracle).set_allowed(allowed);
+
+     if (i > 0) {
+       size_t start = i < sch.get_history_length() ? 0 : i - sch.get_history_length();
+       char name = 'a', prevn='a'; // for erasing previous conditions
+       for(size_t j = start; j < i; ++j) {
+         for(tag & t : get_tags(data, j)) {
+           if (name == 'a') P.set_condition(t.i, name++);
+           else             P.add_condition(t.i, name++);
+         }
+         name = prevn + 10; prevn = name;
+       }
+     }
+
+     size_t prediction = P.predict();
+     push_tag(data, i, p, prediction, pass);
+
+     sch.loss(prediction != oracle);
+     if (sch.output().good()){
+       sch.output() << sch.pretty_label((uint32_t)prediction);
+       if (has_positional_decision(data, i, pass+1)) {sch.output() << ' ';}
+       else                                          {sch.output() << '\n';}
+     }
+     shift += 1;
+     pass += 1;
+   }
+   pass = 0;
+ }
+}
+\end{lstlisting}
+\newpage
+\section{MSD označivač po slojevima}\label{code:msdlayered}
+\begin{lstlisting}[language=C++,
+                   basicstyle=\tiny\ttfamily]{Name=msd-one-by-one}
+void run(Search::search& sch, vector<example*>& ec)
+{ Search::predictor P(sch, (ptag)0);
+  task_data * data = sch.get_task_data<task_data>();
+  resize_tags(data, ec.size());
+  size_t pass = 0, shift = 1; bool touched = true;
+  while (touched) {
+    touched = false;
+    for (size_t i=0; i<ec.size(); i++)
+    { if (has_positional_decision(data, i, pass)) {
+        ptag p = (ptag)shift;
+        action oracle     = get_label(ec[i], pass);
+        v_array<action> & allowed = get_allowed(data, pass, i);
+        P.set_tag(p).set_input(*ec[i]).set_oracle(oracle).set_allowed(allowed);
+
+        size_t start = i < sch.get_history_length() ? 0 : i - sch.get_history_length()/2;
+        size_t end = pass == 0 ? i : std::min(i+1 + sch.get_history_length()/2, ec.size());
+        char name = 'a', prevn = 'a'; // for erasing previous conditions
+        for(size_t j = start; j < end; ++j) {
+          if (j == i) continue;
+          for(tag & t : get_tags(data, j)) {
+            if (name == 'a') P.set_condition(t.i, name++);
+            else             P.add_condition(t.i, name++);
+          }
+          name = prevn + 10; prevn = name; // no msd has more than 10 labels
+        }
+        size_t prediction = P.predict(); push_tag(data, i, p, prediction, pass);
+        shift += 1; touched = true;
+      }
+    }
+    pass += 1;
+  }
+  int loss = 0;
+  for(int j = 0; j < ec.size(); ++j){
+    pass = 0;
+    for(tag & t : get_tags(data, j)) {
+      if (t.a !=  get_label(ec[j], pass++)) {
+        loss += 1; break;
+      }
+    }
+  }
+  sch.loss(loss);
+  if (sch.output().good()){
+    for(int j = 0; j < ec.size(); ++j){
+      pass = 0;
+      for(tag & t : get_tags(data, j)) {
+        sch.output() << sch.pretty_label((uint32_t)t.a);
+        if (has_positional_decision(data, j, ++pass)) {sch.output() << ' ';}
+        else                                          {sch.output() << '\n';}
+      }
+    }
+  }
+}
+\end{lstlisting}
+\end{appendix}

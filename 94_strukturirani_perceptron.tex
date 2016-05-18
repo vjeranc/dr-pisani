@@ -3,7 +3,8 @@ njime moguće rješavati probleme strukturnog predviđanja. Ovo je model koji
 dozvoljava učenje primjer po primjer \engl{online learning}, a najbrža varijanta
 s najboljom generalizacijom uzima prosjek težina koje smo dobili svakim
 primjerom \citep{freund1999large,gentile2002new} -- dan je pseudokod
-\ref{alg:avgperceptron}.
+\ref{alg:avgperceptron}. Algoritam bez usrednjavanja vraća samo $\mathbf{w}_0$ i
+$b_0$.
 
 \begin{algorithm}
 \caption{Perceptron algoritam s usrednjavanjem}\label{alg:avgperceptron}
@@ -29,8 +30,6 @@ primjerom \citep{freund1999large,gentile2002new} -- dan je pseudokod
 \end{algorithmic}
 \end{algorithm}
 
-Algoritam bez usrednjavanja vraća samo $\mathbf{w}_0$ i $b_0$.
-
 Proširenje potrebno za rješavanje problema strukturnog predviđanja je prikazano
 na pseudokodu \ref{alg:avgstructuredperceptron}.
 \citet{collins2002discriminative} uvodi model strukturnog perceptrona
@@ -50,7 +49,7 @@ jednostavnije i brže.
 \ForAll{$i \in \{1,2,\ldots,I\}$}
   \ForAll{$n \in \{1,2,\ldots,N\}$}
     \State $\hat{y}_n \gets \argmax_{y \in \mathcal{Y}} {\mathbf{w}_0}^\top \phi(x_n, y)$ \label{alg:avgstructuredperceptron:argmax}
-    \If{$y_n \neq \hat{y}_n$}
+    \If{$y_n \neq \hat{y}_n$}\label{alg:structuredperceptron:condition}
     \State $\mathbf{w}_0 \gets \mathbf{w}_0 + \phi(x_n, y_n) - \phi(x_n, \hat{y}_n)$
     \State $\mathbf{w}_a \gets \mathbf{w}_a + \phi(x_n, y_n) - \phi(x_n, \hat{y}_n)$
     \EndIf
@@ -76,12 +75,15 @@ Prva pojava pretraživanja u strukturnom predviđanju pojavljuje se u
 ovisnosno parsanje. Jedina razlika je u tome što se $\argmax$ problem rješava
 koristeći algoritam \textit{beam} pretrage stoga se linija
 \ref{alg:avgstructuredperceptron:argmax} zamijenjuje s $\hat{y}_n \gets
-\textsc{BreamPretraga}(x_n, \mathbf{w}_0)$. Algoritam umjesto da ima samo jedno
+\textsc{BeamPretraga}(x_n, \mathbf{w}_0)$. Algoritam umjesto da ima samo jedno
 stablo kao hipotezu ima ih više i time pokušava izbjeći pristranost oznakama.
 Slična ideja korištena je u trenutno najtočnijem ovisnosnom parseru opisanom u
 \citep{andor2016globally}. Uz \textit{beam} pretragu koriste neuronsku mrežu sa
-dva sloja gdje svaki ima 1024 neurona koju treniraju s globalnom normalizacijom
-(umjesto da maksimiziraju uspješnost na pojedinim odlukama koriste gubitak nakon
-što dobiju cijelo stablo), ali umjesto Hammingovog gubitka koriste aproksimaciju
-log-gubitkom. Ostaje i ograničenje da izlaz $y \in \mathcal{Y}$ mora imati
-dekompoziciju.
+dva sloja gdje svaki ima 1024 neurona koju treniraju s globalnom normalizacijom,
+ali umjesto Hammingovog gubitka koriste aproksimaciju log-gubitkom. U liniji
+\ref{alg:structuredperceptron:condition} može se primijetiti da se ažuriraju
+težine u slučaju da cijeli izlaz (npr.~niz oznaka vrsta riječi ili ovisnosno
+stablo) nije u potpunosti jednak pravom izlazu. Samim time točno označene
+komponente izlaza i dalje utječu na težine, a to nije potrebno jer su točno
+označene. Njihov dodatak s globalnom normalizacijom rješava taj problem. Ostaje
+i ograničenje da izlaz $y \in \mathcal{Y}$ mora imati dekompoziciju.

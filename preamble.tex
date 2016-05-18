@@ -49,6 +49,8 @@
 \newtheorem{condition}{Uvjet}
 %% definition
 \newtheorem{definition}{Definicija}
+%% definition
+\newtheorem{theorem}{Teorem}
 
 %% fields
 \newcommand*{\field}[1]{\mathbb{#1}}
@@ -59,12 +61,69 @@
 %% url font style
 \urlstyle{sf}
 
+%% code listings
+\usepackage{listings}
+
 %% algorithm
 
 \usepackage{algorithm}
 \usepackage{algpseudocode}
 
+\algrenewcommand{\algorithmicrequire}{\textbf{Potrebno:}}
+\algrenewcommand{\algorithmicend}{\textbf{kraj}}
+\algrenewcommand{\algorithmicif}{\textbf{ako}}
+\algrenewcommand{\algorithmicthen}{\textbf{onda}}
+\algrenewcommand{\algorithmicelse}{\textbf{inače}}
+\algrenewcommand{\algorithmicfor}{\textbf{za}}
+\algrenewcommand{\algorithmicforall}{\textbf{za svaki}}
+\algrenewcommand{\algorithmicforall}{\textbf{za svaki}}
+\algrenewcommand{\algorithmicfunction}{\textbf{funkcija}}
+\algrenewcommand{\algorithmicdo}{}
+\algrenewcommand{\algorithmicwhile}{\textbf{dok je}}
+\algrenewtext{EndFor}{\textbf{kraj petlje}}
+\algrenewtext{EndWhile}{\textbf{kraj petlje}}
+\algrenewtext{EndIf}{\textbf{kraj}}
+\algrenewtext{EndFunction}{\textbf{kraj funkcije}}
+\algrenewcommand{\algorithmicreturn}{\textbf{vrati}}
+
+\algdef{SE}[WHILE]{While}{EndWhile}[1]
+  {\algorithmicwhile\ #1\ \textbf{ponavljaj}}
+  {\textbf{kraj petlje}}
+
 \makeatletter
 \renewcommand{\ALG@name}{Algoritam}
 \renewcommand{\listalgorithmname}{Popis \ALG@name a}
 \makeatother
+
+\errorcontextlines\maxdimen
+
+% http://tex.stackexchange.com/questions/144840/vertical-loop-block-lines-in-algorithmicx-with-noend-option
+% begin vertical rule patch for algorithmicx (http://tex.stackexchange.com/questions/144840/vertical-loop-block-lines-in-algorithmicx-with-noend-option)
+\makeatletter
+% start with some helper code
+% This is the vertical rule that is inserted
+\newcommand*{\algrule}[1][\algorithmicindent]{\makebox[#1][l]{\hspace*{.5em}\vrule height .75\baselineskip depth .25\baselineskip}}%
+
+\newcount\ALG@printindent@tempcnta
+\def\ALG@printindent{%
+    \ifnum \theALG@nested>0% is there anything to print
+        \ifx\ALG@text\ALG@x@notext% is this an end group without any text?
+            % do nothing
+            \addvspace{-3pt}% FUDGE for cases where no text is shown, to make the rules line up
+        \else
+            \unskip
+            % draw a rule for each indent level
+            \ALG@printindent@tempcnta=1
+            \loop
+                \algrule[\csname ALG@ind@\the\ALG@printindent@tempcnta\endcsname]%
+                \advance \ALG@printindent@tempcnta 1
+            \ifnum \ALG@printindent@tempcnta<\numexpr\theALG@nested+1\relax% can't do <=, so add one to RHS and use < instead
+            \repeat
+        \fi
+    \fi
+    }%
+\usepackage{etoolbox}
+% the following line injects our new indent handling code in place of the default spacing
+\patchcmd{\ALG@doentity}{\noindent\hskip\ALG@tlm}{\ALG@printindent}{}{\errmessage{failed to patch}}
+\makeatother
+% end vertical rule patch for algorithmicx

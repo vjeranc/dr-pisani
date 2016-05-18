@@ -8,7 +8,7 @@ osjetljiva na trošak \engl{cost-sensitive multiclass classification},
 označavanje vrste riječi i ovisnosno parsanje.
 
 \begin{algorithm}
-\caption{Lokalno optimalno učenje pretraživanja (\textsc{lols})}\label{lolsalg}
+\caption{Lokalno optimalno učenje pretraživanja (\textsc{lols})}\label{alg:lols}
 \begin{algorithmic}[1]
 \Require Skup podataka $\{x_i, y_i\}_{i=1}^N$ uzet iz distribucije $\mathcal{D}$
          i $\beta \geq 0$. %% -- parametar mješavine za rollout.
@@ -17,10 +17,10 @@ označavanje vrste riječi i ovisnosno parsanje.
   \State Generiraj referentnu policu $\pi^{\text{ref}}$ temeljenu na $y_i$.
   \State Inicijaliziraj $\Gamma = \emptyset$. \Comment{skup primjera osjetljivih na trošak.}
   \ForAll{$t \in \{0,1,2,\ldots,T_i-1\}$}
-    \State Primijeniti $t$ puta policu $\pi_{i}^{\text{in}} = \hat{\pi}_i$  i stići do $s_t$. \Comment{Rollin.}
+    \State Primijeniti $t$ puta policu $\pi_{i}^{\text{in}} = \hat{\pi}_i$  i stići do $s_t$. \Comment{Rollin.} \label{alg:lols:learned}
     \ForAll{$a \in A(s_t)$}
       \State Neka je  $\pi_{i}^{\text{out}} = \pi^{\text{ref}}$ s vjerojatnošću $\beta$, inače $\hat{\pi}_i$.
-      \State Procjeni trošak $c_{i,t}(a)$ koristeći $T-t-1$ puta policu $\pi_{i}^{\text{out}}$. \Comment{Rollout.}
+      \State Procjeni trošak $c_{i,t}(a)$ koristeći $T-t-1$ puta policu $\pi_{i}^{\text{out}}$. \Comment{Rollout.} \label{alg:lols:mixture}
     \EndFor
     \State Generiraj vektor značajki $\phi(x_i, s_t)$.
     \State Postavi $\Gamma = \Gamma \cup \{\langle c_{i,t}, \phi(x_i, s_t) \rangle\}$.
@@ -31,5 +31,5 @@ označavanje vrste riječi i ovisnosno parsanje.
 \end{algorithmic}
 \end{algorithm}
 
-Iz pseudokoda algoritma \ref{lolsalg} možemo primijetiti veliku sličnost sa
-Searn algoritmom \ref{searnalg}.
+Iz pseudokoda algoritma \ref{alg:lols} možemo primijetiti veliku sličnost sa
+\textsc{Searn} algoritmom \ref{searnalg}.

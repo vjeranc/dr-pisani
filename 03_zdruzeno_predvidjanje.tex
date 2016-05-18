@@ -14,7 +14,7 @@ taj niz izračunati gubitak i ona nema nužno dekompoziciju preko niza tog odluk
 Naziv onda može uključivati združene probleme poput istovremenog označavanja
 vrste riječi u rečenici i ovisnosnog parsanja rečenice, ali i svaki problem
 zasebno. Kako bi nastavak bio konzistentan sa starijom literaturom koristi se
-staro ime, a definicija \ref{jointlearndef} je zapravo definicija združenog
+staro ime, a definicija \ref{def:jointlearn} je zapravo definicija združenog
 učenja.
 
 U literaturi koja je koristila naziv za problem strukturnog predviđanja problem
@@ -62,7 +62,7 @@ funkcije gubitka. Pristupi koji slijede u nastavku ovog poglavlja ne mogu
 riješiti problem ako je drugi uvjet korišten za definiciju. Prihvaćena
 definicija slijedi.
 
-\begin{definition}[\citet{daume09searn}] \label{jointlearndef}
+\begin{definition}[\citet{daume09searn}] \label{def:jointlearn}
 
   Problem strukturnog predviđanja $\mathcal{D}$ je klasifikacijski problem
   osjetljiv na trošak \engl{cost-sensitive classification problem} gdje
@@ -103,4 +103,4 @@ vektorske reprezentacije $\mathcal{Y}$ da ni jedna značajka ne ovisi o
 elementima $y$ koji su više od $k+1$ pozicija udaljeni, onda možemo iskoristiti
 Viterbi algoritam za rješenje \ref{argmaxproblem}, a složenost će biti $O(M^k
 T)$ -- gdje je $M$ broj mogućih oznaka, definiran u uvjetu \ref{uvjet1}, a $T$
-duljina vektora na koji se dekomponira $y$ iz definicije \ref{jointlearndef}.
+duljina vektora na koji se dekomponira $y$ iz definicije \ref{def:jointlearn}.

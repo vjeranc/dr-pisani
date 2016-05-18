@@ -1,12 +1,95 @@
+Označavanje vrste riječi jedan je od jednostavnijih problema u obradi prirodnog
+jezika i shodno tome ima vrlo jednostavnu implementaciju u okviru učenja
+pretraživanja. Algoritam \ref{alg:postagging} pokazuje jednostavnost zadatka.
+
 \begin{algorithm}
-\caption*{\textsc{Run}(\textit{riječi})}\label{taggingalg}
+\caption{Označavanje vrste riječi u \textsc{l2s} okviru.}\label{alg:postagging}
 \begin{algorithmic}[1]
+\Function{\textsc{Run}}{riječi}
 \State $\textit{izlaz} \gets \text{[]}$
-\For{$n \gets 1$ \textbf{to} \Call{Len}{riječi}}
+\For{$n \gets 1$ \textbf{do} \Call{Len}{riječi}}
   \State \textit{ref} $\gets$ \text{riječi[n].točna\_oznaka}
   \State \textit{izlaz[n]} $\gets$ \Call{Predict}{riječi[i], ref, izlaz[:n-1]}
 \EndFor
 \State \Call{Gubitak}{\# izlaz[n] $\neq$ riječi[n].točna\_oznaka}
 \State \textbf{return} izlaz
+\EndFunction
 \end{algorithmic}
 \end{algorithm}
+
+Algoritam je skoro jednak algoritmu koji provjerava koliko je riječi u rečenici
+točno označeno. Za svaku riječ u rečenici znamo točnu oznaku i prosljeđujemo ju
+funkciji \textsc{Predict} koja vraća oznaku trenutne police -- polica može biti
+naučena ili referentna. U slučaju da je polica referentna, funkcija vraća upravo
+prosljeđenu oznaku. Nakon što je cijeli izlaz predviđen objavljuje se gubitak
+koji je u ovom slučaju broj riječi koje su netočno označene. Algoritam tijekom
+učenja u pozadini mijenja police i pokreće funkciju \textsc{Run} dovoljno puta
+dok ne nauči referentnu policu. Algoritam zaključivanja koristi istu funkciju,
+ali u tom trenutku ne postoji pristup točnoj oznaci tj.~što god ona bila neće se
+uzeti u obzir nego će se zvati naučena polica. Jedna funkcija dovoljna je za
+algoritam učenja i zaključivanja, a to je slučaj za sve algoritme u \textsc{l2s}
+okviru.
+
+Zanimljivo je usporediti vremenske složenosti uobičajenih pristupa s ovim. Svi
+pristupi opisani u poglavlju \ref{ch:pregled} za zaključivanje koriste algoritam
+Viterbi čija je vremenska složenost $O(T M ^ k)$ gdje je $T$ duljina rečenice,
+$M$ broj mogućih oznaka, a $k$ broj prijašnjih odluka kojima uvjetujemo
+trenutnu. U \textsc{l2s} okviru složenost zaključivanja je $O(T M k)$. Iz
+algoritma \ref{alg:postagging} može se primijetiti da u funkciju
+\textsc{Predict} prosljeđujemo  sve prijašnje oznake. One se pri izgradnji
+primjera osjetljivog na trošak u \textsc{lols} algoritmu dodaju kao značajke.
+Binarni klasifikatori koji nam omogućuju redukciju problema višerazredne
+klasifikacije osjetljive na trošak predviđaju trošak svake pojedine oznake kojih
+ima točno $M$. Složenost tog postupka je $O(d)$ gdje je $d$ duljina vektora
+značajki. U svakom slučaju zaključivanje je puno brže nego algoritam Viterbi.
+
+Prednost je i ta što algoritam \ref{alg:postagging} ne treba mijenjati ako se
+mijenjaju redukcije ispod apstrakcije. Recimo, moguće je koristiti redukciju
+višerazredne klasifikacije osjetljive na trošak opisanu u
+\citep{beygelzimer2009error}. Vremenska složenost određivanja razreda opada s
+$O(M)$ na $O(\log M)$. To bi automatski ubrzalo označavanje vrste riječi i
+vremenska složenost bi iznosila $O(k T \log M)$.
+
+Vremenska složenost algoritma učenja ovisi o parametrima algoritma. U slučaju
+\textsc{lols} algoritma \ref{alg:lols} funkcija \textsc{Run} zove se u liniji
+\ref{alg:lols:learned} i \ref{alg:lols:mixture} što bi upućivalo da je složenost
+učenja jednog primjera $O(T ^ 2 M k)$, ali raznim \textit{trikovima} moguće je
+to smanjiti na $O(T M k)$. Za detaljniji opis čitatelj se upućuje na
+\citep{daume14lts}.
+
+\begin{algorithm}
+\caption{Označavanje vrste riječi u \textsc{l2s} okviru s više prolaza.}\label{alg:postagging:multipass}
+\begin{algorithmic}[1]
+\Function{\textsc{Run}}{riječi, P}
+\State $\textit{izlaz} \gets \text{[]}$
+\For{$p \gets 1$ \textbf{do} P}
+  \For{$n \gets 1$ \textbf{do} \Call{Len}{riječi}}
+    \State \textit{ref} $\gets$ \Call{PravaOdluka}{riječi[n].točna\_oznaka, p, odluke}
+    \State \textit{odluke[n,p]} $\gets$ \Call{Predict}{riječi[i], ref, \textsc{IzvuciSusjede}(odluke)}
+  \EndFor
+\EndFor
+\State pravi\_izlaz $\gets$ \Call{RekonstruirajIzlaz}{odluke}
+\State \Call{Gubitak}{\# pravi\_izlaz[n] $\neq$ riječi[n].točna\_oznaka}
+\State \textbf{return} pravi\_izlaz
+\EndFunction
+\end{algorithmic}
+\end{algorithm}
+
+Algoritam \ref{alg:postagging:multipass} prikazuje alternativnu implementaciju
+označivača vrste riječi. U ovom slučaju za jednu rečenicu radi se više prolaza u
+nadi da će prvi prolaz otkriti novu informaciju kojom bi sljedeći mogao
+popraviti napravljene pogreške. U tom slučaju akcije koje referentna polica vrši
+nisu samo točne oznake nego i akcija promjene oznake dodjeljene u prošlom
+prolazu. Funkcija \textsc{PravaOdluka} vraća za novije prolaze akciju koju
+referentna polica vrši s obzirom na to koja je zapravo točna oznaka. U slučaju
+da je trenutnoj riječi dodjeljena točna oznaka akcija bi trebala biti takva da
+očuva prijašnju odluku. Zbog više prolaza sada možemo uključiti predviđanja koja
+su lijevo i desno od trenutne riječi, a logika je prepuštena funkciji
+\textsc{IzvuciSusjede}. Na samom kraju funkcija \textsc{RekonstruirajIzlaz} iz
+donešenih odluka rekonstruira pravi izlaz i ostatak je identičan originalnom
+algoritmu. Ovakav pristup gotovo je nemoguće napraviti s bilo kojom drugom
+metodom, a da $\argmax$ problem ostane izračunljiv. Sve odluke u navedenoj
+inačici algoritma se i dalje vrše združeno u slučaju da dodajemo susjede kao
+značajke. Algoritam nije ekvivalentan pokretanju označivača vrste riječi više
+puta gdje drugo i sva ostala pokretanja imaju značajku vrste riječi prošlog
+prolaza. Ovaj pristup sve odluke radi združeno.
