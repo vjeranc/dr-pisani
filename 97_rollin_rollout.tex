@@ -35,8 +35,8 @@ bridovima, a stanja čvorovima.
   nodes={
     lightgray,draw,thick,fill=lightgray!40,circle,
     minimum size=3ex, inner sep=1pt,anchor=south
-  }] (m) {    &    &    &    &     {}&     {}\\    &    &    &    &     {}&     {}\\    &     {}&     {}&|[g]|{}&|[g]|{}&|[g]|E \\    &    &    &    &     {}&     {}\\
-   |[b]|S    &|[b]|{}&|[b]|R    &|[b]|{}&|[b]|{}&|[b]|E \\    &    &    &    &     {}&     {}\\    &     {}&     {}&|[g]|{}&|[g]|E    &       \\    &    &    &    &     {}&       \\    &    &    &    &     {}&       \\
+  }] (m) {    &    &    &    &     {}&     {}\\    &    &    &    &     {}&     {}\\    &     {}&     {}&|[g]|{}&|[g]|{}&|[g]|Z \\    &    &    &    &     {}&     {}\\
+   |[b]|P    &|[b]|{}&|[b]|R    &|[b]|{}&|[b]|{}&|[b]|Z \\    &    &    &    &     {}&     {}\\    &     {}&     {}&|[g]|{}&|[g]|Z    &       \\    &    &    &    &     {}&       \\    &    &    &    &     {}&       \\
   };
     % Green arrows
   \draw[darkgreen,->, line width=1.2pt] (m-5-3.east) to[bend left] (m-3-4.west);
@@ -63,9 +63,9 @@ bridovima, a stanja čvorovima.
     \draw[->, line width=1.2pt] (m-5-\lasti.east) to (m-5-\i.west);
   \draw[->, line width=1.2pt] (m-7-4.east) to (m-7-5.west);
   % Loss
-  \node[right=of m-3-6] (loss1) {$y_e \in \mathcal{Y}, l(y_e) = 0$};
-  \node[right=of m-5-6] (loss2) {$y_e \in \mathcal{Y}, l(y_e) = 1$};
-  \node[right=of m-7-5] (loss3) {$y_e \in \mathcal{Y}, l(y_e) = 2$};
+  \node[right=of m-3-6] (loss1) {$y_z \in \mathcal{Y}, l(y_z) = 0$};
+  \node[right=of m-5-6] (loss2) {$y_z \in \mathcal{Y}, l(y_z) = 1$};
+  \node[right=of m-7-5] (loss3) {$y_z \in \mathcal{Y}, l(y_z) = 2$};
   \draw[->, line width=1.2pt] (m-3-6.east) to (loss1);
   \draw[->, line width=1.2pt] (m-5-6.east) to (loss2);
   \draw[->, line width=1.2pt] (m-7-5.east) to (loss3);
@@ -81,7 +81,7 @@ bridovima, a stanja čvorovima.
 \end{tikzpicture}
 \caption[Prikaz postupka \textit{rollin} i \textit{rollout} kod učenja
 pretraživanja.]{Prikaz postupka \textit{rollin} i \textit{rollout} kod učenja
-pretraživanja. Kreće se iz stanja $S$ i odabiru se srednja odluka od moguće tri
+pretraživanja. Kreće se iz stanja $P$ i odabiru se srednja odluka od moguće tri
 dva puta koristeći \textit{rollin} policu. Sivi čvorovi se ne pretražuju. U
 koraku $R$ algoritam učenja odabire sve moguće poteze radeći odstupanje od
 jednog koraka i primijenjuje \textit{rollout} policu za svaki mogući potez

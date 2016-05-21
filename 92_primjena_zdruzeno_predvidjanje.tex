@@ -3,7 +3,7 @@ Najmoćnija primjena metoda učenja pretraživanja je združeno predviđanje i u
 koju funkciju gubitka moguće je kombinirati više zadataka istovremeno. Trenutni
 označivači vrste riječi su postigli točnost od otprilike 97-98\%
 \citep{manning2011part} i ne mogu više od toga. Jedan od razloga je taj što neke
-oznake nije lako odrediti bez informacije o sintaksi rečenice. U \textsc{l2s}
+oznake nije lako odrediti bez informacije o sintaksi rečenice. U \lts{}
 okviru procjenu troška pojedine oznake vrste riječi moguće je proširiti tako da
 se nakon označene cijele rečenice izvrši ovisnosno parsanje. Gubitak koji
 dobijemo nakon parsanja proslijedit će informaciju i poboljšati procjenu troška
@@ -15,7 +15,7 @@ Problem prepoznavanja imenovanih entiteta i izlučivanje relacija između entite
 u tekstu, dva su zadatka koja bi bilo dobro raditi združeno. Očito učinkovitost
 izlučivanja relacija ovisi o tome koliko dobro su entiteti prepoznati.
 Propagiranje gubitka zadatka izlučivanja relacija bi trebalo dodatno poboljšati
-prepoznavanje entiteta. U \textsc{l2s} okviru moguće je, ako su problemi sljedno
+prepoznavanje entiteta. U \lts{} okviru moguće je, ako su problemi sljedno
 povezani (prvo izvršavamo jedan, a onda drugi), učiti model na jednom zadatku, a
 onda učiti na oba istovremeno. Tako se može izbjeći potreba za ogromnom
 količinom označenih podataka koji imaju oznake za oba zadatka. Ako učimo
@@ -25,7 +25,7 @@ optimalna, ali nije ni jako loša. Učenje na skupu podataka sa svim oznakama bi
 uvelo optimalnu policu koja ne bi počinjala od nule za zadatak prepoznavanja
 imenovanih entiteta, ali bi onda mogli popraviti krive procjene novim podacima.
 
-Zbog činjenice da je za združeno predviđanje u \textsc{l2s} okviru potrebna samo
+Zbog činjenice da je za združeno predviđanje u \lts{} okviru potrebna samo
 združena procjena troška, za svaki problem možemo koristiti zaseban model. Time
 izbjegavamo korištenje značajki za probleme koji od tih značajki ne bi imali
 koristi. Ako se problemi rješavaju sljedno -- kao što je slučaj u označavanju

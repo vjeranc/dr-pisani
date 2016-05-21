@@ -3,7 +3,7 @@ jezika i shodno tome ima vrlo jednostavnu implementaciju u okviru učenja
 pretraživanja. Algoritam \ref{alg:postagging} pokazuje jednostavnost zadatka.
 
 \begin{algorithm}
-\caption{Označavanje vrste riječi u \textsc{l2s} okviru.}\label{alg:postagging}
+\caption{Označavanje vrste riječi u \lts{} okviru.}\label{alg:postagging}
 \begin{algorithmic}[1]
 \Function{\textsc{Run}}{riječi}
 \State $\textit{izlaz} \gets \text{[]}$
@@ -27,14 +27,14 @@ učenja u pozadini mijenja police i pokreće funkciju \textsc{Run} dovoljno puta
 dok ne nauči referentnu policu. Algoritam zaključivanja koristi istu funkciju,
 ali u tom trenutku ne postoji pristup točnoj oznaci tj.~što god ona bila neće se
 uzeti u obzir nego će se zvati naučena polica. Jedna funkcija dovoljna je za
-algoritam učenja i zaključivanja, a to je slučaj za sve algoritme u \textsc{l2s}
+algoritam učenja i zaključivanja, a to je slučaj za sve algoritme u \lts{}
 okviru.
 
 Zanimljivo je usporediti vremenske složenosti uobičajenih pristupa s ovim. Svi
 pristupi opisani u poglavlju \ref{ch:pregled} za zaključivanje koriste algoritam
 Viterbi čija je vremenska složenost $O(T M ^ k)$ gdje je $T$ duljina rečenice,
 $M$ broj mogućih oznaka, a $k$ broj prijašnjih odluka kojima uvjetujemo
-trenutnu. U \textsc{l2s} okviru složenost zaključivanja je $O(T M k)$. Iz
+trenutnu. U \lts{} okviru složenost zaključivanja je $O(T M k)$. Iz
 algoritma \ref{alg:postagging} može se primijetiti da u funkciju
 \textsc{Predict} prosljeđujemo  sve prijašnje oznake. One se pri izgradnji
 primjera osjetljivog na trošak u \textsc{lols} algoritmu dodaju kao značajke.
@@ -58,7 +58,7 @@ to smanjiti na $O(T M k)$. Za detaljniji opis čitatelj se upućuje na
 \citep{daume14lts}.
 
 \begin{algorithm}
-\caption{Označavanje vrste riječi u \textsc{l2s} okviru s više prolaza.}\label{alg:postagging:multipass}
+\caption{Označavanje vrste riječi u \lts{} okviru s više prolaza.}\label{alg:postagging:multipass}
 \begin{algorithmic}[1]
 \Function{\textsc{Run}}{riječi, P}
 \State $\textit{izlaz} \gets \text{[]}$
