@@ -1,11 +1,11 @@
 Metode učenja pretraživanja \engl{learning to search, abbrev.~\lts{}} novija su
-pojava u strojnom učenju, ali u zadnjih deset godina istraživači su metode
+pojava u strojnom učenju. U zadnjih deset godina istraživači su metode
 primijenili na probleme u različitim granama računarske znanosti, uključujući i
-obradu prirodnog jezika. Vrlo uspješna je primjena vezana uz probleme gdje se
+obradu prirodnog jezika. Vrlo uspješna primjena vezana je uz probleme gdje se
 učenje i zaključivanje odvija na primjerima koji sadrže određenu strukturu.
 Učenje pretraživanja spada u metode strukturnog učenja \engl{structured
 learning} ili predviđanja strukturiranog izlaza \engl{structured output
-prediction}. U obradi prirodnog jezika jedni od glavnih problema koji uključuju
+prediction}. U obradi prirodnog jezika neki od problema koji uključuju
 predviđanje strukturiranog izlaza su označavanje vrste riječi
 \engl{part-of-speech tagging}, ovisnosno parsanje \engl{dependency parsing},
 prepoznavanje imenovanih entiteta \engl{named entity recognition}, prepoznavanje
@@ -19,28 +19,30 @@ grananja i granice \engl{branch-and-bound}, problemi u robotici, segmentacija
 slike \engl{image segmentation}, predviđanje sekundarne strukture proteina
 \engl{protein secondary structure prediction} itd.
 
-Jedan razlog mnoštvu primjena u tako kratkom vremenskom roku je matematička
-priroda metoda. Metode učenja pretraživanja vuku inspiraciju iz područja
-podržanog učenja \engl{reinforcement learning} gdje je zadatak sustava naučiti
-dobru \bq{policu}{Dobar prijevod -- \emph{policy}?} izvršavanjem zadatka mnoštvo
-puta i ažuriranjem s obzirom na ishod. Kod učenja pretraživanja cilj je dodatno
-iskoristiti prisutne podatke, dok su ti podaci zanemareni ili se postepeno
-izgrađuju kod primjene podržanog učenja. Drugi razlog je primjena matematičkog
-aparata koji je nastao da bi objasnio podržano učenje i moć redukcija. Redukcija
-u području strojnog učenja slična je redukcijama u drugim područjima računarske
-znanosti. Redukcija 3-SAT problema na problem pronalaženja Hamiltonovog ciklusa,
-gdje je prethodni također redukcijom dokazano NP-potpun, omogućuje zaključak da
-je i problem Hamiltonovog ciklusa NP-potpun (precizno je reći da dokaz
-NP-potpunosti mora uključivati i algoritam polinomijalne složenosti za provjeru
-rješenja). U kontekstu strojnog učenja redukcije su malo drugačije. Npr.~pitanje
-je možemo li neki teži problem kao što je višerazredna klasifikacija riješiti s
-dobrim garancijama koristeći binarni klasifikator. U ovom radu obrađuje se
-pitanje kako reducirati združeno učenje i predviđanje \engl{joint learning and
-prediction} na jednostavniji problem. Naposljetku, glavni razlog široke primjene
-je vrlo jednostavna implementacija koja iskorištava svojstvo modularnosti koje
-je prirodno u procesu redukcije (za implementaciju višerazredne klasifikacije
-potreban nam je samo dobar binarni klasifikator). Implementacija je ostvarena u
-brzom sustavu za strojno učenje zvanom Vowpal Wabbit
+Mogućnost matematičke analize jedan je od razloga raznolike primjene. Metode
+učenja pretraživanja vuku inspiraciju iz područja podržanog učenja
+\engl{reinforcement learning} gdje je zadatak sustava naučiti dobru
+\bq{policu}{Dobar prijevod -- \emph{policy}?}. Polica se uči izvršavanjem
+zadatka mnoštvo puta i ažuriranjem modela s obzirom na ishod. Kod učenja
+pretraživanja cilj je dodatno iskoristiti prisutne podatke, dok su ti podaci
+zanemareni ili se postepeno izgrađuju kod primjene podržanog učenja. Matematički
+aparat koji je nastao da bi objasnio podržano učenje skupa s redukcijama u
+strojnom učenju omogućava dobre teoretske garancije metoda učenja pretraživanja.
+Redukcija u području strojnog učenja slična je redukcijama u drugim područjima
+računarske znanosti. Redukcija 3-SAT problema na problem pronalaženja
+Hamiltonovog ciklusa, gdje je prethodni također redukcijom dokazano NP-potpun,
+omogućuje zaključak da je i problem Hamiltonovog ciklusa NP-potpun (precizno je
+reći da dokaz NP-potpunosti mora uključivati i algoritam polinomijalne
+složenosti za provjeru rješenja). U kontekstu strojnog učenja redukcije su malo
+drugačije. Npr.~pitanje je možemo li neki teži problem kao što je višerazredna
+klasifikacija riješiti s dobrim garancijama koristeći binarni klasifikator. U
+ovom radu obrađuje se pitanje kako reducirati združeno učenje i predviđanje
+\engl{joint learning and prediction} na jednostavniji problem. Naposljetku,
+glavni razlog široke primjene je vrlo jednostavna implementacija koja
+iskorištava svojstvo modularnosti koje je prirodno u procesu redukcije (za
+implementaciju višerazredne klasifikacije potreban nam je samo dobar binarni
+klasifikator). Implementacija je ostvarena u brzom sustavu za strojno učenje
+zvanom Vowpal Wabbit
 \footnote{\url{https://github.com/JohnLangford/vowpal_wabbit/wiki}}, a \lts{}
 razvojni okvir omogućava da u jako malo linija programskog koda istraživač može
 napisati algoritam učenja i zaključivanja za specifični problem. Slični sustavi
