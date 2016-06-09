@@ -1,4 +1,4 @@
-Metode učenja pretraživanja \engl{learning to search, abbrev.~\lts{}} novija su
+Metode učenja pretraživanja \engla{learning to search}{\lts{}} novija su
 pojava u strojnom učenju. U zadnjih deset godina istraživači su metode
 primijenili na probleme u različitim granama računarske znanosti, uključujući i
 obradu prirodnog jezika. Vrlo uspješna primjena vezana je uz probleme gdje se
@@ -22,24 +22,24 @@ slike \engl{image segmentation}, predviđanje sekundarne strukture proteina
 Mogućnost matematičke analize jedan je od razloga raznolike primjene. Metode
 učenja pretraživanja vuku inspiraciju iz područja podržanog učenja
 \engl{reinforcement learning} gdje je zadatak sustava naučiti dobru
-\bq{policu}{Dobar prijevod -- \emph{policy}?}. Polica se uči izvršavanjem
-zadatka mnoštvo puta i ažuriranjem modela s obzirom na ishod. Kod učenja
-pretraživanja cilj je dodatno iskoristiti prisutne podatke, dok su ti podaci
-zanemareni ili se postepeno izgrađuju kod primjene podržanog učenja. Matematički
-aparat koji je nastao da bi objasnio podržano učenje skupa s redukcijama u
-strojnom učenju omogućava dobre teoretske garancije metoda učenja pretraživanja.
-Redukcija u području strojnog učenja slična je redukcijama u drugim područjima
-računarske znanosti. Redukcija 3-SAT problema na problem pronalaženja
-Hamiltonovog ciklusa, gdje je prethodni također redukcijom dokazano NP-potpun,
-omogućuje zaključak da je i problem Hamiltonovog ciklusa NP-potpun (precizno je
-reći da dokaz NP-potpunosti mora uključivati i algoritam polinomijalne
-složenosti za provjeru rješenja). U kontekstu strojnog učenja redukcije su malo
-drugačije. Npr.~pitanje je možemo li neki teži problem kao što je višerazredna
-klasifikacija riješiti s dobrim garancijama koristeći binarni klasifikator. U
-ovom radu obrađuje se pitanje kako reducirati združeno učenje i predviđanje
-\engl{joint learning and prediction} na jednostavniji problem. Naposljetku,
-glavni razlog široke primjene je vrlo jednostavna implementacija koja
-iskorištava svojstvo modularnosti koje je prirodno u procesu redukcije (za
+\bq{policu}{Dobar prijevod -- \emph{policy}?}. Polica se uči opetovanim
+izvršavanjem zadatka i ažuriranjem modela s obzirom na pojedinačni ishod. Kod
+učenja pretraživanja cilj je dodatno iskoristiti prisutne podatke, dok su ti
+podaci zanemareni ili se postepeno izgrađuju kod primjene podržanog učenja.
+Matematički aparat koji je nastao da bi objasnio podržano učenje skupa s
+redukcijama u strojnom učenju omogućava dobre teoretske garancije metoda učenja
+pretraživanja. Redukcija u području strojnog učenja slična je redukcijama u
+drugim područjima računarske znanosti. Redukcija 3-SAT problema na problem
+pronalaženja Hamiltonovog ciklusa, gdje je prethodni također redukcijom dokazano
+NP-potpun, omogućuje zaključak da je i problem Hamiltonovog ciklusa NP-potpun
+(precizno je reći da dokaz NP-potpunosti mora uključivati i algoritam
+polinomijalne složenosti za provjeru rješenja). U kontekstu strojnog učenja
+redukcije su malo drugačije. Npr.~pitanje je možemo li neki teži problem kao što
+je višerazredna klasifikacija riješiti s dobrim garancijama koristeći binarni
+klasifikator. U ovom radu obrađuje se pitanje kako reducirati združeno učenje i
+predviđanje \engl{joint learning and prediction} na jednostavniji problem.
+Naposljetku, glavni razlog široke primjene je vrlo jednostavna implementacija
+koja iskorištava svojstvo modularnosti koje je prirodno u procesu redukcije (za
 implementaciju višerazredne klasifikacije potreban nam je samo dobar binarni
 klasifikator). Implementacija je ostvarena u brzom sustavu za strojno učenje
 zvanom Vowpal Wabbit

@@ -1,21 +1,20 @@
 Redukcije u strojnom učenju su postupak za transformiranje težih problema u
 jednostavnije -- kao što je primjer redukcije problema višerazredne
 klasifikacije u problem binarne klasifikacije gdje se može koristiti
-jedan-protiv-svih \engl{one-against-all, abbrev.~\textsc{ova}} ili
-jedan-protiv-drugog \engl{one-against-one, abbrev.~\textsc{ovo}} pristup
-korištenja binarnih klasifikatora. Za \textsc{ova} pristup potrebno je $n$
-klasifikatora gdje je $n$ broj razreda, a \textsc{ovo} zahtjeva $\binom{n}{2}$
-klasifikatora. Prethodni ima prednost u vremenu ako je broj razreda velik, a
-potonji ako je vektor gust za \textsc{ova}, a rijedak za \textsc{ovo} (ako je
-moguće izbaciti značajke tj.~zadržati samo one koje su vezane za dva razreda
-koja uspoređujemo). Ostale prednosti ovise o samom problemu, a čak i o vrsti
-binarnog klasifikatora kojeg koristimo \citep{milgram2006one}. Zanimljiv je
-primjer redukcija problema višerazredne klasifikacije u stablo odluka
-\engl{decision tree} gdje se svaki razred može binarno kodirati, a bitovi
-predstavljaju koje ćemo dijete čvora izabrati da bi nakon $O(\log n)$ koraka
-stigli do potpuno kodiranog razreda. Ovo je eksponencijalno ubrzanje s obzirom
-prethodne redukcije u vremenu, a i broj klasifikatora je puno manji -- $\lceil
-\log n \rceil$.
+jedan-protiv-svih \engla{one-against-all}{ova} ili jedan-protiv-drugog
+\engla{one-against-one}{ovo} pristup korištenja binarnih klasifikatora. Za
+\textsc{ova} pristup potrebno je $n$ klasifikatora gdje je $n$ broj razreda, a
+\textsc{ovo} zahtjeva $\binom{n}{2}$ klasifikatora. Prethodni ima prednost u
+vremenu ako je broj razreda velik, a potonji ako je vektor gust za \textsc{ova},
+a rijedak za \textsc{ovo} (ako je moguće izbaciti značajke tj.~zadržati samo one
+koje su vezane za dva razreda koja uspoređujemo). Ostale prednosti ovise o samom
+problemu, a čak i o vrsti binarnog klasifikatora kojeg koristimo
+\citep{milgram2006one}. Zanimljiv je primjer redukcija problema višerazredne
+klasifikacije u stablo odluka \engl{decision tree} gdje se svaki razred može
+binarno kodirati, a bitovi predstavljaju koje ćemo dijete čvora izabrati da bi
+nakon $O(\log n)$ koraka stigli do potpuno kodiranog razreda. Ovo je
+eksponencijalno ubrzanje s obzirom prethodne redukcije u vremenu, a i broj
+klasifikatora je puno manji -- $\lceil \log n \rceil$.
 
 Pitanje je jesu li redukcije učinkovit pristup za rješavanje složenih problema
 strojnog učenja? Odgovor nije očit jer je teško opisati reprezentaciju na
