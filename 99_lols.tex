@@ -5,7 +5,10 @@ konzistentna s najmanje pretpostavki o raspoloživoj polici.
 \cite{daume15lols} daju teoretsku i empirijsku potvrdu te redukcije združenog
 pretraživanja. Izvedeni su pokusi na tri zadatka: višerazredna klasifikacija
 osjetljiva na trošak \engl{cost-sensitive multiclass classification},
-označavanje vrste riječi i ovisnosno parsanje.
+označavanje vrste riječi i ovisnosno parsanje. Zaključak je da algoritam
+\textsc{LOLS} bez obzira na kvalitetu referentne police može postići rezultate
+vrlo sličnima optimalnoj polici u slučaju da prostor pretraživanja dopušta
+uspinjanje brdom.
 
 \begin{algorithm}
 \caption{Lokalno optimalno učenje pretraživanja (\textsc{lols})}\label{alg:lols}
@@ -32,4 +35,22 @@ označavanje vrste riječi i ovisnosno parsanje.
 \end{algorithm}
 
 Iz pseudokoda algoritma \ref{alg:lols} možemo primijetiti veliku sličnost sa
-\textsc{Searn} algoritmom \ref{searnalg}.
+\textsc{Searn} algoritmom \ref{searnalg}. Razlike su sljedeće:
+
+\begin{itemize}
+  \item model u slučaju algoritma \textsc{LOLS} moguće je učiti primjer po
+  primjer (\textit{online});
+
+  \item \textsc{Searn} zahtjeva čuvanje naučenih polica za svaki prolaz preko
+  skupa za učenje jer se \emph{rollin} i \emph{rollout} izvršavaju koristeći
+  mješavinu polica, dok \textsc{LOLS} koristi samo trenutno naučenu policu i
+  referentnu policu;
+
+  \item u slučaju algoritma \textsc{LOLS} nije potrebno da je referentna polica
+  optimalna, a za \textsc{Searn} je taj uvjet obavezan inače postoji mogućnost
+  da naučena polica neće imati svojstvo generalizacije.
+
+\end{itemize}
+
+Ova varijanta učenja pretraživanja koristi se za rješavanje problema u okviru
+ovog rada.

@@ -1,13 +1,84 @@
-Pristranost oznakama (engl.~\emph{label bias})
+Pristranost oznakama \engl{label bias} pojavljuje se u strukturnom učenju.
+Pojavljuje se kod modela koji moraju donositi niz odluka, ali zbog nedovoljno
+informacija na nekoj prijašnjoj odluci dolazi do akumulacije pogreške. Kako
+model dobro radi na skupu za učenje, problem koji se pojavljuje imenovan je zbog
+pristranosti prema oznakam u skupu za učenje. Modeli koji su lokalno
+normalizirani (Markovljev model maksimalne entropije) pate od pristranosti, dok
+globalno normalizirani modeli (uvjetna slučajna polja) nemaju taj problem. Bilo
+bi prikladno da je model u stanju ispraviti neku prijašnju pogrešku s obzirom na
+nove spoznaje o ulazu, ali to s lokalno normaliziranim modelima nije
+jednostavno. Postoji mogućnost dodavanja većeg broja značajki koje bi lokalne
+odluke uzimaju u obzir i/ili \textit{beam} pretrage i eksperimentalno je
+utvrđeno da se mogu naučiti lokalno normalizirani modeli koji dobro rade, ali
+svejedno ne mogu dostići učinkovitost globalno normaliziranih modela
+\citep{liang2008structure}.
 
 \citet*{lafferty2001conditional} i \citet*{leon1991approche} definiraju i
-detaljno razrađuju problem pristranosti oznakama.
+detaljno razrađuju problem pristranosti oznakama. Za noviji pregled o samom
+problemu čitatelj se upućuje na \citep{andor2016globally}.
 
 \citet*{lafferty2001conditional} eksperimentalno potvrđuju pojavu pristranosti,
 a kao jedno od mogućih rješenja navode kolabiranje stanja u jedno. Navode da je
 takva operacija specijalni slučaj \emph{determinizacije} koja za slučaj
 težinskog stroja s konačnim brojem stanja nije uvijek moguća, a kad je moguća
-može dovesti do kombinatorijalne eksplozije. Drugo rješenje je početi treniranje
-s potpuno povezanim modelom gdje bi učenje trebalo otkriti temeljnu strukturu
-koja je prisutna u podlozi, ali šteta je unaprijed odbaciti znanje o samoj
-strukturi -- kao što je lanac odluka kod označavanja vrste riječi.
+može dovesti do kombinatorijalne eksplozije. Za problem označavanja vrste riječi
+konkretan postupak determinacije bio bi odlučivanje u jednom koraku oznaku za
+trenutnu i sljedeću riječ (ili više sljedećih riječi). U tom slučaju bi se
+izbjegla situacija u kojem se pogreška na pojedinoj riječi propagira na odluke
+koje slijede. Postoji mogućnost da je za problem potrebno spojiti sva stanja u
+jednu diskretnu odluku i tek onda izbijeći pristranost, ali tako nešto nije
+vremenski isplativo. Drugo rješenje je početi treniranje s potpuno povezanim
+modelom gdje bi učenje trebalo otkriti temeljnu strukturu koja je prisutna u
+podlozi, ali šteta je unaprijed odbaciti znanje o samoj strukturi -- kao što je
+lanac odluka kod označavanja vrste riječi.
+
+\citet{andor2016globally} pretpostavljaju da je problem ovisnosnog parsanja jako
+težak upravo zbog pristranosti oznakama. Koristeći sve pristupe za koje se
+pokazalo da dobro rješavaju problem pristranosti oznakama -- velika količina
+značajki, običnu višeslojnu mrežu bez povratnih veza za dobru selekciju
+značajki, globalnu normalizaciju i \textit{beam} pretragu -- ostvarili su
+najbolji rezultat na tom zadatku.
+
+\begin{figure}[H]
+  \centering
+  \tikzstyle{lb}=[lightblue,draw,thick,fill=lightblue!40,circle,
+  minimum size=3ex, inner sep=1pt,anchor=south]
+  \tikzstyle{dg}=[darkgreen,draw,thick,fill=darkgreen!40,circle,
+  minimum size=3ex, inner sep=1pt,anchor=south]
+  \begin{tikzpicture}[
+    >={Triangle[]}]
+    \node[lb] (start) {S};
+    \node[above right= 1cm and 4cm of start, lb] (a) {A};
+    \node[below right= 1cm and 4cm of start, dg] (b) {B};
+    \node[above right= 1cm and 4cm of a, dg] (c) {C};
+    \node[below right= 0.5cm and 4cm of a, lb] (d) {D};
+    \node[above right= 0.5cm and 4cm of b, dg] (e) {E};
+    \node[below right= 1cm and 4cm of b, dg] (f) {F};
+
+    \draw[->, line width=1.2pt] (start) to[bend left=50]  (a);
+    \draw[->, line width=1.2pt] (start) to[bend right=50] (b);
+    \draw[->, line width=1.2pt] (a) to[bend left=50]      (c);
+    \draw[->, line width=1.2pt] (a) to[bend left]         (d);
+    \draw[->, line width=1.2pt] (b) to[bend right]        (e);
+    \draw[->, line width=1.2pt] (b) to[bend right=50]     (f);
+
+    \node[right=of c] (loss1) {$y_z \in \mathcal{Y}, l(y_z) = 1$};
+    \node[right=of d] (loss2) {$y_z \in \mathcal{Y}, l(y_z) = 0$};
+    \node[right=of e] (loss3) {$y_z \in \mathcal{Y}, l(y_z) = 1$};
+    \node[right=of f] (loss4) {$y_z \in \mathcal{Y}, l(y_z) = 100$};
+
+    \node[left=0.05cm of a] (f1) {$\phi = \langle 1,0,0 \rangle$};
+    \node[left=0.05cm of b] (f2) {$\phi = \langle 1,0,0 \rangle$};
+    \node[left=0.05cm of c] (f3) {$\phi = \langle 0,1,0 \rangle$};
+    \node[left=0.05cm of d] (f4) {$\phi = \langle 0,0,1 \rangle$};
+    \node[left=0.05cm of e] (f5) {$\phi = \langle 0,1,0 \rangle$};
+    \node[left=0.05cm of f] (f6) {$\phi = \langle 0,0,1 \rangle$};
+
+    \draw[->, line width=1.2pt] (c) to (loss1);
+    \draw[->, line width=1.2pt] (d) to (loss2);
+    \draw[->, line width=1.2pt] (e) to (loss3);
+    \draw[->, line width=1.2pt] (f) to (loss4);
+
+  \end{tikzpicture}
+  \caption{Prikaz problema pristranosti oznaka.\label{label:bias:fig}}
+\end{figure}
