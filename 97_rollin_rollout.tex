@@ -38,11 +38,11 @@ bridovima, a stanja čvorovima.
   }] (m) {
           &       &       &       &     {}&     {}\\
           &       &       &       &     {}&     {}\\
-          &     {}&     {}&|[g]|{}&|[g]|{}&|[g]|E \\
+          &     {}&     {}&|[g]|{}&|[g]|{}&|[g]|Z \\
           &       &       &       &     {}&     {}\\
-   |[b]|S &|[b]|{}&|[b]|R &|[b]|{}&|[b]|{}&|[b]|E \\
+   |[b]|P &|[b]|{}&|[b]|R &|[b]|{}&|[b]|{}&|[b]|Z \\
           &       &       &       &     {}&     {}\\
-          &     {}&     {}&|[g]|{}&|[g]|E &       \\
+          &     {}&     {}&|[g]|{}&|[g]|Z &       \\
           &       &       &       &     {}&       \\
           &       &       &       &     {}&       \\
   };
@@ -79,9 +79,9 @@ bridovima, a stanja čvorovima.
   \draw[->, line width=1.2pt] (m-7-5.east) to (loss3);
   % Braces
   \draw[decorate,decoration={brace,amplitude=10pt},black,thick]
-    (m-7-3 |- m-7-3.south) -- node[below=10pt] (rollin) {rollin} (m-5-1 |- m-7-3.south);
+    (m-7-3 |- m-7-3.south) -- node[below=10pt] (rollin) {\textit{rollin}} (m-5-1 |- m-7-3.south);
   \draw[decorate,decoration={brace,amplitude=10pt},black,thick]
-    (m-5-6 |- m-9-5.south) -- node[below=10pt] (rollout) {rollout} (m-5-4 |- m-9-5.south);
+    (m-5-6 |- m-9-5.south) -- node[below=10pt] (rollout) {\textit{rollout}} (m-5-4 |- m-9-5.south);
   \path (rollin) -- node[black,align=right,rotate=90] {odstupanja od \\ jednog koraka} (rollout);
 
   \node[shape=rectangle,draw=black,thick, above=of m-5-1] (xinX) {$x \in \mathcal{X}$};
@@ -96,7 +96,8 @@ jednog koraka i primijenjuje \textit{rollout} policu za svaki mogući potez
 dovoljno puta da dođe do kraja. U tom trenutku dobiva se informacija o gubitku i
 ona se koristi kao procjena dobrote svakog poteza. Nakon postupka moguće je
 zaključiti da se gornjim potezom koji odstupa od odabranog srednjeg stanja može
-gubitak smanjiti za 1.} \label{fig:rollinout}
+gubitak smanjiti za 1. Primjer preuzet iz \citep[str.~3]{daume15lols}}
+\label{fig:rollinout}
 \end{figure}
 
 \cite{daume15lols} pokazuju da korištenje višerazrednog klasifikatora
@@ -112,7 +113,7 @@ optimalna. U slučaju korištenja naučene police za \textit{rollin} i
 podržanog učenja koji je puno teži jer se za učenje uopće ne koristi znanje
 referentne police. Jedini dobar pristup kojim se postiže lokalna optimalnost i
 konzistentna redukcija je onaj u kojem se koristi mješovita polica za
-\textit{rollout}, a opis metode lokalno optimalnog učenja pretrživanja nalazi se
+\textit{rollout} -- opis metode lokalno optimalnog učenja pretrživanja nalazi se
 u potpoglavlju \ref{ch:LOLS}. Ako se pretpostavi da je referentna polica
 optimalna i to je stvarno slučaj onda će učenje koristeći \textit{rollin} s
 naučenom, a \textit{rollout} s  referentnom rezultirati s konzistentnom i
@@ -140,14 +141,15 @@ prostoru odluka na problemu bi jednako dobro radilo i podržano učenje.
 \multicolumn{1}{|c|}{\cellcolor[HTML]{C0C0C0}Rollout $\rightarrow$} & \cellcolor[HTML]{C0C0C0}                                     & \cellcolor[HTML]{C0C0C0}                                     & \cellcolor[HTML]{C0C0C0}                                   \\
 \multicolumn{1}{|c|}{\cellcolor[HTML]{FFFFC7}$\downarrow$ Rollin}   & \multirow{-2}{*}{\cellcolor[HTML]{C0C0C0}\textbf{Referenca}} & \multirow{-2}{*}{\cellcolor[HTML]{C0C0C0}\textbf{Mješovita}} & \multirow{-2}{*}{\cellcolor[HTML]{C0C0C0}\textbf{Naučena}} \\ \hline
 \textbf{Referenca}                                                  & \multicolumn{3}{c|}{\cellcolor[HTML]{FFCCC9}Nekonzistentna redukcija}                                                                                                                    \\ \hline
-\textbf{Naučena}                                                    & \cellcolor[HTML]{FFCCC9}Nije lokalno optimalna               & \cellcolor[HTML]{C5F7C5}Dobra                                & \cellcolor[HTML]{FFCCC9}Podržano učenje                    \\ \hline
+\textbf{Naučena}                                             & \cellcolor[HTML]{FFCCC9}Nije lokalno optimalna               & \cellcolor[HTML]{C5F7C5}Dobra                                & \cellcolor[HTML]{FFCCC9}Podržano učenje                    \\ \hline
 \end{tabular}
 \caption[Rezultati analize načina učenja koristeći \textit{rollin} i
 \textit{rollout} police.]{Rezultati teoretske analize načina učenja koristeći
 \textit{rollin} i \textit{rollout} police. Ovisno o odabiru \textit{rollin} i
 \textit{rollout} para naučena polica može biti nekonzistentna ili bez svojstva
 lokalne optimalnosti, problem učenja police se može svesti na podržano učenje
-ili naučena polica ipak može biti konzistentna i lokalno optimalna.}
+ili naučena polica ipak može biti konzistentna i lokalno optimalna. Tablica
+preuzeta iz \citep[str.~5]{daume15lols}}
 \label{fig:policyresult}
 \end{figure}
 
