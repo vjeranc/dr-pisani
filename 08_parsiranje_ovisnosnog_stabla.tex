@@ -1,8 +1,17 @@
-Ovisnosna gramatika \citep{chang2015learning}.
+Parsiranje ovisnosnog stabla  \citep{chang2015learning}.
 
+
+Na slici \ref{fig:depparsing} je ilustriran problem parsiranja ovisnosnog
+stabla. Za rečenicu koja ima označene vrste riječi potrebno je pronaći ovisnosno
+stablo. Trivijalan način bio bi naučiti neke težine vezane uz pojedinačne veze i
+pametnom enumeracijom svih mogućih stabala naći ono koje ima najveću vjerojatnost za tu rečenicu.
+
+\begin{figure}
+\centering
 \begin{dependency}[theme = simple]
-\begin{deptext}[column sep=1em]
-My \& dog \& also \& likes \& eating \& sausage \\
+\begin{deptext}
+  \textsc{Rgc} \& \textsc{Vmn3pf} \& \textsc{Ncfpnn} \& \textsc{Rgp} \& \textsc{Z} \& \textsc{Cs} \& \textsc{Cs} \& \textsc{Ncfpnn} \& \textsc{Vmn3pf} \& \textsc{Rgp} \& \textsc{Z} \\
+  Gore         \& gore            \& gore            \& gore         \& ,          \& nego        \& što         \& gore            \& gore            \& dolje        \& .          \\
 \end{deptext}
 \deproot{4}{root}
 \depedge{2}{1}{poss}
@@ -11,3 +20,47 @@ My \& dog \& also \& likes \& eating \& sausage \\
 \depedge{4}{5}{xcomp}
 \depedge{5}{6}{dobj}
 \end{dependency}
+\caption[Rečenica s oznakama vrste riječi i ovisnosnim stablom.]{Rečenica s
+oznakama vrste riječi i ovisnosnim stablom. Za ovu rečenicu ovo nije jedini
+mogući niz oznaka i jedino moguće stablo. Oznake R, V, N, Z i C su za prilog,
+glagol, imenicu, znakove interpukcije i veznike. Oznake usmjerenih bridova
+ovisnosnog stabla označavaju veze o subjektu glagola ili objektu glagola
+(subjekt vrši radnju opisanu glagolom na neki objekt) i sl.}
+\label{fig:depparsing}
+\end{figure}
+
+\citet{cer2010parsing} daju pregled metoda parsiranja ovisnosnih stabala. Prvi
+način je iskoristiti postojeće \bq{constituency}{?} parsere i iz njih dobivati
+ovisnosna stabla, ali sam postupak dobivanja \bq{constituency}{?} stabla je
+dugotrajan stoga je bolje razmotriti metode koje direktno izgrađuju ovisnosna
+stabla.
+
+\begin{itemize}
+  \item Koristeći CYK algoritam za parsiranje vremenska složenost iznos $O(n^5)$
+  gdje je $n$ duljina rečenice.
+
+  \item Malo drugačija reprezentacija dopušta brži algoritam
+  \citep{eisner1999efficient}. Vremensku složenost moguće je smanjiti na
+  $O(n^4)$ i dodatno do $O(n^3)$ pretpostavljajući odvojeni korijen \engl{root}
+  stabla što je česta pretpostavka u parsiranju ovisnosnog stabla.
+
+  \item Koristeći programiranje s uvjetima \engl{constraint programming} i
+  naivan pristup pokušavajući između svih parova riječi odabrati odgovarajući
+  brid ovisnosnog stabla moguće je složenost spustiti na $O(n^2)$
+  \citep{covington2001fundamental}.
+
+  \item Najveći skok je otkriće postupka parsanja linearne $O(n)$ vremenske
+  složenosti čiji je razvoj prisutan u \citep{nivre03efficient,
+  zhang2011transition, bohnet2012transition}. Ideja je inspirirana Shift-Reduce
+  parserom.\footnote{\url{https://en.wikipedia.org/wiki/Shift-reduce_parser}} U
+  slučaju parsiranja usmjerenog stabla postoje tri akcije koje je potrebno
+  izvršavati -- pomak \engl{shift}, redukcija na lijevo \engl{reduce left} i
+  redukcija na desno \engl{reduce right}. Za svaku akciju koristi se
+  klasifikacijski postupak koji kao značajke koristi trenutno nedovršeno stablo
+  i riječi u rečenici. Ako želimo označiti bridove, onda je potrebno koristiti
+  klasifikacijski postupak kod akcija koje rezultiraju stvaranjem bridova. U
+  okviru učenja pretraživanja implementiran je takav parser
+  \citep{chang2015learning}, a i trenutno najbolji parser koristi identičan
+  pristup \citep{andor2016globally}.
+
+\end{itemize}
