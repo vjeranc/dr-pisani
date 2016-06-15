@@ -49,9 +49,10 @@ stabla.
   brid ovisnosnog stabla moguće je složenost spustiti na $O(n^2)$
   \citep{covington2001fundamental}.
 
-  \item Najveći skok je otkriće postupka parsanja linearne $O(n)$ vremenske
+  \item Najveći skok je otkriće postupka parsanja linearne $O(n + m)$ vremenske
   složenosti čiji je razvoj prisutan u \citep{nivre03efficient,
-  zhang2011transition, bohnet2012transition}. Ideja je inspirirana Shift-Reduce
+  zhang2011transition, bohnet2012transition} -- $n$ je duljina rečenice, a $m$
+  veličina stabla. Ideja je inspirirana Shift-Reduce
   parserom.\footnote{\url{https://en.wikipedia.org/wiki/Shift-reduce_parser}} U
   slučaju parsiranja usmjerenog stabla postoje tri akcije koje je potrebno
   izvršavati -- pomak \engl{shift}, redukcija na lijevo \engl{reduce left} i
