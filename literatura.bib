@@ -2,7 +2,6 @@
   author =       {Hal {Daum\'e III} and John Langford and Daniel Marcu},
   title =        {Search-based Structured Prediction},
   year =         {2009},
-  booktitle =    {Machine Learning Journal (MLJ)},
   abstract =     {
     We present Searn, an algorithm for integrating search and
     learning to solve complex structured prediction problems such
@@ -18,7 +17,7 @@
     derived classification problems implies good performance on the
     structured prediction problem.
   },
-
+  journal={Machine Learning Journal}
 }
 
 @PhdThesis{daume06thesis,
@@ -54,7 +53,7 @@
   },
   keywords = {nlp ml sp},
   tagline = {We recently introduced an algorithm, Searn, for solving hard structured prediction problems. This report is designed to showcase how Searn can be applied to a wide variety of techniques and what really goes on behind the scenes. We show how to apply Searn to three common NLP problems: (1) sequence labeling, (2) parsing and (3) machine translation.},
-
+  note={\url{http://www.umiacs.umd.edu/~hal/docs/daume06searn-practice.pdf}}
 }
 
 @inproceedings{daume15reductions,
@@ -100,17 +99,28 @@
 
 }
 
-@article{lafferty2001conditional,
-  title={Conditional random fields: Probabilistic models for segmenting and labeling sequence data},
-  author={Lafferty, John and McCallum, Andrew and Pereira, Fernando CN},
-  year={2001}
+@inproceedings{lafferty2001conditional,
+ author = {Lafferty, John D. and McCallum, Andrew and Pereira, Fernando C. N.},
+ title = {Conditional Random Fields: Probabilistic Models for Segmenting and Labeling Sequence Data},
+ booktitle = {Proceedings of the Eighteenth International Conference on Machine Learning},
+ series = {ICML '01},
+ year = {2001},
+ isbn = {1-55860-778-1},
+ pages = {282--289},
+ numpages = {8},
+ acmid = {655813},
+ publisher = {Morgan Kaufmann Publishers Inc.},
+ address = {San Francisco, CA, USA},
 }
+
+
 
 @phdthesis{leon1991approche,
   title={Une Approche théorique de l’Apprentissage Connexioniste;
 Applications à la reconnaissance de la Parole.},
   author={Léon Bottou},
-  year={1991}
+  year={1991},
+  school={University of Paris-Sud}
 }
 
 @inproceedings{mccallum2000maximum,
@@ -141,7 +151,7 @@ Applications à la reconnaissance de la Parole.},
 @article{taskar2003maximum,
   title={Maximum-margin markov networks},
   author={Taskar, Ben and Guestrin, Carlos and Koller, Daphne},
-  ournal={Advances in neural information processing systems},
+  journal={Advances in neural information processing systems},
   volume={16},
   pages={25},
   year={2003}
@@ -442,7 +452,6 @@ year = {2015} }
   author={McDonald, Ryan and Hannan, Kerry and Neylon, Tyler and Wells, Mike and Reynar, Jeff},
   booktitle={Annual Meeting-Association For Computational Linguistics},
   volume={45},
-  number={1},
   pages={432},
   year={2007},
   organization={Citeseer}
@@ -547,4 +556,11 @@ year = {2015} }
   author={K{\"a}{\"a}ri{\"a}inen, Matti},
   booktitle={Talk at the Atomic Learning Workshop (TTI-C)},
   year={2006}
+}
+
+@inproceedings{cer2010parsing,
+  title={Parsing to Stanford Dependencies: Trade-offs between Speed and Accuracy.},
+  author={Cer, Daniel M and De Marneffe, Marie-Catherine and Jurafsky, Daniel and Manning, Christopher D},
+  booktitle={LREC},
+  year={2010}
 }
