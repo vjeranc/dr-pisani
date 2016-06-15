@@ -1,6 +1,26 @@
 Označavanje vrste riječi jedan je od jednostavnijih problema u obradi prirodnog
 jezika i shodno tome ima vrlo jednostavnu implementaciju u okviru učenja
-pretraživanja. Algoritam \ref{alg:postagging} pokazuje jednostavnost zadatka.
+pretraživanja. Problem je ilustriran na slici \ref{fig:postagging}. Za rečenicu
+u nekom jeziku (na slici je hrvatski) potrebno je svakoj znački dodijeliti
+oznaku vrste riječi kao što su imenica, glagol, pridjev i dr. Srednji redak
+pokazuje oznake koje daju više detalja o samoj riječi kao što su rod i množina
+imenice, glagolsko vrijeme i sl. Algoritam \ref{alg:postagging} pokazuje
+jednostavnost zadatka u okviru učenja pretraživanja.
+
+\begin{figure}
+\centering
+\begin{dependency}
+\begin{deptext}
+  \textsc{R}   \& \textsc{V}      \& \textsc{N}      \& \textsc{R}   \& \textsc{Z} \& \textsc{C}  \& \textsc{C}  \& \textsc{N}      \& \textsc{V}      \& \textsc{R}   \& \textsc{Z} \\
+  \textsc{Rgc} \& \textsc{Vmn3pf} \& \textsc{Ncfpnn} \& \textsc{Rgp} \& \textsc{Z} \& \textsc{Cs} \& \textsc{Cs} \& \textsc{Ncfpnn} \& \textsc{Vmn3pf} \& \textsc{Rgp} \& \textsc{Z} \\
+  Gore         \& gore            \& gore            \& gore         \& ,          \& nego        \& što         \& gore            \& gore            \& dolje        \& .          \\
+\end{deptext}
+\end{dependency}
+\caption[Rečenica s oznakama vrste riječi.]{Rečenica s oznakama vrste riječi. Za
+ovu rečenicu ovo nije jedini mogući niz oznaka. Oznake R, V, N, Z i C su za
+prilog, glagol, imenicu, znakove interpukcije i veznike.}
+\label{fig:postagging}
+\end{figure}
 
 \begin{algorithm}
 \caption{Označavanje vrste riječi u \lts{} okviru.}\label{alg:postagging}
