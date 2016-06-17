@@ -1,4 +1,6 @@
-\begin{appendix}
+\begin{appendix}\
+\lstset{literate={ć}{{\'{c}}}1}
+
 %% TODO dodati linkove na implementaciju
 \chapter{Označivači vrste riječi}
 \section{Običan označivač vrste riječi}
@@ -21,7 +23,7 @@ void run(Search::search& sch, vector<example*>& ec)
 }
 \end{lstlisting}
 \newpage
-\section{MSD slijedni označivač po komponentama}\label{code:msdcomp}
+\section{MSD slijedni označivač po atributima}\label{appendix:msdattr}
 \begin{lstlisting}[language=C++,
                    basicstyle=\tiny\ttfamily]{Name=msd-one-by-one}
 void run(Search::search& sch, vector<example*>& ec)
@@ -66,7 +68,7 @@ void run(Search::search& sch, vector<example*>& ec)
 }
 \end{lstlisting}
 \newpage
-\section{MSD označivač po slojevima}\label{code:msdlayered}
+\section{MSD označivač po slojevima}\label{appendix:msdlayered}
 \begin{lstlisting}[language=C++,
                    basicstyle=\tiny\ttfamily]{Name=msd-one-by-one}
 void run(Search::search& sch, vector<example*>& ec)
@@ -121,5 +123,45 @@ void run(Search::search& sch, vector<example*>& ec)
     }
   }
 }
+\end{lstlisting}
+
+\chapter{Podaci}\label{appendix:data}
+\section{SETimes.HR}
+\begin{lstlisting}[basicstyle=\tiny\ttfamily]
+1       Proces  proces  N       Ncmsn   Type=common|Gender=masculine|Number=singular|Case=nominative    0       Elp     6:nsubj UposTag=NOUN|Case=Nom|Gender=Masc|Number=Sing
+2       privatizacije   privatizacija   N       Ncfsg   Type=common|Gender=feminine|Number=singular|Case=genitive       1       Obj     1:nmod  UposTag=NOUN|Case=Gen|Gender=Fem|Number=Sing
+3       na      na      S       Sl      Case=locative   1       Prep    4:case  UposTag=ADP|Case=Loc
+4       Kosovu  Kosovo  N       Npnsl   Type=proper|Gender=neuter|Number=singular|Case=locative 3       Adv     6:nmod  UposTag=PROPN|Case=Loc|Gender=Neut|Number=Sing
+5       pod     pod     S       Si      Case=instrumental       0       Prep    6:case  UposTag=ADP|Case=Ins
+6       povećalom       povećalo        N       Ncnsi   Type=common|Gender=neuter|Number=singular|Case=instrumental     5       Elp     0:root  UposTag=NOUN|Case=Ins|Gender=Neut|Number=Sing
+\end{lstlisting}
+
+\section{UD}
+\begin{lstlisting}[basicstyle=\tiny\ttfamily]
+1       Proces  proces  NOUN    _       Case=Nom|Gender=Masc|Number=Sing        6       nsubj   _       _
+2       privatizacije   privatizacija   NOUN    _       Case=Gen|Gender=Fem|Number=Sing 1       nmod    _       _
+3       na      na      ADP     _       Case=Loc        4       case    _       _
+4       Kosovu  Kosovo  PROPN   _       Case=Loc|Gender=Neut|Number=Sing        6       nmod    _       _
+5       pod     pod     ADP     _       Case=Ins        6       case    _       _
+6       povećalom       povećalo        NOUN    _       Case=Ins|Gender=Neut|Number=Sing        0       root    _       _
+\end{lstlisting}
+
+\section{\textsc{vw} - označavanje vrste riječi}
+\begin{lstlisting}[basicstyle=\tiny\ttfamily]
+2 |w Proces proces 0:6 ulllll
+2 |w privatizacije privatizacije 0:13 lllllllllllll
+1 |w na na 0:2 ll
+2 |w Kosovu kosovu 0:6 ulllll
+1 |w pod pod 0:3 lll
+2 |w povećalom povećalom 0:9 lllllllll
+\end{lstlisting}
+\section{\textsc{vw} - ovisnosno parsanje}
+\begin{lstlisting}[basicstyle=\tiny\ttfamily]
+6 1 |w Proces |p NOUN  NOUNCase=Nom NOUNGender=Masc NOUNNumber=Sing
+1 2 |w privatizacije |p NOUN  NOUNCase=Gen NOUNGender=Fem NOUNNumber=Sing
+4 3 |w na |p ADP  ADPCase=Loc
+6 2 |w Kosovu |p PROPN  PROPNCase=Loc PROPNGender=Neut PROPNNumber=Sing
+6 3 |w pod |p ADP  ADPCase=Ins
+0 4 |w povećalom |p NOUN  NOUNCase=Ins NOUNGender=Neut NOUNNumber=Sing
 \end{lstlisting}
 \end{appendix}
