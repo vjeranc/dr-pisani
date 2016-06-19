@@ -10,6 +10,39 @@ obradi podataka i odabiru hiperparametara. \textit{Hashing trick} dozvoljava
 običan tekstualni format za svaku značajku stoga je ulazna datoteka vrlo
 jednostavna (dodatak \ref{appendix:data}).
 
+Obrada podataka i njihova pretvorba u prikladan oblik vektora značajki za
+potrebe sustava Vowpal Wabbit izvršena je koristeći alate ljuske \engl{shell}.
+Neki od  bitnijih su
+\begin{inlinelist}
+  \item \textsc{sed},
+  \item \textsc{cut},
+  \item \textsc{diff},
+  \item \textsc{shuf} i
+  \item \textsc{awk}.
+\end{inlinelist}
+\textsc{Awk} je ubrzao kreiranje značajki i zbog prikladnog standardnog
+ponašanja sve napisane skripte rade za označene i neoznačene podatke.
+\textsc{Shuf} dopušta vrlo jednostavno miješanje rečenica i stvaranje drugačijih
+skupova za učenje, testiranje i razvoj. \textsc{Diff} je korišten za računanje
+metrike točnosti. Zbog stupčastog formata podatkovnih skupova \textsc{Cut} i
+\textsc{sed} korišteni su za jednostavnu selekciju stupaca, laku izmjenu
+sadržaja i filtriranje komentara. Svi navedeni alati trebali bi biti prisutni na
+standardnoj distribuciji \textsc{Ubuntu}. Čitatelja se upućuje na dokumentaciju
+izvornog koda koja je priložena zajedno s elektronskom verzijom rada.
+
+U okviru ovog rada, u sustavu Vowpal Wabbit, implementirana su rješenja za
+sljedeće probleme obrađene u prijašnjim poglavljima:
+\begin{inlinelist}
+  \item označavanje vrste riječi,
+  \item označavanje vrste riječi s više prolaza,
+  \item označavanje vrste riječi koristeći morfosintaktičke deskriptore po atributima,
+  \item označavanje vrste riječi koristeći morfosintaktičke deskriptore po razinama,
+  \item ovisnosno parsanje,
+  \item združeno parsanje i označavanje vrste riječi i
+  \item združeno parsanje i označavanje vrste riječi koristeći morfosintaktičke deskriptore.
+\end{inlinelist}
+Rezultati za svaki pristup prikazani su u nastavku.
+
 \citet{daume14lts} opisuju efikasnu implementaciju okvira učenja pretraživanja.
 Na slici \ref{fig:ltsperf} prikazana je vremenska učinkovitost sustava na
 zadatku označavanja vrste riječi i imenovanim entitetima -- broj označenih
