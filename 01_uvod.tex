@@ -19,30 +19,24 @@ grananja i granice \engl{branch-and-bound}, problemi u robotici, segmentacija
 slike \engl{image segmentation}, predviđanje sekundarne strukture proteina
 \engl{protein secondary structure prediction} itd.
 
-Mogućnost matematičke analize jedan je od razloga raznolike primjene. Metode
-učenja pretraživanja vuku inspiraciju iz područja podržanog učenja
-\engl{reinforcement learning} gdje je zadatak sustava naučiti dobru
-\bq{policu}{Dobar prijevod -- \emph{policy}?}. Polica se uči opetovanim
-izvršavanjem zadatka i ažuriranjem modela s obzirom na pojedinačni ishod. Kod
-učenja pretraživanja cilj je dodatno iskoristiti prisutne podatke, dok su ti
-podaci zanemareni ili se postepeno izgrađuju kod primjene podržanog učenja.
-Matematički aparat koji je nastao da bi objasnio podržano učenje skupa s
-redukcijama u strojnom učenju omogućava dobre teoretske garancije metoda učenja
-pretraživanja. Redukcija u području strojnog učenja slična je redukcijama u
-drugim područjima računarske znanosti. Redukcija 3-SAT problema na problem
-pronalaženja Hamiltonovog ciklusa, gdje je prethodni također redukcijom dokazano
-NP-potpun, omogućuje zaključak da je i problem Hamiltonovog ciklusa NP-potpun
-(precizno je reći da dokaz NP-potpunosti mora uključivati i algoritam
-polinomijalne složenosti za provjeru rješenja). U kontekstu strojnog učenja
-redukcije su malo drugačije. Npr.~pitanje je možemo li neki teži problem kao što
-je višerazredna klasifikacija riješiti s dobrim garancijama koristeći binarni
-klasifikator. U ovom radu obrađuje se pitanje kako reducirati združeno učenje i
-predviđanje \engl{joint learning and prediction} na jednostavniji problem.
-Naposljetku, glavni razlog široke primjene je vrlo jednostavna implementacija
-koja iskorištava svojstvo modularnosti koje je prirodno u procesu redukcije (za
-implementaciju višerazredne klasifikacije potreban nam je samo dobar binarni
-klasifikator). Implementacija je ostvarena u brzom sustavu za strojno učenje
-zvanom Vowpal Wabbit
+Postojanost razvijenog matematičkog formalizma za te metode jedan je od razloga
+raznolike primjene. Metode učenja pretraživanja vuku inspiraciju iz područja
+podržanog učenja \engl{reinforcement learning} gdje je zadatak sustava naučiti
+dobru \bq{policu}{Dobar prijevod (strategija, politika)-- \emph{policy}?}.
+Polica se uči opetovanim izvršavanjem zadatka i ažuriranjem modela s obzirom na
+pojedinačni ishod. Kod učenja pretraživanja cilj je dodatno iskoristiti prisutne
+podatke, dok su ti podaci zanemareni ili se postepeno izgrađuju kod primjene
+podržanog učenja. Matematički aparat koji je nastao da bi objasnio podržano
+učenje skupa s redukcijama u strojnom učenju \engl{reductions in machine
+learning} omogućava dobre teoretske garancije metoda učenja pretraživanja.
+Redukcija u području strojnog učenja slična je redukcijama u drugim područjima
+računarske znanosti. U ovom radu obrađuje se pitanje kako reducirati
+jednostavniji problem na združeno učenje i predviđanje \engl{joint learning and
+prediction}. Naposljetku, glavni razlog široke primjene je vrlo jednostavna
+implementacija koja iskorištava svojstvo modularnosti koje je prirodno u procesu
+redukcija (za implementaciju višerazredne klasifikacije potreban nam je samo
+dobar binarni klasifikator). Implementacija je ostvarena u brzom sustavu za
+strojno učenje zvanom Vowpal Wabbit
 \footnote{\url{https://github.com/JohnLangford/vowpal_wabbit/wiki}}, a \lts{}
 razvojni okvir omogućava da u jako malo linija programskog koda istraživač može
 napisati algoritam učenja i zaključivanja za specifični problem. Slični sustavi
@@ -61,4 +55,21 @@ primjenjuju na istim problemima. Dani su i odgovori na prijašnja postavljena
 pitanja te opisi konkretne implementacije koji pažljivije argumentiraju
 prednosti nad ostalim pristupima.
 
-U \bq{$\ldots$}{tom poglavlju nađemo ovo i ono, blabla.}
+U poglavlju \ref{ch:pregled} prisutan je pregled glavnih pristupa strukturnom
+učenju i predviđanju te su opisane njihove prednosti i mane.
+
+U poglavlju \ref{ch:l2s} prisutan je pregled glavnih metoda učenja pretraživanja
+u koji je uključen osvrt na redukcije u strojnom učenju te su definirani
+potrebni pojmovi vezani uz okvir učenja pretraživanja.
+
+U poglavlju \ref{ch:applications} prisutan je opis primjena metoda učenja
+pretraživanja na konkretne probleme u obradi prirodnog jezika. Odabrani problemi
+služe za razvijanje osjećaja o tome što je moguće raditi u okviru učenja
+pretraživanja. Dane su i usporedbe s drugim modelima koji su primijenjeni na
+iste zadatke da bi se istaknula superiornost \lts{} metoda.
+
+U poglavlju \ref{ch:evaluation} prisutno je vrednovanje modela za zadatke
+razvijene u ovom radu te opis implementacije algoritama učenja i zaključivanja.
+Tri različita zadatka: \begin{inlinelist} \item označavanje vrste riječi, \item
+ovisnosno parsanje i \item združeno označavanje i parsanje. Uz tri osnovna
+zadatka prisutne su njihove varijante i različiti pristupi na istom problemu.

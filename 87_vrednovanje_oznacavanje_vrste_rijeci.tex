@@ -26,8 +26,8 @@ označivača koristi se Markovljev lanac drugog stupnja, a za rezultate na
 Metoda             & \textsc{Set}   & \textsc{Wiki}  \\ \hline \hline
 HunPos             & 97.04          & 94.62          \\
 \textsc{Vwpos 1}   & 98.18          & 96.20          \\
-\textsc{Vwpos 2}   & \textbf{98.71} & \textbf{97.12} \\
-\textsc{Vwmsd} 1   & 98.31          & 96.57          \\
+\textsc{Vwpos 2}   & \textbf{98.71} & 96.24          \\
+\textsc{Vwmsd} 1   & 98.31          & \textbf{96.57} \\
 \textsc{Vwmsd} 2   & 98.23          & 96.41          \\ \hline
 \end{tabular}
 \end{table}
@@ -66,7 +66,12 @@ više podataka za bolju generalizaciju. Moguće je da u lanacu odluka koji
 potreban za formiranje jednog morfosintaktičkog deskriptora dolazi lakše do
 grešaka nego u slučaju da se jedan morfosintaktički deskriptor promatra kao
 jedinstvena odluka. Ovaj bi slučaj upućivao na prisutnost pristranosti odlukama
-koja se može dogoditi ako klasifikator nije dobro naučen.
+koja se može dogoditi ako klasifikator nije dobro naučen. Razlog lošijim
+rezultatima na testnom skupu \textsc{Wiki} je taj što skup sadrži više neviđenih
+riječi i nepoznate morfosintaktičke deskriptore. Zbog toga pristupi koji donose
+odluke po atributima imaju bolju generalizaciju na tom skupu. Ako se kreiraju
+novi skup za treniranje i testiranje koji koriste sve rečenice iz svih skupova,
+onda \textsc{Vwpos 2} ima najbolju točnost.
 
 \begin{table}[]
 \centering
