@@ -116,18 +116,18 @@ konzistentna redukcija je onaj u kojem se koristi mješovita polica za
 \textit{rollout} -- opis metode lokalno optimalnog učenja pretrživanja nalazi se
 u potpoglavlju \ref{ch:LOLS}. Ako se pretpostavi da je referentna polica
 optimalna i to je stvarno slučaj, onda će učenje koristeći \textit{rollin} s
-naučenom, a \textit{rollout} s referentnom rezultirati s konzistentnom i
-lokalno optimalnom naučenom policom. Za mnoštvo problema nije lako definirati
-optimalnu policu i zanimljiv je rezultat da upravo \textit{rollout} s mješovitom
-policom ima garancije da će, ako je u prostoru odluka moguće raditi lokalno
-uspinjanje brdom \engl{local hill climbing}, naučena polica biti konstantno
-lošija od dane referentne police ili će biti bolja od referentne police. Takvu
-garanciju pristupi prije \textsc{lols} algoritma nisu imali i problem je
-postojao kod prve metode učenja pretraživanja -- \textsc{Searn}. Navedena
-karakteristika nije pretjerano korisna ako je referentna polica jako loša, u tom
-slučaju učenje se odvija kao da referenta polica ne postoji (informacija koju
-ona daje je beskorisna) i u slučaju da je lako raditi uspinjanje brdom u
-prostoru odluka na problemu bi jednako dobro radilo i podržano učenje.
+naučenom, a \textit{rollout} s referentnom rezultirati s konzistentnom i lokalno
+optimalnom naučenom policom. Za mnoštvo problema nije lako definirati optimalnu
+policu i zanimljiv je rezultat da upravo \textit{rollout} s mješovitom policom
+ima garancije da će, ako je u prostoru odluka moguće raditi lokalno uspinjanje
+brdom \engl{local hill climbing}, naučena polica biti konstantno lošija od dane
+referentne police ili će biti bolja od referentne police. Takvu garanciju
+pristupi prije \textsc{lols} algoritma nisu imali i problem je postojao kod
+metode učenja pretraživanja \textsc{Searn}. Navedena karakteristika nije
+pretjerano korisna ako je referentna polica jako loša, u tom slučaju učenje se
+odvija kao da referenta polica ne postoji (informacija koju ona daje je
+beskorisna) i u slučaju da je lako raditi uspinjanje brdom u prostoru odluka na
+problemu bi jednako dobro radilo i podržano učenje.
 
 % If you use beamer only pass "xcolor=table" option, i.e. \documentclass[xcolor=table]{beamer}
 \begin{figure}
