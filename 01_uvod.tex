@@ -36,17 +36,18 @@ prediction}. Naposljetku, glavni razlog široke primjene je vrlo jednostavna
 implementacija koja iskorištava svojstvo modularnosti koje je prirodno u procesu
 redukcija (za implementaciju višerazredne klasifikacije potreban nam je samo
 dobar binarni klasifikator). Implementacija je ostvarena u brzom sustavu za
-strojno učenje zvanom Vowpal Wabbit
-\footnote{\url{https://github.com/JohnLangford/vowpal_wabbit/wiki}}, a \lts{}
-razvojni okvir omogućava da u jako malo linija programskog koda istraživač može
-napisati algoritam učenja i zaključivanja za specifični problem. Slični sustavi
-koji implementiraju algoritme učenja i zaključivanja za vjerojatnosne grafičke
-modele zahtijevaju puno više linija programskog koda i vjerojatnija je pojava
-bugova, a nemodularna priroda onemogućuje njihovo izbjegavanje. Pokušaj
-generalizacije i iskorištavanja programskog koda općenitijim metodama učenja i
-zaključivanja kod vjerojatnosnih grafičkih modela rezultirao je pojavom
-vjerojatnosnih programskih jezika \engl{probabilistic programming languages},
-ali brzina učenja i zaključivanja nije ni blizu algoritama \lts{}.
+strojno učenje zvanom Vowpal
+Wabbit,\footnote{\url{https://github.com/JohnLangford/vowpal_wabbit/wiki}} a
+\lts{} razvojni okvir omogućava da u jako malo linija programskog koda
+istraživač može napisati algoritam učenja i zaključivanja za specifični problem.
+Slični sustavi koji implementiraju algoritme učenja i zaključivanja za
+vjerojatnosne grafičke modele zahtijevaju puno više linija programskog koda i
+vjerojatnija je pojava bugova, a nemodularna priroda onemogućuje njihovo
+izbjegavanje. Pokušaj generalizacije i iskorištavanja programskog koda
+općenitijim metodama učenja i zaključivanja kod vjerojatnosnih grafičkih modela
+rezultirao je pojavom vjerojatnosnih programskih jezika \engl{probabilistic
+programming languages}, ali brzina učenja i zaključivanja nije ni blizu
+algoritama \lts{}.
 
 Ovaj diplomski rad nudi sažet pregled metoda učenja pretraživanja i njihovu
 primjenu na probleme obrade prirodnog jezika. Uz njihovu matematičku podlogu
@@ -70,6 +71,11 @@ iste zadatke da bi se istaknula superiornost \lts{} metoda.
 
 U poglavlju \ref{ch:evaluation} prisutno je vrednovanje modela za zadatke
 razvijene u ovom radu te opis implementacije algoritama učenja i zaključivanja.
-Tri različita zadatka: \begin{inlinelist} \item označavanje vrste riječi, \item
-ovisnosno parsanje i \item združeno označavanje i parsanje. Uz tri osnovna
-zadatka prisutne su njihove varijante i različiti pristupi na istom problemu.
+Tri različita zadatka:
+\begin{inlinelist}
+  \item označavanje vrste riječi,
+  \item ovisnosno parsanje i
+  \item združeno označavanje i parsanje.
+\end{inlinelist}
+Uz tri osnovna zadatka prisutne su njihove varijante i različiti pristupi na
+istom problemu.
