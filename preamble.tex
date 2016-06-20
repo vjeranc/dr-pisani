@@ -13,7 +13,11 @@
 
 %% subfigure and subcaptions
 \usepackage{subcaption}
-
+%% enumeration inline
+\newlist{inlinelist}{enumerate*}{1}
+\setlist*[inlinelist,1]{%
+  label=(\arabic*),
+}
 
 %% times math
 \usepackage{newtxtext}

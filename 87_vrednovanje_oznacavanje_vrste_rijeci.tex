@@ -1,5 +1,85 @@
 Za vrednovanje učinkovitosti koristi se mjera točnosti \engl{accuracy}. Za
-usporedbu se koriste rezultati dobiveni u \citep{agic2013lemmatization} gdje je
-korišten HunPos označivač. Vrednovanje se vrši na dva testna skupa
-(\textsc{SETimes.HR} i \textsc{Wiki}). Vjerojatno su u međuvremenu postignuti
+usporedbu se koriste rezultati dobiveni u \citep{agic2013lemmatization} koji su
+dobiveni HunPos označivačem. Vrednovanje se vrši na dva testna skupa
+(\textsc{SETimes.HR} i \textsc{Wiki}).\footnote{Datoteke
+\textsc{set.hr.test.conll} i \textsc{wiki.hr.test.conll} prisutne na poveznici
+\url{https://github.com/ffnlp/sethr}} Vjerojatno su u međuvremenu postignuti
 bolji rezultati od navedenih, ali nisu zabilježeni u raspoloživoj literaturi.
+
+U tablici \ref{table:postagging} prikazani su rezultati. Uz prijašnje rezultate
+prikazana je uspješnost običnog označivača vrste riječi (\textsc{Vwpos 1} --
+alg.~\ref{alg:postagging}) i označivača s više prolaza (\textsc{Vwpos 2} --
+alg.~\ref{alg:postagging:multipass}). Korištene značajke su prefiksi i sufiksi
+do najveće duljine od pet znakova, oblik riječi u kojem su mala i velika slova
+zamijenjeni slovom \textsc{l} i \textsc{u}, dvije susjedne riječi lijevo i desno
+od trenutne i duljina riječi. Donošenje trenutne odluke uvjetuje se s tri prošle
+odluke. U slučaju \textsc{Vwpos 2} algoritma korištena su 3 prolaza. Kod HunPos
+označivača koristi se Markovljev lanac drugog stupnja, a za rezultate na
+\textsc{Wiki} testnom skupu i dodatni vanjski leksikon.
+
+\begin{table}[]
+\centering
+\caption[Rezultat označavanja vrste riječi.]{Rezultat označavanja vrste riječi.}
+\label{table:postagging}
+\begin{tabular}{|l|l|l|}
+\hline
+Metoda             & \textsc{Set}   & \textsc{Wiki}  \\ \hline \hline
+HunPos             & 97.04          & 94.62          \\
+\textsc{Vwpos 1}   & 98.18          & 96.20          \\
+\textsc{Vwpos 2}   & \textbf{98.71} & \textbf{97.12} \\
+\textsc{Vwmsd} 1   & 98.31          & 96.57          \\
+\textsc{Vwmsd} 2   & 98.23          & 96.41          \\ \hline
+\end{tabular}
+\end{table}
+
+U tablici \ref{table:msdtagging} prikazani su rezultati za označavanje koristeći
+morfosintaktičke deskriptore. Značajke korištene identične su kao i za prethodni
+zadatak. Pristupi \textsc{Vwpos 1} i \textsc{2} koriste se tako da se svaka
+morfosintaktička oznaka gleda kao zasebna oznaka vrste riječi (takvih u
+korištenom skupu ima 645). Pristupi \textsc{Vwmsd} 1 i 2 gledaju
+morfosintaktičke odluke kao oznake vrste riječi s atributima. U svakom pristupu
+za svaku riječ donosi se niz odluka koje na kraju rezultiraju potpunim ispravnim
+morfosintaktičkim deskriptorom.  Kod pristupa \textsc{Vwmsd 1} trenutna odluka
+uvjetovana je svim predthodnim odlukama za dvije prošle riječi i trenutnu riječ,
+a za \textsc{Vwmsd 2} korištene su sve donešene odluke na prethodne dvije i
+sljedeće dvije riječi.
+
+U oba \textsc{Vwmsd} pristupa za riječ prvo odaberemo oznaku vrste riječi (jednu
+od trinaest mogućih). Nakon toga moguće je odabrati prvi atribut, ali ne bilo
+koji nego baš onaj koji odgovara za odabranu oznaku. To smanjuje broj binarnih
+odluka koje je potrebno izvršiti. Pretpostavimo da označavamo rečenicu od deset
+riječi. Kod \textsc{Vwpos 1} pristupa moramo za svaku riječ pozvati 645 binarne
+odluke (\textsc{ova}) što na kraju rezultira s ukupno 6450 odluka. Zbog
+ograničenja mogućih vrijednosti atributa s obzirom na izabranu oznaku vrste
+riječi broj odluka bi trebao biti manji. Kod donošenja odluke na prvoj razini za
+riječ možemo izabrati jednu od 13 mogućih. Nakon toga, pretpostavljajući da
+oznaka ima 6 mogućih atributa (zamjenica ima toliko) i da svaki atribut ima 7
+mogućih vrijednosti (padež kod imenice) onda će se za pojedinu riječ morati
+pozvati $13+6 \cdot 7 = 55$ binarnih odluka, što je ukupno 550 za cijelu
+rečenicu. U usporedbi s 6450 to je puno manje, a u praksi broj odluka je još
+manji iz čega slijedi da je vrijeme učenja i testiranja puno manje. U tablici
+\ref{table:postagging} prikazana je uspješnost \textsc{Vwmsd} pristupa na
+običnom zadatku označavanja vrste riječi. \textsc{Vwmsd} pristupi imaju bolju
+generalizaciju od \textsc{Vwpos 1} pristupa, ali očito povećani broj značajki
+(svaka prijašnja odluka kojom uvjetujemo trenutnu je nova značajaka) zahtjeva
+više podataka za bolju generalizaciju. Moguće je da u lanacu odluka koji
+potreban za formiranje jednog morfosintaktičkog deskriptora dolazi lakše do
+grešaka nego u slučaju da se jedan morfosintaktički deskriptor promatra kao
+jedinstvena odluka. Ovaj bi slučaj upućivao na prisutnost pristranosti odlukama
+koja se može dogoditi ako klasifikator nije dobro naučen.
+
+\begin{table}[]
+\centering
+\caption{Rezultat označavanja vrste riječi koristeći morfosintaktičke
+deskriptore.}
+\label{table:msdtagging}
+\begin{tabular}{|l|l|l|}
+\hline
+Metoda             & \textsc{Set}   & \textsc{Wiki}  \\ \hline \hline
+HunPos             & 87.11          & 80.83          \\
+\textsc{Vwpos 1}   & 89.94          & 83.27          \\
+\textsc{Vwpos 2}   & \textbf{90.22} & \textbf{84.13} \\
+\textsc{Vwmsd 1}   & 89.19          & 82.22          \\
+\textsc{Vwmsd 2}   & 89.06          & 81.90          \\ \hline
+\end{tabular}
+\end{table}
