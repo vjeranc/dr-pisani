@@ -9,7 +9,7 @@ prediction}. U obradi prirodnog jezika neki od problema koji uključuju
 predviđanje strukturiranog izlaza su označavanje vrste riječi
 \engl{part-of-speech tagging}, ovisnosno parsanje \engl{dependency parsing},
 prepoznavanje imenovanih entiteta \engl{named entity recognition}, prepoznavanje
-i praćenje entiteta \engl{entity tracking and detection}, razrješavanje
+i praćenje entiteta \engl{entity detection and tracking}, razrješavanje
 koreference \engl{coreference resolution}, izlučivanje relacija između entiteta
 \engl{entity relation extraction}, inkrementalno prevođenje \engl{incremental
 translation}, inkrementalno odgovaranje na pitanja \engl{incremental question
@@ -17,7 +17,7 @@ answering} i mnoštvo drugih. Ostale primjene metoda učenja pretraživanja su
 aktivno i interaktivno učenje \engl{active and interactive learning}, algoritmi
 grananja i granice \engl{branch-and-bound}, problemi u robotici, segmentacija
 slike \engl{image segmentation}, predviđanje sekundarne strukture proteina
-\engl{protein secondary structure prediction} itd.
+\engl{protein secondary structure prediction} i dr.
 
 Postojanost razvijenog matematičkog formalizma za te metode jedan je od razloga
 raznolike primjene. Metode učenja pretraživanja vuku inspiraciju iz područja
@@ -26,17 +26,17 @@ dobru \bq{policu}{Dobar prijevod (strategija, politika)-- \emph{policy}?}.
 Polica se uči opetovanim izvršavanjem zadatka i ažuriranjem modela s obzirom na
 pojedinačni ishod. Kod učenja pretraživanja cilj je dodatno iskoristiti prisutne
 podatke, dok su ti podaci zanemareni ili se postepeno izgrađuju kod primjene
-podržanog učenja. Matematički aparat koji je nastao da bi objasnio podržano
-učenje skupa s redukcijama u strojnom učenju \engl{reductions in machine
-learning} omogućava dobre teoretske garancije metoda učenja pretraživanja.
-Redukcija u području strojnog učenja slična je redukcijama u drugim područjima
-računarske znanosti. U ovom radu obrađuje se pitanje kako reducirati
-jednostavniji problem na združeno učenje i predviđanje \engl{joint learning and
-prediction}. Naposljetku, glavni razlog široke primjene je vrlo jednostavna
-implementacija koja iskorištava svojstvo modularnosti koje je prirodno u procesu
-redukcija (za implementaciju višerazredne klasifikacije potreban nam je samo
-dobar binarni klasifikator). Implementacija je ostvarena u brzom sustavu za
-strojno učenje zvanom Vowpal
+podržanog učenja. Matematički aparat koji je iskorišten da bi objasnio podržano
+učenje zajedno s redukcijama u strojnom učenju \engl{machine learning
+reductions} omogućava otkriće dobrih teoretskih jamstva metoda učenja
+pretraživanja. U ovom radu obrađuje se pitanje kako reducirati jednostavniji
+problem na združeno učenje i predviđanje \engl{joint learning and prediction}.
+Redukcije u području strojnog učenja slične su redukcijama u drugim područjima
+računarske znanosti. Naposljetku, glavni razlog široke primjene je vrlo
+jednostavna implementacija koja iskorištava svojstvo modularnosti koje je
+prirodno u procesu redukcija (za implementaciju višerazredne klasifikacije
+potreban nam je samo dobar binarni klasifikator). Implementacija je ostvarena u
+brzom sustavu za strojno učenje zvanom Vowpal
 Wabbit,\footnote{\url{https://github.com/JohnLangford/vowpal_wabbit/wiki}} a
 \lts{} razvojni okvir omogućava da u jako malo linija programskog koda
 istraživač može napisati algoritam učenja i zaključivanja za specifični problem.

@@ -15,8 +15,8 @@
         \State Neka je  $\pi^{\text{out}} = \hat{\pi}_{I}$.
         \State Procjeni trošak $c_{i,t}(a)$ koristeći $T-t-1$ puta policu $\pi^{\text{out}}$. \Comment{Rollout.}
       \EndFor
-      \State Generiraj vektor značajki $\phi(x_i, s_t)$.
-      \State Postavi $\Gamma = \Gamma \cup \{\langle c_{i,t}, \phi(x_i, s_t) \rangle\}$.
+      \State Generiraj vektor značajki $\mathbf{\Phi}(x_i, s_t)$.
+      \State Postavi $\Gamma = \Gamma \cup \{\langle c_{i,t}, \mathbf{\Phi}(x_i, s_t) \rangle\}$.
     \EndFor
   \EndFor
   \State $\hat{\pi}' \gets \textsc{Train}(\Gamma)$.

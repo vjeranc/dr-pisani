@@ -13,14 +13,14 @@ pozicije što bolja.
 Kako kod podržanog učenja imamo samo pristup naučenoj polici stoga termin
 \textit{rollin} nije bio prisutan, ali se podrazumijeva da do željenog stanja
 dolazimo koristeći naučenu policu -- ako su neka stanja nedostižna trenutnoj
-naučenoj polici bilo bi bespotrebno vrednovati poteze iz stanja do kojih ne
-možemo doći. U kontekstu metoda učenja pretraživanja \textit{rollin} je postupak
-dolaska do određenog stanja, a kako nam je na raspolaganju naučena i referentna
-polica dobro je vidjeti koja strategija vodi do brzog i konzistentnog učenja --
-hoćemo li dolaziti do stanja koristeći referentnu ili naučenu policu, a možda za
-svaki korak odabrati nekom vjerojatnošću jednu ili drugu. Na slici
+naučenoj polici, onda bilo bi bespotrebno vrednovati odluke iz stanja do kojih
+ne možemo doći. U kontekstu metoda učenja pretraživanja \textit{rollin} je
+postupak dolaska do određenog stanja, a kako nam je na raspolaganju naučena i
+referentna polica dobro je vidjeti koja strategija vodi do brzog i konzistentnog
+učenja -- hoćemo li dolaziti do stanja koristeći referentnu ili naučenu policu,
+a možda za svaki korak odabrati nekom vjerojatnošću jednu ili drugu. Na slici
 \ref{fig:rollinout} prikazan je postupak korištenja \textit{rollin} i
-\textit{rollout} polica za vrednovanje poteza gdje su potezi predstavljeni
+\textit{rollout} polica za vrednovanje odluka gdje su odluke predstavljene
 bridovima, a stanja čvorovima.
 
 \begin{figure}
@@ -91,11 +91,11 @@ bridovima, a stanja čvorovima.
 pretraživanja.]{Prikaz postupka \textit{rollin} i \textit{rollout} kod učenja
 pretraživanja. Kreće se iz stanja $P$ i odabiru se srednja odluka od moguće tri
 dva puta koristeći \textit{rollin} policu. Sivi čvorovi se ne pretražuju. U
-koraku $R$ algoritam učenja odabire sve moguće poteze radeći odstupanje od
-jednog koraka i primijenjuje \textit{rollout} policu za svaki mogući potez
+koraku $R$ algoritam učenja odabire sve moguće odluke radeći odstupanje od
+jednog koraka i primijenjuje \textit{rollout} policu za svaku moguću odluku
 dovoljno puta da dođe do kraja. U tom trenutku dobiva se informacija o gubitku i
-ona se koristi kao procjena dobrote svakog poteza. Nakon postupka moguće je
-zaključiti da se gornjim potezom koji odstupa od odabranog srednjeg stanja može
+ona se koristi kao procjena dobrote svake odluke. Nakon postupka moguće je
+zaključiti da se gornjom odlukom koja odstupa od odabranog srednjeg stanja može
 gubitak smanjiti za 1. Primjer preuzet iz \citep[str.~3]{daume15lols}}
 \label{fig:rollinout}
 \end{figure}
@@ -115,8 +115,8 @@ referentne police. Jedini dobar pristup kojim se postiže lokalna optimalnost i
 konzistentna redukcija je onaj u kojem se koristi mješovita polica za
 \textit{rollout} -- opis metode lokalno optimalnog učenja pretrživanja nalazi se
 u potpoglavlju \ref{ch:LOLS}. Ako se pretpostavi da je referentna polica
-optimalna i to je stvarno slučaj onda će učenje koristeći \textit{rollin} s
-naučenom, a \textit{rollout} s  referentnom rezultirati s konzistentnom i
+optimalna i to je stvarno slučaj, onda će učenje koristeći \textit{rollin} s
+naučenom, a \textit{rollout} s referentnom rezultirati s konzistentnom i
 lokalno optimalnom naučenom policom. Za mnoštvo problema nije lako definirati
 optimalnu policu i zanimljiv je rezultat da upravo \textit{rollout} s mješovitom
 policom ima garancije da će, ako je u prostoru odluka moguće raditi lokalno
@@ -139,8 +139,8 @@ prostoru odluka na problemu bi jednako dobro radilo i podržano učenje.
 >{\columncolor[HTML]{C0C0C0}}c |}
 \hline
 \multicolumn{1}{|c|}{\cellcolor[HTML]{C0C0C0}Rollout $\rightarrow$} & \cellcolor[HTML]{C0C0C0}                                     & \cellcolor[HTML]{C0C0C0}                                     & \cellcolor[HTML]{C0C0C0}                                   \\
-\multicolumn{1}{|c|}{\cellcolor[HTML]{FFFFC7}$\downarrow$ Rollin}   & \multirow{-2}{*}{\cellcolor[HTML]{C0C0C0}\textbf{Referenca}} & \multirow{-2}{*}{\cellcolor[HTML]{C0C0C0}\textbf{Mješovita}} & \multirow{-2}{*}{\cellcolor[HTML]{C0C0C0}\textbf{Naučena}} \\ \hline
-\textbf{Referenca}                                                  & \multicolumn{3}{c|}{\cellcolor[HTML]{FFCCC9}Nekonzistentna redukcija}                                                                                                                    \\ \hline
+\multicolumn{1}{|c|}{\cellcolor[HTML]{FFFFC7}$\downarrow$ Rollin}   & \multirow{-2}{*}{\cellcolor[HTML]{C0C0C0}\textbf{Referentna}} & \multirow{-2}{*}{\cellcolor[HTML]{C0C0C0}\textbf{Mješovita}} & \multirow{-2}{*}{\cellcolor[HTML]{C0C0C0}\textbf{Naučena}} \\ \hline
+\textbf{Referentna}                                                  & \multicolumn{3}{c|}{\cellcolor[HTML]{FFCCC9}Nekonzistentna redukcija}                                                                                                                    \\ \hline
 \textbf{Naučena}                                             & \cellcolor[HTML]{FFCCC9}Nije lokalno optimalna               & \cellcolor[HTML]{C5F7C5}Dobra                                & \cellcolor[HTML]{FFCCC9}Podržano učenje                    \\ \hline
 \end{tabular}
 \caption[Rezultati analize načina učenja koristeći \textit{rollin} i
@@ -148,8 +148,9 @@ prostoru odluka na problemu bi jednako dobro radilo i podržano učenje.
 \textit{rollin} i \textit{rollout} police. Ovisno o odabiru \textit{rollin} i
 \textit{rollout} para naučena polica može biti nekonzistentna ili bez svojstva
 lokalne optimalnosti, problem učenja police se može svesti na podržano učenje
-ili naučena polica ipak može biti konzistentna i lokalno optimalna. Tablica
-preuzeta iz \citep[str.~5]{daume15lols}}
+ili naučena polica ipak može biti konzistentna i lokalno optimalna. Mješovita
+polica je polica kod koje nekom vjerojatnošću biramo referentnu ili naučenu.
+Tablica preuzeta iz \citep[str.~5]{daume15lols}}
 \label{fig:policyresult}
 \end{figure}
 

@@ -25,8 +25,8 @@ uspinjanje brdom.
       \State Neka je  $\pi_{i}^{\text{out}} = \pi^{\text{ref}}$ s vjerojatnošću $\beta$, inače $\hat{\pi}_i$.
       \State Procjeni trošak $c_{i,t}(a)$ koristeći $T-t-1$ puta policu $\pi_{i}^{\text{out}}$. \Comment{Rollout.} \label{alg:lols:mixture}
     \EndFor
-    \State Generiraj vektor značajki $\phi(x_i, s_t)$.
-    \State Postavi $\Gamma = \Gamma \cup \{\langle c_{i,t}, \phi(x_i, s_t) \rangle\}$.
+    \State Generiraj vektor značajki $\mathbf{\Phi}(x_i, s_t)$.
+    \State Postavi $\Gamma = \Gamma \cup \{\langle c_{i,t}, \mathbf{\Phi}(x_i, s_t) \rangle\}$.
   \EndFor
   \State $\hat{\pi}_{i+1} \gets \textsc{Train}(\hat{\pi}_i, \Gamma)$.
 \EndFor
@@ -46,11 +46,17 @@ algoritmom \ref{alg:searn}. Razlike su sljedeće:
   mješavinu polica, dok \textsc{LOLS} koristi samo trenutno naučenu policu i
   referentnu policu;
 
+  \item \textsc{Searn} koristi mješovitu policu za \emph{rollin} i
+  \emph{rollout} te miješanje radi na svakom stanju \engl{mix-per-state}.
+  \textsc{LOLS} miješanje radi samo na početku \emph{roll} postupka
+  \engl{mix-per-roll};
+
   \item u slučaju algoritma \textsc{LOLS} nije potrebno da je referentna polica
   optimalna, a za \textsc{Searn} je taj uvjet obavezan inače postoji mogućnost
   da naučena polica neće imati svojstvo generalizacije.
 
 \end{itemize}
 
+\noindent
 Ova varijanta učenja pretraživanja koristi se za rješavanje problema u okviru
 ovog rada.

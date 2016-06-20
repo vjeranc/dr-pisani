@@ -91,14 +91,37 @@ riječi, a onda stablo, ali moguće je da prepletenost odluka na sve zadatke
 dovodi do brže konvergencije.
 
 \begin{figure}
-  \centering
-  \begin{tabular}{l|rll}
+  \tiny
+  \begin{tabular}{l|rlm{4cm}}
   \hline
-  \multicolumn{1}{|l|}{Akcija} & Stog          & Međuspremink                                           & \multicolumn{1}{l|}{Lukovi} \\ \hline
-                               & {[}Korijen{]} & {[}Gore gore gore gore , nego što gore gore dolje .{]} & \{\}                        \\
-  Pomak                        &               &                                                        &                             \\
-                               &               &                                                        &
+  \textbf{Akcija}           & \textbf{Stog}                                       & \textbf{Međuspremink}                                                       & \textbf{Lukovi} \\ \hline
+                            & {[}\textbf{K}{]}                                    & {[}Gore gore$_1$ gore$_2$ gore$_3$ , nego što gore$_4$ gore$_5$ dolje .~{]} & \{\}           \\
+  \textsc{Pomak}            & {[}\textbf{K} Gore{]}                               & {[}gore$_1$ gore$_2$ gore$_3$ , nego što gore$_4$ gore$_5$ dolje .~{]}      & \{\}             \\
+  \textsc{RedukcijaLijevo}  & {[}\textbf{K}{]}                                    & {[}gore$_1$ gore$_2$ gore$_3$ , nego što gore$_4$ gore$_5$ dolje .~{]}      & \{(gore$_1$, Gore)\}  \\
+  \textsc{Pomak}            & {[}\textbf{K} gore$_1${]}                           & {[}gore$_2$ gore$_3$ , nego što gore$_4$ gore$_5$ dolje .~{]}               & \{(gore$_1$, Gore)\}  \\
+  \textsc{Pomak}            & {[}\textbf{K} gore$_1$ gore$_2${]}                  & {[}gore$_3$ , nego što gore$_4$ gore$_5$ dolje .~{]}                        & \{(gore$_1$, Gore),\}  \\
+  \textsc{RedukcijaDesno}   & {[}\textbf{K} gore$_1${]}                           & {[}gore$_3$ , nego što gore$_4$ gore$_5$ dolje .~{]}                        & \{(gore$_1$, Gore), (gore$_1$, gore$_2$)\}  \\
+  \textsc{Pomak}            & {[}\textbf{K} gore$_1$ gore$_3${]}                  & {[}~, nego što gore$_4$ gore$_5$ dolje .~{]}                                & \{(gore$_1$, Gore), (gore$_1$, gore$_2$)\}  \\
+  \textsc{Pomak}            & {[}\textbf{K} gore$_1$ gore$_3$ , {]}               & {[} nego što gore$_4$ gore$_5$ dolje .~{]}                                  & \{(gore$_1$, Gore), (gore$_1$, gore$_2$)\}  \\
+  \textsc{Pomak}            & {[}\textbf{K} gore$_1$ gore$_3$ , nego {]}          & {[}što gore$_4$ gore$_5$ dolje .~{]}                                        & \{(gore$_1$, Gore), (gore$_1$, gore$_2$)\}  \\
+  \textsc{Pomak}            & {[}\textbf{K} gore$_1$ gore$_3$ , nego što{]}       & {[}gore$_4$ gore$_5$ dolje .~{]}                                            & \{(gore$_1$, Gore), (gore$_1$, gore$_2$)\}  \\
+  \textsc{RedukcijaDesno}   & {[}\textbf{K} gore$_1$ gore$_3$ , nego{]}           & {[}gore$_4$ gore$_5$ dolje .~{]}                                            & \{(gore$_1$, Gore), (gore$_1$, gore$_2$), (nego, što)\}  \\
+  \textsc{Pomak}            & {[}\textbf{K} gore$_1$ gore$_3$ , nego gore$_4${]}  & {[} gore$_5$ dolje .~{]}                                                    & \{(gore$_1$, Gore), (gore$_1$, gore$_2$), (nego, što)\}  \\
+  \textsc{RedukcijaLijevo}  & {[}\textbf{K} gore$_1$ gore$_3$ , nego{]}           & {[} gore$_5$ dolje .~{]}                                                    & \{(gore$_1$, Gore), \ldots, (gore$_5$, gore$_4$)\}  \\
+  \textsc{RedukcijaLijevo}  & {[}\textbf{K} gore$_1$ gore$_3$ , {]}               & {[} gore$_5$ dolje .~{]}                                                    & \{(gore$_1$, Gore), \ldots, (gore$_5$, nego)\}  \\
+  \textsc{Pomak}            & {[}\textbf{K} gore$_1$ gore$_3$ , gore$_5$ {]}      & {[} dolje .~{]}                                                             & \{(gore$_1$, Gore), \ldots, (gore$_5$, nego)\}  \\
+  \textsc{Pomak}            & {[}\textbf{K} gore$_1$ gore$_3$ , gore$_5$ dolje{]} & {[} .~{]}                                                                   & \{(gore$_1$, Gore), \ldots, (gore$_5$, nego)\}  \\
+  \textsc{RedukcijaDesno}   & {[}\textbf{K} gore$_1$ gore$_3$ , gore$_5$ {]}      & {[} .~{]}                                                                   & \{(gore$_1$, Gore), \ldots, (gore$_5$, dolje)\}  \\
+  \textsc{RedukcijaDesno}   & {[}\textbf{K} gore$_1$ gore$_3$ , {]}               & {[} .~{]}                                                                   & \{(gore$_1$, Gore), \ldots, (~,~, gore$_5$)\}  \\
+  \textsc{RedukcijaDesno}   & {[}\textbf{K} gore$_1$ gore$_3${]}                  & {[} .~{]}                                                                   & \{(gore$_1$, Gore), \ldots, (gore$_3$,~,)\}  \\
+  \textsc{RedukcijaDesno}   & {[}\textbf{K} gore$_1$ {]}                          & {[} .~{]}                                                                   & \{(gore$_1$, Gore), \ldots, (gore$_1$, gore$_3$)\}  \\
+  \textsc{Pomak}            & {[}\textbf{K} gore$_1$ .~{]}                        & {[}{]}                                                                      & \{(gore$_1$, Gore), \ldots, (gore$_1$, gore$_3$)\}  \\
+  \textsc{RedukcijaDesno}   & {[}\textbf{K} gore$_1$ {]}                          & {[}{]}                                                                      & \{(gore$_1$, Gore), \ldots, (gore$_1$, .~)\}  \\
+  \textsc{RedukcijaDesno}   & {[}\textbf{K} {]}                                   & {[}{]}                                                                      & \{(gore$_1$, Gore), \ldots, (\textbf{K}, gore$_1$)\}  \\
   \end{tabular}
-  \caption{Primjer parsiranja ovisnosnog stabla koristeći tranzicijski pristup.}
+  \caption[Primjer parsiranja ovisnosnog stabla koristeći tranzicijski
+  pristup.]{Primjer parsiranja ovisnosnog stabla koristeći tranzicijski pristup.
+  \textbf{K} je korijen \engl{root}. Korištena je rečenica i stablo dobiveno sa
+  slike \ref{fig:depparsing}.}
   \label{fig:shiftreduce}
 \end{figure}

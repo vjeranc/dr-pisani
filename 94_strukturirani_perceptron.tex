@@ -17,9 +17,9 @@ $b_0$.
 \ForAll{$i \in \{1,2,\ldots,I\}$}
 
   \ForAll{$n \in \{1,2,\ldots,N\}$}
-    \If{$y_n \cdot ({\mathbf{w}_0}^\top \phi(x_n) + b_0) \leq 0$}
-    \State $\mathbf{w}_0 \gets \mathbf{w}_0 + y_n \phi(x_n)$, $b_0 \gets b_0 + y_n$
-    \State $\mathbf{w}_a \gets \mathbf{w}_a + c y_n \phi(x_n)$, $b_a \gets b_a + c y_n$
+    \If{$y_n \cdot ({\mathbf{w}_0}^\top \mathbf{\Phi}(x_n) + b_0) \leq 0$}
+    \State $\mathbf{w}_0 \gets \mathbf{w}_0 + y_n \mathbf{\Phi}(x_n)$, $b_0 \gets b_0 + y_n$
+    \State $\mathbf{w}_a \gets \mathbf{w}_a + c y_n \mathbf{\Phi}(x_n)$, $b_a \gets b_a + c y_n$
     \EndIf
     \State $c \gets c + 1$
   \EndFor
@@ -48,10 +48,10 @@ jednostavnije i brže.
 
 \ForAll{$i \in \{1,2,\ldots,I\}$}
   \ForAll{$n \in \{1,2,\ldots,N\}$}
-    \State $\hat{y}_n \gets \argmax_{y \in \mathcal{Y}} {\mathbf{w}_0}^\top \phi(x_n, y)$ \label{alg:avgstructuredperceptron:argmax}
+    \State $\hat{y}_n \gets \argmax_{y \in \mathcal{Y}} {\mathbf{w}_0}^\top \mathbf{\Phi}(x_n, y)$ \label{alg:avgstructuredperceptron:argmax}
     \If{$y_n \neq \hat{y}_n$}\label{alg:structuredperceptron:condition}
-    \State $\mathbf{w}_0 \gets \mathbf{w}_0 + \phi(x_n, y_n) - \phi(x_n, \hat{y}_n)$
-    \State $\mathbf{w}_a \gets \mathbf{w}_a + \phi(x_n, y_n) - \phi(x_n, \hat{y}_n)$
+    \State $\mathbf{w}_0 \gets \mathbf{w}_0 + \mathbf{\Phi}(x_n, y_n) - \mathbf{\Phi}(x_n, \hat{y}_n)$
+    \State $\mathbf{w}_a \gets \mathbf{w}_a + \mathbf{\Phi}(x_n, y_n) - \mathbf{\Phi}(x_n, \hat{y}_n)$
     \EndIf
     \State $c \gets c + 1$
   \EndFor
@@ -64,8 +64,8 @@ jednostavnije i brže.
 
 Zahtjeva samo da se $\argmax$ problem na liniji
 \ref{alg:avgstructuredperceptron:argmax} može riješiti efikasno. U većini
-slučajeva rješava se algoritmom Viterbi ili aproksimativno. Pretpostavka je i da
-je problem koji rješavamo lako dekomponirati na Hammingov gubitak što je malo
+slučajeva rješava se algoritmom Viterbi ili aproksimativno. Postoji pretpostavka
+da je problem koji rješavamo lako dekomponirati na Hammingov gubitak što je malo
 bolje nego njegova aproksimacija log-gubitkom -- kao što je slučaj kod uvjetnih
 slučajnih polja -- jer se optimizira pogrešna dodjela oznake izlaza (0 ili 1), a
 ne stupanj dodjele.
@@ -86,4 +86,5 @@ težine u slučaju da cijeli izlaz (npr.~niz oznaka vrsta riječi ili ovisnosno
 stablo) nije u potpunosti jednak pravom izlazu. Samim time točno označene
 komponente izlaza i dalje utječu na težine, a to nije potrebno jer su točno
 označene. Njihov dodatak s globalnom normalizacijom rješava taj problem. Ostaje
-i ograničenje da izlaz $y \in \mathcal{Y}$ mora imati dekompoziciju.
+ograničenje da funkcija gubitka mora imati dekompoziciju na izlaz $y \in
+\mathcal{Y}$.

@@ -6,7 +6,7 @@ formalizam stroja s potpornim vektorima za binarnu klasifikaciju. Formulacija \m
 \begin{equation}\label{eq:mmmm}
 \begin{aligned}
   \min_{\mathbf{w}} & \quad \frac{1}{2} {\lVert\mathbf{w}\lVert}^2 + C \sum_{n=1}^{N}\sum_{\hat{y}} \xi_{n,\hat{y}} \text{ ,}              & \\
-  \text{uz uvjete}  & \quad \mathbf{w}^\top \phi(x_n, y_n) - \mathbf{w}^\top \phi(x_n, \hat{y}) \ge l(x_n, y_n, \hat{y}) - \xi_{n,\hat{y}} & \quad \forall n, \forall \hat{y} \in \mathcal{Y} \text{ ,}\\
+  \text{uz uvjete}  & \quad \mathbf{w}^\top \mathbf{\Phi}(x_n, y_n) - \mathbf{w}^\top \mathbf{\Phi}(x_n, \hat{y}) \ge l(x_n, y_n, \hat{y}) - \xi_{n,\hat{y}} & \quad \forall n, \forall \hat{y} \in \mathcal{Y} \text{ ,}\\
                     & \quad \xi_{n,\hat{y}} \ge 0                                                                                          & \quad \forall n, \forall \hat{y} \in \mathcal{Y} \text{ .}
 \end{aligned}
 \end{equation}
@@ -14,9 +14,9 @@ formalizam stroja s potpornim vektorima za binarnu klasifikaciju. Formulacija \m
 Ono što je bitno naglastiti je da \mmmm{} formulacija ima previše uvjeta. Za
 svaki primjer $(x_n, y_n)$ nad kojim učimo i za svaki netočni izlaz $\hat{y}$
 potrebno je izgraditi uvjet. Moguće je uz određene pretpostavke o $\mathcal{Y}$
-i $\phi$ zamijeniti eksponencijalan broj uvjeta s polinomijalnim. U slučaju
-problema strukturnog predviđanja koji ima dekompoziciju preko niza odluka
-koristeći funkciju Hamming gubitka navedena zamjena je moguća.
+i $\mathbf{\Phi}$ zamijeniti eksponencijalan broj uvjeta s polinomijalnim. Navedena
+zamjena je moguća u slučaju problema strukturnog predviđanja koji ima
+dekompoziciju preko niza odluka koristeći funkciju Hamming gubitka.
 
 Za efikasno učenje i zaključivanje funkcija gubitka mora imati dekompoziciju
 preko niza odluka. Prethodan uvjet ograničava \mmmm{}, ali s obzirom na uvjetna

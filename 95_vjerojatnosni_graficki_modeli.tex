@@ -122,8 +122,8 @@ prijašnje oznake $y_{i-1}$ prikazana u jednadžbi \ref{eq:maxent1}.
 
 \begin{equation}\label{eq:maxent1}
 \begin{aligned}
-  p(y_i | x, y_{i-1}; \mathbf{w}) = \frac{1}{Z(x, y_{i-1}; \mathbf{w})} \exp \big[ \mathbf{w}^\top \phi(x, y_i, y_{i-1})\big] \\
-  Z(x, y_{i-1}; \mathbf{w}) = \sum_{y' \in \mathcal{Y}} \exp \big[ \mathbf{w}^\top \phi(x, y', y_{i-1})\big]
+  p(y_i | x, y_{i-1}; \mathbf{w}) = \frac{1}{Z(x, y_{i-1}; \mathbf{w})} \exp \big[ \mathbf{w}^\top \mathbf{\Phi}(x, y_i, y_{i-1})\big] \\
+  Z(x, y_{i-1}; \mathbf{w}) = \sum_{y' \in \mathcal{Y}} \exp \big[ \mathbf{w}^\top \mathbf{\Phi}(x, y', y_{i-1})\big]
 \end{aligned}
 \end{equation}
 
@@ -158,8 +158,8 @@ uvjetna vjerojatnost prikazana u jednadžbi \ref{eq:crf}.
 
 \begin{equation}\label{eq:crf}
 \begin{aligned}
-  p(y | x; \mathbf{w}) = \frac{1}{Z(x; \mathbf{w})} \exp \big[ \mathbf{w}^\top \phi(x, y)\big] \\
-  Z(x; \mathbf{w}) = \sum_{y' \in \mathcal{Y}} \exp \big[ \mathbf{w}^\top \phi(x, y')\big]
+  p(y | x; \mathbf{w}) = \frac{1}{Z(x; \mathbf{w})} \exp \big[ \mathbf{w}^\top \mathbf{\Phi}(x, y)\big] \\
+  Z(x; \mathbf{w}) = \sum_{y' \in \mathcal{Y}} \exp \big[ \mathbf{w}^\top \mathbf{\Phi}(x, y')\big]
 \end{aligned}
 \end{equation}
 
@@ -181,7 +181,7 @@ regularizirati i koristi se log-posteriorna distribucija preko težina opisana u
 jednadžbi \ref{eq:crflog}.
 
 \begin{equation}\label{eq:crflog}
-  \log p(\mathbf{w} | \mathcal{D}; \sigma^2) = -\frac{1}{\sigma^2} {\lVert\mathbf{w}\lVert}^2 + \sum_{(x_n, y_n) \in \mathcal{D}} \bigg[ \mathbf{w}^\top \phi(x_n, y_n) - \log Z(x_n; \mathbf{w}) \bigg]
+  \log p(\mathbf{w} | \mathcal{D}; \sigma^2) = -\frac{1}{\sigma^2} {\lVert\mathbf{w}\lVert}^2 + \sum_{(x_n, y_n) \in \mathcal{D}} \bigg[ \mathbf{w}^\top \mathbf{\Phi}(x_n, y_n) - \log Z(x_n; \mathbf{w}) \bigg]
 \end{equation}
 
 Pronalaženje optimalnog vektora težina $\mathbf{w}$ rješava se na razne načine
@@ -196,6 +196,6 @@ Unatoč ovim problemima model je našao primjene u označavanju vrste riječi
 \citep{lafferty2001conditional}, prepoznavanju imenovanih entiteta
 \citep{mccallum2003early, settles2004biomedical}, sažimanju dokumenata
 \engl{document summarization} \citep{shen2007document}, sentiment analizi
-\citep{mcdonald2007structured} itd. U svakom slučaju $\mathcal{Y}$ se
+\citep{mcdonald2007structured} i dr. U svakoj primjeni $\mathcal{Y}$ se
 dekomponirao na niz odluka i algoritmi su se morali prilagoditi za pravilno
 zaključivanje ili se odbacivanjem točnog zaključivanja koristilo aproksimativno.

@@ -1,8 +1,9 @@
-Polica \engl{policy} termin je za naučen sustav nakon postupka učenja. U
-području podržanog učenja jedina polica koja postoji je ona koja je naučena. U
-području učenja oponašanjem \engl{imitation learning} postoji više vrsta polica.
-Polica koja je naučena i referentna polica koju se pokušava oponašati. U
-nastavku sljedi nekoliko definicija koje će raščistiti koncept polica.
+Polica \engl{policy} termin je za naučen model nakon postupka učenja ili
+referentni sustav ili algoritam koji vrši određeno ponašanje. U području
+podržanog učenja jedina polica koja postoji je ona koja je naučena. U području
+učenja oponašanjem \engl{imitation learning} postoji više vrsta polica. Polica
+koja je naučena i referentna polica koju se pokušava oponašati. U nastavku
+sljedi nekoliko definicija koje bi trebale raščistiti koncept polica.
 
 \begin{definition}[Polica]
 
@@ -11,10 +12,11 @@ nastavku sljedi nekoliko definicija koje će raščistiti koncept polica.
 
 \end{definition}
 
-\noindent Skoro svi pristupi u potpoglavlju \ref{ch:metodesearchlearn}
-zahtjevaju pristup efikasnoj i optimalnoj polici $\pi\ssymbol{1}$. Bez takve
-police učenje može biti dugotrajno ili redukcija nekonzistentna. Potrebno je
-definirati optimalnu policu.
+\noindent
+Skoro svi pristupi u potpoglavlju \ref{ch:metodesearchlearn} zahtjevaju pristup
+efikasnoj i optimalnoj polici $\pi\ssymbol{1}$. Bez takve police učenje može
+biti dugotrajno ili redukcija nekonzistentna. Potrebno je definirati optimalnu
+policu.
 
 \begin{definition}[Optimalna polica]
 
@@ -27,20 +29,22 @@ definirati optimalnu policu.
 
 \end{definition}
 
-\noindent Lokalno optimalno učenje pretraživanja -- \textsc{lols} (potpoglavlje
+\noindent
+Lokalno optimalno učenje pretraživanja -- \textsc{lols} (potpoglavlje
 \ref{ch:LOLS}) --  ima garancije o tome kakva će naučena polica biti, a
 definicija je dana ispod.
 
 \begin{definition}[Lokalno optimalna polica]
 
-  Polica je lokalno optimalna ako promjena bilo koje prijašnje odluke ne može
-  poboljšati učinkovitost police.
+  Naučena polica je lokalno optimalna ako promjena bilo koje prijašnje odluke ne
+  može poboljšati učinkovitost naučene police.
 
 \end{definition}
 
-\noindent Potrebno je znati težinu učenja lokalno optimalne police. Možda je
-problem lokalne optimalnosti toliko težak da bilo koji efikasan algoritam učenja
-neće moći naučiti lokalno optimalnu policu u zadovoljavajućoj količini vremena.
+\noindent
+Potrebno je znati težinu učenja lokalno optimalne police. Možda je problem
+lokalne optimalnosti toliko težak da bilo koji efikasan algoritam učenja neće
+moći naučiti lokalno optimalnu policu u zadovoljavajućoj količini vremena.
 Teorem koji slijedi govori o tome koliko je ažuriranja potrebno napraviti da bi
 naučena polica bila lokalno optimalna.
 
@@ -55,7 +59,7 @@ naučena polica bila lokalno optimalna.
 \end{theorem}
 
 Konstrukcija problema koja dokazuje teorem \ref{th:localopt} prisutna je u
-\citep{daume15lols}. Naravno, u slučaju problema gdje je moguće napraviti
+\citep{daume15lols}. Naravno, kod problema gdje je moguće napraviti
 dekompoziciju prostora odluka i funkcije gubitka -- kao što je slučaj kod
 označavanja vrste riječi -- ne postoji konstrukcija koja bi zahtjevala
 eksponencijalno mnogo primjera. Ilustrativniji je primjer igranja šaha. Mnoštvo
@@ -63,18 +67,18 @@ metoda koristi, uz bazu odigranih partija i dobro analiziranih otvaranja,
 pretraživanje tijekom igre za pronalazak najboljih poteza. Pitanje je možemo li
 naučiti šah bez pretraživanja. Možemo li naučiti policu koja će biti lokalno
 optimalna? Takva polica bi garantirala da nakon odigrane partije šaha ne postoji
-potez koji bi mogli ispraviti i promijeniti rezultat igre. Tj.~ako bi pronašli
-takav potez i ažurirali naučenu policu ona ne bi mogla postati bolja. U slučaju
-šaha očito je da bi polica trebala postati bolja. Ako polica za svako stanje
-ploče može reći optimalnu vjerojatnost dobitka partije onda otkriće boljeg
-poteza bi tu vjerojatnost trebalo promijeniti. Očigledno je da naučena polica za
-šah može biti lokalno optimalna samo u slučaju da je odigran ogroman broj
-partija. Moguće je da šah kojeg igraju ljudi nije šah kojeg bi igrala sveznajuća
-računala. Potezi koje rade ljudi imaju određenu distribuciju gdje bi učenje
-lokalno optimalne police koja igra protiv čovjeka zahtjevalo manje primjera.
-Dobar stvaran primjer je nedavna pobjeda AlphaGo protiv ljudskog igrača u igri
-Go. \citet{silver2016mastering} izgrađuju policu koja za svako stanje vraća
-vjerojatnost pobjede uzevši u obzir sljedeći potez. S obzirom na broj mogućih
-igara ($\approx 2\cdot10^{170}$) vrlo je teško izgraditi takvu policu čija će
-procjena vjerojatnosti biti lokalno optimalna te za poboljšanje učinkovitosti
-ipak koriste pretragu tijekom zaključivanja.
+potez koji bi mogli ispraviti i time promijeniti rezultat igre. Tj.~ako bi
+pronašli takav potez i ažurirali naučenu policu ona ne bi mogla postati bolja. U
+slučaju šaha očito je da bi polica trebala postati bolja. Ako polica za svako
+stanje ploče može reći optimalnu vjerojatnost dobitka partije onda otkriće
+boljeg poteza bi tu vjerojatnost trebalo promijeniti. Očigledno je da naučena
+polica za šah može biti lokalno optimalna samo u slučaju da je odigran ogroman
+broj partija. Moguće je da šah kojeg igraju ljudi nije šah kojeg bi igrala
+sveznajuća računala. Potezi koje rade ljudi imaju određenu distribuciju gdje bi
+učenje lokalno optimalne police koja igra protiv čovjeka zahtjevalo manje
+primjera. Dobar stvaran primjer je nedavna pobjeda AlphaGo protiv ljudskog
+igrača u igri Go. \citet{silver2016mastering} izgrađuju policu koja za svako
+stanje vraća vjerojatnost pobjede uzevši u obzir sljedeći potez. S obzirom na
+broj mogućih igara ($\approx 2\cdot10^{170}$) vrlo je teško izgraditi takvu
+policu čija će procjena vjerojatnosti biti lokalno optimalna te za poboljšanje
+učinkovitosti ipak koriste pretragu tijekom zaključivanja.
