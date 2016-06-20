@@ -36,7 +36,6 @@ osobna imena, imena privatnih organizacija, gradova, mjesta i dr.}
 \label{fig:namedentityrecognition}
 \end{figure}
 
-
 Algoritam \ref{alg:namedentityrecognition:seq} pokazuje kako bi izgledala
 implementacija prepoznavanja imenovanih entiteta koristeći okvir učenja
 pretraživanja. Funkcija \textsc{Predict} prima skup mogućih oznaka za trenutnu
@@ -81,7 +80,7 @@ rečenica onda je potrebno samo preskočiti riječi za koje je već donešena od
 \State $\textit{prethodna} \gets 0$
 \For{$n \gets 1$ \textbf{do} \Call{Len}{riječi}}
   \If{(prethodna -= 1) $> 0$}
-    \State \textbf{sljedeći}
+    \State \textbf{nastavi} \Comment{continue}
   \EndIf
   \State \textit{ref} $\gets$ \text{riječi[n].točna\_oznaka}
   \State \textit{izlaz[n]} $\gets$ \Call{Predict}{riječi[n], ref}
