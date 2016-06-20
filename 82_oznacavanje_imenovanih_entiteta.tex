@@ -1,0 +1,94 @@
+Prepoznavanje imenovanih entiteta \engl{named entity recognition} jedan je od
+osnovnih problema u obradi prirodnog jezika. Cilj je u tekstu prepoznati
+imenovane entitete. Problem je ilustriran na slici
+\ref{fig:namedentityrecognition}. Rečenicu je potrebno segmentirati na riječi
+koje bi mogle sadržavati imenovane entitete i onda te segmente prepoznati.
+Pristup koji se najčešće uzima je redukcija označavanja niza na prepoznavanje
+imenovanih entiteta. Koristeći oznake za početak imena \textsc{b}, nastavak
+imena \textsc{i} i oznaku da riječ nije ime \textsc{o} problem je jednostavno
+sveden na označavanje niza. Moguće je prvo samo označiti riječi entiteta, a
+kasnije prepoznati koji je tip, ali združeno prepoznavanje u obliku različitih
+oznaka za različite entitete (\textsc{b-per}, \textsc{b-loc} i dr.) ima bolju
+učinkovitost. Treba napomenuti da nastavak imenovanog entiteta uvijek prethodi
+nastavak ili početak imenovanog entiteta. To znači da prije nego što smo
+iskoristili oznaku \textsc{b} ne bi trebalo biti moguće koristiti oznaku
+\textsc{i}. Ova činjenica upućuje da je ipak potrebno prilagoditi označivač ako
+bi htjeli konzistentan izlaz. Drugi pristup je segmentirati i prepoznavati
+entitete istovremeno. \citet{sarawagi2004semi} opisuju prilagođen model
+prepoznavanja entiteta koji, umjesto da za entitet od tri riječi donese tri
+zasebne odluke (\textsc{b}, \textsc{i} i \textsc{i}), istovremeno odlučuje o
+duljini entiteta i njegovoj vrsti. Eksperimentalno potvrđuju da je taj pristup
+bolji od prvog navedenog.
+
+\begin{figure}[H]
+\centering
+\begin{dependency}
+\begin{deptext}
+  \textsc{b-per} \& \textsc{i-per} \& \textsc{o} \& \textsc{o} \& \textsc{o} \& \textsc{o} \& \textsc{b-loc} \& \textsc{o} \\
+  Patrik         \& Baboumian      \& je         \& najjači    \& čovjek     \& u          \& Njemačkoj      \& .          \\
+\end{deptext}
+\end{dependency}
+\caption[Rečenica s označenim imenovanim entitetima.]{Rečenica s označenim
+imenovanim entitetima. Oznake koje počinju s \textsc{b} se odnose na početak
+imenovanog entiteta, a one koje počinju s \textsc{i} kao nastavak. Oznaka
+\textsc{o} označava da značka nije imenovani entitet. Moguće je imati oznake za
+osobna imena, imena privatnih organizacija, gradova, mjesta i dr.}
+\label{fig:namedentityrecognition}
+\end{figure}
+
+
+Algoritam \ref{alg:namedentityrecognition:seq} pokazuje kako bi izgledala
+implementacija prepoznavanja imenovanih entiteta koristeći okvir učenja
+pretraživanja. Funkcija \textsc{Predict} prima skup mogućih oznaka za trenutnu
+riječ radi održavanja konzistentnosti. Kao i kod označavanja niza, vremenska
+složenost zaključivanja je $O(T M k)$ što je poboljšanje s obzirom na vremensku
+složenost vjerojatnosnih grafičkih modela. Algoritam
+\ref{alg:namedentityrecognition:segmentation} pokazuje kako bi izgledala
+implementacija modela koji je ekvivalentan modelu opisanom u
+\citep{sarawagi2004semi}. Kod ovog modela nije potrebno ponuditi niz mogućih
+oznaka nego je za odluku potrebno ponuditi dovoljno značajki (buduće riječi)
+kako bi odluke o entitetima koji imaju više od jedne riječi bile ispravne. Skup
+oznaka ako nas interesiraju samo lokacije od duljine do tri riječi može biti
+\{\textsc{loc1}, \textsc{loc2}, \textsc{loc3}, \textsc{o}\}. Ako je ulaz
+rečenica onda je potrebno samo preskočiti riječi za koje je već donešena odluka.
+
+\begin{algorithm}[H]
+\caption{Prepoznavanje imenovanih entiteta.}
+\label{alg:namedentityrecognition:seq}
+\begin{algorithmic}[1]
+\Function{\textsc{Run}}{riječi}
+\State $\textit{izlaz} \gets \text{[]}$
+\For{$n \gets 1$ \textbf{do} \Call{Len}{riječi}}
+  \State \textit{ref} $\gets$ \text{riječi[n].točna\_oznaka}
+  \State \textit{skupOznaka} $\gets \{B,O\}$
+  \If{izlaz[n-1] = $B$ ili izlaz[n-1] = $I$}
+    \State skupOznaka += $\{I\}$
+  \EndIf
+  \State \textit{izlaz[n]} $\gets$ \Call{Predict}{riječi[n], ref, skupOznaka}
+\EndFor
+\State \Call{Gubitak}{\# izlaz[n] $\neq$ riječi[n].točna\_oznaka}
+\State \textbf{return} izlaz
+\EndFunction
+\end{algorithmic}
+\end{algorithm}
+
+\begin{algorithm}[H]
+\caption{Prepoznavanje imenovanih entiteta sa segmentacijom.}
+\label{alg:namedentityrecognition:segmentation}
+\begin{algorithmic}[1]
+\Function{\textsc{Run}}{riječi}
+\State $\textit{izlaz} \gets \text{[]}$
+\State $\textit{prethodna} \gets 0$
+\For{$n \gets 1$ \textbf{do} \Call{Len}{riječi}}
+  \If{(prethodna -= 1) $> 0$}
+    \State \textbf{sljedeći}
+  \EndIf
+  \State \textit{ref} $\gets$ \text{riječi[n].točna\_oznaka}
+  \State \textit{izlaz[n]} $\gets$ \Call{Predict}{riječi[n], ref}
+  \State prethodna = izlaz[n].duljina
+\EndFor
+\State \Call{Gubitak}{\# izlaz[n] $\neq$ riječi[n].točna\_oznaka}
+\State \textbf{return} izlaz
+\EndFunction
+\end{algorithmic}
+\end{algorithm}

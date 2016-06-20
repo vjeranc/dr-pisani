@@ -29,7 +29,7 @@ prilog, glagol, imenicu, znakove interpukcije i veznike.}
 \State $\textit{izlaz} \gets \text{[]}$
 \For{$n \gets 1$ \textbf{do} \Call{Len}{riječi}}
   \State \textit{ref} $\gets$ \text{riječi[n].točna\_oznaka}
-  \State \textit{izlaz[n]} $\gets$ \Call{Predict}{riječi[i], ref, izlaz[:n-1]}
+  \State \textit{izlaz[n]} $\gets$ \Call{Predict}{riječi[n], ref, izlaz[:n-1]}
 \EndFor
 \State \Call{Gubitak}{\# izlaz[n] $\neq$ riječi[n].točna\_oznaka}
 \State \textbf{return} izlaz

@@ -164,4 +164,55 @@ void run(Search::search& sch, vector<example*>& ec)
 6 3 |w pod |p ADP  ADPCase=Ins
 0 4 |w povećalom |p NOUN  NOUNCase=Ins NOUNGender=Neut NOUNNumber=Sing
 \end{lstlisting}
+
+\chapter{Analiza sentimenta}\label{appendix:sentiment}
+\section{Prvo dokument onda rečenice}
+\begin{lstlisting}[language=C++,
+                   basicstyle=\tiny\ttfamily]{Name=msd-one-by-one}
+void run(Search::search& sch, vector<example*>& ec)
+{ Search::predictor P(sch, (ptag)0);
+  action oracle = ec[0]->l.multi.label;
+  size_t global_prediction = P.set_tag(1 /* global tag */).set_input(*ec[0]).set_oracle(oracle).predict();
+  if (sch.output().good())
+      sch.output() << sch.pretty_label((uint32_t)global_prediction) << ' ';
+  for (size_t i=1; i<ec.size(); i++)
+  { oracle     = ec[i]->l.multi.label;
+    size_t prediction = P.set_tag((ptag)i+1)
+                         .set_input(*ec[i])
+                         .set_oracle(oracle)
+                         .set_condition_range((ptag)i, sch.get_history_length(), 'p')
+                         .add_condition(1 /* global tag */, 'a') // adds the global as condition on each sequence element
+                         .predict();
+
+    if (sch.output().good())
+      sch.output() << sch.pretty_label((uint32_t)prediction) << ' ';
+  }
+}
+\end{lstlisting}
+\section{Prvo rečenice onda dokument}
+\begin{lstlisting}[language=C++,
+                   basicstyle=\tiny\ttfamily]{Name=msd-one-by-one}
+void run(Search::search& sch, vector<example*>& ec)
+{ Search::predictor P(sch, (ptag)0);
+  for (size_t i=0; i<ec.size()-1; i++)
+  { action oracle     = ec[i]->l.multi.label;
+    size_t prediction = P.set_tag((ptag)i+1)
+                         .set_input(*ec[i])
+                         .set_oracle(oracle)
+                         .set_condition_range((ptag)i, sch.get_history_length(), 'p')
+                         .predict();
+
+    if (sch.output().good())
+      sch.output() << sch.pretty_label((uint32_t)prediction) << ' ';
+  }
+  action oracle = ec.back()->l.multi.label;
+  size_t global_prediction = P.set_tag(ec.size())
+                              .set_input(*ec.back())
+                              .set_oracle(oracle)
+                              .set_condition_range(ec.size()-1, ec.size()-1, 'a').predict();
+                              // conditioning on all previous sequence decisions
+  if (sch.output().good())
+      sch.output() << sch.pretty_label((uint32_t)global_prediction) << ' ';
+}
+\end{lstlisting}
 \end{appendix}
