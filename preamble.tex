@@ -77,6 +77,13 @@
 \usepackage{algorithm}
 \usepackage{algpseudocode}
 
+% algorithm counter resets every chapter
+\makeatletter
+\@addtoreset{algorithm}{chapter}
+\makeatother
+\renewcommand{\thealgorithm}{\thechapter.\arabic{algorithm}}
+% Algorithm # is <chapter>.<algorithm>
+
 \algrenewcommand{\algorithmicrequire}{\textbf{Potrebno:}}
 \algrenewcommand{\algorithmicend}{\textbf{kraj}}
 \algrenewcommand{\algorithmicif}{\textbf{ako}}
