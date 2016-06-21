@@ -1,17 +1,17 @@
 Najpoznatiji vjerojatnosni grafički modeli korišteni za probleme strukturnog
-predviđanja su skriveni Markovljevi modeli \engl{hidden Markov models},
-Markovljev model maksimalne entropije \engl{maximum entropy Markov model} i
-uvjetna slučajna polja \engl{conditional random fields}. Svaki ima svojih
-prednosti. Učenje skrivenog Markovljevog modela moguće je izvesti jako brzo ako
-imamo pristup velikoj količini podataka. Prijelazne vjerojatnosti $p(x_i | y_i)$
-i $p(y_i | y_{i-1})$ moguće je naučiti vrlo brzo samo prebrojavanjem
-supojavljivanja. Kod uvjetnih slučajnih polja lakše je opisati ulaz značajkama
-što omogućava bolju generalizaciju iz manje količine podataka, ali proces učenja
-je dugotrajniji. Markovljev model maksimalne entropije je po učinkovitosti
-između dva modela, omogućava brzo učenje i dobru generalizaciju, ali je
-primijećeno da način učenja dovodi do problema pristranosti oznakama \engl{label
-bias} \citep{lafferty2001conditional}, a problem je detaljnije obrađen u
-potpoglavlju \ref{ch:labelbias}.
+predviđanja su skriveni Markovljevi modeli \engla{hidden Markov models}{hmm},
+Markovljev model maksimalne entropije \engla{maximum entropy Markov model}{memm}
+i uvjetna slučajna polja \engla{conditional random fields}{crf}. Svaki ima
+svojih prednosti. Učenje skrivenog Markovljevog modela moguće je izvesti jako
+brzo ako imamo pristup velikoj količini podataka. Prijelazne vjerojatnosti
+$p(x_i | y_i)$ i $p(y_i | y_{i-1})$ moguće je naučiti vrlo brzo samo
+prebrojavanjem supojavljivanja. Kod uvjetnih slučajnih polja lakše je opisati
+ulaz značajkama što omogućava bolju generalizaciju iz manje količine podataka,
+ali proces učenja je dugotrajniji. Markovljev model maksimalne entropije je po
+učinkovitosti između dva modela, omogućava brzo učenje i dobru generalizaciju,
+ali je primijećeno da način učenja dovodi do problema pristranosti oznakama
+\engl{label bias} \citep{lafferty2001conditional}, a problem je detaljnije
+obrađen u potpoglavlju \ref{ch:labelbias}.
 
 \begin{figure}[H]
 \tikzstyle{lightedge}=[<-,dotted]

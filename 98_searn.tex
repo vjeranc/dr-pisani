@@ -1,4 +1,19 @@
-\textsc{Searn}
+\citet{daume06thesis} u svojoj doktorskoj disertaciji daje doprinos otkrićem
+prve metode učenja pretraživanja \textsc{Searn} \engla{search + learn}{Searn}.
+Metodu primjenjuje na mnoštvo problema u području obrade prirodnog jezika:
+\begin{inlinelist}
+  \item označavanje vrste riječi,
+  \item prepoznavanje imenovanih entiteta,
+  \item plitko parsiranje \engl{shallow parsing},
+  \item združeno označavanje vrste riječi i plitko parsiranje,
+  \item prepoznavanje i praćenje entiteta (uključuje razrješavanje koreferenci),
+  \item sažimanje teksta koristeći više dokumenata i
+  \item poravnavanje teksta na engleskom i španjolskom koristeći latentne
+  varijable \engl{text alignment with hidden variables}.
+\end{inlinelist}
+Predložio je primjenu na strojno prevođenje i ovisnosno parsiranje koja je u
+okviru učenja pretraživanja nedavno ostvarena
+\citep{he2015syntax,chang2015learning}.
 
 \begin{algorithm}
 \caption{Učenje + Pretraživanje (\textsc{Searn})}\label{alg:searn}
@@ -11,17 +26,132 @@
     \State Inicijaliziraj $\Gamma = \emptyset$. \Comment{skup primjera osjetljivih na trošak.}
     \ForAll{$t \in \{0,1,2,\ldots,T_i-1\}$}
       \State Primijeniti $t$ puta policu $\pi^{\text{in}} = \hat{\pi}_{I}$  i stići do $s_t$. \Comment{Rollin.}
-      \ForAll{$a \in A(s_t)$}
-        \State Neka je  $\pi^{\text{out}} = \hat{\pi}_{I}$.
-        \State Procjeni trošak $c_{i,t}(a)$ koristeći $T-t-1$ puta policu $\pi^{\text{out}}$. \Comment{Rollout.}
+      \ForAll{$a \in A(s_t)$}\label{alg:searn:action}
+        \State Neka je  $\pi^{\text{out}} = \hat{\pi}_{I}$.\label{alg:searn:rolloutpolicy}
+        \State Procjeni trošak $c_{i,t}(a)$ koristeći $T-t-1$ puta policu $\pi^{\text{out}}$. \Comment{Rollout.}\label{alg:searn:rollout}
       \EndFor
       \State Generiraj vektor značajki $\mathbf{\Phi}(x_i, s_t)$.
       \State Postavi $\Gamma = \Gamma \cup \{\langle c_{i,t}, \mathbf{\Phi}(x_i, s_t) \rangle\}$.
     \EndFor
   \EndFor
   \State $\hat{\pi}' \gets \textsc{Train}(\Gamma)$.
-  \State $\hat{\pi}_{I+1} \gets \beta \hat{\pi}' + (1-\beta) \hat{\pi}_{I}$.
+  \State $\hat{\pi}_{I+1} \gets \beta \hat{\pi}' + (1-\beta) \hat{\pi}_{I}$. \label{alg:searn:mixture}
 \EndFor
 \State \Return $\hat{\pi}_{P}$ bez $\pi\ssymbol{1}$
 \end{algorithmic}
 \end{algorithm}
+
+Pseudokod \ref{alg:searn} prikazuje \textsc{Searn} algoritam. Algoritam radi
+više prolaza preko skupa za učenje određen brojem $P$. Za svaki primjer $\{x_i,
+y_i\}$ dolazi do nekog stanja $s_t$ koristeći \textit{rollin} policu. Ona je pri
+prvom prolazu jednaka referentnoj polici, a u svim ostalima ta polica je
+stohastička mješavina između polica naučenih u svakom prolazu i referentne
+police -- rezultat primjene \textit{rollin} police je kod problema označavanja
+vrste riječi niz oznaka, a stanje $s_t$ do kojeg smo stigli je riječ na mjestu
+$t$ koju još nismo označili. Linija \ref{alg:searn:mixture} pokazuje izračun
+nove police. Izračun ne radi interpolaciju naučenih težina nego samo prilagođava
+vjerojatnosti odabira do tada naučenih polica. Vjerojatnost je veća za najnoviju
+naučenu policu i polako se smanjuje s brojem prolaza (množi se s $\beta < 1$).
+Za procjenu troška donošenja odluke na stanju $s_t$ (npr.~odluka je određivanje
+vrste riječi na trenutnoj riječi) za svaku moguću odluku koristi se
+\textit{rollout} polica koja je također stohastička mješavina (linija
+\ref{alg:searn:action} i \ref{alg:searn:rolloutpolicy}). Ta polica primjenjuje
+se do kraja strukture koju obrađujemo i onda se izračuna dobiveni gubitak
+(linija \ref{alg:searn:rollout}). Kad je prošli postupak napravljen za svaku
+moguću odluku kreira se primjer za učenje osjetljiv na trošak i stavlja se u
+skup. Nakon što je postupak kreiranja primjera gotov nauči se nova polica.
+Višerazredni klasifikator koji koristimo mora biti osjetljiv na trošak, a moguće
+je koristiti bilo koji binarni klasifikator uz nekoliko izmjena na primjerima za
+učenje \citep{zadrozny2003cost, beygelzimer2005weighted, beygelzimer2005error}.
+Nakon učenja, zaključivanje se svodi na pozive višerazrednog klasifikatora za
+svako stanje. Ako želimo da donošenje trenutne odluke ovisi o prethodnim
+odlukama i značajkama iz budućih stanja onda je potrebno tijekom učenja i
+korištenja naučenih polica samo dodati te odluke i značajke u vektorsku
+reprezentaciju trenutnog stanja (tijekom primjene stohastičke police za vrijeme
+\textit{rollin} i \textit{rollout} postupka ta reprezentacija mora biti
+prisutna).
+
+Ovaj algoritam bez ikakvih optimizacija ima vremensku složenost učenja $O(P N
+T^2 M k)$ -- gdje je $P$ broj prolaza, $N$ broj primjera, $T$ prosječna duljina
+niza odluka koji izgrađuju $y \in \mathcal{Y}$, $M$ broj različitih odluka za
+svako stanje $s_t$ i $k$ broj odluka kojima uvjetujemo trenutnu (svodi se samo
+na dodavanje $k$ prijašnjih odluka u vektorsku reprezentaciju stanja $s_t$).
+Vremenska složenost zaključivanja za jedan primjer je $O(T M k)$. U procjenu
+učenja nije uključeno vrijeme učenja klasifikatora generiranim skupom (ako je
+moguće model učiti primjer po primjer \engl{online} onda trošak ovisi o broju
+primjera i njihovoj vektorskoj reprezentaciji). Kod procjene zaključivanja
+pretpostavilo se da klasifikatoru treba $O(M)$ vremena za određivanje točne
+odluke, a tipična složenost klasifikatora u tom slučaju je $O(M \cdot d)$ --
+gdje je $d$ duljina vektorske reprezentacije. Ako postoji jednostavna
+dekompozicija funkcije gubitka onda složenost učenja može pasti na $O(P N T M
+k)$. Nije potrebno izvršavati \textit{rollout} u slučaju da znamo za trenutnu
+odluku parcijalan gubitak (npr.~kod označavanja vrste riječi tijekom izvršavanja
+svih odluka u liniji \ref{alg:searn:action} ne trebamo izvršiti \textit{rollout}
+jer znamo da je gubitak na pojedinoj odluci 1 ako je netočna i 0 ako je točna).
+
+\textsc{Searn} zahtjeva postojanje optimalne police (potpoglavlje
+\ref{ch:policailocalopt}) za potrebe učenja. Ako polica nije optimalna, onda će
+učenje biti otežano. U slučaju bolje procjene troška određene odluke potrebno je
+izvršiti \textit{rollout} nekoliko puta kako bi povećali vjerojatnost otkrića
+točnong niza odluka koji minimizira trošak. Primjer zadataka za kojeg nije lako
+izgraditi optimalnu policu je ovisnosno parsiranje i strojno prevođenje. Za
+ovisnosno parsiranje nije jednostavno znati kako dovršiti stablo tako da se
+minimizira gubitak s obzirom na to da je došlo do niza pogrešaka u izgradnji
+parcijalnog stabla. Kod strojnog prevođenja teško je znati kako odrediti
+trenutnu riječ s obzirom na polovično preveden dokument. U slučaju da je
+dokument preveden krivo možda ima više smisla staviti neku drugu riječ umjesto
+one koja je u zlatnom primjeru prisutna na toj poziciji. Kako bi se problem
+razriješio u okviru algoritma \textsc{Searn} korišten je Monte-Carlo algoritam
+za procjenu troška. Taj postupak usporava učenje, ali omogućava učenje bez
+optimalne police. Problem je riješen u \citep{daume15lols} i postupak je opisan
+u potpoglavlju \ref{ch:LOLS}. Posljednji nedostatak algoritma je taj što se
+moraju čuvati sve naučene police, pristupi opisani u sljedećim potpoglavljima
+nemaju to ograničenje.
+
+\citeauthor{daume06thesis} za potrebe svoje disertacije isprobava različite
+binarne klasifikatore:
+\begin{inlinelist}
+  \item perceptron,
+  \item logistička regresija,
+  \item stroj s potpornim vektorima i linearni kernel i
+  \item stroj s potpornim vektorima i kvadratni kernel.
+\end{inlinelist}
+Izbor klasifikatora ovisi o zadatku. Ako je broj primjera ogroman, onda je bolje
+koristiti perceptron, logističku regresiju ili \textsc{svm} s linearnim
+kernelom. Ako je broj primjera mali onda bi korištenje \textsc{svm} binarnog
+klasifikatora omogućilo što veće margine između odluka i povećalo točnost
+(eksperimentalno utvrđeno u disertaciji). Moguće je koristiti i neuronske mreže
+s više slojeva, ali trenutno nije u literaturi zabilježeno korištenje. Odabire
+binarnih klasifikatora \citeauthor{daume06thesis} uspoređuje sa strukturnim
+metodama opisanima u poglavlju \ref{ch:pregled} i pokazuje da \textsc{Searn} ima
+istu ili bolju učinkovitost na odabranim zadacima.
+
+\citeauthor{daume06thesis} tvrdi da, u kontekstu algoritama za strukturno
+predviđanje, \textsc{Searn} leži između algoritama koji koriste globalnu
+normalizaciju, kao što su \mmmm{} i \textsc{crf}, i onih koji koriste lokalnu
+normalizaciju, opisani u \citep{punyakanok2001use}. Razlika između
+\textsc{Searn} i globalnih algoritama je u načinu na koji rješavaju nesigurnost.
+Kod globalnih algoritama, algoritam pretraživanja se koristi za vrijeme
+zaključivanja kako bi se razriješila nesigurnost. Kod algoritma \textsc{Searn},
+trošak za svaku odluku koji je prisutan tijekom učenja razrješava nesigurnost.
+Oba pristupa se razlikuju od lokalnih algoritama kod kojih se nesigurnost uopće
+ne razrješava.
+
+Sa šire perspektive strojnog učenja, \textsc{Searn} je pokazao povezanost između
+podržanog učenja i strukturnog predviđanja. Strukturno predviđanje može se
+vidjeti kao problem podržanog učenja u kojem su sva opažanja (sve prave odluke)
+vidljive na početku.
+
+Sve navedeno u zadnja dva paragrafa vrijedi i za ostale metode učenja
+pretraživanja navedene u ovom poglavlju. \citeauthor{daume06thesis} postavlja
+otvorena pitanja vezana uz broj potrebnih primjera koji je potreban za učenje i
+što raditi bez prisustva optimalne police. Odgovori na ta pitanja dani su
+algoritmom \textsc{LOLS} koji je opisan u poglavlju \ref{ch:LOLS}
+\citep{daume15lols}.
+
+\textsc{Searn} se, koristeći terminologiju uvedenu u potpoglavljima
+\ref{ch:reductions}, \ref{ch:policailocalopt} i \ref{ch:rollinrollout}, može
+opisati kao konzistentna (ako je referentna polica optimalna) redukcija binarne
+klasifikacije na problem združenog predviđanja gdje se za \textit{rollin} i
+\textit{rollout} policu koristi stohastička mješavina između naučene i
+referentne police.
