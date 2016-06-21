@@ -86,9 +86,9 @@ nakon što izgradimo cijelo stablo za pojedinu rečenicu.
 
 \noindent
 Sve metode strukturnog predviđanja u ovom poglavlju nakon što je naučen vektor
-težina $\mathbf{w}$ trebaju riješiti $\argmax$ problem \ref{argmaxproblem}.
+težina $\mathbf{w}$ trebaju riješiti $\argmax$ problem \ref{eq:argmaxproblem}.
 
-\begin{equation}\label{argmaxproblem}
+\begin{equation}\label{eq:argmaxproblem}
   y\ssymbol{1} = \argmax_{y \in \mathcal{Y}} \mathbf{w}^\top \mathbf{\Phi}(x, y)
 \end{equation}
 
@@ -100,7 +100,7 @@ programming} ili cjelobrojno linearno programiranje \engl{integer linear
 programming} za pronalaženje dobrih rješenja. Recimo, ako $\mathbf{\Phi}$ ima
 takvu dekompoziciju preko vektorske reprezentacije $\mathcal{Y}$ da ni jedna
 značajka ne ovisi o elementima $y$ koji su više od $k+1$ pozicija udaljeni, onda
-možemo iskoristiti Viterbi algoritam za rješenje \ref{argmaxproblem}, a
+možemo iskoristiti Viterbi algoritam za rješenje \ref{eq:argmaxproblem}, a
 složenost će biti $O(M^k T)$ -- gdje je $M$ broj mogućih oznaka, definiran u
 uvjetu \ref{uvjet1}, a $T$ duljina vektora na koji se dekomponira $y$ iz
 definicije \ref{def:jointlearn}.

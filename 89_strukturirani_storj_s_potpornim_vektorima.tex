@@ -1,0 +1,35 @@
+Strukturirani stroj s potpornim vektorima \engla{structured support vector
+machine}{ssvm} također se može primijenjivati na probleme strukturnog
+predviđanja \citep{tsochantaridis2005large}. Imaju veliku sličnost s modelom
+\mmmm{}. Razlika je u tome da \mmmm{} skalira marginu koristeći gubitak, dok
+\textsc{ssvm} skalira \textit{slack} varijable koristeći gubitak. Problem
+kvadratičnog programiranja priložen je ispod.
+
+\begin{equation}\label{eq:ssvm}
+\begin{aligned}
+  \min_{\mathbf{w}} & \quad \frac{1}{2} {\lVert\mathbf{w}\lVert}^2 + C \sum_{n=1}^{N}\sum_{\hat{y}} \xi_{n,\hat{y}} \text{ ,}              & \\
+  \text{uz uvjete}  & \quad \mathbf{w}^\top \mathbf{\Phi}(x_n, y_n) - \mathbf{w}^\top \mathbf{\Phi}(x_n, \hat{y}) \ge 1 - \frac{\xi_{n,\hat{y}}}{l(x_n, y_n, \hat{y})} & \quad \forall n, \forall \hat{y} \in \mathcal{Y} \text{ ,}\\
+                    & \quad \xi_{n,\hat{y}} \ge 0                                                                                          & \quad \forall n, \forall \hat{y} \in \mathcal{Y} \text{ .}
+\end{aligned}
+\end{equation}
+
+Funkcija koju je potrebno minimizirati je identična, a razlika je samo u prvom
+uvjetu. Intuitivnije je skalirati grešku tijekom učenja (\textit{slack}
+varijable) gubitkom nego skalirati marginu. Autori tvrde da je ovaj formalizam
+bolji od \mmmm{} jer će potonji tjerati sustav da razdvoji hipoteze koje
+uzrokuju velik gubitak čak i ako je te hipoteze teško zamijeniti istinom
+(npr.~riječi koje su imenice teško da će klasifikator ikad zamijeniti da su
+brojevi). Uz razlike u skaliranju metode koriste drugačije algoritme učenja. Kod
+\mmmm{} okvira moguće je u slučaju dekompozicije funkcije gubitka uvelike
+smanjiti broj dodatnih ograničenja, dok kod okvira \textsc{ssvm} to nije moguće.
+\citet{tsochantaridis2005large} navode da se ograničenja dodaju po potrebi i
+daju garancije da će takva strategija dovesti do dobrog rješenja u polinomnom
+broju koraka.
+
+Glavna mana ovog formalizma je što ga je jako teško učiti. Unatoč tome ovo je
+jedini formalizam u kojem nije potrebno da funkcija ima dekompoziciju preko
+strukture. Postoje gradijentne metode pomoću kojih je moguće učiti \mmmm{} i
+\textsc{ssvm} modele, ali one zahtjevaju, uz rješavanje $\argmax$ problema
+\ref{eq:argmaxproblem}, rješavanje takozvane \textit{pretrage proširene
+gubitkom}. U \mmmm{} okviru ta je pretraga rješiva zbog mogućnosti dekompozicije
+funkcije gubitka, dok kod okvira \textsc{ssvm} nije \citep{ratliff2006maximum}.

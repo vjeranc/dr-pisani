@@ -136,7 +136,7 @@ maksimalne entropije -- za učenje se može koristiti neka varijanta gradijentno
 spusta.
 
 Kod zaključivanja koristi se algoritam Viterbi za rješavanje $\argmax$ problema
-(\ref{argmaxproblem}). Zbog ove kombinacije algoritama učenja i zaključivanja
+(\ref{eq:argmaxproblem}). Zbog ove kombinacije algoritama učenja i zaključivanja
 dolazi do problema pristranosti oznakama (potpoglavlje \ref{ch:labelbias}).
 
 \cite{cohen05ijcai} pokušali su smanjiti utjecaj pristranosti oznakama i
@@ -189,7 +189,7 @@ Pronalaženje optimalnog vektora težina $\mathbf{w}$ rješava se na razne nači
 ovisno o problemu neke je moguće ili nemoguće primijeniti, a za više detalja
 čitatelja se upućuje na \citep{wallach2004conditional, sutton2006introduction}.
 Zaključak je da uvjetna slučajna polja možemo primijenjivati na probleme gdje
-efikasno možemo izračunati $\argmax$ (\ref{argmaxproblem}) i particijsku
+efikasno možemo izračunati $\argmax$ (\ref{eq:argmaxproblem}) i particijsku
 funkciju $Z(x; \mathbf{w})$. Strukturirani izlaz $y \in \mathcal{Y}$ mora imati
 takvu dekompoziciju da možemo log-gubitkom aproksimirati Hammingov gubitak.
 Unatoč ovim problemima model je našao primjene u označavanju vrste riječi
