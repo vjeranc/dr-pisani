@@ -127,6 +127,7 @@ prijašnje oznake $y_{i-1}$ prikazana u jednadžbi \ref{eq:maxent1}.
 \end{aligned}
 \end{equation}
 
+\noindent
 Model se uči koristeći prave izlazne nizove kao skup podataka za učenje i
 koriste se pravi $y_{i-1}$ za generiranje primjera za učenje. Navedeni postupak
 proizvede primjere za učenje višerazredne klasifikacije čiji je broj jednak
@@ -163,7 +164,8 @@ uvjetna vjerojatnost prikazana u jednadžbi \ref{eq:crf}.
 \end{aligned}
 \end{equation}
 
-$Z(x; \mathbf{w})$ particijska je funkcija i sumira sve izlaze za koje model
+\noindent
+Particijska funkcija $Z(x; \mathbf{w})$ sumira sve izlaze za koje model
 daje kriva predviđanja. Ako se koristi iterativni algoritam učenja to znači da
 za pravilnu procjenu parametara trebat ćemo računati ovu sumu svaki put prije
 korigiranja težinskog vektora $\mathbf{w}$. Ta suma je u generalnom slučaju
@@ -184,6 +186,7 @@ jednadžbi \ref{eq:crflog}.
   \log p(\mathbf{w} | \mathcal{D}; \sigma^2) = -\frac{1}{\sigma^2} {\lVert\mathbf{w}\lVert}^2 + \sum_{(x_n, y_n) \in \mathcal{D}} \bigg[ \mathbf{w}^\top \mathbf{\Phi}(x_n, y_n) - \log Z(x_n; \mathbf{w}) \bigg]
 \end{equation}
 
+\noindent
 Pronalaženje optimalnog vektora težina $\mathbf{w}$ rješava se na razne načine
 \citep{lafferty2001conditional, sha2003shallow, sokolovska2010efficient} i
 ovisno o problemu neke je moguće ili nemoguće primijeniti, a za više detalja

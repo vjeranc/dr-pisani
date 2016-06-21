@@ -21,12 +21,12 @@ Korisno je razmotriti isti problem u okviru učenja pretraživanja. U dodatku
 \ref{appendix:sentiment} prisutne su dvije moguće implementacije u okviru učenja
 pretraživanja za model označavanja sentimenta i rečenica. Moguće je donositi
 odluke na dva načina:
-\begin{inlinelist}
-  \item prvo odrediti sentiment na dokumentu pa onda propagirati tu informaciju
-  pri donošenju odluka na rečenicama,
-  \item prvo odrediti sentiment na svim rečenicama pa onda propagirati cijeli
+\begin{enumerate}
+  \item prvo odrediti sentiment na dokumentu, pa onda propagirati tu informaciju
+  pri donošenju odluka na rečenicama;
+  \item prvo odrediti sentiment na svim rečenicama, pa onda propagirati cijeli
   određeni sentiment na odluku za dokument.
-\end{inlinelist}
+\end{enumerate}
 Algoritam \ref{alg:sentiment:docsent} ilustrira prvi pristup, a ponašanje
 funkcija identično je kao i u algoritmima u potpoglavlju \ref{ch:postaggingapp}.
 Očigledno je postupak određivanja sentimenta samo na rečenicama jednak običnom
