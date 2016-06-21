@@ -7,7 +7,7 @@ Učenje pretraživanja spada u metode strukturnog učenja \engl{structured
 learning} ili predviđanja strukturiranog izlaza \engl{structured output
 prediction}. U obradi prirodnog jezika neki od problema koji uključuju
 predviđanje strukturiranog izlaza su označavanje vrste riječi
-\engl{part-of-speech tagging}, ovisnosno parsanje \engl{dependency parsing},
+\engl{part-of-speech tagging}, ovisnosno parsiranje \engl{dependency parsing},
 prepoznavanje imenovanih entiteta \engl{named entity recognition}, prepoznavanje
 i praćenje entiteta \engl{entity detection and tracking}, razrješavanje
 koreference \engl{coreference resolution}, izlučivanje relacija između entiteta
@@ -27,16 +27,16 @@ Polica se uči opetovanim izvršavanjem zadatka i ažuriranjem modela s obzirom 
 pojedinačni ishod. Kod učenja pretraživanja cilj je dodatno iskoristiti prisutne
 podatke, dok su ti podaci zanemareni ili se postepeno izgrađuju kod primjene
 podržanog učenja. Matematički aparat koji je iskorišten da bi objasnio podržano
-učenje zajedno s redukcijama u strojnom učenju \engl{machine learning
-reductions} omogućava otkriće dobrih teoretskih jamstva metoda učenja
-pretraživanja. U ovom radu obrađuje se pitanje kako reducirati jednostavniji
-problem na združeno učenje i predviđanje \engl{joint learning and prediction}.
-Redukcije u području strojnog učenja slične su redukcijama u drugim područjima
-računarske znanosti. Naposljetku, glavni razlog široke primjene je vrlo
-jednostavna implementacija koja iskorištava svojstvo modularnosti koje je
-prirodno u procesu redukcija (za implementaciju višerazredne klasifikacije
-potreban nam je samo dobar binarni klasifikator). Implementacija je ostvarena u
-brzom sustavu za strojno učenje zvanom Vowpal
+učenje s redukcijama u strojnom učenju \engl{machine learning reductions}
+omogućava otkriće dobrih teoretskih jamstva metoda učenja pretraživanja. U ovom
+radu obrađuje se pitanje kako reducirati jednostavniji problem na združeno
+učenje i predviđanje \engl{joint learning and prediction}. Redukcije u području
+strojnog učenja slične su redukcijama u drugim područjima računarske znanosti.
+Naposljetku, glavni razlog široke primjene je vrlo jednostavna implementacija
+koja iskorištava svojstvo modularnosti koje je prirodno u procesu redukcija (za
+implementaciju višerazredne klasifikacije potreban nam je samo dobar binarni
+klasifikator). Implementacija je ostvarena u brzom sustavu za strojno učenje
+zvanom Vowpal
 Wabbit,\footnote{\url{https://github.com/JohnLangford/vowpal_wabbit/wiki}} a
 \lts{} razvojni okvir omogućava da u jako malo linija programskog koda
 istraživač može napisati algoritam učenja i zaključivanja za specifični problem.
@@ -74,8 +74,8 @@ razvijene u ovom radu te opis implementacije algoritama učenja i zaključivanja
 Tri različita zadatka:
 \begin{inlinelist}
   \item označavanje vrste riječi,
-  \item ovisnosno parsanje i
-  \item združeno označavanje i parsanje.
+  \item ovisnosno parsiranje i
+  \item združeno označavanje i parsiranje.
 \end{inlinelist}
 Uz tri osnovna zadatka prisutne su njihove varijante i različiti pristupi na
 istom problemu.

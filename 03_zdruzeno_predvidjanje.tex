@@ -12,7 +12,7 @@ počinju probleme kategorizirati pod nazivom združeno predviđanje upravo zbog
 razloga što se vrši združeni niz odluka koristeći funkciju gubitka koja će za
 taj niz izračunati gubitak i ona nema nužno dekompoziciju preko niza tog odluka.
 Naziv onda može uključivati združene probleme poput istovremenog označavanja
-vrste riječi u rečenici i ovisnosnog parsanja rečenice, ali i svaki problem
+vrste riječi u rečenici i ovisnosnog parsiranja rečenice, ali i svaki problem
 zasebno. Kako bi nastavak bio konzistentan sa starijom literaturom koristi se
 staro ime, a definicija \ref{def:jointlearn} je zapravo definicija združenog
 učenja.
@@ -94,12 +94,13 @@ težina $\mathbf{w}$ trebaju riješiti $\argmax$ problem \ref{argmaxproblem}.
 
 \noindent
 Ovaj problem u generalnom slučaju nije izračunljiv u dovoljno kratkom vremenu.
-Ako postoji prikladan $\mathcal{Y}$ i prikladna funkcija značajki $\mathbf{\Phi}$ onda se
-mogu primijeniti dinamičko programiranje \engl{dynamic programming} ili
-cjelobrojno linearno programiranje \engl{integer linear programming} za
-pronalaženje dobrih rješenja. Recimo, ako $\mathbf{\Phi}$ ima takvu dekompoziciju preko
-vektorske reprezentacije $\mathcal{Y}$ da ni jedna značajka ne ovisi o
-elementima $y$ koji su više od $k+1$ pozicija udaljeni, onda možemo iskoristiti
-Viterbi algoritam za rješenje \ref{argmaxproblem}, a složenost će biti $O(M^k
-T)$ -- gdje je $M$ broj mogućih oznaka, definiran u uvjetu \ref{uvjet1}, a $T$
-duljina vektora na koji se dekomponira $y$ iz definicije \ref{def:jointlearn}.
+Ako postoji prikladan $\mathcal{Y}$ i prikladna funkcija značajki
+$\mathbf{\Phi}$ onda se mogu primijeniti dinamičko programiranje \engl{dynamic
+programming} ili cjelobrojno linearno programiranje \engl{integer linear
+programming} za pronalaženje dobrih rješenja. Recimo, ako $\mathbf{\Phi}$ ima
+takvu dekompoziciju preko vektorske reprezentacije $\mathcal{Y}$ da ni jedna
+značajka ne ovisi o elementima $y$ koji su više od $k+1$ pozicija udaljeni, onda
+možemo iskoristiti Viterbi algoritam za rješenje \ref{argmaxproblem}, a
+složenost će biti $O(M^k T)$ -- gdje je $M$ broj mogućih oznaka, definiran u
+uvjetu \ref{uvjet1}, a $T$ duljina vektora na koji se dekomponira $y$ iz
+definicije \ref{def:jointlearn}.

@@ -7,7 +7,7 @@ primjerom \citep{freund1999large,gentile2002new} -- dan je pseudokod
 $b_0$.
 
 \begin{algorithm}
-\caption{Perceptron algoritam s usrednjavanjem}\label{alg:avgperceptron}
+\caption{Perceptron algoritam s usrednjavanjem.}\label{alg:avgperceptron}
 \begin{algorithmic}[1]
 \Require Skup podataka $\{x_i, y_i\}_{i=1}^N$ i broj prolaza $I$.
 \State $\mathbf{w}_0 \gets \langle 0, \ldots, 0 \rangle$, $b_0 \gets 0$
@@ -38,7 +38,7 @@ dalje moguće imati vrlo bogatu reprezentaciju ulaza, ali je učenje puno
 jednostavnije i brže.
 
 \begin{algorithm}
-\caption{Strukturirani perceptron algoritam s usrednjavanjem}
+\caption{Strukturirani perceptron algoritam s usrednjavanjem.}
 \label{alg:avgstructuredperceptron}
 \begin{algorithmic}[1]
 \Require Skup strukturiranih podataka $\{x_i, y_i\}_{i=1}^N$ i broj prolaza $I$.
@@ -62,7 +62,7 @@ jednostavnije i brže.
 \end{algorithmic}
 \end{algorithm}
 
-Zahtjeva samo da se $\argmax$ problem na liniji
+Zahtijeva samo da se $\argmax$ problem na liniji
 \ref{alg:avgstructuredperceptron:argmax} može riješiti efikasno. U većini
 slučajeva rješava se algoritmom Viterbi ili aproksimativno. Postoji pretpostavka
 da je problem koji rješavamo lako dekomponirati na Hammingov gubitak što je malo
@@ -72,7 +72,7 @@ ne stupanj dodjele.
 
 Prva pojava pretraživanja u strukturnom predviđanju pojavljuje se u
 \citep{collins2004incremental} gdje je strukturni perceptron korišten za
-ovisnosno parsanje. Jedina razlika je u tome što se $\argmax$ problem rješava
+ovisnosno parsiranje. Jedina razlika je u tome što se $\argmax$ problem rješava
 koristeći algoritam \textit{beam} pretrage stoga se linija
 \ref{alg:avgstructuredperceptron:argmax} zamijenjuje s $\hat{y}_n \gets
 \textsc{BeamPretraga}(x_n, \mathbf{w}_0)$. Algoritam umjesto da ima samo jedno

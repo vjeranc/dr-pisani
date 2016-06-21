@@ -41,7 +41,7 @@ morfosintaktičke odluke kao oznake vrste riječi s atributima. U svakom pristup
 za svaku riječ donosi se niz odluka koje na kraju rezultiraju potpunim ispravnim
 morfosintaktičkim deskriptorom.  Kod pristupa \textsc{Vwmsd 1} trenutna odluka
 uvjetovana je svim predthodnim odlukama za dvije prošle riječi i trenutnu riječ,
-a za \textsc{Vwmsd 2} korištene su sve donešene odluke na prethodne dvije i
+a za \textsc{Vwmsd 2} korištene su sve donesene odluke na prethodne dvije i
 sljedeće dvije riječi.
 
 U oba \textsc{Vwmsd} pristupa za riječ prvo odaberemo oznaku vrste riječi (jednu
@@ -56,13 +56,13 @@ riječ možemo izabrati jednu od 13 mogućih. Nakon toga, pretpostavljajući da
 oznaka ima 6 mogućih atributa (zamjenica ima toliko) i da svaki atribut ima 7
 mogućih vrijednosti (padež kod imenice) onda će se za pojedinu riječ morati
 pozvati $13+6 \cdot 7 = 55$ binarnih odluka, što je ukupno 550 za cijelu
-rečenicu. U usporedbi s 6450 to je puno manje, a u praksi broj odluka je još
+rečenicu. U usporedbi sa 6450 to je puno manje, a u praksi broj odluka je još
 manji iz čega slijedi da je vrijeme učenja i testiranja puno manje. U tablici
 \ref{table:postagging} prikazana je uspješnost \textsc{Vwmsd} pristupa na
 običnom zadatku označavanja vrste riječi. \textsc{Vwmsd} pristupi imaju bolju
 generalizaciju od \textsc{Vwpos 1} pristupa, ali očito povećani broj značajki
-(svaka prijašnja odluka kojom uvjetujemo trenutnu je nova značajaka) zahtjeva
-više podataka za bolju generalizaciju. Moguće je da u lanacu odluka koji
+(svaka prijašnja odluka kojom uvjetujemo trenutnu je nova značajaka) zahtijeva
+više podataka za bolju generalizaciju. Moguće je da u lancu odluka koji
 potreban za formiranje jednog morfosintaktičkog deskriptora dolazi lakše do
 grešaka nego u slučaju da se jedan morfosintaktički deskriptor promatra kao
 jedinstvena odluka. Ovaj bi slučaj upućivao na prisutnost pristranosti odlukama

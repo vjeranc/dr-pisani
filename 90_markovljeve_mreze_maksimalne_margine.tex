@@ -1,7 +1,8 @@
 Markovljeve mreže maksimalne margine \engla{maximum margin Markov
 networks}{\mmmm{}} dopuštaju formulaciju problema strukturnog predviđanja kroz
 problem kvadratičnog programiranja \engl{quadratic programming} koristeći
-formalizam stroja s potpornim vektorima za binarnu klasifikaciju. Formulacija \mmmm{} okvira u nastavku:
+formalizam stroja s potpornim vektorima za binarnu klasifikaciju. Formulacija
+\mmmm{} okvira u nastavku:
 
 \begin{equation}\label{eq:mmmm}
 \begin{aligned}
@@ -14,13 +15,13 @@ formalizam stroja s potpornim vektorima za binarnu klasifikaciju. Formulacija \m
 Ono što je bitno naglastiti je da \mmmm{} formulacija ima previše uvjeta. Za
 svaki primjer $(x_n, y_n)$ nad kojim učimo i za svaki netočni izlaz $\hat{y}$
 potrebno je izgraditi uvjet. Moguće je uz određene pretpostavke o $\mathcal{Y}$
-i $\mathbf{\Phi}$ zamijeniti eksponencijalan broj uvjeta s polinomijalnim. Navedena
-zamjena je moguća u slučaju problema strukturnog predviđanja koji ima
+i $\mathbf{\Phi}$ zamijeniti eksponencijalan broj uvjeta s polinomijalnim.
+Navedena zamjena je moguća u slučaju problema strukturnog predviđanja koji ima
 dekompoziciju preko niza odluka koristeći funkciju Hamming gubitka.
 
 Za efikasno učenje i zaključivanje funkcija gubitka mora imati dekompoziciju
 preko niza odluka. Prethodan uvjet ograničava \mmmm{}, ali s obzirom na uvjetna
-slučajna polja postoje dvije prednosti. \mmmm{} ne zahtjeva efikasan izračun
+slučajna polja postoje dvije prednosti. \mmmm{} ne zahtijeva efikasan izračun
 normalizacijske particijske funkcije \ref{eq:crf} i može se primijeniti na
 probleme koji imaju drugačiju funkciju gubitka od Hamming gubitka. U praksi je
 moguće primijeniti \mmmm{} samo na probleme koji aproksimiraju Hammingov gubitak
@@ -28,5 +29,5 @@ moguće primijeniti \mmmm{} samo na probleme koji aproksimiraju Hammingov gubita
 
 Čitatelja se upućuje na \citep{taskar2003maximum} za detaljniji pregled. S
 obzirom da je velike margine moguće aproksimirati jednostavnim tehnikama učenja
-pomoću gradijenta \mmmm{} se ne primijenjuje u svojoj originalnoj formulaciji
+pomoću gradijenta \mmmm{} se ne primjenjuje u svojoj originalnoj formulaciji
 \citep{daume2005learning, ratliff2006maximum}.

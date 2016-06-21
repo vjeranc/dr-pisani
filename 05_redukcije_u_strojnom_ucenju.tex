@@ -4,7 +4,7 @@ klasifikacije u problem višerazredne klasifikacije gdje se može koristiti
 jedan-protiv-svih \engla{one-against-all}{ova} ili jedan-protiv-drugog
 \engla{one-against-one}{ovo} pristup korištenja binarnih klasifikatora. Za
 \textsc{ova} pristup potrebno je $n$ klasifikatora gdje je $n$ broj razreda, a
-\textsc{ovo} zahtjeva $\binom{n}{2}$ klasifikatora. Prethodni ima prednost u
+\textsc{ovo} zahtijeva $\binom{n}{2}$ klasifikatora. Prethodni ima prednost u
 vremenu ako je broj razreda velik, a potonji ako je vektor gust za \textsc{ova},
 a rijedak za \textsc{ovo} (ako je moguće izbaciti značajke tj.~zadržati samo one
 koje su vezane za dva razreda koja uspoređujemo). Ostale prednosti ovise o samom
@@ -49,9 +49,9 @@ pogrešci kod korištenja $h$ i korištenja najboljeg mogućeg klasifikatora.
 Formalno, $R(\mathcal{D}, h) = L(\mathcal{D}, h) - \min_{h\ssymbol{1}}
 L(\mathcal{D}, h\ssymbol{1})$.} Zadovoljavajuća je činjenica da ograde imaju
 kompoziciju \citep{beygelzimer2005error}. Ako možemo reducirati problem $X$ u
-problem $Y$ s ogradom $f$ i problem $A$ u problem $B$ s ogradom $g$ onda
-kompozicija $X \circ A$ je redukcija s ogradom $f \circ g$. Ovo svojstvo
-pojednostavlja matematičku analizu ograda redukcije. Bitna razlika između
+problem $Y$ s ogradom $f$ i problem $Y$ u problem $Z$ s ogradom $g$ onda
+kompozicija $X \circ Y$ je redukcija s ogradom $f \circ g$. Ovo svojstvo
+pojednostavljuje matematičku analizu ograda redukcije. Bitna razlika između
 navedenih ograda je ta što ako redukcija s ograničenjem pogreške kreira
 jednostavne probleme koji su šumoviti onda su bilo kakve tvrdnje o težem
 problemu isprazne.
@@ -74,5 +74,5 @@ bi imali informaciju o tome zašto su toliko uspješne nego bi pretpostavljali d
 koristimo heurističke metode. Heurističke metode prisutne su u izobilju kod
 primjena na probleme združenog predviđanja i bez teorije postoji samo empirijska
 potvrda njihove uspješnosti.\footnote{Dobar primjer je razvoj metoda za
-ovisnosno parsanje koje koriste \textit{beam} pretragu i time eksperimentalno
+ovisnosno parsiranje koje koriste \textit{beam} pretragu i time eksperimentalno
 poboljšavaju performanse \citep{zhang2011transition, bohnet2012transition}.}

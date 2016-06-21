@@ -92,7 +92,7 @@ pretraživanja.]{Prikaz postupka \textit{rollin} i \textit{rollout} kod učenja
 pretraživanja. Kreće se iz stanja $P$ i odabiru se srednja odluka od moguće tri
 dva puta koristeći \textit{rollin} policu. Sivi čvorovi se ne pretražuju. U
 koraku $R$ algoritam učenja odabire sve moguće odluke radeći odstupanje od
-jednog koraka i primijenjuje \textit{rollout} policu za svaku moguću odluku
+jednog koraka i primjenjuje \textit{rollout} policu za svaku moguću odluku
 dovoljno puta da dođe do kraja. U tom trenutku dobiva se informacija o gubitku i
 ona se koristi kao procjena dobrote svake odluke. Nakon postupka moguće je
 zaključiti da se gornjom odlukom koja odstupa od odabranog srednjeg stanja može
@@ -113,8 +113,8 @@ optimalna. U slučaju korištenja naučene police za \textit{rollin} i
 podržanog učenja koji je puno teži jer se za učenje uopće ne koristi znanje
 referentne police. Jedini dobar pristup kojim se postiže lokalna optimalnost i
 konzistentna redukcija je onaj u kojem se koristi mješovita polica za
-\textit{rollout} -- opis metode lokalno optimalnog učenja pretrživanja nalazi se
-u potpoglavlju \ref{ch:LOLS}. Ako se pretpostavi da je referentna polica
+\textit{rollout} -- opis metode lokalno optimalnog učenja pretraživanja nalazi
+se u potpoglavlju \ref{ch:LOLS}. Ako se pretpostavi da je referentna polica
 optimalna i to je stvarno slučaj, onda će učenje koristeći \textit{rollin} s
 naučenom, a \textit{rollout} s referentnom rezultirati s konzistentnom i lokalno
 optimalnom naučenom policom. Za mnoštvo problema nije lako definirati optimalnu

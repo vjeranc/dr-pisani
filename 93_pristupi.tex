@@ -1,17 +1,21 @@
-U nastavku sljedi opis metoda učenja pretraživanja. Pristupi opisani u ovom
-poglavlju zahtjevaju sljedeće.
+U nastavku slijedi opis metoda učenja pretraživanja. Pristupi opisani u ovom
+poglavlju zahtijevaju sljedeće.
 
 \begin{itemize}
-\item \textbf{Dobru referentnu policu.} Svi pristupi -- osim \textsc{lols} --
-zahtjevaju optimalnu referentnu policu inače može doći do nakupljanja pogreške
-\engl{compounding error}.
-\item \textbf{Dobar binarni klasifikator.} Za učenje pretraživanja potrebno je
-efikasno rješenje za problem višerazredne klasifikacije osjetljive na trošak.
-Koristeći težinsku \textsc{ovo} ili \textsc{ova} \engl{weighted all-pairs or
-one-against-all} redukciju iz \citep{beygelzimer2005weighted,
-beygelzimer2005error} u kombinaciji s \textit{costing} algoritmom iz
-\citep{zadrozny2003cost} moguće je koristiti bilo koji binarni klasifikator bez
-korigiranja izvornog koda klasifikatora. Moguće je koristiti i pravi
-višerazredni klasifikator osjetljiv na trošak bez navedenih tehnika redukcije.
-\item \textbf{Dobro definiranu funkciju gubitka.}
+
+  \item \textbf{Dobru referentnu policu.} Svi pristupi -- osim \textsc{lols} --
+  zahtijevaju optimalnu referentnu policu inače može doći do nakupljanja
+  pogreške \engl{compounding error}.
+
+  \item \textbf{Dobar binarni klasifikator.} Za učenje pretraživanja potrebno je
+  efikasno rješenje za problem višerazredne klasifikacije osjetljive na trošak.
+  Koristeći težinsku \textsc{ovo} ili \textsc{ova} \engl{weighted all-pairs or
+  one-against-all} redukciju iz \citep{beygelzimer2005weighted,
+  beygelzimer2005error} u kombinaciji s \textit{costing} algoritmom iz
+  \citep{zadrozny2003cost} moguće je koristiti bilo koji binarni klasifikator
+  bez korigiranja izvornog koda klasifikatora. Moguće je koristiti i pravi
+  višerazredni klasifikator osjetljiv na trošak bez navedenih tehnika redukcije.
+
+  \item \textbf{Dobro definiranu funkciju gubitka.}
+
 \end{itemize}

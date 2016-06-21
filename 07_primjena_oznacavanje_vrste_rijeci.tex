@@ -41,7 +41,7 @@ Algoritam je skoro jednak algoritmu koji provjerava koliko je riječi u rečenic
 točno označeno. Za svaku riječ u rečenici znamo točnu oznaku i prosljeđujemo ju
 funkciji \textsc{Predict} koja vraća oznaku trenutne police -- polica može biti
 naučena ili referentna. U slučaju da je polica referentna, funkcija vraća upravo
-prosljeđenu oznaku. Nakon što je cijeli izlaz predviđen objavljuje se gubitak
+proslijeđenu oznaku. Nakon što je cijeli izlaz predviđen objavljuje se gubitak
 koji je u ovom slučaju broj riječi koje su netočno označene. Algoritam tijekom
 učenja u pozadini mijenja police i pokreće funkciju \textsc{Run} dovoljno puta
 dok ne nauči referentnu policu. Algoritam zaključivanja koristi istu funkciju,
@@ -99,14 +99,14 @@ Algoritam \ref{alg:postagging:multipass} prikazuje alternativnu implementaciju
 označivača vrste riječi. U ovom slučaju za jednu rečenicu radi se više prolaza u
 nadi da će prvi prolaz otkriti novu informaciju kojom bi sljedeći mogao
 popraviti napravljene pogreške. U tom slučaju akcije koje referentna polica vrši
-nisu samo točne oznake nego i akcija promjene oznake dodjeljene u prošlom
+nisu samo točne oznake nego i akcija promjene oznake dodijeljene u prošlom
 prolazu. Funkcija \textsc{PravaOdluka} vraća za novije prolaze akciju koju
 referentna polica vrši s obzirom na to koja je zapravo točna oznaka. U slučaju
-da je trenutnoj riječi dodjeljena točna oznaka akcija bi trebala biti takva da
+da je trenutnoj riječi dodijeljena točna oznaka akcija bi trebala biti takva da
 očuva prijašnju odluku. Zbog više prolaza sada možemo uključiti predviđanja koja
 su lijevo i desno od trenutne riječi, a logika je prepuštena funkciji
 \textsc{IzvuciSusjede}. Na samom kraju funkcija \textsc{RekonstruirajIzlaz} iz
-donešenih odluka rekonstruira pravi izlaz i ostatak je identičan originalnom
+donesenih odluka rekonstruira pravi izlaz i ostatak je identičan originalnom
 algoritmu. Ovakav pristup gotovo je nemoguće napraviti s bilo kojom drugom
 metodom, a da $\argmax$ problem ostane izračunljiv. Sve odluke u navedenoj
 inačici algoritma se i dalje vrše združeno u slučaju da dodajemo susjede kao

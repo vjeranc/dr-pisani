@@ -4,14 +4,14 @@ Markovljev model maksimalne entropije \engl{maximum entropy Markov model} i
 uvjetna slučajna polja \engl{conditional random fields}. Svaki ima svojih
 prednosti. Učenje skrivenog Markovljevog modela moguće je izvesti jako brzo ako
 imamo pristup velikoj količini podataka. Prijelazne vjerojatnosti $p(x_i | y_i)$
-i $p(y_i | y_{i-1})$ moguće je naučiti vrlo brzo samo brojajući supojavljivanja.
-Kod uvjetnih slučajnih polja lakše je opisati ulaz značajkama što omogućava
-bolju generalizaciju iz manje količine podataka, ali proces učenja je
-dugotrajniji. Markovljev model maksimalne entropije je po učinkovitosti između
-dva modela, omogućava brzo učenje i dobru generalizaciju, ali je primijećeno da
-način učenja dovodi do problema pristranosti oznakama \engl{label bias}
-\citep{lafferty2001conditional}, a problem je detaljnije obrađen u potpoglavlju
-\ref{ch:labelbias}.
+i $p(y_i | y_{i-1})$ moguće je naučiti vrlo brzo samo prebrojavanjem
+supojavljivanja. Kod uvjetnih slučajnih polja lakše je opisati ulaz značajkama
+što omogućava bolju generalizaciju iz manje količine podataka, ali proces učenja
+je dugotrajniji. Markovljev model maksimalne entropije je po učinkovitosti
+između dva modela, omogućava brzo učenje i dobru generalizaciju, ali je
+primijećeno da način učenja dovodi do problema pristranosti oznakama \engl{label
+bias} \citep{lafferty2001conditional}, a problem je detaljnije obrađen u
+potpoglavlju \ref{ch:labelbias}.
 
 \begin{figure}[H]
 \tikzstyle{lightedge}=[<-,dotted]
@@ -103,11 +103,11 @@ imenovanih entiteta \citep{zhou2002named}. Kako u većini slučajeva nemamo
 dovoljno podataka i želimo dodati neke vanjske informacije poput toga da se
 imenovani entitet koji nije bio u skupu za učenje pojavljuje u nekom rječniku
 kojeg imamo ili da riječi s određenim prefiksom su češće imenice nego glagoli
-onda se algoritam učenja brojanja supojavljivanja zamijenjuje Baum-Welch
+onda se algoritam učenja brojanja supojavljivanja zamjenjuje Baum-Welch
 algoritmom koji ima složenost $O(T M ^ k)$ -- gdje je $T$ duljina niza, $M$ broj
 oznaka koje možemo predvidjeti za svaki niz i $k$ broj prijašnjih odluka kojima
 uvjetujemo trenutnu, ali pokazalo se da algoritam jako teško dolazi do dobrog
-lokalnog optimuma te se za prethodno navedene probleme ipak koriste drugi modeli
+lokalnog optimuma te se za navedene probleme ipak koriste drugi modeli
 \citep{johnson2007doesn}.
 
 \subsection{Markovljev model maksimalne entropije}
@@ -142,7 +142,7 @@ dolazi do problema pristranosti oznakama (potpoglavlje \ref{ch:labelbias}).
 \cite{cohen05ijcai} pokušali su smanjiti utjecaj pristranosti oznakama i
 učinkovtost je usporediva s uvjetnim slučajnim poljima, ali sve prednosti vezane
 uz učinkovitost učenja iščezavaju. Unatoč ovim promjenama model se može
-primijenjivati samo na probleme označavanja nizova.
+primjenjivati samo na probleme označavanja nizova.
 
 
 \subsection{Uvjetna slučajna polja}
@@ -169,7 +169,7 @@ za pravilnu procjenu parametara trebat ćemo računati ovu sumu svaki put prije
 korigiranja težinskog vektora $\mathbf{w}$. Ta suma je u generalnom slučaju
 prevelika za računati, ali ako se pretpostavi struktura linearnog lanca onda ju
 je moguće izračunati koristeći dinamičko programiranje i svaka prilagodba na
-novi problem koji je predstavljen netrivijalnim linearnim lancem zahtjeva novu
+novi problem koji je predstavljen netrivijalnim linearnim lancem zahtijeva novu
 implementaciju algoritama \citep{lafferty2001conditional, sha2003shallow}.
 
 Algoritam za računanje sume $Z(x; \mathbf{w})$ ima složenost $O(T M ^ k)$ i
@@ -196,6 +196,6 @@ Unatoč ovim problemima model je našao primjene u označavanju vrste riječi
 \citep{lafferty2001conditional}, prepoznavanju imenovanih entiteta
 \citep{mccallum2003early, settles2004biomedical}, sažimanju dokumenata
 \engl{document summarization} \citep{shen2007document}, sentiment analizi
-\citep{mcdonald2007structured} i dr. U svakoj primjeni $\mathcal{Y}$ se
-dekomponirao na niz odluka i algoritmi su se morali prilagoditi za pravilno
+\citep{mcdonald2007structured} i dr. U svakoj primjeni funkcija gubitka je imala
+dekompoziciju preko niza odluka i algoritmi su se morali prilagoditi za pravilno
 zaključivanje ili se odbacivanjem točnog zaključivanja koristilo aproksimativno.

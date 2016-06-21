@@ -1,10 +1,10 @@
 Parsiranje ovisnosnog stabla  \citep{chang2015learning}.
 
-
 Na slici \ref{fig:depparsing} je ilustriran problem parsiranja ovisnosnog
 stabla. Za rečenicu koja ima označene vrste riječi potrebno je pronaći ovisnosno
 stablo. Trivijalan način bio bi naučiti neke težine vezane uz pojedinačne veze i
-pametnom enumeracijom svih mogućih stabala naći ono koje ima najveću vjerojatnost za tu rečenicu.
+pametnom enumeracijom svih mogućih stabala naći ono koje ima najveću
+vjerojatnost za tu rečenicu.
 
 \begin{figure}
 \centering
@@ -28,7 +28,7 @@ pametnom enumeracijom svih mogućih stabala naći ono koje ima najveću vjerojat
 \caption[Rečenica s oznakama vrste riječi i ovisnosnim stablom.]{Rečenica s
 oznakama vrste riječi i ovisnosnim stablom. Za ovu rečenicu ovo nije jedini
 mogući niz oznaka i jedino moguće stablo. Oznake R, V, N, Z i C su za prilog,
-glagol, imenicu, znakove interpukcije i veznike. Oznake usmjerenih bridova
+glagol, imenicu, znakove interpunkcije i veznike. Oznake usmjerenih bridova
 ovisnosnog stabla označavaju veze o subjektu glagola ili objektu glagola
 (subjekt vrši radnju opisanu glagolom na neki objekt) i sl.}
 \label{fig:depparsing}
@@ -54,8 +54,8 @@ stabla.
   brid ovisnosnog stabla moguće je složenost spustiti na $O(n^2)$
   \citep{covington2001fundamental}.
 
-  \item Najveći skok je otkriće postupka parsanja linearne $O(n + m)$ vremenske
-  složenosti čiji je razvoj prisutan u \citep{nivre03efficient,
+  \item Najveći skok je otkriće postupka parsiranja linearne $O(n + m)$
+  vremenske složenosti čiji je razvoj prisutan u \citep{nivre03efficient,
   zhang2011transition, bohnet2012transition} -- $n$ je duljina rečenice, a $m$
   veličina stabla. Ideja je inspirirana tranzicijskim parserom \engl{transition
   parser}.\footnote{\url{https://en.wikipedia.org/wiki/Shift-reduce_parser}} U
@@ -73,7 +73,7 @@ stabla.
 
 Tranzicijski parser potrebno je pravilno implementirati u okviru učenja
 pretraživanja. Za okvir učenja pretraživanja potrebna je funkcija gubitka i
-referentna polica. Neki od pristupa zahtjevaju da je referentna polica
+referentna polica. Neki od pristupa zahtijevaju da je referentna polica
 optimalna, ali prisutnost optimalne police omogućava bržu konvergenciju modela
 na dobro rješenje. Pitanje je koja je sljedeća odluka optimalna ako smo prije
 izvršili niz odluka u kojima nisu sve odgovarale zlatnom primjeru za učenje.

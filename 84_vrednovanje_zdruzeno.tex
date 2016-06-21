@@ -23,9 +23,9 @@ morfosintaktičkih deskriptora -- UD ne koristi sve atribute koje ima
 \textsc{SETimes.HR}, ali učinkovitost bez tih atributa nije značajno
 promijenjena. Skok je bio očekivan jer postoje neki atributi koje možemo jasnije
 označiti ako nam je dana informacija o sintaksi. Kako u okviru združenog učenja
-dolazi do propagacije informacije o grešci nakon ovisnosnog parsanja, onda će
+dolazi do propagacije informacije o grešci nakon ovisnosnog parsiranja, onda će
 zadatak označavanja vrste riječi prilagoditi svoje težine tako da izvršavanje
-ovisnosnog parsanja bude točnije. Rezultati u tablici
+ovisnosnog parsiranja bude točnije. Rezultati u tablici
 \ref{table:depparsing:joint} potvrđuju da združeno učenje može poboljšati
 rezultate na zadatku iskorištavanjem funkcije gubitka koja u ovom slučaju daje
 bolju procjenu greške. Moguće je prvo trenirati samo na jednom zadatku u
@@ -36,7 +36,7 @@ prilagoditi da ima dobre performanse na združenom zadatku.
 
 \begin{table}
 \centering
-\caption{Rezultat ovisnosnog parsanja združenog modela.}
+\caption{Rezultat ovisnosnog parsiranja združenog modela.}
 \label{table:depparsing:joint}
 \begin{tabular}{|l|c|c|}
 \hline

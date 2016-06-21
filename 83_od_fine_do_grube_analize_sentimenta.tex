@@ -116,10 +116,10 @@ složenost je dodatna prednost.
 % paragraph 1
 \node[state] (yp1) at (5,5) {$y^{\text{p}}_{1}$};
 
-\node[state] (ys1) at (1,3) {$y^{\text{s,1}}_1$};
-\node[state] (ys2) at (3,3) {$y^{\text{s,1}}_2$};
-\node[state] (ys3) at (7,3) {$y^{\text{s,1}}_{m-1}$};
-\node[state] (ys4) at (9,3) {$y^{\text{s,1}}_{m}$};
+\node[state] (ys1) at (1,3) {$y^{\text{r,1}}_1$};
+\node[state] (ys2) at (3,3) {$y^{\text{r,1}}_2$};
+\node[state] (ys3) at (7,3) {$y^{\text{r,1}}_{m-1}$};
+\node[state] (ys4) at (9,3) {$y^{\text{r,1}}_{m}$};
 
 % observations
 \node[observation] (p1x1) at (1,1) {$x^{1}_{1}$}
@@ -144,10 +144,10 @@ složenost je dodatna prednost.
 %% paragraph 2
 \node[state] (yp2) at (15,5) {$y^{\text{p}}_{k}$};
 
-\node[state] (p2ys1) at (11,3) {$y^{\text{s,k}}_1$};
-\node[state] (p2ys2) at (13,3) {$y^{\text{s,k}}_2$};
-\node[state] (p2ys3) at (17,3) {$y^{\text{s,k}}_{l-1}$};
-\node[state] (p2ys4) at (19,3) {$y^{\text{s,k}}_{l}$};
+\node[state] (p2ys1) at (11,3) {$y^{\text{r,k}}_1$};
+\node[state] (p2ys2) at (13,3) {$y^{\text{r,k}}_2$};
+\node[state] (p2ys3) at (17,3) {$y^{\text{r,k}}_{l-1}$};
+\node[state] (p2ys4) at (19,3) {$y^{\text{r,k}}_{l}$};
 
 % observations
 \node[observation] (p2x1) at (11,1) {$x^{k}_{1}$}
@@ -184,7 +184,7 @@ sentiment modela. Sivi čvorovi predstavljaju varijable koje model može
 generirati, a bijeli koje model može samo opaziti. Prikazana su dva modela gdje
 su ulazi modelirani značajkama, a izlazi su kategoričke varijable sentimenta
 (pozitivno, negativno i neutralno). Varijable dokumenta $y^{\text{d}}$,
-paragrafa $y^{\text{p}}$ i rečenice $y^{\text{s}}$ predstavljaju sentiment, a
+paragrafa $y^{\text{p}}$ i rečenice $y^{\text{r}}$ predstavljaju sentiment, a
 $x_i$ ulaznu rečenicu.}
 \label{fig:sentimentmodels}
 \end{figure}
