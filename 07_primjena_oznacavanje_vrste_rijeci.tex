@@ -84,7 +84,7 @@ moguće je to smanjiti na $O(T M k)$. Za detaljniji opis čitatelja se upućuje 
 \State $\textit{izlaz} \gets \text{[]}$
 \For{$p \gets 1$ \textbf{do} P}
   \For{$n \gets 1$ \textbf{do} \Call{Len}{riječi}}
-    \State \textit{ref} $\gets$ \Call{PravaOdluka}{riječi[n].točna\_oznaka, p, odluke[n]}
+    \State \textit{ref} $\gets$ \Call{PravaOdluka}{riječi[n].točna\_oznaka, p, odluke[n,p-1]}
     \State \textit{odluke[n,p]} $\gets$ \Call{Predict}{riječi[i], ref, \textsc{IzvuciSusjede}(odluke)}
   \EndFor
 \EndFor
