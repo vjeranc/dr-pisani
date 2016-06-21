@@ -71,23 +71,23 @@ reprezentaciju trenutnog stanja (tijekom primjene stohastičke police za vrijeme
 \textit{rollin} i \textit{rollout} postupka ta reprezentacija mora biti
 prisutna).
 
-Ovaj algoritam bez ikakvih optimizacija ima vremensku složenost učenja $O(P N
-T^2 M k)$ -- gdje je $P$ broj prolaza, $N$ broj primjera, $T$ prosječna duljina
-niza odluka koji izgrađuju $y \in \mathcal{Y}$, $M$ broj različitih odluka za
-svako stanje $s_t$ i $k$ broj odluka kojima uvjetujemo trenutnu (svodi se samo
-na dodavanje $k$ prijašnjih odluka u vektorsku reprezentaciju stanja $s_t$).
-Vremenska složenost zaključivanja za jedan primjer je $O(T M k)$. U procjenu
-učenja nije uključeno vrijeme učenja klasifikatora generiranim skupom (ako je
-moguće model učiti primjer po primjer \engl{online} onda trošak ovisi o broju
-primjera i njihovoj vektorskoj reprezentaciji). Kod procjene zaključivanja
-pretpostavilo se da klasifikatoru treba $O(M)$ vremena za određivanje točne
-odluke, a tipična složenost klasifikatora u tom slučaju je $O(M \cdot d)$ --
-gdje je $d$ duljina vektorske reprezentacije. Ako postoji jednostavna
-dekompozicija funkcije gubitka onda složenost učenja može pasti na $O(P N T M
-k)$. Nije potrebno izvršavati \textit{rollout} u slučaju da znamo za trenutnu
-odluku parcijalan gubitak (npr.~kod označavanja vrste riječi tijekom izvršavanja
-svih odluka u liniji \ref{alg:searn:action} ne trebamo izvršiti \textit{rollout}
-jer znamo da je gubitak na pojedinoj odluci 1 ako je netočna i 0 ako je točna).
+Ovaj algoritam ima vremensku složenost učenja $O(P N T^2 M k)$ -- gdje je $P$
+broj prolaza, $N$ broj primjera, $T$ prosječna duljina niza odluka koji
+izgrađuju $y \in \mathcal{Y}$, $M$ broj različitih odluka za svako stanje $s_t$
+i $k$ broj odluka kojima uvjetujemo trenutnu (svodi se samo na dodavanje $k$
+prijašnjih odluka u vektorsku reprezentaciju stanja $s_t$). Vremenska složenost
+zaključivanja za jedan primjer je $O(T M k)$. U procjenu učenja nije uključeno
+vrijeme učenja klasifikatora generiranim skupom (ako je moguće model učiti
+primjer po primjer \engl{online} onda trošak ovisi o broju primjera i njihovoj
+vektorskoj reprezentaciji). Kod procjene zaključivanja pretpostavilo se da
+klasifikatoru treba $O(M)$ vremena za određivanje točne odluke, a tipična
+složenost klasifikatora u tom slučaju je $O(M \cdot d)$ -- gdje je $d$ duljina
+vektorske reprezentacije. Ako postoji jednostavna dekompozicija funkcije gubitka
+onda složenost učenja može pasti na $O(P N T M k)$. Nije potrebno izvršavati
+\textit{rollout} u slučaju da znamo za trenutnu odluku parcijalan gubitak
+(npr.~kod označavanja vrste riječi tijekom izvršavanja svih odluka u liniji
+\ref{alg:searn:action} ne trebamo izvršiti \textit{rollout} jer znamo da je
+gubitak na pojedinoj odluci 1 ako je netočna i 0 ako je točna).
 
 \textsc{Searn} zahtjeva postojanje optimalne police (potpoglavlje
 \ref{ch:policailocalopt}) za potrebe učenja. Ako polica nije optimalna, onda će
