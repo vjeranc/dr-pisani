@@ -1,0 +1,41 @@
+\citet{ross2011reduction} predstavljaju metodu učenja pretraživanja
+\textsc{AggreVaTe} \engla{aggregate values to imitate}{AggreVaTe} koja je
+proširenje algoritma \textsc{DAgger}. Proširenje se svodi na to da uz referentnu
+policu koja se koristi za odabir sljedećih poteza, tijekom učenja je moguće
+koristiti i stručnjaka koji želi što manje biti u interakciji s algoritmom
+učenja. Tj.~odabir da akcije u kojoj bi stručnjak trebao vrednovati preostali
+niz odluka ima određeni trošak. Cilj je istovremeno naučiti dobru policu, ali
+pri učenju što manje koristiti stručnjaka. U stanju u kojem je skupo procijeniti
+gubitak odluke (ili informacija o trošku ne postoji) može se pozvati stručnjak
+koji će vratiti točnu odluku i njen trošak.
+
+Dobar primjer koji opisuje primjenu ove metode je povećanje klikovnog postotka
+\engla{click-through rate}{ctr}. Stručnjak je u ovom slučaju dizajner koji
+pokušava prilagoditi web-stranicu posjetitelju, a cilj je povećati broj klikova
+na oglase koje korisnik vidi. Postupak kojim bi se potencijalno povećali klikovi
+je mijenjanje izgleda web-stranice (pozicioniranje oglasa, veličina oglasa,
+sadržaj uz koji se oglas pojavljuje i dr.). Želi se izbjeći mogućnost da
+korisnik zbog ogromnog broja nasumičnih promjena odluči ne posjećivati stranicu.
+U tom je slučaju potrebno vršiti eksperiment promjene stranice što manje puta i
+pratiti kako promjene utječu na klikovni postotak (nakon nekog vremena od
+trenutka promjene pogledamo koliko se promijenio \textsc{ctr}).
+
+Drugi primjer je interaktivno označavanje skupa podataka. Pretpostavimo
+prisutnost malog označenog skupa podataka. Cilj je naučiti model koji će imati
+dobru generalizaciju na tom skupu. Za algoritam \textsc{AggreVaTe} odaberemo
+veći neoznačeni skup. Cilj algoritma istovremeno minimizirati broj interakcija
+sa stručnjakom i gubitak na malom označenom skupu podataka (postojao bi i treći
+skup na kojem bi provjerili stvarnu mogućnost generalizacije).
+
+Algoritam ima nedostatak u kojem je moguće da stručnjak daje preoptimistične
+procjene nakon izvršene akcije. Autori ilustriraju to primjerom gdje se uči
+vožnja automobila. Stručnjak bi vjerojatno odabrao užu, ali kraću cestu, za
+dolazak do cilja, unatoč postojanju duže, ali sigurnija ceste koja vodi do istog
+cilja. Ako naučena polica na užoj cesti dođe u stanje za koju ne radi dobro
+predviđanje troška sljedeće odluke, onda je moguće da će vozilo otići niz
+liticu. Navedeni problem može se riješiti tako da se poveća istraživanje
+dolazaka do svih stanja (problem je ekvivalentan pristranosti oznakama).
+
+Ovaj algoritam je interaktivna verzija algoritma \textsc{DAgger} stoga je za
+učenje iz podataka dovoljan potonji. \textsc{AggreVaTe} je opisan radi usporedbe
+s algoritmom \textsc{LOLS} u poglavlju \ref{ch:LOLS}.

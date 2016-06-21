@@ -34,7 +34,7 @@ okviru učenja pretraživanja nedavno ostvarena
       \State Postavi $\Gamma = \Gamma \cup \{\langle c_{i,t}, \mathbf{\Phi}(x_i, s_t) \rangle\}$.
     \EndFor
   \EndFor
-  \State $\hat{\pi}' \gets \textsc{Train}(\Gamma)$.
+  \State $\hat{\pi}' \gets \textsc{Train}(\Gamma)$.\label{alg:searn:train}
   \State $\hat{\pi}_{I+1} \gets \beta \hat{\pi}' + (1-\beta) \hat{\pi}_{I}$. \label{alg:searn:mixture}
 \EndFor
 \State \Return $\hat{\pi}_{P}$ bez $\pi\ssymbol{1}$
@@ -57,19 +57,20 @@ vrste riječi na trenutnoj riječi) za svaku moguću odluku koristi se
 \textit{rollout} polica koja je također stohastička mješavina (linija
 \ref{alg:searn:action} i \ref{alg:searn:rolloutpolicy}). Ta polica primjenjuje
 se do kraja strukture koju obrađujemo i onda se izračuna dobiveni gubitak
-(linija \ref{alg:searn:rollout}). Kad je prošli postupak napravljen za svaku
-moguću odluku kreira se primjer za učenje osjetljiv na trošak i stavlja se u
-skup. Nakon što je postupak kreiranja primjera gotov nauči se nova polica.
-Višerazredni klasifikator koji koristimo mora biti osjetljiv na trošak, a moguće
-je koristiti bilo koji binarni klasifikator uz nekoliko izmjena na primjerima za
-učenje \citep{zadrozny2003cost, beygelzimer2005weighted, beygelzimer2005error}.
-Nakon učenja, zaključivanje se svodi na pozive višerazrednog klasifikatora za
-svako stanje. Ako želimo da donošenje trenutne odluke ovisi o prethodnim
-odlukama i značajkama iz budućih stanja onda je potrebno tijekom učenja i
-korištenja naučenih polica samo dodati te odluke i značajke u vektorsku
-reprezentaciju trenutnog stanja (tijekom primjene stohastičke police za vrijeme
-\textit{rollin} i \textit{rollout} postupka ta reprezentacija mora biti
-prisutna).
+(linija \ref{alg:searn:rollout}). Nakon prošlog postupka za svaku moguću odluku
+kreira se primjer za učenje osjetljiv na trošak i stavlja se u skup. Nakon što
+je postupak kreiranja primjera gotov nauči se nova polica (linija
+\ref{alg:searn:train}). Višerazredni klasifikator koji koristimo mora biti
+osjetljiv na trošak, a moguće je koristiti bilo koji binarni klasifikator uz
+nekoliko izmjena na primjerima za učenje \citep{zadrozny2003cost,
+beygelzimer2005weighted, beygelzimer2005error}. Nakon učenja, zaključivanje se
+svodi na korištenje višerazrednog klasifikatora za svako stanje. Ako želimo da
+donošenje trenutne odluke ovisi o prethodnim odlukama i značajkama iz budućih
+stanja onda je potrebno tijekom učenja i korištenja naučenih polica samo dodati
+te odluke i značajke u vektorsku reprezentaciju trenutnog stanja (tijekom
+primjene stohastičke police za vrijeme \textit{rollin} i \textit{rollout}
+postupka ta reprezentacija mora biti prisutna jer se koristi odabrani
+višerazredni klasifikator).
 
 Ovaj algoritam ima vremensku složenost učenja $O(P N T^2 M k)$ -- gdje je $P$
 broj prolaza, $N$ broj primjera, $T$ prosječna duljina niza odluka koji

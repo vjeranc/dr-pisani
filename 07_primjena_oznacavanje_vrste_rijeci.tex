@@ -57,7 +57,7 @@ $M$ broj mogućih oznaka, a $k$ broj prijašnjih odluka kojima uvjetujemo
 trenutnu. U \lts{} okviru složenost zaključivanja je $O(T M k)$. Iz algoritma
 \ref{alg:postagging} može se primijetiti da u funkciju \textsc{Predict}
 prosljeđujemo  sve prijašnje oznake. One se pri izgradnji primjera osjetljivog
-na trošak u \textsc{lols} algoritmu dodaju kao značajke. Binarni klasifikatori
+na trošak u \textsc{LOLS} algoritmu dodaju kao značajke. Binarni klasifikatori
 koji nam omogućuju redukciju problema višerazredne klasifikacije osjetljive na
 trošak predviđaju trošak svake pojedine oznake kojih ima točno $M$. Složenost
 tog postupka je $O(d)$ gdje je $d$ duljina vektora značajki. U bilo kojem
@@ -71,7 +71,7 @@ razreda opada s $O(M)$ na $O(\log M)$. To bi automatski ubrzalo označavanje
 vrste riječi i vremenska složenost bi iznosila $O(k T \log M)$.
 
 Vremenska složenost algoritma učenja ovisi o parametrima algoritma. U slučaju
-\textsc{lols} algoritma (alg.~\ref{alg:lols}) funkcija \textsc{Run} zove se u
+\textsc{LOLS} algoritma (alg.~\ref{alg:lols}) funkcija \textsc{Run} zove se u
 liniji \ref{alg:lols:learned} i \ref{alg:lols:mixture} što bi upućivalo da je
 složenost učenja jednog primjera $O(T ^ 2 M k)$, ali raznim \textit{trikovima}
 moguće je to smanjiti na $O(T M k)$. Za detaljniji opis čitatelja se upućuje na

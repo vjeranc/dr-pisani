@@ -12,7 +12,7 @@ optimalna, bolji od referentne police ako prostor pretraživanja dopušta
 uspinjanje brdom.
 
 \begin{algorithm}
-\caption{Lokalno optimalno učenje pretraživanja (\textsc{lols})}\label{alg:lols}
+\caption{Lokalno optimalno učenje pretraživanja (\textsc{LOLS})}\label{alg:lols}
 \begin{algorithmic}[1]
 \Require Skup podataka $\{x_i, y_i\}_{i=1}^N$ uzet iz distribucije $\mathcal{D}$
          i $\beta \geq 0$. %% -- parametar mješavine za rollout.
@@ -49,8 +49,8 @@ algoritmom \ref{alg:searn}. Razlike su sljedeće:
 
   \item \textsc{Searn} koristi mješovitu policu za \emph{rollin} i
   \emph{rollout} te miješanje radi na svakom stanju \engl{mix-per-state}.
-  \textsc{LOLS} miješanje radi samo na početku \emph{roll} postupka
-  \engl{mix-per-roll};
+  \textsc{LOLS} miješanje radi samo na početku \emph{rollout} postupka
+  \engl{mix-per-roll}, a za \emph{rollin} uvijek koristi naučenu policu;
 
   \item u slučaju algoritma \textsc{LOLS} nije potrebno da je referentna polica
   optimalna, a za \textsc{Searn} je taj uvjet obavezan inače postoji mogućnost
@@ -61,3 +61,25 @@ algoritmom \ref{alg:searn}. Razlike su sljedeće:
 \noindent
 Ova varijanta učenja pretraživanja koristi se za rješavanje problema u okviru
 ovog rada.
+
+Autori pokazuju i mogućnost interaktivnog učenja koje je slično metodi
+\textsc{AggreVaTe}. Razlika je u tome da za algoritam \textsc{LOLS} nije
+potreban stručnjak (optimalna polica). Jedini uvjet je da funkcija gubitka vraća
+pravu vrijednost s obzirom na odabrane odluke. U kontekstu problema povećanja
+\textsc{ctr} (potpoglavlje \ref{ch:aggrevate}) nije potrebno imati dizajnera.
+Kod problema u kojem želimo interaktivno označavati nove podatke potrebno je
+stručnjaka pitati koliki je gubitak za označen primjer. U tom slučaju stručnjak
+može biti program koji vraća gubitak na malom skupu podataka. Očigledno je
+problem učenja, u slučaju bez stručnjaka, sveden na podržano učenje. Zanimljiv
+primjer je prisutnost referentne police koja radi dobro, a cilj je naučiti novu
+policu koja radi isto ili bolje. Algoritam \textsc{LOLS} vođen starom
+referentnom policom može istu naučiti ili postati bolji. Čitatelja se upućuje na
+\cite{daume15lols} za matematički dokaz.
+
+textsc{LOLS} se, koristeći terminologiju uvedenu u potpoglavljima
+\ref{ch:reductions}, \ref{ch:policailocalopt} i \ref{ch:rollinrollout}, može
+opisati kao konzistentna (bez obzira kakva je referenta polica) redukcija
+binarne klasifikacije na problem združenog predviđanja gdje se za
+\textit{rollin} koristi naučena polica, a za \textit{rollout} stohastički odabir
+između naučene i referentne police (odabir se radi prije \textit{rollout}
+postupka, a ne na svakom stanju kao kod algoritma \textsc{Searn}).
