@@ -51,6 +51,16 @@ oznaka ako nas interesiraju samo lokacije duljine do tri riječi može biti
 \{\textsc{loc1}, \textsc{loc2}, \textsc{loc3}, \textsc{o}\}. Ako je ulaz
 rečenica onda je potrebno samo preskočiti riječi za koje je već donesena odluka.
 
+Sličan pristup kao u algoritmu \ref{alg:namedentityrecognition:seq} mogli bi
+iskoristiti za označavanje vrste riječi s morfosintaktičkim deskriptorom (oznaka
+vrste riječi koja uključuje atribute poput padeža, lica, roda i dr.). Umjesto da
+cijeli deskriptor smatramo potpunom oznakom možemo uvjetovati skup mogućih
+oznaka za trenutno donošenje odluke (poziv funkcije \textsc{Predict}). Tako u
+slučaju da je riječ u prvom prolazu označena kao imenica, onda za drugi prolaz
+možemo ponuditi samo odluke vezane uz rod imenice (muški, ženski ili srednji).
+Ovakva fleksibilnost čini bilo koji zadatak s dodatnim uvjetima
+\engl{constraints} rješivim \citep{chang2012structured}.
+
 \begin{algorithm}[H]
 \caption{Prepoznavanje imenovanih entiteta.}
 \label{alg:namedentityrecognition:seq}
