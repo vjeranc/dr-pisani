@@ -44,13 +44,13 @@ uvjetovana je svim predthodnim odlukama za dvije prošle riječi i trenutnu rije
 a za \textsc{Vwmsd 2} korištene su sve donesene odluke na prethodne dvije i
 sljedeće dvije riječi.
 
-U oba \textsc{Vwmsd} pristupa za riječ prvo odaberemo oznaku vrste riječi (jednu
-od trinaest mogućih). Nakon toga moguće je odabrati prvi atribut, ali ne bilo
-koji nego baš onaj koji odgovara za odabranu oznaku. To smanjuje broj binarnih
-odluka koje je potrebno izvršiti. Pretpostavimo da označavamo rečenicu od deset
-riječi. Kod \textsc{Vwpos 1} pristupa moramo za svaku riječ pozvati 645 binarne
-odluke (\textsc{ova}) što na kraju rezultira s ukupno 6450 odluka. Zbog
-ograničenja mogućih vrijednosti atributa s obzirom na izabranu oznaku vrste
+U oba \textsc{Vwmsd} pristupa se za riječ prvo odabire oznaku vrste riječi
+(jednu od trinaest mogućih). Nakon toga moguće je odabrati prvi atribut, ali ne
+bilo koji nego baš onaj koji odgovara za odabranu oznaku. To smanjuje broj
+binarnih odluka koje je potrebno izvršiti. Pretpostavimo da se označava rečenica
+od deset riječi. Kod \textsc{Vwpos 1} pristupa za svaku se riječ mora pozvati
+645 binarnih odluka (\textsc{ova}) što na kraju rezultira s ukupno 6450 odluka.
+Zbog ograničenja mogućih vrijednosti atributa s obzirom na izabranu oznaku vrste
 riječi broj odluka bi trebao biti manji. Kod donošenja odluke na prvoj razini za
 riječ možemo izabrati jednu od 13 mogućih. Nakon toga, pretpostavljajući da
 oznaka ima 6 mogućih atributa (zamjenica ima toliko) i da svaki atribut ima 7
@@ -62,16 +62,16 @@ manji iz čega slijedi da je vrijeme učenja i testiranja puno manje. U tablici
 običnom zadatku označavanja vrste riječi. \textsc{Vwmsd} pristupi imaju bolju
 generalizaciju od \textsc{Vwpos 1} pristupa, ali očito povećani broj značajki
 (svaka prijašnja odluka kojom uvjetujemo trenutnu je nova značajaka) zahtijeva
-više podataka za bolju generalizaciju. Moguće je da u lancu odluka koji
-potreban za formiranje jednog morfosintaktičkog deskriptora dolazi lakše do
-grešaka nego u slučaju da se jedan morfosintaktički deskriptor promatra kao
-jedinstvena odluka. Ovaj bi slučaj upućivao na prisutnost pristranosti odlukama
-koja se može dogoditi ako klasifikator nije dobro naučen. Razlog lošijim
-rezultatima na testnom skupu \textsc{Wiki} je taj što skup sadrži više neviđenih
-riječi i nepoznate morfosintaktičke deskriptore. Zbog toga pristupi koji donose
-odluke po atributima imaju bolju generalizaciju na tom skupu. Ako se kreiraju
-novi skup za treniranje i testiranje koji koriste sve rečenice iz svih skupova,
-onda \textsc{Vwpos 2} ima najbolju točnost.
+više podataka za bolju generalizaciju. Moguće je da u lancu odluka koji potreban
+za formiranje jednog morfosintaktičkog deskriptora dolazi lakše do grešaka nego
+u slučaju da se jedan morfosintaktički deskriptor promatra kao jedinstvena
+odluka. Ovaj bi slučaj upućivao na prisutnost pristranosti odlukama koja se može
+dogoditi ako klasifikator nije dobro naučen. Razlog lošijim rezultatima na
+testnom skupu \textsc{Wiki} je taj što skup sadrži više neviđenih riječi i
+nepoznate morfosintaktičke deskriptore. Zbog toga pristupi koji donose odluke po
+atributima imaju bolju generalizaciju na tom skupu. Ako se kreiraju novi skup za
+treniranje i testiranje koji koriste sve rečenice iz svih skupova, onda
+\textsc{Vwpos 2} ima najbolju točnost.
 
 \begin{table}
 \centering

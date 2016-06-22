@@ -11,11 +11,10 @@ koje su vezane za dva razreda koja uspoređujemo). Ostale prednosti ovise o samo
 problemu, a čak i o vrsti binarnog klasifikatora kojeg koristimo
 \citep{milgram2006one}. Zanimljiv je primjer redukcija problema višerazredne
 klasifikacije stablom odluka \engl{decision tree} gdje se svaki razred može
-binarno kodirati, a bitovi predstavljaju koje ćemo dijete čvora izabrati da bi
-nakon $O(\log n)$ koraka stigli do potpuno kodiranog razreda
+binarno kodirati, a bitovi predstavljaju niz da/ne odgovora o tome kojim bridom
+krenuti gdje bi se nakon $O(\log n)$ koraka potpuno kodirao razred
 \citep{beygelzimer2009error, daume2016one}. Ovo je eksponencijalno ubrzanje s
-obzirom na prethodne redukcije u vremenu, a i broj klasifikatora je puno manji
--- $\lceil \log n \rceil$.
+obzirom na prethodne redukcije u vremenu, a i broj klasifikatora je puno manji -- $\lceil \log n \rceil$.
 
 Pitanje je jesu li redukcije učinkovit pristup za rješavanje složenih problema
 strojnog učenja? Odgovor nije očit jer je teško opisati reprezentaciju na
@@ -35,8 +34,8 @@ komponente:
 Preslikavanje hipoteze opisuje postupak kako pretvoriti rješenje za jednostavan
 problem u rješenje za težak. Preslikavanje primjera opisuje postupak kako
 stvoriti skupove podataka za jednostavan problem koristeći skupove podataka za
-težak problem. Ograda nam daje jamstvo učinkovitosti na teškom problemu ako
-imamo dobru učinkovitost na jednostavnom problemu.
+težak problem. Ograda daje jamstvo učinkovitosti na teškom problemu ako postoji
+dobra učinkovitost na jednostavnom problemu.
 
 Postoje dvije vrste ograda koje se uzimaju u obzir: ograde na ograničenje
 pogreške \engl{error bounds} i ograde na ograničenje žaljenja \engl{regret
@@ -48,12 +47,12 @@ teškom.\footnote{Žaljenje hipoteze $h$ na problemu $\mathcal{D}$ je razlika u
 pogrešci kod korištenja $h$ i korištenja najboljeg mogućeg klasifikatora.
 Formalno, $R(\mathcal{D}, h) = L(\mathcal{D}, h) - \min_{h\ssymbol{1}}
 L(\mathcal{D}, h\ssymbol{1})$.} Zadovoljavajuća je činjenica da ograde imaju
-kompoziciju \citep{beygelzimer2005error}. Ako možemo reducirati problem $X$ u
-problem $Y$ s ogradom $f$ i problem $Y$ u problem $Z$ s ogradom $g$ onda
-kompozicija $X \circ Y$ je redukcija s ogradom $f \circ g$. Ovo svojstvo
-pojednostavljuje matematičku analizu ograda redukcije. Bitna razlika između
-navedenih ograda je ta što ako redukcija s ograničenjem pogreške kreira
-jednostavne probleme koji su šumoviti onda su bilo kakve tvrdnje o težem
+svojstvo kompozicije \citep{beygelzimer2005error}. Ako je moguće reducirati
+problem $X$ u problem $Y$ s ogradom $f$ i problem $Y$ u problem $Z$ s ogradom
+$g$, onda kompozicija $X \circ Y$ je redukcija s ogradom $f \circ g$. Navedeno
+svojstvo pojednostavljuje matematičku analizu ograda redukcije. Bitna razlika
+između navedenih ograda je ta što ako redukcija s ograničenjem pogreške kreira
+jednostavne probleme koji su šumoviti, onda su bilo kakve tvrdnje o težem
 problemu isprazne.
 
 Potrebno je znati je li redukcija konzistentna \engl{consistent} da bi se
@@ -64,14 +63,15 @@ problem je \textit{konzistentna}. Ispostavlja se da su gore navedene jednostavne
 redukcije stablom odluke i \textsc{ova} pristup nekonzistentne. Navedene uvjete
 nekad je moguće zadovoljiti ne samo odabirom načina zaključivanja (\textsc{ovo},
 \textsc{ova} i dr.) nego i načinom učenja \citep{abe2004iterative,
-beygelzimer2005weighted}. Konzistentnost je osnovni uvjet za dobru redukciju, a
-na žalost redukcije s ograničenjem pogreške su uglavnom nekonzistentne.
-Čitatelja se upućuje na sustavni pregled zadnjih deset godina redukcije u
-strojnom učenju \citep{daume15reductions}.
+beygelzimer2005weighted} -- način učenja je glavni razlog mogućnosti redukcije
+višerazredne klasifikacije u strukturno predviđanje. Konzistentnost je osnovni
+uvjet za dobru redukciju, a na žalost su redukcije s ograničenjem pogreške
+uglavnom nekonzistentne. Čitatelja se upućuje na sustavni pregled zadnjih deset
+godina redukcija u strojnom učenju \citep{daume15reductions}.
 
 Redukcije su bitna sastavnica u najuspješnijim \lts{} metodama jer bez njih ne
-bi imali informaciju o tome zašto su toliko uspješne nego bi pretpostavljali da
-koristimo heurističke metode. Heurističke metode prisutne su u izobilju kod
+bi postojala informacija o tome zašto su toliko uspješne nego bi pretpostavljali
+da koristimo heurističke metode. Heurističke metode prisutne su u izobilju kod
 primjena na probleme združenog predviđanja i bez teorije postoji samo empirijska
 potvrda njihove uspješnosti.\footnote{Dobar primjer je razvoj metoda za
 ovisnosno parsiranje koje koriste \textit{beam} pretragu i time eksperimentalno

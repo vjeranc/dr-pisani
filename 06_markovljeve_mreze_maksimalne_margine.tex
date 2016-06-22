@@ -2,7 +2,7 @@ Markovljeve mreže maksimalne margine \engla{maximum margin Markov
 networks}{\mmmm{}} dopuštaju formulaciju problema strukturnog predviđanja kroz
 problem kvadratičnog programiranja \engl{quadratic programming} koristeći
 formalizam stroja s potpornim vektorima za binarnu klasifikaciju. Formulacija
-\mmmm{} okvira u nastavku:
+\mmmm{} modela dana je u nastavku:
 
 \begin{equation}\label{eq:mmmm}
 \begin{aligned}
@@ -13,12 +13,12 @@ formalizam stroja s potpornim vektorima za binarnu klasifikaciju. Formulacija
 \end{equation}
 
 \noindent
-Ono što je bitno naglastiti je da \mmmm{} formulacija ima previše uvjeta. Za
-svaki primjer $(x_n, y_n)$ nad kojim učimo i za svaki netočni izlaz $\hat{y}$
-potrebno je izgraditi uvjet. Moguće je uz određene pretpostavke o $\mathcal{Y}$
-i $\mathbf{\Phi}$ zamijeniti eksponencijalan broj uvjeta s polinomijalnim.
-Navedena zamjena je moguća u slučaju problema strukturnog predviđanja koji ima
-dekompoziciju preko niza odluka koristeći funkciju Hamming gubitka.
+Bitno je naglasiti da \mmmm{} formulacija ima previše uvjeta. Za svaki primjer
+$(x_n, y_n)$ nad kojim se uči i za svaki netočni izlaz $\hat{y}$ potrebno je
+izgraditi uvjet. Moguće je uz određene pretpostavke o $\mathcal{Y}$ i
+$\mathbf{\Phi}$ zamijeniti eksponencijalan broj uvjeta s polinomijalnim. Zamjena
+je moguća samo u slučaju problema strukturnog predviđanja kod kojeg funkcija
+gubitka ima dekompoziciju preko niza -- u praksi je to uvijek Hammingov gubitak.
 
 Za efikasno učenje i zaključivanje funkcija gubitka mora imati dekompoziciju
 preko niza odluka. Prethodan uvjet ograničava \mmmm{}, ali s obzirom na uvjetna

@@ -38,8 +38,8 @@ prilog, glagol, imenicu, znakove interpunkcije i veznike.}
 \end{algorithm}
 
 Algoritam je skoro jednak algoritmu koji provjerava koliko je riječi u rečenici
-točno označeno. Za svaku riječ u rečenici znamo točnu oznaku i prosljeđujemo ju
-funkciji \textsc{Predict} koja vraća oznaku trenutne police -- polica može biti
+točno označeno. Točna oznaka je prisutna za svaku riječ u rečenici i prosljeđena
+funkciji \textsc{Predict} koja vraća odluku trenutne police -- polica može biti
 naučena ili referentna. U slučaju da je polica referentna, funkcija vraća upravo
 proslijeđenu oznaku. Nakon što je cijeli izlaz predviđen objavljuje se gubitak
 koji je u ovom slučaju broj riječi koje su netočno označene. Algoritam tijekom
@@ -55,10 +55,10 @@ pristupi opisani u poglavlju \ref{ch:pregled} za zaključivanje koriste algorita
 Viterbi čija je vremenska složenost $O(T M ^ k)$ gdje je $T$ duljina rečenice,
 $M$ broj mogućih oznaka, a $k$ broj prijašnjih odluka kojima uvjetujemo
 trenutnu. U \lts{} okviru složenost zaključivanja je $O(T M k)$. Iz algoritma
-\ref{alg:postagging} može se primijetiti da u funkciju \textsc{Predict}
-prosljeđujemo  sve prijašnje oznake. One se pri izgradnji primjera osjetljivog
+\ref{alg:postagging} može se primijetiti da se u funkciju \textsc{Predict}
+prosljeđuju sve prijašnje oznake. One se pri izgradnji primjera osjetljivog
 na trošak u \textsc{LOLS} algoritmu dodaju kao značajke. Binarni klasifikatori
-koji nam omogućuju redukciju problema višerazredne klasifikacije osjetljive na
+koji omogućuju redukciju problema višerazredne klasifikacije osjetljive na
 trošak predviđaju trošak svake pojedine oznake kojih ima točno $M$. Složenost
 tog postupka je $O(d)$ gdje je $d$ duljina vektora značajki. U bilo kojem
 slučaju zaključivanje je puno brže nego algoritam Viterbi.
@@ -98,18 +98,18 @@ moguće je to smanjiti na $O(T M k)$. Za detaljniji opis čitatelja se upućuje 
 Algoritam \ref{alg:postagging:multipass} prikazuje alternativnu implementaciju
 označivača vrste riječi. U ovom slučaju za jednu rečenicu radi se više prolaza u
 nadi da će prvi prolaz otkriti novu informaciju kojom bi sljedeći mogao
-popraviti napravljene pogreške. U tom slučaju akcije koje referentna polica vrši
-nisu samo točne oznake nego i akcija promjene oznake dodijeljene u prošlom
-prolazu. Funkcija \textsc{PravaOdluka} vraća za novije prolaze akciju koju
+popraviti napravljene pogreške. U tom slučaju odluke koje referentna polica vrši
+nisu samo točne oznake nego i odluka promjene oznake dodijeljene u prošlom
+prolazu. Funkcija \textsc{PravaOdluka} vraća za novije prolaze odluku koju
 referentna polica vrši s obzirom na to koja je zapravo točna oznaka. U slučaju
-da je trenutnoj riječi dodijeljena točna oznaka akcija bi trebala biti takva da
-očuva prijašnju odluku. Zbog više prolaza sada možemo uključiti predviđanja koja
+da je trenutnoj riječi dodijeljena točna oznaka, odluka bi trebala biti takva da
+očuva prijašnju odluku. Zbog više prolaza moguće je uključiti predviđanja koja
 su lijevo i desno od trenutne riječi, a logika je prepuštena funkciji
 \textsc{IzvuciSusjede}. Na samom kraju funkcija \textsc{RekonstruirajIzlaz} iz
 donesenih odluka rekonstruira pravi izlaz i ostatak je identičan originalnom
 algoritmu. Ovakav pristup gotovo je nemoguće napraviti s bilo kojom drugom
 metodom, a da $\argmax$ problem ostane izračunljiv. Sve odluke u navedenoj
-inačici algoritma se i dalje vrše združeno u slučaju da dodajemo susjede kao
+inačici algoritma se i dalje vrše združeno u slučaju da se susjedi dodaju kao
 značajke. Algoritam nije ekvivalentan pokretanju označivača vrste riječi više
 puta gdje drugo i sva sljedeća pokretanja imaju značajku vrste riječi prošlog
 prolaza.

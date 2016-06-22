@@ -31,14 +31,14 @@ konkretan postupak determinacije bio bi odlučivanje u jednom koraku oznaku za
 trenutnu i sljedeću riječ (ili više sljedećih riječi). U tom slučaju bi se
 izbjegla situacija u kojem se pogreška na pojedinoj riječi propagira na odluke
 koje slijede. Postoji mogućnost da je za problem potrebno spojiti sva stanja u
-jednu diskretnu odluku i tek onda izbijeći pristranost, ali tako nešto nije
+jednu diskretnu odluku i time izbijeći pristranost, ali tako nešto nije
 vremenski isplativo. Drugo rješenje je početi treniranje s potpuno povezanim
 modelom gdje bi učenje trebalo otkriti temeljnu strukturu koja je prisutna u
 podlozi, ali šteta je unaprijed odbaciti znanje o samoj strukturi -- kao što je
 lanac odluka kod označavanja vrste riječi.
 
 Na slici \ref{fig:labelbias} prikazan je jednostavan primjer donošenja odluka.
-Možemo ga promatrati kao problem označavanja niza gdje je prva oznaka $S$ dana,
+Može se promatrati kao problem označavanja niza gdje je prva oznaka $S$ dana,
 a za sljedeća dva koraka potrebno je odabrati između druge dvije oznake.
 Krenuvši iz početnog stanja $S$ potrebno je odlučiti kojim bridom nastaviti
 dalje. Iz podataka točan niz odluka rezultira nizom $y_z = SAD$. Prikazani
@@ -59,7 +59,7 @@ težine ne omogućavaju razlikovanje između ta dva izbora -- skalarni produkt
 $\mathbf{w} \cdot \mathbf{\Phi} = 0$ -- potrebno je napraviti nasumičan odabir.
 Ako je odabran $A$, onda će u drugom koraku biti odabran $E$ i gubitak će
 iznositi 0. Suprotno, ako je odabran $B$, onda će u drugom koraku biti odabran
-$F$. Očekivani gubitak onda iznosi $50.5$, a ne $0.5$ -- toliko bi iznosio da se
+$F$. Očekivani gubitak tada iznosi $50.5$, a ne $0.5$ -- toliko bi iznosio da se
 umjesto $F$ odabere $E$. Ovaj primjer demonstrira razlog pojave pristranosti
 oznakama i nedostatak modela koji koriste lokalnu normalizaciju za učenje.
 Razlog zašto nije minimiziran očekivan gubitak je taj što se model trenira na

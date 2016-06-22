@@ -64,7 +64,7 @@ stabla.
   redukcija na desno \engl{reduce right}. Za svaku odluku koristi se
   klasifikacijski postupak koji kao značajke koristi trenutno nedovršeno stablo
   i riječi u rečenici. Ako želimo označiti bridove, onda je potrebno koristiti
-  klasifikacijski postupak kod akcija koje rezultiraju stvaranjem bridova. U
+  klasifikacijski postupak kod odluka koje rezultiraju stvaranjem bridova. U
   okviru učenja pretraživanja implementiran je takav parser
   \citep{chang2015learning}, a i trenutno najbolji parser koristi identičan
   pristup \citep{andor2016globally}.
@@ -75,8 +75,8 @@ Tranzicijski parser potrebno je pravilno implementirati u okviru učenja
 pretraživanja. Za okvir učenja pretraživanja potrebna je funkcija gubitka i
 referentna polica. Neki od pristupa zahtijevaju da je referentna polica
 optimalna, ali prisutnost optimalne police omogućava bržu konvergenciju modela
-na dobro rješenje. Pitanje je koja je sljedeća odluka optimalna ako smo prije
-izvršili niz odluka u kojima nisu sve odgovarale zlatnom primjeru za učenje.
+na dobro rješenje. Pitanje je koja je sljedeća odluka optimalna ako je prije
+izvršen niz odluka u kojima nisu sve odgovarale primjeru za učenje?
 \citet{goldberg2013training} opisuju kako učiniti referentnu policu optimalnom s
 obzirom na neke prethodne pogreške u odlučivanju. Referentna polica ima
 mogućnost prilagodbe i vrlo mali vremenski trošak. \citet{andor2016globally}
@@ -87,7 +87,7 @@ vrsti riječi i o vrsti usmjerenog brida za poboljšanje učinkovitosti modela. 
 tom slučaju bi operacija \textsc{Pomak} mogla imati pridruženu oznaku vrste
 riječi, a operacije \textsc{RedukcijaDesno} i \textsc{RedukcijaLijevo} vrstu
 veze. Naravno, postupak je moguće vršiti združeno tako da se prvo označe vrste
-riječi, a onda stablo, ali moguće je da prepletenost odluka na sve zadatke
+riječi, a nakon toga stablo, ali moguće je da prepletenost odluka na sve zadatke
 dovodi do brže konvergencije.
 
 \begin{figure}

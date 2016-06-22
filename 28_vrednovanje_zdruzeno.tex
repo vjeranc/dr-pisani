@@ -23,15 +23,15 @@ model na tom zadatku \textsc{Vwpos 2}. Očito nije lako unaprijediti označavanj
 osnovnih oznaka vrste riječi, ali se vidi bitan skok u učinkovitosti kod
 morfosintaktičkih deskriptora -- UD ne koristi sve atribute koje ima
 \textsc{SETimes.HR}, ali učinkovitost bez tih atributa nije značajno
-promijenjena. Skok je bio očekivan jer postoje neki atributi koje možemo jasnije
-označiti ako nam je dana informacija o sintaksi. Kako u okviru združenog učenja
-dolazi do propagacije informacije o grešci nakon ovisnosnog parsiranja, onda će
-zadatak označavanja vrste riječi prilagoditi svoje težine tako da izvršavanje
-ovisnosnog parsiranja bude točnije. Rezultati u tablici
+promijenjena. Skok je bio očekivan jer postoje neki atributi koje je moguće
+jasnije označiti ako je prisutna informacija o sintaksi. Kako u okviru združenog
+učenja dolazi do propagacije informacije o grešci nakon ovisnosnog parsiranja,
+onda će zadatak označavanja vrste riječi prilagoditi svoje težine tako da
+izvršavanje ovisnosnog parsiranja bude točnije. Rezultati u tablici
 \ref{table:depparsing:joint} potvrđuju da združeno učenje može poboljšati
 rezultate na zadatku iskorištavanjem funkcije gubitka koja u ovom slučaju daje
 bolju procjenu greške. Moguće je prvo trenirati samo na jednom zadatku u
-kaskadi, a onda na oba u slučaju da za prvi zadatak postoji više podataka. U
+kaskadi, a kasnije na oba, u slučaju da za prvi zadatak postoji više podataka. U
 prvotnom slučaju funkcija gubitka daje lošu procjenu prave greške (jer se
 združeni zadatak ne izvršava), a u naknadnom učenju cilj je pretrenirani model
 prilagoditi da ima dobre performanse na združenom zadatku.

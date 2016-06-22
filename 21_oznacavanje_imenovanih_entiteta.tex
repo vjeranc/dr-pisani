@@ -54,11 +54,11 @@ rečenica onda je potrebno samo preskočiti riječi za koje je već donesena odl
 Sličan pristup kao u algoritmu \ref{alg:namedentityrecognition:seq} mogli bi
 iskoristiti za označavanje vrste riječi s morfosintaktičkim deskriptorom (oznaka
 vrste riječi koja uključuje atribute poput padeža, lica, roda i dr.). Umjesto da
-cijeli deskriptor smatramo potpunom oznakom možemo uvjetovati skup mogućih
+se cijeli deskriptor smatra potpunom oznakom može se uvjetovati skup mogućih
 oznaka za trenutno donošenje odluke (poziv funkcije \textsc{Predict}). Tako u
-slučaju da je riječ u prvom prolazu označena kao imenica, onda za drugi prolaz
-možemo ponuditi samo odluke vezane uz rod imenice (muški, ženski ili srednji).
-Ovakva fleksibilnost čini bilo koji zadatak s dodatnim uvjetima
+slučaju da je riječ u prvom prolazu označena kao imenica, onda je za drugi
+prolaz potrebno ponuditi samo odluke vezane uz rod imenice (muški, ženski ili
+srednji). Ovakva fleksibilnost čini bilo koji zadatak s dodatnim uvjetima
 \engl{constraints} rješivim \citep{chang2012structured}.
 
 \begin{algorithm}[H]

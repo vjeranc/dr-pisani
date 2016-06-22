@@ -1,7 +1,7 @@
-Perceptron \citep{rosenblatt1958perceptron} je moguće proširiti tako da je s
-njime moguće rješavati probleme strukturnog predviđanja. Ovo je model koji
+Perceptron \citep{rosenblatt1958perceptron} je moguće proširiti tako da se može
+koristiti za rješavanje problema strukturnog predviđanja. Ovo je model koji
 dozvoljava učenje primjer po primjer \engl{online learning}, a najbrža varijanta
-s najboljom generalizacijom uzima prosjek težina koje smo dobili svakim
+s najboljom generalizacijom uzima prosjek težina koje su dobivene svakim
 primjerom \citep{freund1999large,gentile2002new} -- dan je pseudokod
 \ref{alg:avgperceptron}. Algoritam bez usrednjavanja vraća samo $\mathbf{w}_0$ i
 $b_0$.
@@ -65,10 +65,10 @@ jednostavnije i brže.
 Zahtijeva samo da se $\argmax$ problem na liniji
 \ref{alg:avgstructuredperceptron:argmax} može riješiti efikasno. U većini
 slučajeva rješava se algoritmom Viterbi ili aproksimativno. Postoji pretpostavka
-da je problem koji rješavamo lako dekomponirati na Hammingov gubitak što je malo
-bolje nego njegova aproksimacija log-gubitkom -- kao što je slučaj kod uvjetnih
-slučajnih polja -- jer se optimizira pogrešna dodjela oznake izlaza (0 ili 1), a
-ne stupanj dodjele.
+da je problem koji se rješava lako dekomponirati na Hammingov gubitak što je
+malo bolje nego njegova aproksimacija log-gubitkom -- kao što je slučaj kod
+uvjetnih slučajnih polja -- jer se optimizira pogrešna dodjela oznake izlaza (0
+ili 1), a ne stupanj dodjele.
 
 Prva pojava pretraživanja u strukturnom predviđanju pojavljuje se u
 \citep{collins2004incremental} gdje je strukturni perceptron korišten za
@@ -77,14 +77,9 @@ koristeći algoritam \textit{beam} pretrage stoga se linija
 \ref{alg:avgstructuredperceptron:argmax} zamjenjuje s $\hat{y}_n \gets
 \textsc{BeamPretraga}(x_n, \mathbf{w}_0)$. Algoritam umjesto da ima samo jedno
 stablo kao hipotezu ima ih više i time pokušava izbjeći pristranost oznakama.
-Slična ideja korištena je u trenutno najtočnijem ovisnosnom parseru opisanom u
-\citep{andor2016globally}. Uz \textit{beam} pretragu koriste neuronsku mrežu sa
-dva sloja gdje svaki ima 1024 neurona koju treniraju s globalnom normalizacijom,
-ali umjesto Hammingovog gubitka koriste aproksimaciju log-gubitkom. U liniji
-\ref{alg:structuredperceptron:condition} može se primijetiti da se ažuriraju
-težine u slučaju da cijeli izlaz (npr.~niz oznaka vrsta riječi ili ovisnosno
-stablo) nije u potpunosti jednak pravom izlazu. Samim time točno označene
-komponente izlaza i dalje utječu na težine, a to nije potrebno jer su točno
-označene. Njihov dodatak s globalnom normalizacijom rješava taj problem. Ostaje
-ograničenje da funkcija gubitka mora imati dekompoziciju na izlaz $y \in
-\mathcal{Y}$.
+Slična je ideja korištena u trenutno najtočnijem ovisnosnom parseru opisanom u
+\citep{andor2016globally}. Uz \textit{beam} pretragu koriste dvoslojnu neuronsku
+mrežu gdje svaki sloj ima 1024 neurona koju treniraju s globalnom
+normalizacijom, ali umjesto Hammingovog gubitka koriste aproksimaciju
+log-gubitkom. Ostaje ograničenje da funkcija gubitka mora imati dekompoziciju na
+izlaz $y \in \mathcal{Y}$.
