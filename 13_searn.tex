@@ -1,7 +1,7 @@
 \citet{daume06thesis} u svojoj doktorskoj disertaciji daje doprinos otkrićem
 prve metode učenja pretraživanja \textsc{Searn} \engla{search + learn}{Searn}.
 Metodu primjenjuje na mnoštvo problema u području obrade prirodnog jezika:
-\begin{inlinelist}
+\begin{itemize}
   \item označavanje vrste riječi,
   \item prepoznavanje imenovanih entiteta,
   \item plitko parsiranje \engl{shallow parsing},
@@ -10,7 +10,7 @@ Metodu primjenjuje na mnoštvo problema u području obrade prirodnog jezika:
   \item sažimanje teksta koristeći više dokumenata i
   \item poravnavanje teksta na engleskom i španjolskom koristeći latentne
   varijable \engl{text alignment with hidden variables}.
-\end{inlinelist}
+\end{itemize}
 Predložio je primjenu na strojno prevođenje i ovisnosno parsiranje koja je u
 okviru učenja pretraživanja nedavno ostvarena
 \citep{he2015syntax,chang2015learning}.
@@ -117,8 +117,8 @@ binarne klasifikatore:
 \begin{inlinelist}
   \item perceptron,
   \item logistička regresija,
-  \item stroj s potpornim vektorima i linearni kernel i
-  \item stroj s potpornim vektorima i kvadratni kernel.
+  \item \textsc{svm} s linearnim kernelom i
+  \item \textsc{svm} s kvadratnim kernelom.
 \end{inlinelist}
 Izbor klasifikatora ovisi o zadatku. Ako je broj primjera ogroman, onda je bolje
 koristiti perceptron, logističku regresiju ili \textsc{svm} s linearnim
