@@ -2,7 +2,7 @@ Prepoznavanje imenovanih entiteta \engl{named entity recognition} jedan je od
 osnovnih problema u obradi prirodnog jezika. Cilj je u tekstu prepoznati
 imenovane entitete. Problem je ilustriran na slici
 \ref{fig:namedentityrecognition}. Rečenicu je potrebno segmentirati na riječi
-koje bi mogle sadržavati imenovane entitete i onda te segmente prepoznati.
+koje bi mogle sadržavati imenovane entitete i nakon toga te segmente prepoznati.
 Pristup koji se najčešće uzima je redukcija označavanja niza na prepoznavanje
 imenovanih entiteta. Koristeći oznake za početak imena \textsc{b}, nastavak
 imena \textsc{i} i oznaku da riječ nije ime \textsc{o} problem je jednostavno
@@ -31,7 +31,7 @@ bolji od prvog navedenog.
 \caption[Rečenica s označenim imenovanim entitetima.]{Rečenica s označenim
 imenovanim entitetima. Oznake koje počinju sa \textsc{b} se odnose na početak
 imenovanog entiteta, a one koje počinju s \textsc{i} kao nastavak. Oznaka
-\textsc{o} označava da značka nije imenovani entitet. Moguće je imati oznake za
+\textsc{o} je za značke koje nisu imenovani entitet. Moguće je imati oznake za
 osobna imena, imena privatnih organizacija, gradova, mjesta i dr.}
 \label{fig:namedentityrecognition}
 \end{figure}
@@ -46,10 +46,11 @@ složenost vjerojatnosnih grafičkih modela. Algoritam
 implementacija modela koji je ekvivalentan modelu opisanom u
 \citep{sarawagi2004semi}. Kod ovog modela nije potrebno ponuditi niz mogućih
 oznaka, nego je za odluku potrebno ponuditi dovoljno značajki (buduće riječi)
-kako bi odluke o entitetima koji imaju više od jedne riječi bile ispravne. Skup
-oznaka ako nas interesiraju samo lokacije duljine do tri riječi može biti
+kako bi odluke o entitetima koji imaju više od jedne riječi bile ispravne. Ako
+nas interesiraju samo lokacije duljine do tri riječi, onda skup oznaka može biti
 \{\textsc{loc1}, \textsc{loc2}, \textsc{loc3}, \textsc{o}\}. Ako je ulaz
-rečenica onda je potrebno samo preskočiti riječi za koje je već donesena odluka.
+rečenica, onda je potrebno samo preskočiti riječi za koje je već donesena
+odluka.
 
 Sličan pristup kao u algoritmu \ref{alg:namedentityrecognition:seq} mogli bi
 iskoristiti za označavanje vrste riječi s morfosintaktičkim deskriptorom (oznaka

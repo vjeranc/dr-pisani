@@ -52,12 +52,12 @@ od deset riječi. Kod \textsc{Vwpos 1} pristupa za svaku se riječ mora pozvati
 645 binarnih odluka (\textsc{ova}) što na kraju rezultira s ukupno 6450 odluka.
 Zbog ograničenja mogućih vrijednosti atributa s obzirom na izabranu oznaku vrste
 riječi broj odluka bi trebao biti manji. Kod donošenja odluke na prvoj razini za
-riječ možemo izabrati jednu od 13 mogućih. Nakon toga, pretpostavljajući da
-oznaka ima 6 mogućih atributa (zamjenica ima toliko) i da svaki atribut ima 7
-mogućih vrijednosti (padež kod imenice) onda će se za pojedinu riječ morati
-pozvati $13+6 \cdot 7 = 55$ binarnih odluka, što je ukupno 550 za cijelu
-rečenicu. U usporedbi sa 6450 to je puno manje, a u praksi broj odluka je još
-manji iz čega slijedi da je vrijeme učenja i testiranja puno manje. U tablici
+riječ možemo izabrati jednu od 13 mogućih. Nakon toga će se za pojedinu riječ --
+pretpostavljajući da oznaka ima 6 mogućih atributa (zamjenica ima toliko) i da
+svaki atribut ima 7 mogućih vrijednosti (padež kod imenice) -- morati pozvati
+$13+6 \cdot 7 = 55$ binarnih odluka, što je ukupno 550 za cijelu rečenicu. U
+usporedbi sa 6450 to je puno manje, a u praksi broj odluka je još manji iz čega
+slijedi da je vrijeme učenja i testiranja puno manje. U tablici
 \ref{table:postagging} prikazana je uspješnost \textsc{Vwmsd} pristupa na
 običnom zadatku označavanja vrste riječi. \textsc{Vwmsd} pristupi imaju bolju
 generalizaciju od \textsc{Vwpos 1} pristupa, ali očito povećani broj značajki
