@@ -7,13 +7,13 @@ dobiveni HunPos označivačem. Vrednovanje se vrši na dva testna skupa
 bolji rezultati od navedenih, ali nisu zabilježeni u raspoloživoj literaturi.
 
 U tablici \ref{table:postagging} prikazani su rezultati. Uz prijašnje rezultate
-prikazana je uspješnost običnog označivača vrste riječi (\textsc{Vwpos 1} --
-alg.~\ref{alg:postagging}) i označivača s više prolaza (\textsc{Vwpos 2} --
+prikazana je uspješnost običnog označivača vrste riječi (\textsc{Vwpos-1} --
+alg.~\ref{alg:postagging}) i označivača s više prolaza (\textsc{Vwpos-2} --
 alg.~\ref{alg:postagging:multipass}). Korištene značajke su prefiksi i sufiksi
 do najveće duljine od pet znakova, oblik riječi u kojem su mala i velika slova
 zamijenjeni slovom \textsc{l} i \textsc{u}, dvije susjedne riječi lijevo i desno
 od trenutne i duljina riječi. Donošenje trenutne odluke uvjetuje se s tri prošle
-odluke. U slučaju \textsc{Vwpos 2} algoritma korištena su 3 prolaza. Kod HunPos
+odluke. U slučaju \textsc{Vwpos-2} algoritma korištena su 3 prolaza. Kod HunPos
 označivača koristi se Markovljev lanac drugog stupnja, a za rezultate na
 \textsc{Wiki} testnom skupu i dodatni vanjski leksikon.
 
@@ -25,8 +25,8 @@ označivača koristi se Markovljev lanac drugog stupnja, a za rezultate na
 \hline
 Metoda             & \textsc{Set}   & \textsc{Wiki}  \\ \hline \hline
 HunPos             & 97.04          & 94.62          \\
-\textsc{Vwpos 1}   & 98.18          & 96.20          \\
-\textsc{Vwpos 2}   & \textbf{98.71} & 96.24          \\
+\textsc{Vwpos-1}   & 98.18          & 96.20          \\
+\textsc{Vwpos-2}   & \textbf{98.71} & 96.24          \\
 \textsc{Vwmsd} 1   & 98.31          & \textbf{96.57} \\
 \textsc{Vwmsd} 2   & 98.23          & 96.41          \\ \hline
 \end{tabular}
@@ -34,21 +34,21 @@ HunPos             & 97.04          & 94.62          \\
 
 U tablici \ref{table:msdtagging} prikazani su rezultati za označavanje koristeći
 morfosintaktičke deskriptore. Značajke korištene identične su kao i za prethodni
-zadatak. Pristupi \textsc{Vwpos 1} i \textsc{2} koriste se tako da se svaka
+zadatak. Pristupi \textsc{Vwpos-1} i \textsc{2} koriste se tako da se svaka
 morfosintaktička oznaka gleda kao zasebna oznaka vrste riječi (takvih u
 korištenom skupu ima 645). Pristupi \textsc{Vwmsd} 1 i 2 gledaju
 morfosintaktičke odluke kao oznake vrste riječi s atributima. U svakom pristupu
 za svaku riječ donosi se niz odluka koje na kraju rezultiraju potpunim ispravnim
-morfosintaktičkim deskriptorom.  Kod pristupa \textsc{Vwmsd 1} trenutna odluka
+morfosintaktičkim deskriptorom.  Kod pristupa \textsc{Vwmsd-1} trenutna odluka
 uvjetovana je svim predthodnim odlukama za dvije prošle riječi i trenutnu riječ,
-a za \textsc{Vwmsd 2} korištene su sve donesene odluke na prethodne dvije i
+a za \textsc{Vwmsd-2} korištene su sve donesene odluke na prethodne dvije i
 sljedeće dvije riječi.
 
 U oba \textsc{Vwmsd} pristupa se za riječ prvo odabire oznaku vrste riječi
 (jednu od trinaest mogućih). Nakon toga moguće je odabrati prvi atribut, ali ne
 bilo koji nego baš onaj koji odgovara za odabranu oznaku. To smanjuje broj
 binarnih odluka koje je potrebno izvršiti. Pretpostavimo da se označava rečenica
-od deset riječi. Kod \textsc{Vwpos 1} pristupa za svaku se riječ mora pozvati
+od deset riječi. Kod \textsc{Vwpos-1} pristupa za svaku se riječ mora pozvati
 645 binarnih odluka (\textsc{ova}) što na kraju rezultira s ukupno 6450 odluka.
 Zbog ograničenja mogućih vrijednosti atributa s obzirom na izabranu oznaku vrste
 riječi broj odluka bi trebao biti manji. Kod donošenja odluke na prvoj razini za
@@ -60,7 +60,7 @@ usporedbi sa 6450 to je puno manje, a u praksi broj odluka je još manji iz čeg
 slijedi da je vrijeme učenja i testiranja puno manje. U tablici
 \ref{table:postagging} prikazana je uspješnost \textsc{Vwmsd} pristupa na
 običnom zadatku označavanja vrste riječi. \textsc{Vwmsd} pristupi imaju bolju
-generalizaciju od \textsc{Vwpos 1} pristupa, ali očito povećani broj značajki
+generalizaciju od \textsc{Vwpos-1} pristupa, ali očito povećani broj značajki
 (svaka prijašnja odluka kojom uvjetujemo trenutnu je nova značajaka) zahtijeva
 više podataka za bolju generalizaciju. Moguće je da u lancu odluka koji potreban
 za formiranje jednog morfosintaktičkog deskriptora dolazi lakše do grešaka nego
@@ -69,9 +69,9 @@ odluka. Ovaj bi slučaj upućivao na prisutnost pristranosti odlukama koja se mo
 dogoditi ako klasifikator nije dobro naučen. Razlog lošijim rezultatima na
 testnom skupu \textsc{Wiki} je taj što skup sadrži više neviđenih riječi i
 nepoznate morfosintaktičke deskriptore. Zbog toga pristupi koji donose odluke po
-atributima imaju bolju generalizaciju na tom skupu. Ako se kreiraju novi skup za
-treniranje i testiranje koji koriste sve rečenice iz svih skupova, onda
-\textsc{Vwpos 2} ima najbolju točnost.
+atributima imaju bolju generalizaciju na tom skupu. Ako se kreiraju novi skupovi
+za učenje i testiranje koji koriste sve rečenice iz svih skupova, onda
+\textsc{Vwpos-2} još uvijek ima najbolju točnost.
 
 \begin{table}
 \centering
@@ -83,9 +83,9 @@ deskriptore. Prikazana je točnost modela na dva testna skupa.}
 \hline
 Metoda             & \textsc{Set}   & \textsc{Wiki}  \\ \hline \hline
 HunPos             & 87.11          & 80.83          \\
-\textsc{Vwpos 1}   & 89.94          & 83.27          \\
-\textsc{Vwpos 2}   & \textbf{90.22} & \textbf{84.13} \\
-\textsc{Vwmsd 1}   & 89.19          & 82.22          \\
-\textsc{Vwmsd 2}   & 89.06          & 81.90          \\ \hline
+\textsc{Vwpos-1}   & 89.94          & 83.27          \\
+\textsc{Vwpos-2}   & \textbf{90.22} & \textbf{84.13} \\
+\textsc{Vwmsd-1}   & 89.19          & 82.22          \\
+\textsc{Vwmsd-2}   & 89.06          & 81.90          \\ \hline
 \end{tabular}
 \end{table}

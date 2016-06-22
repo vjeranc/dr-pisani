@@ -1,21 +1,22 @@
 \citet{mcdonald2007structured} uvode jednostavan model za označavanje sentimenta
-kroz više razina. Koristeći njihov model moguće je združeno za jedan dokument
+kroz više razina. Koristeći njihov model moguće je za jedan dokument združeno
 označiti njegov sentiment, ali i sentiment paragrafa i rečenica u dokumentu. Ako
 bi se sentiment označavao tako da se prvo označi sentiment dokumenta, pa se ta
-informacija propagira na niže razine, onda doći će do nakupljanja pogrešaka jer
+informacija propagira na niže razine, onda bi došlo do nakupljanja pogrešaka jer
 učenje nije provedeno združeno. Na slici \ref{fig:sentimentmodels} prikazana su
 dva modela, slika \ref{fig:sentimentmodels:docsent} pokazuje vjerojatnosni
 grafički model u slučaju označavanja sentimenta dokumenta i rečenica, a slika
 \ref{fig:sentimentmodels:docparsent} dodatno označavanje i paragrafa. Ako se
 pretpostavi da je broj mogućih oznaka sentimenta jednak za sve razine, onda je
 vremenska složenost koraka učenja i predviđanja za model na prvoj slici $O(M^3
-T)$, a $O(M^4 P T)$ za model na drugoj -- gdje je $M$ broj mogućih oznaka
-sentimenta, $P$ broj paragrafa u dokumentu i $T$ broj rečenica u dokumentu. Ako
-bi htjeli dodati broj prijašnjih odluka koje utječu na trenutnu, onda bi
-eksponent na $M$ rastao. Ako bi se broj mogućih oznaka povećao, onda bi se
-učenje i zaključivanje dodatno usporilo. Već sada se može zaključiti da učenje i
-zaključivanje rađeno u okviru vjerojatnosnih grafičkih modela neće biti dovoljno
-brzo.
+T)$, a $O(M\cdot(P M^2 + P M^2 T))=O(M^3 P T)$ za model na drugoj -- gdje je $M$
+broj mogućih oznaka sentimenta, $P$ broj paragrafa u dokumentu i $T$ broj
+rečenica u dokumentu u prvom problemu, a prosječan broj rečenica po paragrafu u
+drugom. Ako bi htjeli povećati broj prijašnjih odluka koje utječu na trenutnu,
+onda bi eksponent na $M$ rastao. Ako bi se broj mogućih oznaka povećao, onda bi
+se učenje i zaključivanje dodatno usporilo. Već sada se može zaključiti da
+učenje i zaključivanje rađeno u okviru vjerojatnosnih grafičkih modela nije
+dovoljno brzo.
 
 Korisno je razmotriti isti problem u okviru učenja pretraživanja. U dodatku
 \ref{appendix:sentiment} prisutne su dvije moguće implementacije u okviru učenja
@@ -30,12 +31,12 @@ odluke na dva načina:
 Algoritam \ref{alg:sentiment:docsent} ilustrira prvi pristup, a ponašanje
 funkcija identično je kao i u algoritmima u potpoglavlju \ref{ch:postaggingapp}.
 Očigledno je postupak određivanja sentimenta samo na rečenicama jednak običnom
-označavanju niza stoga se implementacija na ovom zadatku ne razlikuje previše od
-običnog označivača niza. Drugi pristup ima manu što se ovisno o broju rečenica u
-dokumentu raste broj značajki za odluku na razini dokumenta (svaka odluka na
-rečenici postaje značajka u odluci za dokument). Prvi pristup koristi se u
+označavanju niza, stoga se implementacija na ovom zadatku ne razlikuje previše
+od običnog označivača niza. Drugi pristup ima problem jer broj značajki za
+pojedinu odluku na razini dokumenta raste ovisno o broju rečenica (svaka odluka
+na rečenici postaje značajka u odluci za dokument). Prvi pristup koristi se u
 \citet{mcdonald2007structured}. Lakše je odrediti sentiment za cijeli dokument
-nego prvo za rečenice. Vremenska složenost ovog pristupa je iznenađujuće dobra.
+nego pojedinu rečenicu. Vremenska složenost ovog pristupa je iznenađujuće dobra.
 Zaključivanje ima vremensku složenost $O(M (P + T))$ za model na slici
 \ref{fig:sentimentmodels:docparsent}. Ogromna razlika u usporedbi s
 vjerojatnosnim grafičkim modelom.

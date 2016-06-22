@@ -38,7 +38,7 @@ prilog, glagol, imenicu, znakove interpunkcije i veznike.}
 \end{algorithm}
 
 Algoritam je skoro jednak algoritmu koji provjerava koliko je riječi u rečenici
-točno označeno. Točna oznaka je prisutna za svaku riječ u rečenici i prosljeđena
+točno označeno. Točna oznaka je prisutna za svaku riječ u rečenici i proslijeđena
 funkciji \textsc{Predict} koja vraća odluku trenutne police -- polica može biti
 naučena ili referentna. U slučaju da je polica referentna, funkcija vraća upravo
 proslijeđenu oznaku. Nakon što je cijeli izlaz predviđen objavljuje se gubitak
@@ -46,24 +46,26 @@ koji je u ovom slučaju broj riječi koje su netočno označene. Algoritam tijek
 učenja u pozadini mijenja police i pokreće funkciju \textsc{Run} dovoljno puta
 dok ne nauči referentnu policu. Algoritam zaključivanja koristi istu funkciju,
 ali u tom trenutku ne postoji pristup točnoj oznaci tj.~što god ona bila neće se
-uzeti u obzir nego će se zvati naučena polica. Jedna funkcija dovoljna je za
+uzeti u obzir nego će se zvati naučena polica. Jedna je funkcija dovoljna za
 algoritam učenja i zaključivanja, a to je slučaj za sve algoritme u \lts{}
 okviru.
 
 Zanimljivo je usporediti vremenske složenosti uobičajenih pristupa s ovim. Svi
 pristupi opisani u poglavlju \ref{ch:pregled} za zaključivanje koriste algoritam
 Viterbi čija je vremenska složenost $O(T M ^ k)$ gdje je $T$ duljina rečenice,
-$M$ broj mogućih oznaka, a $k$ broj prijašnjih odluka kojima uvjetujemo
-trenutnu. U \lts{} okviru složenost zaključivanja je $O(T M k)$. Iz algoritma
+$M$ broj mogućih oznaka i oznaka ne ovisi o prijašnjim oznakama koje su $k$ ili
+više pozicija udaljene. U \lts{} okviru složenost zaključivanja je $O(T M k)$ --
+ovdje je $k$ broj prijašnjih odluka kojima uvjetujemo trenutnu ($k$ je kod
+navedenih složenosti jednak, ali je kontekst drugačiji). Iz algoritma
 \ref{alg:postagging} može se primijetiti da se u funkciju \textsc{Predict}
-prosljeđuju sve prijašnje oznake. One se pri izgradnji primjera osjetljivog
-na trošak u \textsc{LOLS} algoritmu dodaju kao značajke. Binarni klasifikatori
-koji omogućuju redukciju problema višerazredne klasifikacije osjetljive na
-trošak predviđaju trošak svake pojedine oznake kojih ima točno $M$. Složenost
-tog postupka je $O(d)$ gdje je $d$ duljina vektora značajki. U bilo kojem
-slučaju zaključivanje je puno brže od algoritma Viterbi.
+prosljeđuju sve prijašnje oznake. One se pri izgradnji primjera osjetljivog na
+trošak u \textsc{LOLS} algoritmu dodaju kao značajke. Binarni klasifikatori koji
+omogućuju redukciju problema višerazredne klasifikacije osjetljive na trošak
+predviđaju trošak svake pojedine oznake kojih ima točno $M$. Složenost tog
+postupka je $O(M d)$ gdje je $d$ duljina vektora značajki. U bilo kojem slučaju
+zaključivanje je puno brže od algoritma Viterbi.
 
-Prednost je i ta što algoritam \ref{alg:postagging} ne treba mijenjati ako se
+Prednost je što algoritam \ref{alg:postagging} ne treba mijenjati ako se
 mijenjaju redukcije ispod apstrakcije. Recimo, moguće je koristiti redukciju
 višerazredne klasifikacije osjetljive na trošak opisanu u
 \citep{beygelzimer2009error, daume2016one}. Vremenska složenost određivanja
@@ -74,8 +76,9 @@ Vremenska složenost algoritma učenja ovisi o parametrima algoritma. U slučaju
 \textsc{LOLS} algoritma (alg.~\ref{alg:lols}) funkcija \textsc{Run} zove se u
 liniji \ref{alg:lols:learned} i \ref{alg:lols:mixture} što bi upućivalo da je
 složenost učenja jednog primjera $O(T ^ 2 M k)$, ali raznim \textit{trikovima}
-moguće je to smanjiti na $O(T M k)$. Za detaljniji opis čitatelja se upućuje na
-\citep{daume14lts}.
+moguće je to smanjiti na $O(T M k)$ -- ako funkcija gubitka ima dekompoziju
+preko niza odluka, onda \textit{rollout} nije potrebno izvršavati. Za detaljniji
+opis čitatelja se upućuje na \citep{daume14lts}.
 
 \begin{algorithm}
 \caption{Označavanje vrste riječi u \lts{} okviru s više prolaza.}\label{alg:postagging:multipass}
@@ -96,7 +99,7 @@ moguće je to smanjiti na $O(T M k)$. Za detaljniji opis čitatelja se upućuje 
 \end{algorithm}
 
 Algoritam \ref{alg:postagging:multipass} prikazuje alternativnu implementaciju
-označivača vrste riječi. U ovom slučaju za jednu rečenicu radi se više prolaza u
+označivača vrste riječi. U ovom slučaju se za jednu rečenicu radi više prolaza u
 nadi da će prvi prolaz otkriti novu informaciju kojom bi sljedeći mogao
 popraviti napravljene pogreške. U tom slučaju odluke koje referentna polica vrši
 nisu samo točne oznake nego i odluka promjene oznake dodijeljene u prošlom

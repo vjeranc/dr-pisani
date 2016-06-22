@@ -1,5 +1,5 @@
 Perceptron \citep{rosenblatt1958perceptron} je moguće proširiti tako da se može
-koristiti za rješavanje problema strukturnog predviđanja. Ovo je model koji
+koristiti za rješavanje problema strukturnog predviđanja. Model je koji
 dozvoljava učenje primjer po primjer \engl{online learning}, a najbrža varijanta
 s najboljom generalizacijom uzima prosjek težina koje su dobivene svakim
 primjerom \citep{freund1999large,gentile2002new} -- dan je pseudokod
@@ -30,7 +30,7 @@ $b_0$.
 \end{algorithmic}
 \end{algorithm}
 
-Proširenje potrebno za rješavanje problema strukturnog predviđanja je prikazano
+Proširenje potrebno za rješavanje problema strukturnog predviđanja prikazano je
 na pseudokodu \ref{alg:avgstructuredperceptron}.
 \citet{collins2002discriminative} uvodi model strukturnog perceptrona
 \engl{structured perceptron} kao zamjenu za uvjetna slučajna polja gdje je i
@@ -62,7 +62,7 @@ jednostavnije i brže.
 \end{algorithmic}
 \end{algorithm}
 
-Zahtijeva jedino da se $\argmax$ problem na liniji
+Jedini je zahtjev da se $\argmax$ problem na liniji
 \ref{alg:avgstructuredperceptron:argmax} može riješiti efikasno. U većini
 slučajeva rješava se algoritmom Viterbi ili aproksimativno. Postoji pretpostavka
 da je problem koji se rješava lako dekomponirati na Hammingov gubitak što je
@@ -81,5 +81,6 @@ Slična je ideja korištena u trenutno najtočnijem ovisnosnom parseru opisanom 
 \citep{andor2016globally}. Uz \textit{beam} pretragu koriste dvoslojnu neuronsku
 mrežu gdje svaki sloj ima 1024 neurona koju treniraju s globalnom
 normalizacijom, ali umjesto Hammingovog gubitka koriste aproksimaciju
-log-gubitkom. Ostaje ograničenje da funkcija gubitka mora imati dekompoziciju na
-izlaz $y \in \mathcal{Y}$.
+log-gubitkom. Kao i kod prijašnjih modela, strukturirani perceptron ima
+ograničenje da funkcija gubitka mora imati dekompoziciju na izlaz $y \in
+\mathcal{Y}$.

@@ -1,5 +1,7 @@
 \citet{daume06thesis} u svojoj doktorskoj disertaciji daje doprinos otkrićem
-prve metode učenja pretraživanja \textsc{Searn} \engla{search + learn}{Searn}.
+prve metode učenja pretraživanja \textsc{Searn} \engla{search + learn}{Searn} --
+metoda kojom je binarna klasifikacija uspješno reducirana na problem strukturnog
+predviđanja i učenja.
 Metodu primjenjuje na mnoštvo problema u području obrade prirodnog jezika:
 \begin{itemize}
   \item označavanje vrste riječi,
@@ -44,19 +46,19 @@ okviru učenja pretraživanja nedavno ostvarena
 Pseudokod \ref{alg:searn} prikazuje \textsc{Searn} algoritam. Algoritam radi
 više prolaza preko skupa za učenje određen brojem $P$. Za svaki primjer $\{x_i,
 y_i\}$ dolazi do nekog stanja $s_t$ koristeći \textit{rollin} policu. Ona je pri
-prvom prolazu jednaka referentnoj polici, a u svim ostalima ta polica je
+prvom prolazu jednaka referentnoj polici, a u ostalim prolazima ta polica je
 stohastička mješavina između polica naučenih u svakom prolazu i referentne
 police -- kod problema označavanja vrste riječi rezultat primjene
-\textit{rollin} police je niz oznaka, a stanje $s_t$ je riječ na mjestu $t$ koja
-još nije označena. Linija \ref{alg:searn:mixture} pokazuje izračun nove police.
-Izračun ne radi interpolaciju naučenih težina, nego samo prilagođava
-vjerojatnosti odabira do tada naučenih polica. Vjerojatnost je veća za najnoviju
-naučenu policu i polako se smanjuje s brojem prolaza (množi se s $\beta < 1$).
-Za procjenu troška donošenja odluke na stanju $s_t$ (npr.~odluka je određivanje
-vrste riječi na trenutnoj riječi) za svaku moguću odluku koristi se
-\textit{rollout} polica koja je također stohastička mješavina (linija
-\ref{alg:searn:action} i \ref{alg:searn:rolloutpolicy}). Ta polica primjenjuje
-se do kraja strukture koja se obrađuje i na kraju se izračuna dobiveni gubitak
+\textit{rollin} police je niz oznaka, a stanje $s_t$ je riječ u rečenici na
+mjestu $t$ koja još nije označena. Linija \ref{alg:searn:mixture} pokazuje
+izračun nove police. Izračun ne radi interpolaciju naučenih težina, nego samo
+prilagođava vjerojatnosti odabira do tada naučenih polica. Vjerojatnost je veća
+za najnoviju naučenu policu i polako se smanjuje s brojem prolaza (množi se s
+$\beta < 1$). Za procjenu troška donošenja odluke na stanju $s_t$ (npr.~odluka
+je određivanje vrste riječi na trenutnoj riječi) za svaku moguću odluku koristi
+se \textit{rollout} polica koja je također stohastička mješavina (linija
+\ref{alg:searn:action} i \ref{alg:searn:rolloutpolicy}). Ta se polica primjenjuje
+do kraja strukture koja se obrađuje i na kraju se izračuna dobiveni gubitak
 (linija \ref{alg:searn:rollout}). Nakon prošlog postupka za svaku moguću odluku
 kreira se primjer za učenje osjetljiv na trošak i stavlja se u skup. Nakon što
 je postupak kreiranja primjera gotov nauči se nova polica (linija
@@ -69,8 +71,8 @@ donošenje trenutne odluke ovisi o prethodnim odlukama i značajkama iz budućih
 stanja, onda je potrebno tijekom učenja i korištenja naučenih polica samo dodati
 te odluke i značajke u vektorsku reprezentaciju trenutnog stanja (tijekom
 primjene stohastičke police za vrijeme \textit{rollin} i \textit{rollout}
-postupka ta reprezentacija mora biti prisutna jer se koristi odabrani
-višerazredni klasifikator).
+postupka ta reprezentacija mora biti prisutna jer se kod primjene koristi
+odabrani višerazredni klasifikator).
 
 Ovaj algoritam ima vremensku složenost učenja $O(P N T^2 M k)$ -- gdje je $P$
 broj prolaza, $N$ broj primjera, $T$ prosječna duljina niza odluka koji
@@ -95,7 +97,7 @@ funkcije gubitka, smanjiti vremensku složenost učenja na $O(P N T M k)$
 
 \textsc{Searn} zahtjeva postojanje optimalne police (potpoglavlje
 \ref{ch:policailocalopt}) za potrebe učenja. Ako polica nije optimalna, onda će
-učenje biti otežano. U slučaju bolje procjene troška određene odluke potrebno je
+učenje biti otežano. U slučaju bolje procjene troška određene odluke, potrebno je
 izvršiti \textit{rollout} nekoliko puta kako bi povećali vjerojatnost otkrića
 točnong niza odluka koji minimizira trošak. Primjer zadataka za kojeg nije lako
 izgraditi optimalnu policu je ovisnosno parsiranje i strojno prevođenje. Za
@@ -103,7 +105,7 @@ ovisnosno parsiranje nije jednostavno znati kako dovršiti stablo tako da se
 minimizira gubitak s obzirom na to da je došlo do niza pogrešaka u izgradnji
 parcijalnog stabla. Kod strojnog prevođenja teško je znati kako odrediti
 trenutnu riječ s obzirom na polovično preveden dokument. U slučaju da je
-dokument preveden krivo možda ima više smisla staviti neku drugu riječ umjesto
+dokument preveden krivo, ima više smisla staviti neku drugu riječ umjesto
 one koja je u zlatnom primjeru prisutna na toj poziciji. Kako bi se problem
 razriješio u okviru algoritma \textsc{Searn} korišten je Monte-Carlo algoritam
 za procjenu troška. Taj postupak usporava učenje, ali omogućava učenje bez
@@ -116,7 +118,7 @@ nemaju to ograničenje.
 binarne klasifikatore:
 \begin{inlinelist}
   \item perceptron,
-  \item logistička regresija,
+  \item logističku regresiju,
   \item \textsc{svm} s linearnim kernelom i
   \item \textsc{svm} s kvadratnim kernelom.
 \end{inlinelist}

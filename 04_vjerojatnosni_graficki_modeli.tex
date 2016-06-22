@@ -103,10 +103,10 @@ imenovanih entiteta \citep{zhou2002named}. Kako u većini slučajeva skup za
 učenje nije dovoljno velik, uobičajeno je dodati neke vanjske informacije --
 poput toga da se imenovani entitet koji nije bio u skupu za učenje pojavljuje u
 nekom rječniku koji je na raspolaganju ili da riječi s određenim prefiksom su
-češće imenice nego glagoli -- onda se algoritam učenja brojanja supojavljivanja
+češće imenice nego glagoli -- onda se algoritam učenja brojanjem supojavljivanja
 zamjenjuje Baum-Welch algoritmom koji ima složenost $O(T M^k)$ -- gdje je $T$
-duljina niza, $M$ broj oznaka koje je moguće predvidjeti za svaki izlaz i ne
-ovisi o elementima $y$ koji su $k$ ili više pozicija udaljeni, ali pokazalo se
+duljina niza, $M$ broj oznaka koje je moguće predvidjeti za svaki izlaz i izlaz ne
+ovisi o elementima u $y$ koji su $k$ ili više pozicija udaljeni, ali pokazalo se
 da algoritam jako teško dolazi do dobrog lokalnog optimuma te se za navedene
 probleme ipak koriste drugi modeli \citep{johnson2007doesn}.
 
@@ -166,7 +166,7 @@ uvjetna vjerojatnost prikazana u jednadžbi \ref{eq:crf}.
 \end{equation}
 
 \noindent
-Particijska funkcija $Z(x; \mathbf{w})$ u zbroju koristi sve izlaze za koje
+Particijska funkcija $Z(x; \mathbf{w})$ u zbroju koristi sve izlaze $y'$ za koje
 model daje kriva predviđanja. Ako se koristi iterativni algoritam učenja, onda
 se za pravilnu procjenu parametara taj zbroj računa svaki put prije korigiranja
 težinskog vektora $\mathbf{w}$. Taj je zbroj u generalnom slučaju prevelik za

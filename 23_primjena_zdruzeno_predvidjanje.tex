@@ -27,20 +27,21 @@ imenovanih entiteta te bi onda bilo moguće popraviti krive procjene novim
 podacima na zadatku prepoznavanja entiteta.
 
 Zbog činjenice da je za združeno predviđanje u \lts{} okviru potrebna samo
-združena procjena troška, za svaki problem može se koristiti zaseban model. Time
+združena procjena troška, za svaki se problem može koristiti zaseban model. Time
 je izbjegnuto korištenje značajki za probleme koji od tih značajki ne bi imali
-koristi. Ako se problemi rješavaju slijedno, kao što je slučaj u označavanju
+koristi. Ako se problemi rješavaju slijedno, kao što je slučaj kod označavanja
 vrste riječi s ovisnosnim parsiranjem, onda je moguće stati sa zaključivanjem
-nakon izvršenog prvog zadatka. To omogućuje efikasno korištenje modela
-koji su združeni bez da se testiranje vrši združeno. Ovako nešto je jako rijetko
-u literaturi i mnoštvo modela koje koristi algoritme dinamičkog programiranja
-mora raditi \textit{backtracking}. Bez potpune enumeracije ne postoji sigurnost
-da je pronađen najvjerojatniji niz odluka za prvi zadatak stoga je potrebno
-dohvatiti sve optimalne odluke za združeni zadatak. Ovisnosno parsiranje
-zahtijeva puno više značajki i najbolji parseri ne mogu parsirati više od
-nekoliko tisuća riječi po sekundi -- \citet{andor2016globally} opisuju parser
-koji postiže najbolje rezultate, ali mu je brzina oko 600 riječi po sekundi na
-osobnom računalu unatoč tome što je složenost algoritma koji je u pozadini
-$O(T)$, gdje je $T$ duljina rečenice. Združeno učenje bi omogućilo bolje
-označavanje vrste riječi, ali bi očuvalo brzinu na tom zadatku koja je za sustav
-Vowpal Wabbit preko nekoliko stotina tisuća znački u sekundi \citep{daume14lts}.
+nakon izvršenog prvog zadatka. To omogućuje efikasno korištenje modela koji su
+združeni bez da se testiranje vrši združeno. Ovako nešto je jako rijetko u
+literaturi i mnoštvo modela koje koristi algoritme dinamičkog programiranja mora
+raditi \textit{backtracking}. Bez potpune enumeracije ne postoji sigurnost da je
+pronađen najvjerojatniji niz odluka za prvi zadatak stoga je potrebno dohvatiti
+sve optimalne odluke za združeni zadatak. Ovisnosno parsiranje zahtijeva puno
+više značajki i najbolji parseri ne mogu parsirati više od nekoliko tisuća
+riječi po sekundi -- \citet{andor2016globally} opisuju združeni označivač i
+parser koji postiže najbolje rezultate, ali mu je brzina oko 600 riječi po
+sekundi na osobnom računalu unatoč tome što je složenost algoritma koji je u
+pozadini $O(T)$, gdje je $T$ duljina rečenice. Združeno učenje bi omogućilo
+bolje označavanje vrste riječi, ali bi očuvalo brzinu na prvom zadatku
+označavanja vrste riječi koja je za sustav Vowpal Wabbit preko nekoliko stotina
+tisuća znački u sekundi \citep{daume14lts}.

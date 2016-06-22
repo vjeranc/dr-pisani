@@ -1,10 +1,8 @@
-Parsiranje ovisnosnog stabla  \citep{chang2015learning}.
-
 Na slici \ref{fig:depparsing} je ilustriran problem parsiranja ovisnosnog
 stabla. Za rečenicu koja ima označene vrste riječi potrebno je pronaći ovisnosno
-stablo. Trivijalan način bio bi naučiti neke težine vezane uz pojedinačne veze i
-pametnom enumeracijom svih mogućih stabala naći ono koje ima najveću
-vjerojatnost za tu rečenicu.
+stablo. Trivijalno rješenje uključivalo bi učenje vjerojatnosti vezanih uz
+pojedinačne veze i pametnom enumeracijom svih mogućih stabala naći ono koje ima
+najveću vjerojatnost za tu rečenicu.
 
 \begin{figure}
 \centering
@@ -41,39 +39,41 @@ dugotrajan stoga je bolje razmotriti metode koje direktno izgrađuju ovisnosna
 stabla.
 
 \begin{itemize}
-  \item Koristeći CYK algoritam za parsiranje vremenska složenost iznos $O(n^5)$
-  gdje je $n$ duljina rečenice.
+  \item Koristeći CYK algoritam za parsiranje vremenska složenost iznosi
+  $O(n^5)$ gdje je $n$ duljina rečenice.
 
   \item Malo drugačija reprezentacija dopušta brži algoritam
   \citep{eisner1999efficient}. Vremensku složenost moguće je smanjiti na
-  $O(n^4)$ i dodatno do $O(n^3)$ pretpostavljajući odvojeni korijen \engl{root}
-  stabla što je česta pretpostavka u parsiranju ovisnosnog stabla.
+  $O(n^4)$ i dodatno do $O(n^3)$, pretpostavljajući odvojeni korijen \engl{root}
+  stabla, što je česta pretpostavka u parsiranju ovisnosnog stabla.
 
   \item Koristeći programiranje s uvjetima \engl{constraint programming} i
-  naivan pristup pokušavajući između svih parova riječi odabrati odgovarajući
-  brid ovisnosnog stabla moguće je složenost spustiti na $O(n^2)$
+  naivan pristup -- pokušavajući između svih parova riječi odabrati odgovarajući
+  brid ovisnosnog stabla -- moguće je složenost spustiti na $O(n^2)$
   \citep{covington2001fundamental}.
 
   \item Najveći skok je otkriće postupka parsiranja linearne $O(n + m)$
   vremenske složenosti čiji je razvoj prisutan u \citep{nivre03efficient,
   zhang2011transition, bohnet2012transition} -- $n$ je duljina rečenice, a $m$
-  veličina stabla. Ideja je inspirirana tranzicijskim parserom \engl{transition
+  veličina stabla (prijašnje metode ovise o veličini stabla, ali ona nije glavni
+  faktor u vremenskoj složenosti). Ideja je inspirirana tranzicijskim parserom
+  \engl{transition
   parser}.\footnote{\url{https://en.wikipedia.org/wiki/Shift-reduce_parser}} U
-  slučaju parsiranja usmjerenog stabla postoje tri odluke koje je potrebno
-  izvršavati -- pomak \engl{shift}, redukcija na lijevo \engl{reduce left} i
-  redukcija na desno \engl{reduce right}. Za svaku odluku koristi se
-  klasifikacijski postupak koji kao značajke koristi trenutno nedovršeno stablo
-  i riječi u rečenici. Ako želimo označiti bridove, onda je potrebno koristiti
-  klasifikacijski postupak kod odluka koje rezultiraju stvaranjem bridova. U
-  okviru učenja pretraživanja implementiran je takav parser
-  \citep{chang2015learning}, a i trenutno najbolji parser koristi identičan
-  pristup \citep{andor2016globally}.
+  slučaju parsiranja stabla s usmjerenim bridovima \engl{directed tree} postoje
+  tri odluke koje je potrebno izvršavati -- pomak \engl{shift}, redukcija na
+  lijevo \engl{reduce left} i redukcija na desno \engl{reduce right}. Za svaku
+  odluku koristi se klasifikacijski postupak koji kao značajke koristi trenutno
+  nedovršeno stablo i riječi u rečenici. Ako želimo označiti bridove, onda je
+  potrebno koristiti klasifikacijski postupak kod odluka koje rezultiraju
+  stvaranjem bridova. U okviru učenja pretraživanja implementiran je takav
+  parser \citep{chang2015learning}, a i trenutno najbolji parser koristi
+  identičan pristup \citep{andor2016globally}.
 
 \end{itemize}
 
 Tranzicijski parser potrebno je pravilno implementirati u okviru učenja
 pretraživanja. Za okvir učenja pretraživanja potrebna je funkcija gubitka i
-referentna polica. Neki od pristupa zahtijevaju da je referentna polica
+referentna polica. Neki od pristupa ne zahtijevaju da je referentna polica
 optimalna, ali prisutnost optimalne police omogućava bržu konvergenciju modela
 na dobro rješenje. Pitanje je koja je sljedeća odluka optimalna ako je prije
 izvršen niz odluka u kojima nisu sve odgovarale primjeru za učenje?
@@ -121,7 +121,8 @@ dovodi do brže konvergencije.
   \end{tabular}
   \caption[Primjer parsiranja ovisnosnog stabla koristeći tranzicijski
   pristup.]{Primjer parsiranja ovisnosnog stabla koristeći tranzicijski pristup.
-  \textbf{K} je korijen \engl{root}. Korištena je rečenica i stablo prisutno na
-  slici \ref{fig:depparsing}.}
+  \textbf{K} je korijen \engl{root}. Korištena je rečenica prisutna na slici
+  \ref{fig:depparsing} i dobiven skup bridova odgovara prikazanom ovisnosnom
+  stablu bez oznaka.}
   \label{fig:shiftreduce}
 \end{figure}

@@ -1,4 +1,4 @@
-Redukcije u strojnom učenju su postupak za transformiranje jednostavnijih
+Redukcije u strojnom učenju postupak su za transformiranje jednostavnijih
 problema u složenije -- kao što je primjer redukcije problema binarne
 klasifikacije u problem višerazredne klasifikacije gdje se može koristiti
 jedan-protiv-svih \engla{one-against-all}{ova} ili jedan-protiv-drugog
@@ -32,9 +32,9 @@ komponente:
   \item analiza ograde.
 \end{inlinelist}
 Preslikavanje hipoteze opisuje postupak kako pretvoriti rješenje za jednostavan
-problem u rješenje za težak. Preslikavanje primjera opisuje postupak kako
+problem u rješenje za složen. Preslikavanje primjera opisuje postupak kako
 stvoriti skupove podataka za jednostavan problem koristeći skupove podataka za
-težak problem. Ograda daje jamstvo učinkovitosti na teškom problemu ako postoji
+složen problem. Ograda daje jamstvo učinkovitosti na složenom problemu ako postoji
 dobra učinkovitost na jednostavnom problemu.
 
 Postoje dvije vrste ograda koje se uzimaju u obzir: ograde na ograničenje
@@ -50,8 +50,8 @@ L(\mathcal{D}, h\ssymbol{1})$.} Zadovoljavajuća je činjenica da ograde imaju
 svojstvo kompozicije \citep{beygelzimer2005error}. Ako je moguće reducirati
 problem $X$ u problem $Y$ s ogradom $f$ i problem $Y$ u problem $Z$ s ogradom
 $g$, onda kompozicija $X \circ Y$ je redukcija s ogradom $f \circ g$. Navedeno
-svojstvo pojednostavljuje matematičku analizu ograda redukcije. Bitna razlika
-između navedenih ograda je ta što ako redukcija s ograničenjem pogreške kreira
+svojstvo pojednostavljuje matematičku analizu ograda redukcije. Bitna je razlika
+između navedenih ograda što ako redukcija s ograničenjem pogreške kreira
 jednostavne probleme koji su šumoviti, onda su bilo kakve tvrdnje o težem
 problemu isprazne.
 
@@ -65,7 +65,7 @@ nekad je moguće zadovoljiti ne samo odabirom načina zaključivanja (\textsc{ov
 \textsc{ova} i dr.) nego i načinom učenja \citep{abe2004iterative,
 beygelzimer2005weighted} -- način učenja je glavni razlog mogućnosti redukcije
 višerazredne klasifikacije u strukturno predviđanje. Konzistentnost je osnovni
-uvjet za dobru redukciju, a na žalost su redukcije s ograničenjem pogreške
+uvjet za dobru redukciju, a redukcije s ograničenjem pogreške su, na žalost,
 uglavnom nekonzistentne. Čitatelja se upućuje na sustavni pregled zadnjih deset
 godina redukcija u strojnom učenju \citep{daume15reductions}.
 

@@ -1,16 +1,16 @@
 Za vrednovanje učinkovitosti koristi se mjera točnosti \engl{accuracy}. Koristi
-mjera bez oznaka \engla{unlabeled attachment score}{uas} za stablo koje nema
+se mjera bez oznaka \engla{unlabeled attachment score}{uas} za stablo koje nema
 označene bridove. Ako su usmjereni bridovi označeni, onda se koristi mjera
-točnost uzimajući oznake u obzir \engla{labeled attachment score}{las}.
+točnost uzimajući oznake u obzir \engla{labeled attachment score}{las}. Za
 usporedbu se koriste rezultati dobiveni u \citep{agic2013three} koji su dobiveni
 MSTParser označivačem. Vrednovanje se vrši na testnom skupu u CoNLL-U
 formatu.\footnote{Datoteka \texttt{hr-ud-test.conllu} prisutna na poveznici
 \url{https://github.com/UniversalDependencies/UD_Croatian}} Rezultati nisu
-usporedivi jer se koristi drugi podatkovni skup za MSTParser rezultate. Taj
-podatkovni skup ima samo 15 oznaka dok korišteni skup ima 32. Zbog toga bi
-problem označavanja UD skupa trebao biti teži. Oba skupa imaju iste rečenice i
-ista ovisnosna stabla bez oznaka, a testni skup prikazan u tablicama je spojeni
-\textsc{SETimes} i \textsc{Wiki}.
+usporedivi na zadatku gdje se označavaju bridovi jer se koristi drugi podatkovni
+skup za MSTParser. Taj podatkovni skup ima samo 15 oznaka dok korišteni skup ima
+32. Zbog toga bi problem označavanja UD skupa trebao biti teži. Oba skupa imaju
+iste rečenice i ista ovisnosna stabla bez oznaka, a testni skup prikazan u
+tablicama je spojen \textsc{SETimes} i \textsc{Wiki}.
 
 Korištene značajke uključuju sufikse i prefikse do najveće duljine od pet
 znakova. To su jedine značajke koje je moguće kontrolirati izvan algoritma.
@@ -18,17 +18,17 @@ Model nakon treniranja koristi više od milijardu zasebnih značajki (svaki
 jedinstveni sufiks i prefiks i interne značajke su u tom broju) dok je npr.~za
 označavanje vrste riječi taj broj oko 40 milijuna. Za pregled ostalih internih
 značajki čitatelja se upućuje na \citep{chang2015learning}. Kako je model
-prevelik koristi se neuronska mreža s jednim skrivenim slojem od pet čvorova, a
-za regularizaciju koristi se postupak prati-regulariziranog-vođu \engla{follow
+prevelik, koristi se neuronska mreža s jednim skrivenim slojem od pet čvorova, a
+za regularizaciju se koristi postupak prati-regulariziranog-vođu \engla{follow
 the regularized leader}{ftrl} koji uključuje L1 i L2 regularizaciju. Prikazani
-rezultati koriste navedenu konfiguraciju inače su rezultati lošiji jer je skup
-za učenje premali s obzirom na broj značajki. \citet{chang2015learning} ne
+rezultati koriste navedenu konfiguraciju inače bi rezultati bili lošiji jer je
+skup za učenje premali s obzirom na broj značajki. \citet{chang2015learning} ne
 koriste sufikse i prefikse jer rade označavanje na jezicima koji imaju dovoljno
 podataka -- značajke su samo cijele riječi i oznaka vrste riječi.
 
 U tablici \ref{table:depparsing} prikazani su rezultati. Kako morfosintaktički
 deskriptori sadrže informaciju o sintaksi očekivano je da njihovo korištenje
-poboljšava učinkovitost oba pristupa. Razlog zašto je \textsc{Vwdep} bolji je
+poboljšava učinkovitost oba pristupa. Razlog zašto je \textsc{Vwdep} bolji jest
 zbog superiornijeg algoritma. \citet{cer2010parsing} dobivaju slične razlike
 između pristupa baziranog na minimalnom razapinjućem stablu i tranzicijskog
 parsera. Prikazani rezultati su optimistični jer pretpostavljaju točne oznake

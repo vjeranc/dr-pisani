@@ -1,14 +1,14 @@
 \citet*{daume15lols} uvode \textit{rollin} i \textit{rollout} terminologiju u
 kontekst metoda učenja pretraživanja. Termin \textit{rollout} originalno je
-naziv za tehniku analize pozicija i poteza u igri \textit{backgammon}.
-\footnote{\url{https://en.wikipedia.org/wiki/Rollout_(backgammon)}} Tehnika je
-takva da se dovoljan broj puta kreće od iste pozicije i odigravajući bacanjem
-kocke bilježiti rezultate. Broj pobjeda i poraza daje procjenu o dobroti
-pozicije. U okviru podržanog učenja tehnika se koristi tako da se iz nekog
-stanja nasumično odabiru sljedeći potezi -- odabir može biti baziran na naučenoj
-polici. Nakon što se izvrši jedan niz poteza i dobije rezultat, cijeli postupak
-se ponavlja počinjanjem iz istog stanja tako da je procjena o dobroti pozicije
-što bolja.
+naziv za tehniku analize pozicija i poteza u igri
+\textit{backgammon}.\footnote{\url{https://en.wikipedia.org/wiki/Rollout_(backgammon)}}
+Cilj je dovoljan broj puta krenuti od iste pozicije i odigravanjem (bacajući
+kocku) dolaziti do kraja igre i bilježiti rezultat svakog ishoda. Broj pobjeda i
+poraza daje procjenu o dobroti pozicije. U okviru podržanog učenja tehnika se
+koristi tako da se iz nekog stanja nasumično odabiru sljedeći potezi -- odabir
+može biti baziran na naučenoj polici. Nakon što se izvrši jedan niz poteza i
+dobije rezultat, cijeli postupak se ponavlja počinjanjem iz istog stanja tako da
+je procjena o dobroti pozicije što bolja.
 
 Termin \textit{rollin} nije bio prisutan kod podržanog učenja jer postoji samo
 naučena polica, ali se podrazumijeva da se do željenog stanja dolazi koristeći
@@ -17,7 +17,7 @@ bi bilo bespotrebno vrednovati odluke iz stanja do kojih se ne može doći. U
 kontekstu metoda učenja pretraživanja \textit{rollin} je postupak dolaska do
 određenog stanja, a kako je na raspolaganju naučena i referentna polica dobro je
 vidjeti koja strategija vodi do brzog i konzistentnog učenja -- hoće li se
-dolaziti do stanja koristeći referentnu ili naučenu policu, a možda za svaki
+dolaziti do budućeg stanja referentnom ili naučenom policom, a možda za svaki
 korak odabrati nekom vjerojatnošću jednu ili drugu. Na slici \ref{fig:rollinout}
 prikazan je postupak korištenja \textit{rollin} i \textit{rollout} polica za
 vrednovanje odluka gdje su odluke predstavljene bridovima, a stanja čvorovima.
@@ -103,12 +103,12 @@ gubitak smanjiti za 1. Primjer preuzet iz \citep[str.~3]{daume15lols}}
 osjetljivog na trošak koji ima dobre ograde žaljenja ne garantira konzistentnu
 naučenu policu za problem strukturnog predviđanja. Ovisno o načinu na koji se
 radi \textit{rollin} i \textit{rollout} i pretpostavci o tome kakva je
-referentna polica moguće je dobiti nekonzistentnu redukciju. Rezultat je
+referentna polica, moguće je dobiti nekonzistentnu redukciju. Rezultat je
 priložen na slici \ref{fig:policyresult}. Ovisno o tome koje se \textit{rollin}
 ili \textit{rollout} police koriste, moguće je dobiti naučenu policu koja nije
 konzistentna (ima veliko strukturno žaljenje) ili policu koja nije lokalno
 optimalna. U slučaju korištenja naučene police za \textit{rollin} i
-\textit{rollout} problem strukturnog predviđanja reducira se na problem
+\textit{rollout}, problem strukturnog predviđanja reducira se na problem
 podržanog učenja koji je puno teži jer se za učenje uopće ne koristi znanje
 referentne police. Jedini dobar pristup kojim se postiže lokalna optimalnost i
 konzistentna redukcija je onaj u kojem se koristi mješovita polica za
@@ -121,12 +121,12 @@ policu i zanimljiv je rezultat da upravo \textit{rollout} s mješovitom policom
 ima garancije da će, ako je u prostoru odluka moguće raditi lokalno uspinjanje
 brdom \engl{local hill climbing}, naučena polica biti konstantno lošija od dane
 referentne police ili će biti bolja od referentne police. Takvu garanciju
-pristupi prije \textsc{LOLS} algoritma nisu imali i problem je postojao kod
+pristupi prije algoritma \textsc{LOLS} nisu imali. Problem je postojao čak i kod
 metode učenja pretraživanja \textsc{Searn}. Navedena karakteristika nije
 pretjerano korisna ako je referentna polica jako loša, u tom slučaju učenje se
 odvija kao da referenta polica ne postoji (informacija koju ona daje je
-beskorisna) i, u slučaju da je lako raditi uspinjanje brdom u prostoru odluka,
-na problemu bi jednako dobro radilo i podržano učenje.
+beskorisna). Ako je lako raditi uspinjanje brdom u prostoru odluka, onda bi
+na problemu jednako dobro radilo i podržano učenje.
 
 % If you use beamer only pass "xcolor=table" option, i.e. \documentclass[xcolor=table]{beamer}
 \begin{figure}

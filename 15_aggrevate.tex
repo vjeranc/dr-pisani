@@ -1,9 +1,9 @@
-\citet{ross2011reduction} predstavljaju metodu učenja pretraživanja
+\citet{ross2014reinforcement} predstavljaju metodu učenja pretraživanja
 \textsc{AggreVaTe} \engla{aggregate values to imitate}{AggreVaTe} koja je
-proširenje algoritma \textsc{DAgger}. Proširenje se svodi na to da uz referentnu
-policu koja se koristi za odabir sljedećih poteza, tijekom učenja je moguće
+proširenje algoritma \textsc{DAgger}. Proširenje se svodi na to da je moguće, uz
+referentnu policu koja se koristi za odabir sljedećih poteza, tijekom učenja
 koristiti i stručnjaka koji želi što manje biti u interakciji s algoritmom
-učenja. Tj.~odabir da odluke u kojoj bi stručnjak trebao vrednovati preostali
+učenja. Tj.~odabir odluke u kojoj bi stručnjak trebao vrednovati preostali
 niz odluka ima određeni trošak. Cilj je istovremeno naučiti dobru policu, ali
 pri učenju što manje koristiti stručnjaka. U stanju u kojem je skupo procijeniti
 gubitak odluke (ili informacija o trošku ne postoji) može se pozvati stručnjak
@@ -23,17 +23,17 @@ trenutka promjene se izračuna količina promjene \textsc{ctr}).
 Drugi primjer je interaktivno označavanje skupa podataka. Pretpostavimo
 prisutnost malog označenog skupa podataka. Cilj je naučiti model koji će imati
 dobru generalizaciju na tom skupu. Za algoritam \textsc{AggreVaTe} odaberemo
-veći neoznačeni skup. Cilj algoritma istovremeno minimizirati broj interakcija
-sa stručnjakom i gubitak na malom označenom skupu podataka (postojao bi i treći
-skup na kojem bi provjerili stvarnu mogućnost generalizacije).
+veći neoznačeni skup. Cilj algoritma je istovremeno minimizirati broj
+interakcija sa stručnjakom i gubitak na malom označenom skupu podataka (postojao
+bi i treći skup na kojem bi provjerili stvarnu mogućnost generalizacije).
 
 Algoritam ima nedostatak u kojem je moguće da stručnjak daje preoptimistične
 procjene nakon izvršene odluke. Autori ilustriraju to primjerom gdje se uči
 vožnja automobila. Stručnjak bi vjerojatno odabrao užu, ali kraću cestu, za
-dolazak do cilja, unatoč postojanju duže, ali sigurnija ceste koja vodi do istog
+dolazak do cilja, unatoč postojanju duže, ali sigurnije ceste koja vodi do istog
 cilja. Ako naučena polica na užoj cesti dođe u stanje za koju ne radi dobro
-predviđanje troška sljedeće odluke, onda je moguće da će vozilo otići niz
-liticu. Navedeni problem može se riješiti tako da se poveća istraživanje
+predviđanje troška sljedeće odluke, onda je moguće da će se vozilo skotrljati
+niz liticu. Navedeni problem može se riješiti tako da se poveća istraživanje
 dolazaka do svih stanja (problem je ekvivalentan pristranosti oznakama).
 
 Ovaj algoritam je interaktivna verzija algoritma \textsc{DAgger} stoga je za

@@ -4,21 +4,21 @@ imenovane entitete. Problem je ilustriran na slici
 \ref{fig:namedentityrecognition}. Rečenicu je potrebno segmentirati na riječi
 koje bi mogle sadržavati imenovane entitete i nakon toga te segmente prepoznati.
 Pristup koji se najčešće uzima je redukcija označavanja niza na prepoznavanje
-imenovanih entiteta. Koristeći oznake za početak imena \textsc{b}, nastavak
-imena \textsc{i} i oznaku da riječ nije ime \textsc{o} problem je jednostavno
-sveden na označavanje niza. Moguće je prvo samo označiti riječi entiteta, a
-kasnije prepoznati koji je tip, ali združeno prepoznavanje u obliku različitih
-oznaka za različite entitete (\textsc{b-per}, \textsc{b-loc} i dr.) ima bolju
-učinkovitost. Treba napomenuti da nastavak imenovanog entiteta uvijek prethodi
-nastavak ili početak imenovanog entiteta. To znači da prije nego što smo
-iskoristili oznaku \textsc{b} ne bi trebalo biti moguće koristiti oznaku
-\textsc{i}. Ova činjenica upućuje da je ipak potrebno prilagoditi označivač ako
-bi htjeli konzistentan izlaz. Drugi pristup je segmentirati i prepoznavati
-entitete istovremeno. \citet{sarawagi2004semi} opisuju prilagođen model
-prepoznavanja entiteta koji, umjesto da za entitet od tri riječi donese tri
-zasebne odluke (\textsc{b}, \textsc{i} i \textsc{i}), istovremeno odlučuje o
-duljini entiteta i njegovoj vrsti. Eksperimentalno potvrđuju da je taj pristup
-bolji od prvog navedenog.
+imenovanih entiteta. Koristeći oznaku \textsc{b} za početak imenovanog entiteta,
+oznaku \textsc{i} za nastavak i oznaku da riječ nije ime \textsc{o}, problem je
+jednostavno sveden na označavanje niza. Moguće je prvo samo označiti riječi
+entiteta, a kasnije prepoznati koji je tip, ali združeno prepoznavanje u obliku
+različitih oznaka za različite entitete (\textsc{b-per}, \textsc{b-loc} i dr.)
+bi trebao imati bolju učinkovitost. Treba napomenuti da nastavak imenovanog
+entiteta uvijek prethodi nastavak ili početak imenovanog entiteta. To znači da
+prije nego što smo iskoristili oznaku \textsc{b} ne bi trebalo biti moguće
+koristiti oznaku \textsc{i}. Ova činjenica upućuje da je ipak potrebno
+prilagoditi označivač ako bi htjeli konzistentan izlaz. Drugi pristup je
+segmentirati i prepoznavati entitete istovremeno. \citet{sarawagi2004semi}
+opisuju prilagođen model prepoznavanja entiteta koji, umjesto da za entitet od
+tri riječi donese tri zasebne odluke (\textsc{b}, \textsc{i} i \textsc{i}),
+istovremeno odlučuje o duljini entiteta i njegovoj vrsti. Eksperimentalno
+potvrđuju da je taj pristup bolji od prvog navedenog.
 
 \begin{figure}[H]
 \centering
@@ -52,14 +52,14 @@ nas interesiraju samo lokacije duljine do tri riječi, onda skup oznaka može bi
 rečenica, onda je potrebno samo preskočiti riječi za koje je već donesena
 odluka.
 
-Sličan pristup kao u algoritmu \ref{alg:namedentityrecognition:seq} mogli bi
-iskoristiti za označavanje vrste riječi s morfosintaktičkim deskriptorom (oznaka
-vrste riječi koja uključuje atribute poput padeža, lica, roda i dr.). Umjesto da
-se cijeli deskriptor smatra potpunom oznakom može se uvjetovati skup mogućih
-oznaka za trenutno donošenje odluke (poziv funkcije \textsc{Predict}). Tako u
-slučaju da je riječ u prvom prolazu označena kao imenica, onda je za drugi
-prolaz potrebno ponuditi samo odluke vezane uz rod imenice (muški, ženski ili
-srednji). Ovakva fleksibilnost čini bilo koji zadatak s dodatnim uvjetima
+Sličan pristup ilustriran u algoritmu \ref{alg:namedentityrecognition:seq} mogli
+bi iskoristiti za označavanje vrste riječi s morfosintaktičkim deskriptorom
+(oznaka vrste riječi koja uključuje atribute poput padeža, lica, roda i dr.).
+Umjesto da se cijeli deskriptor smatra potpunom oznakom može se uvjetovati skup
+mogućih oznaka za trenutno donošenje odluke (poziv funkcije \textsc{Predict}).
+Tako da ako je riječ u prvom prolazu označena kao imenica, onda će za
+drugi prolaz biti ponuđene samo odluke vezane uz rod imenice (muški, ženski
+ili srednji). Ovakva fleksibilnost čini bilo koji zadatak s dodatnim uvjetima
 \engl{constraints} rješivim \citep{chang2012structured}.
 
 \begin{algorithm}[H]

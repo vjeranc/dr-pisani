@@ -1,11 +1,11 @@
-Svi zadaci ostvareni su u okviru učenja pretraživanja koji je implementiran u
+Svi zadaci ostvareni su u okviru učenja pretraživanja koji je prisutan u
 sustavu za strojno učenje zvanom Vowpal Wabbit. U dodacima
 \ref{appendix:postagging}, \ref{appendix:msdattr}, \ref{appendix:msdlayered}
 prikazana je jednostavnost implementacije za zadatke označavanja vrste riječi.
 Korišten je programski jezik \textsc{C++}. Moguće je sve zadatke izvesti u
-jeziku \textsc{Python}, ali ušteda u čitljivosti smanjuje vremensku
+jeziku \textsc{Python}, ali čitljivosti smanjuje vremensku
 učinkovitost. Uzevši u obzir da je okvir učenja pretraživanja poprilično
-modularan tijekom implementacije greške su uglavnom bile prisutne u krivoj
+modularan, tijekom implementacije greške su uglavnom bile prisutne u
 obradi podataka i odabiru hiperparametara. \textit{Hashing trick} dozvoljava
 običan tekstualni format za svaku značajku stoga je ulazna datoteka vrlo
 jednostavna (dodatak \ref{appendix:data}).
@@ -24,14 +24,14 @@ Neki od  bitnijih su
 ponašanja sve napisane skripte rade za označene i neoznačene podatke.
 \textsc{Shuf} dopušta vrlo jednostavno miješanje rečenica i stvaranje drugačijih
 skupova za učenje, testiranje i razvoj. \textsc{Diff} je korišten za računanje
-metrike točnosti. Zbog stupčastog formata podatkovnih skupova \textsc{cut} i
+mjere točnosti. Zbog stupčastog formata podatkovnih skupova \textsc{cut} i
 \textsc{sed} korišteni su za jednostavnu selekciju stupaca, laku izmjenu
 sadržaja i filtriranje komentara. Svi navedeni alati trebali bi biti prisutni na
 standardnoj distribuciji \textsc{Ubuntu}. Čitatelja se upućuje na dokumentaciju
 izvornog koda koja je priložena s elektronskom verzijom rada.
 
 U okviru ovog rada, u sustavu Vowpal Wabbit, implementirana su rješenja za
-sljedeće probleme obrađene u prijašnjim poglavljima:
+sljedeće probleme od kojih su neki obrađeni u prijašnjim poglavljima:
 \begin{itemize}
   \item označavanje vrste riječi,
   \item označavanje vrste riječi s više prolaza,
@@ -48,7 +48,7 @@ Rezultati za svaki pristup prikazani su u nastavku.
 
 \citet{daume14lts} opisuju efikasnu implementaciju okvira učenja pretraživanja.
 Na slici \ref{fig:ltsperf} prikazana je vremenska učinkovitost sustava na
-zadatku označavanja vrste riječi i imenovanim entitetima -- broj označenih
+zadacima označavanja vrste riječi i prepoznavanju imenovanih entiteta -- broj označenih
 znački u tisućama po sekundi. Učinkovitost je prisutna i kod ostvarenih rješenja
 za probleme obrađene u okviru ovog rada.
 
