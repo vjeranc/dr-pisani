@@ -40,17 +40,17 @@ stabla.
 
 \begin{itemize}
   \item Koristeći CYK algoritam za parsiranje vremenska složenost iznosi
-  $O(n^5)$ gdje je $n$ duljina rečenice.
+  $O(n^5)$ gdje je $n$ duljina rečenice;
 
   \item Malo drugačija reprezentacija dopušta brži algoritam
   \citep{eisner1999efficient}. Vremensku složenost moguće je smanjiti na
   $O(n^4)$ i dodatno do $O(n^3)$, pretpostavljajući odvojeni korijen \engl{root}
-  stabla, što je česta pretpostavka u parsiranju ovisnosnog stabla.
+  stabla, što je česta pretpostavka u parsiranju ovisnosnog stabla;
 
   \item Koristeći programiranje s uvjetima \engl{constraint programming} i
   naivan pristup -- pokušavajući između svih parova riječi odabrati odgovarajući
   brid ovisnosnog stabla -- moguće je složenost spustiti na $O(n^2)$
-  \citep{covington2001fundamental}.
+  \citep{covington2001fundamental};
 
   \item Najveći skok je otkriće postupka parsiranja linearne $O(n + m)$
   vremenske složenosti čiji je razvoj prisutan u \citep{nivre03efficient,
