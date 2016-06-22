@@ -49,7 +49,7 @@ stohastička mješavina između polica naučenih u svakom prolazu i referentne
 police -- kod problema označavanja vrste riječi rezultat primjene
 \textit{rollin} police je niz oznaka, a stanje $s_t$ je riječ na mjestu $t$ koja
 još nije označena. Linija \ref{alg:searn:mixture} pokazuje izračun nove police.
-Izračun ne radi interpolaciju naučenih težina nego samo prilagođava
+Izračun ne radi interpolaciju naučenih težina, nego samo prilagođava
 vjerojatnosti odabira do tada naučenih polica. Vjerojatnost je veća za najnoviju
 naučenu policu i polako se smanjuje s brojem prolaza (množi se s $\beta < 1$).
 Za procjenu troška donošenja odluke na stanju $s_t$ (npr.~odluka je određivanje

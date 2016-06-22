@@ -2,9 +2,9 @@ Najpoznatiji vjerojatnosni grafički modeli korišteni za probleme strukturnog
 predviđanja su skriveni Markovljevi modeli \engla{hidden Markov models}{hmm},
 Markovljev model maksimalne entropije \engla{maximum entropy Markov model}{memm}
 i uvjetna slučajna polja \engla{conditional random fields}{crf}. Svaki ima
-svojih prednosti. Učenje skrivenog Markovljevog modela moguće je izvesti jako
+svoje prednosti. Učenje skrivenog Markovljevog modela moguće je izvesti jako
 brzo ako je na raspolaganju velika količina podataka. Prijelazne vjerojatnosti
-$p(x_i | y_i)$ i $p(y_i | y_{i-1})$ moguće je naučiti vrlo brzo samo
+$p(x_i | y_i)$ i $p(y_i | y_{i-1})$ moguće je naučiti vrlo brzo
 prebrojavanjem supojavljivanja. Kod uvjetnih slučajnih polja lakše je opisati
 ulaz značajkama što omogućava bolju generalizaciju iz manje količine podataka,
 ali proces učenja je dugotrajniji. Markovljev model maksimalne entropije je po
@@ -153,7 +153,7 @@ može primjenjivati samo na probleme označavanja nizova.
 problema pristranosti oznakama i eksperimentalno potvrđuju njegovo nepostojanje.
 Problem je poznat i ranije kod primjene neuronskih Markovljevih modela na slične
 probleme \citep{leon1991approche}. Uvjetna slučajna polja nemaju određenu
-funkciju gubitka nego koriste log-gubitak kao aproksimaciju Hammingovog gubitka
+funkciju gubitka, nego koriste log-gubitak kao aproksimaciju Hammingovog gubitka
 preko cijelog strukturiranog izlaza. Zbog toga ih je moguće primijeniti samo na
 probleme čija se funkcija gubitka može dekomponirati po elementima. Modelira se
 uvjetna vjerojatnost prikazana u jednadžbi \ref{eq:crf}.
