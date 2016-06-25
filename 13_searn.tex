@@ -85,11 +85,11 @@ primjer po primjer \engl{online}, onda trošak ovisi o broju primjera i njihovoj
 vektorskoj reprezentaciji). Kod procjene zaključivanja pretpostavilo se da
 klasifikatoru treba $O(M)$ vremena za određivanje točne odluke, a tipična
 složenost klasifikatora u tom slučaju je $O(M \cdot d)$ -- gdje je $d$ duljina
-vektorske reprezentacije. Ako postoji jednostavna dekompozicija funkcije gubitka
-onda složenost učenja može pasti na $O(P N T M k)$. Nije potrebno izvršavati
-\textit{rollout} kad je parcijalan gubitak za trenutnu odluku na raspolaganju
-(npr.~kod označavanja vrste riječi tijekom izvršavanja svih odluka u liniji
-\ref{alg:searn:action} nije potrebno izvršiti \textit{rollout} jer je
+vektorske reprezentacije. Ako postoji jednostavna dekompozicija funkcije
+gubitka, onda složenost učenja može pasti na $O(P N T M k)$. Nije potrebno
+izvršavati \textit{rollout} kad je parcijalan gubitak za trenutnu odluku na
+raspolaganju (npr.~kod označavanja vrste riječi tijekom izvršavanja svih odluka
+u liniji \ref{alg:searn:action} nije potrebno izvršiti \textit{rollout} jer je
 gubitak na pojedinoj odluci 1 ako je netočna ili 0 ako je točna). Postoji niz
 implementacijskih detalja koji mogu, čak i kod nemogućnosti dekompozicije
 funkcije gubitka, smanjiti vremensku složenost učenja na $O(P N T M k)$
