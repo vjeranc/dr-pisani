@@ -88,14 +88,16 @@ vrednovanje odluka gdje su odluke predstavljene bridovima, a stanja čvorovima.
 \end{tikzpicture}
 \caption[Prikaz postupka \textit{rollin} i \textit{rollout} kod učenja
 pretraživanja.]{Prikaz postupka \textit{rollin} i \textit{rollout} kod učenja
-pretraživanja. Kreće se iz stanja $P$ i odabiru se srednja odluka od moguće tri
-dva puta koristeći \textit{rollin} policu. Sivi čvorovi se ne pretražuju. U
-koraku $R$ algoritam učenja odabire sve moguće odluke radeći odstupanje od
-jednog koraka i primjenjuje \textit{rollout} policu za svaku moguću odluku
-dovoljno puta da dođe do kraja. U tom trenutku dobiva se informacija o gubitku i
-ona se koristi kao procjena dobrote svake odluke. Nakon postupka moguće je
-zaključiti da se gornjom odlukom koja odstupa od odabranog srednjeg stanja može
-gubitak smanjiti za 1. Primjer preuzet iz \citep[str.~3]{daume15lols}}
+pretraživanja. Ulaz $x \in \mathcal{X}$ vodi pretragu svojim značajkama. Kreće
+se iz stanja $P$ i dva se puta odabire srednja odluka od moguće tri koristeći
+\textit{rollin} policu. Sivi čvorovi se ne pretražuju. U koraku $R$ algoritam
+učenja odabire sve moguće odluke radeći odstupanje od jednog koraka i
+primjenjuje \textit{rollout} policu za svaku moguću odluku dovoljno puta dok ne
+dođe do kraja. Na kraju pomoću potpunog niza odluka $y_z \in \mathcal{Y}$ dobiva
+se informacija o gubitku i ona se koristi kao procjena dobrote svake odluke.
+Nakon postupka moguće je zaključiti da se gornjom odlukom koja odstupa od
+odabranog srednjeg stanja može gubitak smanjiti za 1. Primjer preuzet iz
+\citep[str.~3]{daume15lols}}
 \label{fig:rollinout}
 \end{figure}
 
