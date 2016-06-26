@@ -54,17 +54,17 @@ mjestu $t$ koja još nije označena. Linija \ref{alg:searn:mixture} pokazuje
 izračun nove police. Izračun ne radi interpolaciju naučenih težina, nego samo
 prilagođava vjerojatnosti odabira do tada naučenih polica. Vjerojatnost je veća
 za najnoviju naučenu policu i polako se smanjuje s brojem prolaza (množi se s
-$\beta < 1$). Za procjenu troška donošenja odluke na stanju $s_t$ (npr.~odluka
-je određivanje vrste riječi na trenutnoj riječi) za svaku moguću odluku koristi
-se \textit{rollout} polica koja je također stohastička mješavina (linija
-\ref{alg:searn:action} i \ref{alg:searn:rolloutpolicy}). Ta se polica primjenjuje
-do kraja strukture koja se obrađuje i na kraju se izračuna dobiveni gubitak
-(linija \ref{alg:searn:rollout}). Nakon prošlog postupka za svaku moguću odluku
-kreira se primjer za učenje osjetljiv na trošak i stavlja se u skup. Nakon što
-je postupak kreiranja primjera gotov nauči se nova polica (linija
-\ref{alg:searn:train}). Višerazredni klasifikator koji se koristi mora biti
-osjetljiv na trošak, a moguće je koristiti bilo koji binarni klasifikator uz
-nekoliko izmjena na primjerima za učenje \citep{zadrozny2003cost,
+$1-\beta$ gdje je $\beta < 1$). Za procjenu troška donošenja odluke na stanju
+$s_t$ (npr.~odluka je određivanje vrste riječi na trenutnoj riječi) za svaku
+moguću odluku koristi se \textit{rollout} polica koja je također stohastička
+mješavina (linija \ref{alg:searn:action} i \ref{alg:searn:rolloutpolicy}). Ta se
+polica primjenjuje do kraja strukture koja se obrađuje i na kraju se izračuna
+dobiveni gubitak (linija \ref{alg:searn:rollout}). Nakon prošlog postupka za
+svaku moguću odluku kreira se primjer za učenje osjetljiv na trošak i stavlja se
+u skup. Nakon što je postupak kreiranja primjera gotov nauči se nova polica
+(linija \ref{alg:searn:train}). Višerazredni klasifikator koji se koristi mora
+biti osjetljiv na trošak, a moguće je koristiti bilo koji binarni klasifikator
+uz nekoliko izmjena na primjerima za učenje \citep{zadrozny2003cost,
 beygelzimer2005weighted, beygelzimer2005error}. Nakon učenja, zaključivanje se
 svodi na korištenje višerazrednog klasifikatora za svako stanje. Ako želimo da
 donošenje trenutne odluke ovisi o prethodnim odlukama i značajkama iz budućih
