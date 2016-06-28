@@ -1,6 +1,7 @@
 # Pisani diplomski rad
 
-Sadrži sve datoteke potrebne za generiranje `.pdf` oblika diplomskog rada.
+Repozitorij sadrži sve datoteke potrebne za generiranje `.pdf` oblika
+diplomskog rada.
 
 Glavna datoteka je `diplomski.tex`.
 
@@ -11,3 +12,18 @@ Za generiranje moguće je koristiti `pdflatex`.
 Moja preporuka je sve datoteke staviti na 
 [sharelatex](https://www.sharelatex.com/). U tom slučaju dovoljno je izabrati
 `diplomski.tex` kao glavnu datoteku i kliknuti na gumb `Compile`.
+
+# Typed form of thesis
+
+Repository contains all files needed for generating `.pdf` of master's thesis.
+
+Main file is `diplomski.tex`.
+
+`pdflatex` can be used for generation.
+
+`preamble.tex` contains the list of all necessary packages.
+
+My recommendation is to upload all of the files to
+[sharelatex](https://www.sharelatex.com/).
+In that case it's enough to select `diplomski.tex` as main file and click the
+`Compile` button.
