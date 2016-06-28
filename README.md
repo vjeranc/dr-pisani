@@ -8,6 +8,6 @@ Za generiranje moguće je koristiti `pdflatex`.
 
 `preamble.tex` sadrži popis svih potrebnih paketa.
 
-Moja preporuka je sve datoteke staviti na [sharelatex](www.sharelatex.com).
-U tom slučaju dovoljno je izabrati `diplomski.tex` kao glavnu datoteku i
-kliknuti na gumb `Compile`.
+Moja preporuka je sve datoteke staviti na 
+[sharelatex](https://www.sharelatex.com/). U tom slučaju dovoljno je izabrati
+`diplomski.tex` kao glavnu datoteku i kliknuti na gumb `Compile`.
