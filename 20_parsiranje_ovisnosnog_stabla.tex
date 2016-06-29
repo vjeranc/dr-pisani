@@ -123,6 +123,10 @@ dovodi do brže konvergencije.
   pristup.]{Primjer parsiranja ovisnosnog stabla koristeći tranzicijski pristup.
   \textbf{K} je korijen \engl{root}. Korištena je rečenica prisutna na slici
   \ref{fig:depparsing} i dobiven skup bridova odgovara prikazanom ovisnosnom
-  stablu bez oznaka.}
+  stablu bez oznaka. Međuspremnik na početku sadrži cijelu rečenicu iz koje se
+  izvlače značke i stavljaju na stog ako je to potrebno. U svakom koraku, prije
+  donošenja jedne od moguće tri odluke, potrebno je izgraditi vektor značajki
+  koji u sebi može sadržavati vektorske reprezentacije riječi na stogu, riječi
+  međuspremnika i prethodnih odluka.}
   \label{fig:shiftreduce}
 \end{figure}
