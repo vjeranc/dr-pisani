@@ -6,7 +6,7 @@
 \section{Običan označivač vrste riječi}
 \label{appendix:postagging}
 \begin{lstlisting}[language=C++,
-                   basicstyle=\tiny\ttfamily]{Name=msd-one-by-one}
+                   basicstyle=\scriptsize\ttfamily]{Name=msd-one-by-one}
 void run(Search::search& sch, vector<example*>& ec)
 { Search::predictor P(sch, (ptag)0);
   for (size_t i=0; i<ec.size(); i++)
@@ -25,7 +25,7 @@ void run(Search::search& sch, vector<example*>& ec)
 \newpage
 \section{MSD slijedni označivač po atributima}\label{appendix:msdattr}
 \begin{lstlisting}[language=C++,
-                   basicstyle=\tiny\ttfamily]{Name=msd-one-by-one}
+                   basicstyle=\scriptsize\ttfamily]{Name=msd-one-by-one}
 void run(Search::search& sch, vector<example*>& ec)
 { Search::predictor P(sch, (ptag)0);
  task_data * data = sch.get_task_data<task_data>();
@@ -70,7 +70,7 @@ void run(Search::search& sch, vector<example*>& ec)
 \newpage
 \section{MSD označivač po slojevima}\label{appendix:msdlayered}
 \begin{lstlisting}[language=C++,
-                   basicstyle=\tiny\ttfamily]{Name=msd-one-by-one}
+                   basicstyle=\scriptsize\ttfamily]{Name=msd-one-by-one}
 void run(Search::search& sch, vector<example*>& ec)
 { Search::predictor P(sch, (ptag)0);
   task_data * data = sch.get_task_data<task_data>();
@@ -127,7 +127,7 @@ void run(Search::search& sch, vector<example*>& ec)
 
 \chapter{Podaci}\label{appendix:data}
 \section{SETimes.HR}
-\begin{lstlisting}[basicstyle=\tiny\ttfamily]
+\begin{lstlisting}[basicstyle=\scriptsize\ttfamily]
 1       Proces  proces  N       Ncmsn   Type=common|Gender=masculine|Number=singular|Case=nominative    0       Elp     6:nsubj UposTag=NOUN|Case=Nom|Gender=Masc|Number=Sing
 2       privatizacije   privatizacija   N       Ncfsg   Type=common|Gender=feminine|Number=singular|Case=genitive       1       Obj     1:nmod  UposTag=NOUN|Case=Gen|Gender=Fem|Number=Sing
 3       na      na      S       Sl      Case=locative   1       Prep    4:case  UposTag=ADP|Case=Loc
@@ -137,7 +137,7 @@ void run(Search::search& sch, vector<example*>& ec)
 \end{lstlisting}
 
 \section{UD}
-\begin{lstlisting}[basicstyle=\tiny\ttfamily]
+\begin{lstlisting}[basicstyle=\scriptsize\ttfamily]
 1       Proces  proces  NOUN    _       Case=Nom|Gender=Masc|Number=Sing        6       nsubj   _       _
 2       privatizacije   privatizacija   NOUN    _       Case=Gen|Gender=Fem|Number=Sing 1       nmod    _       _
 3       na      na      ADP     _       Case=Loc        4       case    _       _
@@ -147,7 +147,7 @@ void run(Search::search& sch, vector<example*>& ec)
 \end{lstlisting}
 
 \section{\textsc{vw} - označavanje vrste riječi}
-\begin{lstlisting}[basicstyle=\tiny\ttfamily]
+\begin{lstlisting}[basicstyle=\scriptsize\ttfamily]
 2 |w Proces proces 0:6 ulllll
 2 |w privatizacije privatizacije 0:13 lllllllllllll
 1 |w na na 0:2 ll
@@ -156,7 +156,7 @@ void run(Search::search& sch, vector<example*>& ec)
 2 |w povećalom povećalom 0:9 lllllllll
 \end{lstlisting}
 \section{\textsc{vw} - ovisnosno parsiranje}
-\begin{lstlisting}[basicstyle=\tiny\ttfamily]
+\begin{lstlisting}[basicstyle=\scriptsize\ttfamily]
 6 1 |w Proces |p NOUN  NOUNCase=Nom NOUNGender=Masc NOUNNumber=Sing
 1 2 |w privatizacije |p NOUN  NOUNCase=Gen NOUNGender=Fem NOUNNumber=Sing
 4 3 |w na |p ADP  ADPCase=Loc
@@ -168,11 +168,14 @@ void run(Search::search& sch, vector<example*>& ec)
 \chapter{Analiza sentimenta}\label{appendix:sentiment}
 \section{Dokument prije rečenica}
 \begin{lstlisting}[language=C++,
-                   basicstyle=\tiny\ttfamily]{Name=msd-one-by-one}
+                   basicstyle=\scriptsize\ttfamily]{Name=msd-one-by-one}
 void run(Search::search& sch, vector<example*>& ec)
 { Search::predictor P(sch, (ptag)0);
   action oracle = ec[0]->l.multi.label;
-  size_t global_prediction = P.set_tag(1 /* global tag */).set_input(*ec[0]).set_oracle(oracle).predict();
+  size_t global_prediction = P.set_tag(1 /* global tag */)
+                              .set_input(*ec[0])
+                              .set_oracle(oracle)
+                              .predict();
   if (sch.output().good())
       sch.output() << sch.pretty_label((uint32_t)global_prediction) << ' ';
   for (size_t i=1; i<ec.size(); i++)
@@ -191,7 +194,7 @@ void run(Search::search& sch, vector<example*>& ec)
 \end{lstlisting}
 \section{Rečenice prije dokumenta}
 \begin{lstlisting}[language=C++,
-                   basicstyle=\tiny\ttfamily]{Name=msd-one-by-one}
+                   basicstyle=\scriptsize\ttfamily]{Name=msd-one-by-one}
 void run(Search::search& sch, vector<example*>& ec)
 { Search::predictor P(sch, (ptag)0);
   for (size_t i=0; i<ec.size()-1; i++)
