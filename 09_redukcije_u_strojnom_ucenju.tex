@@ -3,7 +3,7 @@ problema u složenije -- kao što je primjer redukcije problema binarne
 klasifikacije u problem višerazredne klasifikacije gdje se može koristiti
 jedan-protiv-svih \engla{one-against-all}{ova} ili jedan-protiv-drugog
 \engla{one-against-one}{ovo} pristup korištenja binarnih klasifikatora. Za
-\textsc{ova} pristup potrebno je $n$ klasifikatora gdje je $n$ broj razreda, a
+pristup \textsc{ova} potrebno je $n$ klasifikatora gdje je $n$ broj razreda, a
 \textsc{ovo} zahtijeva $\binom{n}{2}$ klasifikatora. Prethodni ima prednost u
 vremenu ako je broj razreda velik, a potonji ako je vektor gust za \textsc{ova},
 a rijedak za \textsc{ovo} (ako je moguće izbaciti značajke tj.~zadržati samo one
@@ -20,7 +20,7 @@ Pitanje je jesu li redukcije učinkovit pristup za rješavanje složenih problem
 strojnog učenja? Odgovor nije očit jer je teško opisati reprezentaciju na
 trivijalan matematički način. Moguće je da redukcija stvori jednostavne probleme
 koje nije lako riješiti. Trivijalan je primjer trorazredne klasifikacije s
-jednom značajkom i linearnim binarnim klasifikatorom. Kod \textsc{ova} pristupa
+jednom značajkom i linearnim binarnim klasifikatorom. Kod pristupa \textsc{ova}
 nije moguće odvojiti razrede s dovoljno malom pogreškom, a kod \textsc{ovo} je
 to moguće.
 
@@ -60,7 +60,7 @@ uvjerili da će redukcija raditi dobro \citep{beygelzimer2009error,
 daume15reductions}. Neformalno, redukcija koja transformira bilo koje optimalno
 rješenje za osnovni jednostavni problem u optimalno rješenje za složen
 problem je \textit{konzistentna}. Ispostavlja se da su gore navedene jednostavne
-redukcije stablom odluke i \textsc{ova} pristup nekonzistentne. Navedene uvjete
+redukcije stablom odluke i pristup \textsc{ova} nekonzistentne. Navedene uvjete
 nekad je moguće zadovoljiti ne samo odabirom načina zaključivanja (\textsc{ovo},
 \textsc{ova} i dr.) nego i načinom učenja \citep{abe2004iterative,
 beygelzimer2005weighted} -- način učenja je glavni razlog mogućnosti redukcije
@@ -74,6 +74,6 @@ bi postojala informacija o tome zašto su toliko uspješne, nego bi
 pretpostavljali da koristimo heurističke metode. Heurističke metode prisutne su
 u izobilju kod primjena na probleme združenog predviđanja i bez teorije postoji
 samo empirijska potvrda njihove uspješnosti.\footnote{Dobar primjer je razvoj
-metoda za ovisnosno parsiranje koje koriste \textit{beam} pretragu i time
+metoda za ovisnosno parsanje koje koriste \textit{beam} pretragu i time
 eksperimentalno poboljšavaju performanse \citep{zhang2011transition,
 bohnet2012transition}.}

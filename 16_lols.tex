@@ -1,15 +1,15 @@
 Lokalno optimalno učenje pretraživanja \engl{locally optimal learning to search}
 najnoviji je pristup i primjer je redukcije združenog učenja koja je
-konzistentna s najmanje pretpostavki o raspoloživoj polici. Ovu metodu moguće je
+konzistentna s najmanje pretpostavki o raspoloživoj politici. Ovu metodu moguće je
 koristiti za sve zadatke koji su opisani u prethodnim poglavljima.
 
 \cite{daume15lols} daju teoretsku i empirijsku potvrdu te redukcije združenog
 pretraživanja. Izvedeni su pokusi na tri zadatka: višerazredna klasifikacija
 osjetljiva na trošak \engl{cost-sensitive multiclass classification},
-označavanje vrste riječi i ovisnosno parsiranje. Zaključak je da algoritam
-\textsc{LOLS} bez obzira na kvalitetu referentne police može postići rezultate
-koji su usporedivi s optimalnom policom ili, u slučaju da referentna polica nije
-optimalna, bolji od referentne police ako prostor pretraživanja dopušta
+označavanje vrste riječi i ovisnosno parsanje. Zaključak je da algoritam
+\textsc{LOLS} bez obzira na kvalitetu referentne politike može postići rezultate
+koji su usporedivi s optimalnom politikom ili, u slučaju da referentna politika nije
+optimalna, bolji od referentne politike ako prostor pretraživanja dopušta
 uspinjanje brdom.
 
 \begin{algorithm}
@@ -17,22 +17,22 @@ uspinjanje brdom.
 \begin{algorithmic}[1]
 \Require Skup podataka $\{x_i, y_i\}_{i=1}^N$ uzet iz distribucije $\mathcal{D}$
          i $\beta \geq 0$. %% -- parametar mješavine za rollout.
-\State Inicijaliziraj policu $\hat{\pi}_1$.
+\State Inicijaliziraj politiku $\hat{\pi}_1$.
 \ForAll{$i \in \{1,2,\ldots,N\}$}
-  \State Generiraj referentnu policu $\pi^{\text{ref}}$ temeljenu na $y_i$.
+  \State Generiraj referentnu politiku $\pi^{\text{ref}}$ temeljenu na $y_i$.
   \State Inicijaliziraj $\Gamma = \emptyset$. \Comment{skup primjera osjetljivih na trošak.}
   \ForAll{$t \in \{0,1,2,\ldots,T_i-1\}$}
-    \State Primijeniti $t$ puta policu $\pi_{i}^{\text{in}} = \hat{\pi}_i$  i stići do $s_t$. \Comment{Rollin.} \label{alg:lols:learned}
+    \State Primijeniti $t$ puta politiku $\pi_{i}^{\text{in}} = \hat{\pi}_i$  i stići do $s_t$. \Comment{Rollin.} \label{alg:lols:learned}
     \ForAll{$a \in A(s_t)$}
       \State Neka je  $\pi_{i}^{\text{out}} = \pi^{\text{ref}}$ s vjerojatnošću $\beta$, inače $\hat{\pi}_i$.
-      \State Procjeni trošak $c_{i,t}(a)$ koristeći $T-t-1$ puta policu $\pi_{i}^{\text{out}}$. \Comment{Rollout.} \label{alg:lols:mixture}
+      \State Procjeni trošak $c_{i,t}(a)$ koristeći $T-t-1$ puta politiku $\pi_{i}^{\text{out}}$. \Comment{Rollout.} \label{alg:lols:mixture}
     \EndFor
     \State Generiraj vektor značajki $\mathbf{\Phi}(x_i, s_t)$.
     \State Postavi $\Gamma = \Gamma \cup \{\langle c_{i,t}, \mathbf{\Phi}(x_i, s_t) \rangle\}$.
   \EndFor
   \State $\hat{\pi}_{i+1} \gets \textsc{Train}(\hat{\pi}_i, \Gamma)$.
 \EndFor
-\State Vrati usrednjenu policu preko svih $\hat{\pi}_1, \hat{\pi}_2, \ldots, \hat{\pi}_N$.
+\State Vrati usrednjenu politiku preko svih $\hat{\pi}_1, \hat{\pi}_2, \ldots, \hat{\pi}_N$.
 \end{algorithmic}
 \end{algorithm}
 
@@ -43,19 +43,19 @@ algoritmom \ref{alg:searn}. Razlike su sljedeće:
   \item model u slučaju algoritma \textsc{LOLS} moguće je učiti primjer po
   primjer (\textit{online});
 
-  \item \textsc{Searn} zahtijeva čuvanje naučenih polica za svaki prolaz preko
+  \item \textsc{Searn} zahtijeva čuvanje naučenih politika za svaki prolaz preko
   skupa za učenje jer se \emph{rollin} i \emph{rollout} izvršavaju koristeći
-  mješavinu polica, dok \textsc{LOLS} koristi samo trenutno naučenu policu i
-  referentnu policu;
+  mješavinu politika, dok \textsc{LOLS} koristi samo trenutno naučenu politiku i
+  referentnu politiku;
 
-  \item \textsc{Searn} koristi mješovitu policu za \emph{rollin} i
+  \item \textsc{Searn} koristi mješovitu politiku za \emph{rollin} i
   \emph{rollout} te miješanje radi na svakom stanju \engl{mix-per-state}.
   \textsc{LOLS} miješanje radi samo na početku \emph{rollout} postupka
-  \engl{mix-per-roll}, a za \emph{rollin} uvijek koristi naučenu policu;
+  \engl{mix-per-roll}, a za \emph{rollin} uvijek koristi naučenu politiku;
 
-  \item u slučaju algoritma \textsc{LOLS}, nije potrebno da je referentna polica
+  \item u slučaju algoritma \textsc{LOLS}, nije potrebno da je referentna politika
   optimalna, a za \textsc{Searn} je taj uvjet obavezan inače postoji mogućnost
-  da naučena polica neće imati svojstvo generalizacije.
+  da naučena politika neće imati svojstvo generalizacije.
 
 \end{itemize}
 
@@ -65,22 +65,22 @@ ovog rada.
 
 Autori pokazuju i mogućnost interaktivnog učenja koje je slično metodi
 \textsc{AggreVaTe}. Razlika je u tome da za algoritam \textsc{LOLS} nije
-potreban stručnjak (optimalna polica). Jedini uvjet je da funkcija gubitka vraća
+potreban stručnjak (optimalna politika). Jedini uvjet je da funkcija gubitka vraća
 pravu vrijednost s obzirom na odabrane odluke. U kontekstu problema povećanja
 \textsc{ctr} (potpoglavlje \ref{ch:aggrevate}) nije potrebno imati dizajnera.
 Kod problema u kojem želimo interaktivno označavati nove podatke potrebno je
 stručnjaka pitati koliki je gubitak za označen primjer. U tom slučaju stručnjak
 može biti program koji vraća gubitak na malom skupu podataka. Očigledno je
 problem učenja, u slučaju bez stručnjaka, sveden na podržano učenje. Zanimljiv
-primjer je prisutnost referentne police koja radi dobro, a cilj je naučiti novu
-policu koja radi isto ili bolje. Algoritam \textsc{LOLS} vođen starom
-referentnom policom može istu naučiti ili postati bolji. Čitatelja se upućuje na
+primjer je prisutnost referentne politike koja radi dobro, a cilj je naučiti novu
+politiku koja radi isto ili bolje. Algoritam \textsc{LOLS} vođen starom
+referentnom politikom može istu naučiti ili postati bolji. Čitatelja se upućuje na
 \cite{daume15lols} za matematički dokaz.
 
 \textsc{LOLS} se može opisati, koristeći terminologiju uvedenu u potpoglavljima
-\ref{ch:reductions}, \ref{ch:policailocalopt} i \ref{ch:rollinrollout}, kao
-konzistentna (bez obzira kakva je referenta polica) redukcija binarne
+\ref{ch:reductions}, \ref{ch:politikailocalopt} i \ref{ch:rollinrollout}, kao
+konzistentna (bez obzira kakva je referenta politika) redukcija binarne
 klasifikacije na problem združenog predviđanja gdje se za \textit{rollin}
-koristi naučena polica, a za \textit{rollout} stohastički odabir između naučene
-i referentne police (odabir se radi prije \textit{rollout} postupka, a ne na
+koristi naučena politika, a za \textit{rollout} stohastički odabir između naučene
+i referentne politike (odabir se radi prije \textit{rollout} postupka, a ne na
 svakom stanju kao kod algoritma \textsc{Searn}).

@@ -1,10 +1,10 @@
 \citet{ross2014reinforcement} predstavljaju metodu učenja pretraživanja
 \textsc{AggreVaTe} \engla{aggregate values to imitate}{AggreVaTe} koja je
 proširenje algoritma \textsc{DAgger}. Proširenje se svodi na to da je moguće, uz
-referentnu policu koja se koristi za odabir sljedećih poteza, tijekom učenja
+referentnu politiku koja se koristi za odabir sljedećih poteza, tijekom učenja
 koristiti i stručnjaka koji želi što manje biti u interakciji s algoritmom
 učenja. Tj.~odabir odluke u kojoj bi stručnjak trebao vrednovati preostali
-niz odluka ima određeni trošak. Cilj je istovremeno naučiti dobru policu, ali
+niz odluka ima određeni trošak. Cilj je istovremeno naučiti dobru politiku, ali
 pri učenju što manje koristiti stručnjaka. U stanju u kojem je skupo procijeniti
 gubitak odluke (ili informacija o trošku ne postoji) može se pozvati stručnjak
 koji će vratiti točnu odluku i njen trošak.
@@ -31,7 +31,7 @@ Algoritam ima nedostatak u kojem je moguće da stručnjak daje preoptimistične
 procjene nakon izvršene odluke. Autori ilustriraju to primjerom gdje se uči
 vožnja automobila. Stručnjak bi vjerojatno odabrao užu, ali kraću cestu, za
 dolazak do cilja, unatoč postojanju duže, ali sigurnije ceste koja vodi do istog
-cilja. Ako naučena polica na užoj cesti dođe u stanje za koju ne radi dobro
+cilja. Ako naučena politika na užoj cesti dođe u stanje za koju ne radi dobro
 predviđanje troška sljedeće odluke, onda je moguće da će se vozilo skotrljati
 niz liticu. Navedeni problem može se riješiti tako da se poveća istraživanje
 dolazaka do svih stanja (problem je ekvivalentan pristranosti oznakama).

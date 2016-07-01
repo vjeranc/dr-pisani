@@ -118,15 +118,15 @@ zadovoljavajuć.
 
 Korisno je pogledati kako metode učenja pretraživanja razrješavaju problem, ali
 bez potrebe dinamičkog programiranja ili aproksimacije particijske funkcije. Kod
-\textsc{Searn} algoritma (alg.~\ref{alg:searn}) prvi će prolaz rezultirati
+algoritma \textsc{Searn} (alg.~\ref{alg:searn}) prvi će prolaz rezultirati
 težinama kao i kod Markovljevog modela maksimalne entropije. Drugi prolaz preko
-podataka koristit će interpolaciju naučene police i optimalne police što znači
+podataka koristit će interpolaciju naučene politike i optimalne politike što znači
 da postoji mogućnost da se odabere stanje $B$, a onda dodatno nauči razlikovanje
-između $E$ i $F$. Kod \textsc{LOLS} algoritma (alg.~\ref{alg:lols}) uči se
-koristeći naučenu policu od samog početka (početna polica je nasumična) što
+između $E$ i $F$. Kod algoritma \textsc{LOLS} (alg.~\ref{alg:lols}) uči se
+koristeći naučenu politiku od samog početka (početna politika je nasumična) što
 garantira nailaženje na stanja koja ne postoje u podacima za učenje, a na kojima
-onda referentna polica može naučiti razlikovati bolje odluke od lošijih. Ako
-referentna polica nije dovoljno dobra, onda će sama procjena o gubitku tijekom
+onda referentna politika može naučiti razlikovati bolje odluke od lošijih. Ako
+referentna politika nije dovoljno dobra, onda će sama procjena o gubitku tijekom
 \textit{rollout} faze utjecati na razlikovanje između odluka. Detaljnije
 razmatranje postupka učenja prisutno je u potpoglavlju \ref{ch:rollinrollout}.
 

@@ -1,28 +1,28 @@
-Polica \engl{policy} termin je za naučen model nakon postupka učenja ili
+Politika \engl{policy} termin je za naučen model nakon postupka učenja ili
 referentni sustav ili algoritam koji vrši određeno ponašanje. U području
-podržanog učenja jedina polica koja postoji je ona koja je naučena. U području
-učenja oponašanjem \engl{imitation learning} postoji više vrsta polica. Polica
-koja je naučena, referentna polica koju se pokušava oponašati i prava optimalna
-polica (stručnjak). U nastavku slijedi nekoliko definicija koje bi trebale
-raščistiti koncept polica.
+podržanog učenja jedina politika koja postoji je ona koja je naučena. U području
+učenja oponašanjem \engl{imitation learning} postoji više vrsta politika. Politika
+koja je naučena, referentna politika koju se pokušava oponašati i prava optimalna
+politika (stručnjak). U nastavku slijedi nekoliko definicija koje bi trebale
+raščistiti koncept politika.
 
-\begin{definition}[Polica]
+\begin{definition}[Politika]
 
-  Polica $\pi$ je distribucija preko odluka koje su uvjetovane ulazom $x$ i
+  Politika $\pi$ je distribucija preko odluka koje su uvjetovane ulazom $x$ i
   stanjem $s$.
 
 \end{definition}
 
 \noindent
 Skoro svi pristupi u potpoglavlju \ref{ch:metodesearchlearn} zahtijevaju pristup
-efikasnoj i optimalnoj polici $\pi\ssymbol{1}$. Bez takve police učenje može
+efikasnoj i optimalnoj politici $\pi\ssymbol{1}$. Bez takve politike učenje može
 biti dugotrajno ili redukcija nekonzistentna. Potrebno je definirati optimalnu
-policu.
+politiku.
 
-\begin{definition}[Optimalna polica]\label{def:optimalpolicy}
+\begin{definition}[Optimalna politika]\label{def:optimalpolicy}
 
   Za par $(x, \mathbf{c})$ iz definicije \ref{def:jointlearn} i stanje $s =
-  \langle y_1, \ldots, y_t \rangle$ u prostoru pretraživanja optimalna polica
+  \langle y_1, \ldots, y_t \rangle$ u prostoru pretraživanja optimalna politika
   $\pi\ssymbol{1}(x, \mathbf{c}, s)$ je $\argmin_{y_{t+1}} \min_{y_{t+2},
   \ldots, y_T} c_{\langle y_1, \ldots, y_T \rangle}$. Tj.~$\pi\ssymbol{1}$
   odabire odluku (vrijednost za $y_{t+1}$) koja minimizira cjelokupni gubitak
@@ -32,30 +32,30 @@ policu.
 
 \noindent
 Lokalno optimalno učenje pretraživanja -- \textsc{LOLS} (potpoglavlje
-\ref{ch:LOLS}) --  ima garancije o tome kakva će naučena polica biti, a
+\ref{ch:LOLS}) --  ima garancije o tome kakva će naučena politika biti, a
 definicija je dana ispod.
 
-\begin{definition}[Lokalno optimalna polica]
+\begin{definition}[Lokalno optimalna politika]
 
-  Naučena polica je lokalno optimalna ako promjena bilo koje prijašnje odluke ne
-  može poboljšati učinkovitost naučene police.
+  Naučena politika je lokalno optimalna ako promjena bilo koje prijašnje odluke
+  ne može poboljšati učinkovitost naučene politike.
 
 \end{definition}
 
 \noindent
-Potrebno je znati težinu učenja lokalno optimalne police. Možda je problem
+Potrebno je znati težinu učenja lokalno optimalne politike. Možda je problem
 lokalne optimalnosti toliko težak da bilo koji efikasan algoritam učenja neće
-moći naučiti lokalno optimalnu policu u zadovoljavajućoj količini vremena.
+moći naučiti lokalno optimalnu politiku u zadovoljavajućoj količini vremena.
 Teorem koji slijedi govori o tome koliko je ažuriranja potrebno napraviti da bi
-naučena polica bila lokalno optimalna.
+naučena politika bila lokalno optimalna.
 
 \begin{theorem} \label{th:localopt}
 
-  Pretpostavimo dostupnost algoritma koji ažurira police koristeći odstupanje od
-  jednog koraka od trenutne police. Onda postoji problem s prostorom
-  pretraživanja, razred police i funkcija gubitka gdje takav algoritam mora
+  Pretpostavimo dostupnost algoritma koji ažurira politike koristeći odstupanje
+  od jednog koraka od trenutne politike. Onda postoji problem s prostorom
+  pretraživanja, razred politike i funkcija gubitka gdje takav algoritam mora
   napraviti $\Omega(2^T)$ ažuriranja prije nego što nauči lokalno optimalnu
-  policu.
+  politiku.
 
 \end{theorem}
 
@@ -67,20 +67,20 @@ eksponencijalno mnogo primjera. Ilustrativniji je primjer igranja šaha. Mnoštv
 metoda koristi, uz bazu odigranih partija i dobro analiziranih otvaranja,
 pretraživanje tijekom igre za pronalazak najboljih poteza. Pitanje je može li se
 naučiti šah bez potrebe za pretraživanjem tijekom igre? Može li se naučiti
-polica koja će biti lokalno optimalna? Takva polica bi garantirala da nakon
+politika koja će biti lokalno optimalna? Takva politika bi garantirala da nakon
 odigrane partije šaha ne postoji potez koji se može ispraviti i time promijeniti
 rezultat igre. Tj.~ako bi postojao takav potez i ako bi se ažurirala naučena
-polica, onda ona ne bi mogla postati bolja. U slučaju šaha očito je da bi polica
-trebala postati bolja. Ako polica za svako stanje ploče može reći optimalnu
+politika, onda ona ne bi mogla postati bolja. U slučaju šaha očito je da bi politika
+trebala postati bolja. Ako politika za svako stanje ploče može reći optimalnu
 vjerojatnost dobitka partije, onda bi otkriće boljeg poteza tu vjerojatnost
-trebalo promijeniti. Očigledno je da naučena polica za šah može biti lokalno
+trebalo promijeniti. Očigledno je da naučena politika za šah može biti lokalno
 optimalna jedino u slučaju da je odigran ogroman broj partija. Moguće je da šah
 kojeg igraju ljudi nije šah kojeg bi igrala sveznajuća računala. Potezi koje
-rade ljudi imaju određenu distribuciju gdje bi učenje lokalno optimalne police
+rade ljudi imaju određenu distribuciju gdje bi učenje lokalno optimalne politike
 koja igra protiv čovjeka zahtijevalo manje primjera. Dobar stvaran primjer je
 nedavna pobjeda AlphaGo protiv ljudskog igrača u igri Go.
-\citet{silver2016mastering} izgrađuju policu koja za svako stanje vraća
+\citet{silver2016mastering} izgrađuju politiku koja za svako stanje vraća
 vjerojatnost pobjede uzevši u obzir sljedeći potez. S obzirom na broj mogućih
-igara ($\approx 2\cdot10^{170}$), vrlo je teško izgraditi takvu policu čija će
+igara ($\approx 2\cdot10^{170}$), vrlo je teško izgraditi takvu politiku čija će
 procjena vjerojatnosti biti lokalno optimalna te za poboljšanje učinkovitosti
 ipak koriste pretragu tijekom zaključivanja.

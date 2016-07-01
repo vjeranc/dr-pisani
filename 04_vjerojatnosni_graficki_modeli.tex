@@ -137,7 +137,7 @@ koristi se za učenje vektora $\mathbf{w}$ postupkom koji je identičan učenju
 modela maksimalne entropije -- za učenje se može koristiti neka varijanta
 gradijentnog spusta.
 
-Kod zaključivanja koristi se algoritam Viterbi za rješavanje $\argmax$ problema
+Kod zaključivanja koristi se algoritam Viterbi za rješavanje $\argmax$-problema
 (\ref{eq:argmaxproblem}). Zbog ove kombinacije algoritama učenja i zaključivanja
 dolazi do problema pristranosti oznakama (potpoglavlje \ref{ch:labelbias}).
 
@@ -194,7 +194,7 @@ Pronalaženje optimalnog vektora težina $\mathbf{w}$ rješava se na razne nači
 ovisno o problemu neke je moguće ili nemoguće primijeniti, a za više detalja
 čitatelja se upućuje na \citep{wallach2004conditional, sutton2006introduction}.
 Zaključak je da se uvjetna slučajna polja mogu primjenjivati na probleme gdje
-se efikasno može riješiti $\argmax$ problem (\ref{eq:argmaxproblem}) i
+se efikasno može riješiti $\argmax$-problem (\ref{eq:argmaxproblem}) i
 izračunati particijska funkcija $Z(x; \mathbf{w})$. Funkcija gubitka mora imati
 takvu dekompoziciju preko izlaza $y \in \mathcal{Y}$ da je moguće log-gubitkom
 aproksimirati Hammingov gubitak. Unatoč navedenim uvjetima model je našao

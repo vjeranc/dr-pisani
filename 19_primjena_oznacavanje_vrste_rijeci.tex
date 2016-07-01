@@ -39,14 +39,14 @@ prilog, glagol, imenicu, znakove interpunkcije i veznike.}
 
 Algoritam je skoro jednak algoritmu koji provjerava koliko je riječi u rečenici
 točno označeno. Točna oznaka je prisutna za svaku riječ u rečenici i proslijeđena
-funkciji \textsc{Predict} koja vraća odluku trenutne police -- polica može biti
-naučena ili referentna. U slučaju da je polica referentna, funkcija vraća upravo
+funkciji \textsc{Predict} koja vraća odluku trenutne politike -- politika može biti
+naučena ili referentna. U slučaju da je politika referentna, funkcija vraća upravo
 proslijeđenu oznaku. Nakon što je cijeli izlaz predviđen objavljuje se gubitak
 koji je u ovom slučaju broj riječi koje su netočno označene. Algoritam tijekom
-učenja u pozadini mijenja police i pokreće funkciju \textsc{Run} dovoljno puta
-dok ne nauči referentnu policu. Algoritam zaključivanja koristi istu funkciju,
+učenja u pozadini mijenja politike i pokreće funkciju \textsc{Run} dovoljno puta
+dok ne nauči referentnu politiku. Algoritam zaključivanja koristi istu funkciju,
 ali u tom trenutku ne postoji pristup točnoj oznaci tj.~što god ona bila neće se
-uzeti u obzir nego će se zvati naučena polica. Jedna je funkcija dovoljna za
+uzeti u obzir nego će se zvati naučena politika. Jedna je funkcija dovoljna za
 algoritam učenja i zaključivanja, a to je slučaj za sve algoritme u \lts{}
 okviru.
 
@@ -73,7 +73,7 @@ razreda opada s $O(M)$ na $O(\log M)$. To bi automatski ubrzalo označavanje
 vrste riječi i vremenska složenost bi iznosila $O(k T \log M)$.
 
 Vremenska složenost algoritma učenja ovisi o parametrima algoritma. U slučaju
-\textsc{LOLS} algoritma (alg.~\ref{alg:lols}) funkcija \textsc{Run} zove se u
+algoritma \textsc{LOLS} (alg.~\ref{alg:lols}) funkcija \textsc{Run} zove se u
 liniji \ref{alg:lols:learned} i \ref{alg:lols:mixture} što bi upućivalo da je
 složenost učenja jednog primjera $O(T ^ 2 M k)$, ali raznim \textit{trikovima}
 moguće je to smanjiti na $O(T M k)$ -- ako funkcija gubitka ima dekompoziju
@@ -101,17 +101,17 @@ opis čitatelja se upućuje na \citep{daume14lts}.
 Algoritam \ref{alg:postagging:multipass} prikazuje alternativnu implementaciju
 označivača vrste riječi. U ovom slučaju se za jednu rečenicu radi više prolaza u
 nadi da će prvi prolaz otkriti novu informaciju kojom bi sljedeći mogao
-popraviti napravljene pogreške. U tom slučaju odluke koje referentna polica vrši
+popraviti napravljene pogreške. U tom slučaju odluke koje referentna politika vrši
 nisu samo točne oznake nego i odluka promjene oznake dodijeljene u prošlom
 prolazu. Funkcija \textsc{PravaOdluka} vraća za novije prolaze odluku koju
-referentna polica vrši s obzirom na to koja je zapravo točna oznaka. U slučaju
+referentna politika vrši s obzirom na to koja je zapravo točna oznaka. U slučaju
 da je trenutnoj riječi dodijeljena točna oznaka, odluka bi trebala biti takva da
 očuva prijašnju odluku. Zbog više prolaza moguće je uključiti predviđanja koja
 su lijevo i desno od trenutne riječi, a logika je prepuštena funkciji
 \textsc{IzvuciSusjede}. Na samom kraju funkcija \textsc{RekonstruirajIzlaz} iz
 donesenih odluka rekonstruira pravi izlaz i ostatak je identičan originalnom
 algoritmu. Ovakav pristup gotovo je nemoguće napraviti s bilo kojom drugom
-metodom, a da $\argmax$ problem ostane izračunljiv. Sve odluke u navedenoj
+metodom, a da $\argmax$-problem ostane izračunljiv. Sve odluke u navedenoj
 inačici algoritma se i dalje vrše združeno u slučaju da se susjedi dodaju kao
 značajke. Algoritam nije ekvivalentan pokretanju označivača vrste riječi više
 puta gdje drugo i sva sljedeća pokretanja imaju značajku vrste riječi prošlog

@@ -62,7 +62,7 @@ jednostavnije i brže.
 \end{algorithmic}
 \end{algorithm}
 
-Jedini je zahtjev da se $\argmax$ problem na liniji
+Jedini je zahtjev da se $\argmax$-problem na liniji
 \ref{alg:avgstructuredperceptron:argmax} može riješiti efikasno. U većini
 slučajeva rješava se algoritmom Viterbi ili aproksimativno. Postoji pretpostavka
 da je problem koji se rješava lako dekomponirati na Hammingov gubitak što je
@@ -71,12 +71,12 @@ uvjetnih slučajnih polja -- jer se optimizira pogrešna dodjela oznake izlaza (
 ili 1), a ne stupanj dodjele.
 
 Prva pojava pretraživanja u strukturnom predviđanju pojavljuje se u
-\citep{collins2004incremental} gdje je strukturni perceptron korišten za
-ovisnosno parsiranje. Jedina razlika je u tome što se $\argmax$ problem rješava
+\citep{collins2004incremental}, gdje je strukturni perceptron korišten za
+ovisnosno parsanje. Jedina razlika je u tome što se $\argmax$-problem rješava
 koristeći algoritam \textit{beam} pretrage stoga se linija
 \ref{alg:avgstructuredperceptron:argmax} zamjenjuje s $\hat{y}_n \gets
-\textsc{BeamPretraga}(x_n, \mathbf{w}_0)$. Algoritam umjesto da ima samo jedno
-stablo kao hipotezu ima ih više i time pokušava izbjeći pristranost oznakama.
+\textsc{BeamPretraga}(x_n, \mathbf{w}_0)$. Algoritam, umjesto da ima samo jedno
+stablo kao hipotezu, ima ih više i time pokušava izbjeći pristranost oznakama.
 Slična je ideja korištena u trenutno najtočnijem ovisnosnom parseru opisanom u
 \citep{andor2016globally}. Uz \textit{beam} pretragu koriste dvoslojnu neuronsku
 mrežu gdje svaki sloj ima 1024 neurona koju treniraju s globalnom

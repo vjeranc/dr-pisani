@@ -7,24 +7,24 @@ dva zadatka:
   Kart}) i
   \item igranje igre \textit{Super Mario}.
 \end{itemize}
-Kao optimalnu policu za prvi zadatak koriste ljudskog stručnjaka, a za drugi
+Kao optimalnu politiku za prvi zadatak koriste ljudskog stručnjaka, a za drugi
 koriste pretraživanje u širinu \engla{breadth-first-search}{bfs} ograničeno
 dubinom. Algoritam ima nekoliko razlika u usporedbi s algoritmom \textsc{Searn}:
 \begin{itemize}
   \item učenje je moguće raditi primjer po primjer \engl{online};
-  \item za \textit{rollin} koristi se naučena ili referentna polica (na prvom
+  \item za \textit{rollin} koristi se naučena ili referentna politika (na prvom
   primjeru postoji samo referenta), dok \textsc{Searn} koristi mješavinu
   referentne i svih naučenih kroz više prolaza;
   \item kod algoritma \textsc{Searn} mješavina se primijenjuje za svako stanje,
   a kod algoritma \textsc{DAgger} prije svakog primjera odabire se referentna
-  ili naučena polica što rezultira time da se na nekim primjerima uči koristeći
-  samo referentnu policu za \textit{rollin}, a na nekima samo naučenu. Unatoč
+  ili naučena politika što rezultira time da se na nekim primjerima uči koristeći
+  samo referentnu politiku za \textit{rollin}, a na nekima samo naučenu. Unatoč
   tome što je algoritam moguće učiti primjer po primjer preporuča se više
   prolaza kroz skup za učenje;
   \item \textit{rollout} je eliminiran pretpostavljajući da se za svaku odluku
-  može izračunati njen trošak, ali može se koristiti referentna polica ako se
+  može izračunati njen trošak, ali može se koristiti referentna politika ako se
   trošak ne može izračunati (koristeći \textit{rollout} postupak);
-  \item nije potrebno držati više naučenih polica, nego se koristi samo polica
+  \item nije potrebno držati više naučenih politika, nego se koristi samo politika
   naučena do trenutnog primjera.
 \end{itemize}
 Autori su predstavili, uz eksperimentalnu potvrdu superiornosti nad algoritmom
@@ -32,12 +32,12 @@ Autori su predstavili, uz eksperimentalnu potvrdu superiornosti nad algoritmom
 konzistentna.
 
 \textsc{DAgger} se može opisati, koristeći terminologiju uvedenu u potpoglavljima
-\ref{ch:reductions}, \ref{ch:policailocalopt} i \ref{ch:rollinrollout}, kao
-konzistentna (ako je referentna polica optimalna) redukcija binarne
+\ref{ch:reductions}, \ref{ch:politikailocalopt} i \ref{ch:rollinrollout}, kao
+konzistentna (ako je referentna politika optimalna) redukcija binarne
 klasifikacije na problem združenog predviđanja gdje se za \textit{rollin}
-koristi referentna ili naučena polica (odabir se radi stohastički prije
+koristi referentna ili naučena politika (odabir se radi stohastički prije
 \textit{rollin} postupka, a ne na svakom stanju kao kod algoritma
-\textsc{Searn}), a za \textit{rollout} referenta polica (ako postoji
+\textsc{Searn}), a za \textit{rollout} referenta politika (ako postoji
 dekompozicija funkcije gubitka, onda se \textit{rollout} ne bi izvršavao što je
-ekvivalentno kao da se koristi referentna polica kod koje funkcija gubitka ima
+ekvivalentno kao da se koristi referentna politika kod koje funkcija gubitka ima
 dekompozciju na niz odluka).

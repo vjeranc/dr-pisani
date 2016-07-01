@@ -13,7 +13,7 @@ alg.~\ref{alg:postagging:multipass}). Korištene značajke su prefiksi i sufiksi
 do najveće duljine od pet znakova, oblik riječi u kojem su mala i velika slova
 zamijenjeni slovom \textsc{l} i \textsc{u}, dvije susjedne riječi lijevo i desno
 od trenutne i duljina riječi. Donošenje trenutne odluke uvjetuje se s tri prošle
-odluke. U slučaju \textsc{Vwpos-2} algoritma korištena su 3 prolaza. Kod HunPos
+odluke. U slučaju algoritma \textsc{Vwpos-2} korištena su tri prolaza. Kod HunPos
 označivača koristi se Markovljev lanac drugog stupnja, a za rezultate na
 \textsc{Wiki} testnom skupu i dodatni vanjski leksikon.
 
@@ -44,23 +44,23 @@ uvjetovana je svim predthodnim odlukama za dvije prošle riječi i trenutnu rije
 a za \textsc{Vwmsd-2} korištene su sve donesene odluke na prethodne dvije i
 sljedeće dvije riječi.
 
-U oba \textsc{Vwmsd} pristupa se za riječ prvo odabire oznaku vrste riječi
+U oba pristupa \textsc{Vwmsd} za riječ se prvo odabire oznaka vrste riječi
 (jednu od trinaest mogućih). Nakon toga moguće je odabrati prvi atribut, ali ne
 bilo koji nego baš onaj koji odgovara za odabranu oznaku. To smanjuje broj
 binarnih odluka koje je potrebno izvršiti. Pretpostavimo da se označava rečenica
-od deset riječi. Kod \textsc{Vwpos-1} pristupa za svaku se riječ mora pozvati
-645 binarnih odluka (\textsc{ova}) što na kraju rezultira s ukupno 6450 odluka.
+od deset riječi. Kod pristupa \textsc{Vwpos-1} za svaku se riječ mora pozvati
+645 binarnih odluka (\textsc{ova}), što na kraju rezultira s ukupno 6450 odluka.
 Zbog ograničenja mogućih vrijednosti atributa s obzirom na izabranu oznaku vrste
 riječi broj odluka bi trebao biti manji. Kod donošenja odluke na prvoj razini za
 riječ možemo izabrati jednu od 13 mogućih. Nakon toga će se za pojedinu riječ --
-pretpostavljajući da oznaka ima 6 mogućih atributa (zamjenica ima toliko) i da
-svaki atribut ima 7 mogućih vrijednosti (padež kod imenice) -- morati pozvati
+pretpostavljajući da oznaka ima šest mogućih atributa (zamjenica ima toliko) i da
+svaki atribut ima sedam mogućih vrijednosti (padež kod imenice) -- morati pozvati
 $13+6 \cdot 7 = 55$ binarnih odluka, što je ukupno 550 za cijelu rečenicu. U
 usporedbi sa 6450 to je puno manje, a u praksi broj odluka je još manji iz čega
 slijedi da je vrijeme učenja i testiranja puno manje. U tablici
-\ref{table:postagging} prikazana je uspješnost \textsc{Vwmsd} pristupa na
-običnom zadatku označavanja vrste riječi. \textsc{Vwmsd} pristupi imaju bolju
-generalizaciju od \textsc{Vwpos-1} pristupa, ali očito povećani broj značajki
+\ref{table:postagging} prikazana je uspješnost pristupa \textsc{Vwmsd} na
+običnom zadatku označavanja vrste riječi. Pristupi \textsc{Vwmsd} imaju bolju
+generalizaciju od pristupa \textsc{Vwpos-1}, ali očito povećani broj značajki
 (svaka prijašnja odluka kojom uvjetujemo trenutnu je nova značajaka) zahtijeva
 više podataka za bolju generalizaciju. Moguće je da u lancu odluka koji potreban
 za formiranje jednog morfosintaktičkog deskriptora dolazi lakše do grešaka nego

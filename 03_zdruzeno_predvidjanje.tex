@@ -68,18 +68,18 @@ Prihvaćena definicija slijedi.
 \begin{definition}[\citet{daume09searn}] \label{def:jointlearn}
 
   Problem strukturnog predviđanja $\mathcal{D}$ je klasifikacijski problem
-  osjetljiv na trošak \engl{cost-sensitive classification problem} gdje
+  osjetljiv na trošak \engl{cost-sensitive classification problem}, gdje
   $\mathcal{Y}$ ima strukturu, a elementi $y \in \mathcal{Y}$ imaju
   dekompoziciju u vektore varijabilne duljine $(y_1, y_2, \ldots, y_T)$.
   $\mathcal{D}$ je distribucija preko ulaza $x \in \mathcal{X}$ i vektora troška
-  $\mathbf{c}$ gdje je $|\mathbf{c}|$ varijabla u $2^T$.
+  $\mathbf{c}$, gdje je $|\mathbf{c}|$ varijabla u $2^T$.
 
 \end{definition}
 
 \noindent
-Kao primjer se može uzeti parsiranje koristeći funkciju gubitka
+Kao primjer se može uzeti parsanje koristeći funkciju gubitka
 \textunderscript{F}{1}. U tom slučaju je $\mathcal{D}$ distribucija preko $(x,
-\mathbf{c})$ gdje je $x$ ulazni niz i za sva stabla $y$ s $|x|$ listova, $c_y$
+\mathbf{c})$, gdje je $x$ ulazni niz i za sva stabla $y$ s $|x|$ listova, $c_y$
 je funkcija gubitka \textunderscript{F}{1} izlaza $y$ na točnom izlazu
 $y\ssymbol{1}$. Cilj strukturnog predviđanja je pronaći funkciju $h: \mathcal{X}
 \rightarrow \mathcal{Y}$ koja minimizira očekivanu vrijednost funkcije gubitka
@@ -93,7 +93,7 @@ nakon što se izgradi cijelo stablo za pojedinu rečenicu.
 
 \noindent
 Sve metode strukturnog predviđanja u ovom poglavlju, nakon što je naučen vektor
-težina $\mathbf{w}$, trebaju riješiti $\argmax$ problem \ref{eq:argmaxproblem}.
+težina $\mathbf{w}$, trebaju riješiti $\argmax$-problem \ref{eq:argmaxproblem}.
 
 \begin{equation}\label{eq:argmaxproblem}
   y\ssymbol{1} = \argmax_{y \in \mathcal{Y}} \mathbf{w}^\top \mathbf{\Phi}(x, y)
