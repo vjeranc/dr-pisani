@@ -2,7 +2,7 @@ Najpoznatiji vjerojatnosni grafički modeli korišteni za probleme strukturnog
 predviđanja su skriveni Markovljevi modeli \engla{hidden Markov models}{hmm},
 Markovljev model maksimalne entropije \engla{maximum entropy Markov model}{memm}
 i uvjetna slučajna polja \engla{conditional random fields}{crf}. Svaki ima
-svoje prednosti. Učenje skrivenog Markovljevog modela moguće je izvesti jako
+svoje prednosti. Učenje skrivenog Markovljevog modela moguće je izvesti vrlo
 brzo ako je na raspolaganju velika količina podataka. Prijelazne vjerojatnosti
 $p(x_i | y_i)$ i $p(y_i | y_{i-1})$ moguće je naučiti vrlo brzo
 prebrojavanjem supojavljivanja. Kod uvjetnih slučajnih polja lakše je opisati
@@ -88,8 +88,8 @@ obrađen u potpoglavlju \ref{ch:labelbias}.
 \end{center}
 \end{subfigure}
 \caption[Prikaz predložaka grafičkih modela.]{Prikaz predložaka grafičkih
-modela. Sivi čvorovi predstavljaju varijable koje model može generirati, a
-bijeli koje model može samo opaziti.}
+modela. Sivi čvorovi predstavljaju varijable koje model može generirati i
+opaziti, a bijeli koje model može samo opaziti.}
 \label{fig:grafickimodeli}
 \end{figure}
 
@@ -102,12 +102,12 @@ za problem označavanja vrste riječi \citep{halacsy2007hunpos} i prepoznavanja
 imenovanih entiteta \citep{zhou2002named}. Kako u većini slučajeva skup za
 učenje nije dovoljno velik, uobičajeno je dodati neke vanjske informacije --
 poput toga da se imenovani entitet koji nije bio u skupu za učenje pojavljuje u
-nekom rječniku koji je na raspolaganju ili da riječi s određenim prefiksom su
+nekom rječniku koji je na raspolaganju ili da su riječi s određenim prefiksom su
 češće imenice nego glagoli -- onda se algoritam učenja brojanjem supojavljivanja
 zamjenjuje Baum-Welch algoritmom koji ima složenost $O(T M^k)$ -- gdje je $T$
 duljina niza, $M$ broj oznaka koje je moguće predvidjeti za svaki izlaz i izlaz ne
 ovisi o elementima u $y$ koji su $k$ ili više pozicija udaljeni, ali pokazalo se
-da algoritam jako teško dolazi do dobrog lokalnog optimuma te se za navedene
+da algoritam teško dolazi do dobrog lokalnog optimuma te se za navedene
 probleme ipak koriste drugi modeli \citep{johnson2007doesn}.
 
 \subsection{Markovljev model maksimalne entropije}
@@ -117,7 +117,7 @@ izravno su primijenili \citet*{mccallum2000maximum} koristeći model maksimalne
 entropije (logističke regresije) na probleme označavanja nizova. Model je vrlo
 sličan skrivenom Markovljevom modelu \engl{hidden Markov model}, ali je
 fleksibilniji jer omogućava veću slobodu u odabiru značajki opaženih varijabli.
-Modelira se uvjetna vjerojatnost $i$-te oznake izlaza $y_i$ za dane $x$ i
+Modelira se uvjetna vjerojatnost $i$-te oznake $y_i$ izlaza $y$ za dane $x$ i
 prijašnje oznake $y_{i-1}$ prikazana u jednadžbi \ref{eq:maxent1}.
 
 \begin{equation}\label{eq:maxent1}
@@ -137,7 +137,7 @@ koristi se za učenje vektora $\mathbf{w}$ postupkom koji je identičan učenju
 modela maksimalne entropije -- za učenje se može koristiti neka varijanta
 gradijentnog spusta.
 
-Kod zaključivanja koristi se algoritam Viterbi za rješavanje $\argmax$-problema
+Kod zaključivanja koristi se Viterbijev algoritam za rješavanje $\argmax$-problema
 (\ref{eq:argmaxproblem}). Zbog ove kombinacije algoritama učenja i zaključivanja
 dolazi do problema pristranosti oznakama (potpoglavlje \ref{ch:labelbias}).
 
@@ -180,7 +180,7 @@ Algoritam za računanje zbroja $Z(x; \mathbf{w})$ ima složenost $O(T M ^ k)$ i
 gotovo je identičan algoritmu \textit{forward-backward}
 \citep{baum1966statistical}.
 
-Kao što je slučaj kod modela maksimalne entropije težine $\mathbf{w}$ moguće je
+Kao što je slučaj kod modela maksimalne entropije, težine $\mathbf{w}$ moguće je
 regularizirati i koristi se log-posteriorna distribucija preko težina opisana u
 jednadžbi \ref{eq:crflog}.
 
@@ -201,7 +201,7 @@ aproksimirati Hammingov gubitak. Unatoč navedenim uvjetima model je našao
 primjene u označavanju vrste riječi \citep{lafferty2001conditional},
 prepoznavanju imenovanih entiteta \citep{mccallum2003early,
 settles2004biomedical}, sažimanju dokumenata \engl{document summarization}
-\citep{shen2007document}, sentiment analizi \citep{mcdonald2007structured} i dr.
-U svakoj primjeni funkcija gubitka je imala dekompoziciju preko niza odluka i
+\citep{shen2007document}, analizi sentimenta \citep{mcdonald2007structured} i dr.
+U svakoj primjeni funkcija gubitka imala je dekompoziciju preko niza odluka i
 algoritmi su se morali prilagoditi za pravilno zaključivanje ili se odbacivanjem
 točnog zaključivanja koristilo aproksimativno.

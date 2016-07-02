@@ -3,13 +3,13 @@ metode koje rade učenje i predviđanje jednog primjera mjereći ili minimiziraj
 funkciju gubitka združeno. Naziv strukturnog učenja i predviđanja
 \engl{structured learning and prediction} implicira da se funkcija gubitka
 raspoređuje po komponentama strukture i da se na strukturi koja je razbijena u
-svoje dijelove predviđa i uči -- rečenica u \bq{značke}{token?}, slika u piksele
+svoje dijelove predviđa i uči -- rečenica u značke, slika u slikovne elemente
 i dr. \citet{daume14lts} daju jednostavnu definiciju strukturnog predviđanja kao
-donošenja niza združenih odluka računajući vrijednost funkcije gubitka združeno,
-a pretpostavka o tome kakav je ulaz i ima li neku strukturu ne postoji. U
+donošenja niza združenih odluka računajući vrijednost funkcije gubitka združeno.
+Ne postoji pretpostavka o tome kakav je ulaz i ima li specifičnu strukturu. U
 \citep{daume14lts, daume15naacltalk} odustaju od naziva \emph{strukturno
 predviđanje} i počinju probleme kategorizirati pod nazivom združeno predviđanje
-upravo zbog razloga što se vrši združeni niz odluka računajući vrijednost
+upravo zbog toga što se vrši združeni niz odluka računajući vrijednost
 funkcije gubitka združeno preko niza odluka i ona nema nužno dekompoziciju preko
 tog niza (ne može za pojedinačnu odluku znati koliki je njen doprinos u
 globalnom gubitku). Naziv onda može uključivati združene probleme poput
@@ -18,7 +18,7 @@ rečenice, ali i svaki problem zasebno. Kako bi nastavak bio konzistentan sa
 starijom literaturom koristi se staro ime, a definicija \ref{def:jointlearn} je
 zapravo definicija združenog učenja.
 
-U literaturi koja je koristila naziv za problem strukturnog predviđanja problem
+U literaturi koja je koristila naziv za problem strukturnog predviđanja on
 nije jasno bio definiran, nego je objašnjen kroz ilustrativne
 primjere~\citep{mccallum2000maximum, punyakanok2001use, lafferty2001conditional,
 collins2002discriminative, taskar2003maximum, mcallester2004case,
@@ -41,29 +41,29 @@ probleme koje inače ne bi smatrali strukturnim predviđanjima poput binarne
 klasifikacije. To vodi do drugog uvjeta koji počinje uključivati funkciju
 gubitka. Želja je da funkciju gubitka nije moguće dekomponirati preko vektorskih
 reprezentacija, a kako je uvijek moguće osmisliti vektorsku reprezentaciju preko
-koje će funkcija gubitka dekomponirati slijedi uvjet.
+koje će funkcija gubitka dekomponirati slijedi uvjet.\footnote{}
 
 \begin{condition}
 
   U problemu strukturnog predviđanja funkcija gubitka nema dekompoziciju preko
   vektora $v_y$ za $y \in \mathcal{Y}$. Tj., $l(x, y, y\ssymbol{1})$ nije
   invarijantna na identične permutacije $y$ i $y\ssymbol{1}$. Ne postoji
-  mapiranje $y \to v_y$ takvo da funkcija ima dekompoziciju za koju je duljina
-  vektora $|v_y|$ polinomijalne funkcije koja ovisi o broju izlaznih elemenata
-  $|y|$.
+  preslikavanje $y \mapsto v_y$ takvo da funkcija ima dekompoziciju za koju je
+  duljina vektora $|v_y|$ polinomijalna u broju izlaznih elemenata $|y|$.
 
 \end{condition}
 
 \noindent
 Ovaj uvjet uspješno isključuje binarnu klasifikaciju i ostale klasifikacijske
-probleme, ali isključuje i problem označavanja nizova koristeći Hammingovu
-funkciju gubitka (potonja je invarijantna na permutacije). Razlika između ova
-dva uvjeta je taj što u prvom značajke diktiraju strukturu, a u drugom funkcija
-gubitka. Problem koji se rješava je uvijek definiran nekom funkcijom gubitka, a
-ne značajkama stoga \citeauthor{daume06thesis} tvrdi da je problem bolje
-definirati preko funkcije gubitka. Pristupi koji slijede u nastavku ovog
-poglavlja ne mogu riješiti problem ako je drugi uvjet korišten za definiciju.
-Prihvaćena definicija slijedi.
+probleme kao probleme strukturnog predviđanja, ali isključuje i problem
+označavanja nizova koristeći Hammingovu funkciju gubitka (potonja je
+invarijantna na permutacije). Razlika između ova dva uvjeta je taj što u prvom
+značajke diktiraju strukturu, a u drugom funkcija gubitka. Problem koji se
+rješava je uvijek definiran nekom funkcijom gubitka, a ne značajkama, stoga
+\citeauthor{daume06thesis} tvrdi da je problem bolje definirati preko funkcije
+gubitka. Pristupi koji slijede u nastavku ovog poglavlja ne mogu riješiti
+generalan problem strukturnog predviđanja ako je za definiciju korišten drugi
+uvjet. Prihvaćena definicija slijedi.
 
 \begin{definition}[\citet{daume09searn}] \label{def:jointlearn}
 
@@ -78,11 +78,12 @@ Prihvaćena definicija slijedi.
 
 \noindent
 Kao primjer se može uzeti parsanje koristeći funkciju gubitka
-\textunderscript{F}{1}. U tom slučaju je $\mathcal{D}$ distribucija preko $(x,
-\mathbf{c})$, gdje je $x$ ulazni niz i za sva stabla $y$ s $|x|$ listova, $c_y$
-je funkcija gubitka \textunderscript{F}{1} izlaza $y$ na točnom izlazu
-$y\ssymbol{1}$. Cilj strukturnog predviđanja je pronaći funkciju $h: \mathcal{X}
-\rightarrow \mathcal{Y}$ koja minimizira očekivanu vrijednost funkcije gubitka
+\textunderscript{F}{1} (harmonijska sredina između preciznosti i odziva). U tom
+slučaju je $\mathcal{D}$ distribucija preko $(x, \mathbf{c})$, gdje je $x$
+ulazni niz i za sva stabla $y$ s $|x|$ listova, $c_y$ je funkcija gubitka
+\textunderscript{F}{1} izlaza $y$ na točnom izlazu $y\ssymbol{1}$. Cilj
+strukturnog predviđanja je pronaći funkciju $h: \mathcal{X} \rightarrow
+\mathcal{Y}$ koja minimizira očekivanu vrijednost funkcije gubitka
 \ref{eq:funcloss}. Bitno je napomenuti kako funkcija gubitka
 \textunderscript{F}{1} nema dekompoziciju preko zasebnih odluka, nego se računa
 nakon što se izgradi cijelo stablo za pojedinu rečenicu.
@@ -93,21 +94,25 @@ nakon što se izgradi cijelo stablo za pojedinu rečenicu.
 
 \noindent
 Sve metode strukturnog predviđanja u ovom poglavlju, nakon što je naučen vektor
-težina $\mathbf{w}$, trebaju riješiti $\argmax$-problem \ref{eq:argmaxproblem}.
+težina $\mathbf{w}$, za predviđanje strukture trebaju riješiti $\argmax$-problem
+\ref{eq:argmaxproblem}:
 
 \begin{equation}\label{eq:argmaxproblem}
-  y\ssymbol{1} = \argmax_{y \in \mathcal{Y}} \mathbf{w}^\top \mathbf{\Phi}(x, y)
+  y\ssymbol{1} = \argmax_{y \in \mathcal{Y}} \mathbf{w}^\top \mathbf{\Phi}(x, y) \text{ ,}
 \end{equation}
 
 \noindent
-Ovaj problem u generalnom slučaju nije izračunljiv u dovoljno kratkom vremenu.
-Ako postoji prikladan $\mathcal{Y}$ i prikladna funkcija značajki
-$\mathbf{\Phi}$, onda se mogu primijeniti dinamičko programiranje \engl{dynamic
-programming} ili cjelobrojno linearno programiranje \engl{integer linear
-programming} za pronalaženje dobrih rješenja. Recimo, ako $\mathbf{\Phi}$ ima
-takvu dekompoziciju preko vektorske reprezentacije $\mathcal{Y}$ da ni jedna
-značajka ne ovisi o elementima $y$ koji su $k$ ili više pozicija udaljeni, onda
-se može iskoristiti Viterbi algoritam za rješenje \ref{eq:argmaxproblem}, a
-složenost će biti $O(T M^k)$ -- gdje je $M$ broj mogućih oznaka, definiran u
-uvjetu \ref{uvjet1}, a $T$ duljina vektora na koji se dekomponira $y$ iz
-definicije \ref{def:jointlearn}.
+gdje je $\mathbf{w}$ naučen vektor težina i \mathbf{\Phi} funkcija značajki za
+ulaz $x$ i mogući izlaz $y$ (ako se struktura predviđa inkrementalno, onda je
+moguće koristiti elemente $y_i$ iz vektora dekompozicije kao značajke). Ovaj
+problem u generalnom slučaju nije izračunljiv u dovoljno kratkom vremenu. Ako
+postoji prikladan $\mathcal{Y}$ i prikladna funkcija značajki $\mathbf{\Phi}$,
+onda se mogu primijeniti dinamičko programiranje \engl{dynamic programming} ili
+cjelobrojno linearno programiranje \engl{integer linear programming} za
+pronalaženje dobrih rješenja. Recimo, ako $\mathbf{\Phi}$ ima takvu
+dekompoziciju preko vektorske reprezentacije $\mathcal{Y}$ da ni jedna značajka
+ne ovisi o elementima $y$ koji su $k$ ili više pozicija udaljeni, onda se može
+iskoristiti Viterbijev algoritam za rješenje \ref{eq:argmaxproblem}, a složenost će
+biti $O(T M^k)$ -- gdje je $M$ broj mogućih oznaka, definiran u uvjetu
+\ref{uvjet1}, a $T$ duljina vektora na koji se dekomponira $y$ iz definicije
+\ref{def:jointlearn}.
