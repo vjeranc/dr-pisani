@@ -184,7 +184,8 @@ void run(Search::search& sch, vector<example*>& ec)
                          .set_input(*ec[i])
                          .set_oracle(oracle)
                          .set_condition_range((ptag)i, sch.get_history_length(), 'p')
-                         .add_condition(1 /* global tag */, 'a') // adds the global as condition on each sequence element
+                         .add_condition(1 /* global tag */, 'a')
+                         // adds the global as condition on each sequence element
                          .predict();
 
     if (sch.output().good())
@@ -212,8 +213,9 @@ void run(Search::search& sch, vector<example*>& ec)
   size_t global_prediction = P.set_tag(ec.size())
                               .set_input(*ec.back())
                               .set_oracle(oracle)
-                              .set_condition_range(ec.size()-1, ec.size()-1, 'a').predict();
+                              .set_condition_range(ec.size()-1, ec.size()-1, 'a')
                               // conditioning on all previous sequence decisions
+                              .predict();
   if (sch.output().good())
       sch.output() << sch.pretty_label((uint32_t)global_prediction) << ' ';
 }
