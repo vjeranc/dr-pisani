@@ -1,8 +1,14 @@
-Koriste se iste mjere učinkovitosti za vrednovanje modela i iste značajke
-opisane u prijašnjim potpoglavljima. Podatkovni skup za učenje i testiranje je
-za ovaj združeni zadatak samo iz UD, a za potrebe usporedbe testni je skup
-razdvojen u dva skupa koji su identični \textsc{Set} i \textsc{Wiki} u
-rečenicama.
+U nastavku je prisutno vrednovanje združenog zadatka označavanja vrste riječi i
+ovisnosnog parsanja. Model se uči na združenom gubitku, a ne odvojeno po
+zadatku. Prvo se označavaju vrste riječi gdje se odluke propagiraju za zadatak
+ovisnosnog parsanja. Nakon što je parsanje gotovo, gubitak na cijelom zadatku
+propagira se i do odluka za oznake vrste riječi. Moguće je model učiti združeno
+tako da odluka \textsc{Pomak} kod parsera istovremeno daje i vrstu riječi, ali
+to nije izvedeno u ovom radu. Koriste se iste mjere učinkovitosti za vrednovanje
+modela i iste značajke opisane u prijašnjim potpoglavljima. Podatkovni skup za
+učenje i testiranje je za ovaj združeni zadatak samo iz UD, a za potrebe
+usporedbe testni je skup razdvojen u dva skupa koji su identični \textsc{Set} i
+\textsc{Wiki} u rečenicama.
 
 \begin{table}
 \centering
@@ -26,13 +32,13 @@ morfosintaktičkih deskriptora -- UD ne koristi sve atribute koje ima
 \textsc{SETimes.HR}, ali učinkovitost bez tih atributa nije značajno
 promijenjena. Skok je bio očekivan jer postoje neki atributi koje je moguće
 jasnije označiti ako je prisutna informacija o sintaksi. Kako u okviru združenog
-učenja dolazi do propagacije informacije o grešci nakon ovisnosnog parsiranja,
+učenja dolazi do propagacije informacije o grešci nakon ovisnosnog parsanja,
 onda će zadatak označavanja vrste riječi prilagoditi svoje težine tako da
-izvršavanje ovisnosnog parsiranja bude točnije.
+izvršavanje ovisnosnog parsanja bude točnije.
 
 \begin{table}
 \centering
-\caption{Rezultat ovisnosnog parsiranja združenog modela.}
+\caption{Rezultat ovisnosnog parsanja združenog modela.}
 \label{table:depparsing:joint}
 \begin{tabular}{|l|c|c|}
 \hline

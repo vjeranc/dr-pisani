@@ -1,6 +1,6 @@
 U strukturnom učenju moguća je pojava problema pristranosti oznakama \engl{label
 bias}. Pojavljuje se kod modela koji moraju donositi niz odluka, ali zbog
-nedovoljno informacija prijašnje odluke donesene su krivo i uzrokuju akumulaciju
+nedovoljno informacija prijašnje odluke donesene su pogrešno i uzrokuju akumulaciju
 pogreške \engl{compounding error}. Kako model dobro radi na skupu za učenje,
 problem koji se pojavljuje imenovan je zbog pristranosti prema oznakama u skupu
 za učenje. Modeli koji su lokalno normalizirani (Markovljev model maksimalne
@@ -23,7 +23,7 @@ detaljno razrađuju problem pristranosti oznakama. Za noviji pregled o samom
 problemu čitatelja se upućuje na \citep{andor2016globally}.
 
 \citet*{lafferty2001conditional} eksperimentalno potvrđuju pojavu pristranosti,
-a kao jedno od mogućih rješenja navode kolabiranje stanja u jedno. Navode da je
+a kao jedno od mogućih rješenja navode stapanje stanja u jedno. Navode da je
 takva operacija specijalni slučaj \emph{determinizacije} koja, za slučaj
 težinskog stroja s konačnim brojem stanja, nije uvijek moguća, a kad je moguća,
 može dovesti do kombinatorijalne eksplozije. Za problem označavanja vrste riječi
@@ -53,7 +53,7 @@ model maksimalne entropije za ove klasifikacijske probleme, onda bi naučen
 vektor težina bio $\mathbf{w} = \langle 0,0,-1 \rangle$.
 
 Ako se sada izvede pretraga koristeći naučene težine, moguće je da postupak neće
-otkriti točan niz, ali očekivanje je da bar proizvede rezultat koji minimizira
+otkriti točan niz, ali očekivanje je da barem proizvede rezultat koji minimizira
 očekivani gubitak. U prvom koraku potrebno je odabrati $A$ ili $B$. Kako naučene
 težine ne omogućavaju razlikovanje između ta dva izbora -- skalarni produkt
 $\mathbf{w} \cdot \mathbf{\Phi} = 0$ -- potrebno je napraviti nasumičan odabir.
@@ -120,17 +120,17 @@ Korisno je pogledati kako metode učenja pretraživanja razrješavaju problem, a
 bez potrebe dinamičkog programiranja ili aproksimacije particijske funkcije. Kod
 algoritma \textsc{Searn} (alg.~\ref{alg:searn}) prvi će prolaz rezultirati
 težinama kao i kod Markovljevog modela maksimalne entropije. Drugi prolaz preko
-podataka koristit će interpolaciju naučene politike i optimalne politike što znači
+podataka koristit će interpolaciju naučene politike i optimalne politike, što znači
 da postoji mogućnost da se odabere stanje $B$, a onda dodatno nauči razlikovanje
 između $E$ i $F$. Kod algoritma \textsc{LOLS} (alg.~\ref{alg:lols}) uči se
-koristeći naučenu politiku od samog početka (početna politika je nasumična) što
+koristeći naučenu politiku od samog početka (početna politika je nasumična), što
 garantira nailaženje na stanja koja ne postoje u podacima za učenje, a na kojima
 onda referentna politika može naučiti razlikovati bolje odluke od lošijih. Ako
 referentna politika nije dovoljno dobra, onda će sama procjena o gubitku tijekom
 \textit{rollout} faze utjecati na razlikovanje između odluka. Detaljnije
-razmatranje postupka učenja prisutno je u potpoglavlju \ref{ch:rollinrollout}.
+razmatranje postupka učenja izloženo je u potpoglavlju \ref{ch:rollinrollout}.
 
-\citet{andor2016globally} pretpostavljaju da je problem ovisnosnog parsiranja
+\citet{andor2016globally} pretpostavljaju da je problem ovisnosnog parsanja
 vrlo težak upravo zbog pristranosti oznakama. Koristeći sve pristupe za koje se
 pokazalo da dobro rješavaju problem pristranosti oznakama -- velika količina
 značajki, bogata vektorska reprezentacija koju omogućava obična višeslojna mreža

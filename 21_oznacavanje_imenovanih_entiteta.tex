@@ -9,11 +9,11 @@ oznaku \textsc{i} za nastavak i oznaku da riječ nije ime \textsc{o}, problem je
 jednostavno sveden na označavanje niza. Moguće je prvo samo označiti riječi
 entiteta, a kasnije prepoznati koji je tip, ali združeno prepoznavanje u obliku
 različitih oznaka za različite entitete (\textsc{b-per}, \textsc{b-loc} i dr.)
-bi trebao imati bolju učinkovitost. Treba napomenuti da nastavak imenovanog
+bi trebalo imati bolju učinkovitost. Treba napomenuti da nastavak imenovanog
 entiteta uvijek prethodi nastavak ili početak imenovanog entiteta. To znači da
 prije nego što smo iskoristili oznaku \textsc{b} ne bi trebalo biti moguće
 koristiti oznaku \textsc{i}. Ova činjenica upućuje da je ipak potrebno
-prilagoditi označivač ako bi htjeli konzistentan izlaz. Drugi pristup je
+prilagoditi označivač ako bismo htjeli konzistentan izlaz. Drugi pristup je
 segmentirati i prepoznavati entitete istovremeno. \citet{sarawagi2004semi}
 opisuju prilagođen model prepoznavanja entiteta koji, umjesto da za entitet od
 tri riječi donese tri zasebne odluke (\textsc{b}, \textsc{i} i \textsc{i}),
@@ -29,7 +29,7 @@ potvrđuju da je taj pristup bolji od prvog navedenog.
 \end{deptext}
 \end{dependency}
 \caption[Rečenica s označenim imenovanim entitetima.]{Rečenica s označenim
-imenovanim entitetima. Oznake koje počinju sa \textsc{b} se odnose na početak
+imenovanim entitetima. Oznake koje počinju sa \textsc{b} odnose se na početak
 imenovanog entiteta, a one koje počinju s \textsc{i} kao nastavak. Oznaka
 \textsc{o} je za značke koje nisu imenovani entitet. Moguće je imati oznake za
 osobna imena, imena privatnih organizacija, gradova, mjesta i dr.}
@@ -40,7 +40,7 @@ Algoritam \ref{alg:namedentityrecognition:seq} pokazuje kako bi izgledala
 implementacija prepoznavanja imenovanih entiteta koristeći okvir učenja
 pretraživanja. Funkcija \textsc{Predict} prima skup mogućih oznaka za trenutnu
 riječ radi održavanja konzistentnosti. Kao i kod označavanja niza, vremenska
-složenost zaključivanja je $O(T M k)$ što je poboljšanje s obzirom na vremensku
+složenost zaključivanja je $O(T M k)$, što je poboljšanje s obzirom na vremensku
 složenost vjerojatnosnih grafičkih modela. Algoritam
 \ref{alg:namedentityrecognition:segmentation} pokazuje kako bi izgledala
 implementacija modela koji je ekvivalentan modelu opisanom u
@@ -53,11 +53,11 @@ rečenica, onda je potrebno samo preskočiti riječi za koje je već donesena
 odluka.
 
 Sličan pristup ilustriran u algoritmu \ref{alg:namedentityrecognition:seq} mogli
-bi iskoristiti za označavanje vrste riječi s morfosintaktičkim deskriptorom
+bismo iskoristiti za označavanje vrste riječi s morfosintaktičkim deskriptorom
 (oznaka vrste riječi koja uključuje atribute poput padeža, lica, roda i dr.).
-Umjesto da se cijeli deskriptor smatra potpunom oznakom može se uvjetovati skup
+Umjesto da se cijeli deskriptor smatra potpunom oznakom, može se uvjetovati skup
 mogućih oznaka za trenutno donošenje odluke (poziv funkcije \textsc{Predict}).
-Tako da ako je riječ u prvom prolazu označena kao imenica, onda će za
+Tako da, ako je riječ u prvom prolazu označena kao imenica, onda će za
 drugi prolaz biti ponuđene samo odluke vezane uz rod imenice (muški, ženski
 ili srednji). Ovakva fleksibilnost čini bilo koji zadatak s dodatnim uvjetima
 \engl{constraints} rješivim \citep{chang2012structured}.

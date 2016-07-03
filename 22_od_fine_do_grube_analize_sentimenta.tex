@@ -1,3 +1,8 @@
+Analiza sentimenta zadatak je u obradi prirodnoga jezika gdje je potrebno za
+dani dokument (rečenicu ili paragraf) odrediti njegov sentiment. Sentiment je
+vezan uz osjećaje i emocije prisutne u dokumentu, a najčešće se koriste oznake
+za pozitivan, neutralan i negativan sentiment (oznake mogu biti i za emocije
+poput ljutnje, tuge, sreće, ljubavi i dr.).
 \citet{mcdonald2007structured} uvode jednostavan model za analizu sentimenta
 kroz više razina. Koristeći njihov model moguće je za jedan dokument združeno
 označiti njegov sentiment, ali i sentiment paragrafa i rečenica u dokumentu. Ako
@@ -12,7 +17,7 @@ vremenska složenost koraka učenja i predviđanja za model na prvoj slici $O(M^
 T)$, a $O(M\cdot(M^2 P + P M^2 T))=O(M^3 P T)$ za model na drugoj -- gdje je $M$
 broj mogućih oznaka sentimenta, $P$ broj paragrafa u dokumentu i $T$ broj
 rečenica u dokumentu u prvom problemu, a prosječan broj rečenica po paragrafu u
-drugom. Ako bi povećali broj prijašnjih odluka koje utječu na trenutnu,
+drugom. Ako bismo povećali broj prijašnjih odluka koje utječu na trenutnu,
 onda bi eksponent na $M$ rastao. Ako bi se broj mogućih oznaka povećao, onda bi
 se učenje i zaključivanje dodatno usporilo. Već sada se može zaključiti da
 učenje i zaključivanje rađeno u okviru vjerojatnosnih grafičkih modela nije
@@ -38,7 +43,7 @@ na rečenici postaje značajka u odluci za dokument). Prvi pristup koristi se u
 \citep{mcdonald2007structured}. Lakše je odrediti sentiment za cijeli dokument
 nego pojedinu rečenicu. Vremenska složenost ovog pristupa je iznenađujuće dobra.
 Zaključivanje ima vremensku složenost $O(M (P + T))$ za model na slici
-\ref{fig:sentimentmodels:docparsent}. Ogromna razlika u usporedbi s
+\ref{fig:sentimentmodels:docparsent}, što je ogromna razlika u usporedbi s
 vjerojatnosnim grafičkim modelom.
 
 \begin{algorithm}
@@ -60,9 +65,9 @@ vjerojatnosnim grafičkim modelom.
 \end{algorithm}
 
 Ovaj pristup lako je primijeniti i na hijerarhijsko označavanje kategorije
-dokumenata. Prednost pristupa je taj što metoda učenja pretraživanja ima
+dokumenata. Prednost pristupa je ta što metoda učenja pretraživanja ima
 garancije da akumulirana pogreška ne ovisi o duljini niza odluka, a uvjetovanje
-na prošle odluke se ostvaruje samo dodavanjem dodatnih značajki. Vremenska
+na prošle odluke ostvaruje se samo dodavanjem dodatnih značajki. Vremenska
 složenost je dodatna prednost.
 
 \begin{figure}
@@ -181,12 +186,12 @@ složenost je dodatna prednost.
 \label{fig:sentimentmodels:docparsent}
 \end{subfigure}
 
-\caption[Prikaz hijerarhijskih sentiment modela.]{Prikaz hijerarhijskih
-sentiment modela. Sivi čvorovi predstavljaju varijable koje model može
-generirati, a bijeli koje model može samo opaziti. Prikazana su dva modela gdje
-su ulazi modelirani značajkama, a izlazi su kategoričke varijable sentimenta
-(pozitivno, negativno i neutralno). Varijable dokumenta $y^{\text{d}}$,
-paragrafa $y^{\text{p}}$ i rečenice $y^{\text{r}}$ predstavljaju sentiment, a
-$x_i$ ulaznu rečenicu.}
+\caption[Prikaz hijerarhijskih modela za analizu sentimenta.]{Prikaz
+hijerarhijskih modela za analizu sentimenta. Sivi čvorovi predstavljaju
+varijable koje model može generirati, a bijeli koje model može samo opaziti.
+Prikazana su dva modela gdje su ulazi modelirani značajkama, a izlazi su
+kategoričke varijable sentimenta (pozitivno, negativno i neutralno). Varijable
+dokumenta $y^{\text{d}}$, paragrafa $y^{\text{p}}$ i rečenice $y^{\text{r}}$
+predstavljaju sentiment, a $x_i$ ulaznu rečenicu.}
 \label{fig:sentimentmodels}
 \end{figure}

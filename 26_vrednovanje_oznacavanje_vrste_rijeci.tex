@@ -1,5 +1,5 @@
 Za vrednovanje učinkovitosti koristi se mjera točnosti \engl{accuracy}. Za
-usporedbu se koriste rezultati dobiveni u \citep{agic2013lemmatization} koji su
+usporedbu se koriste rezultati dobiveni u \citep{agic2013lemmatization}, koji su
 dobiveni HunPos označivačem. Vrednovanje se vrši na dva testna skupa
 (\textsc{SETimes.HR} i \textsc{Wiki}).\footnote{Datoteke
 \texttt{set.hr.test.conll} i \texttt{wiki.hr.test.conll} prisutne na poveznici
@@ -19,16 +19,17 @@ označivača koristi se Markovljev lanac drugog stupnja, a za rezultate na
 
 \begin{table}
 \centering
-\caption[Rezultat označavanja vrste riječi.]{Rezultat označavanja vrste riječi.}
+\caption[Rezultat označavanja vrste riječi.]{Rezultat označavanja vrste riječi.
+Koristi se mjera točnosti.}
 \label{table:postagging}
 \begin{tabular}{|l|c|c|}
 \hline
-Metoda             & \textsc{Set}   & \textsc{Wiki}  \\ \hline \hline
-HunPos             & 97.04          & 94.62          \\
-\textsc{Vwpos-1}   & 98.18          & 96.20          \\
-\textsc{Vwpos-2}   & \textbf{98.71} & 96.24          \\
-\textsc{Vwmsd} 1   & 98.31          & \textbf{96.57} \\
-\textsc{Vwmsd} 2   & 98.23          & 96.41          \\ \hline
+Metoda                               & \textsc{Set}   & \textsc{Wiki}  \\ \hline \hline
+HunPos \citep{agic2013lemmatization} & 97.04          & 94.62          \\
+\textsc{Vwpos-1}                     & 98.18          & 96.20          \\
+\textsc{Vwpos-2}                     & \textbf{98.71} & 96.24          \\
+\textsc{Vwmsd} 1                     & 98.31          & \textbf{96.57} \\
+\textsc{Vwmsd} 2                     & 98.23          & 96.41          \\ \hline
 \end{tabular}
 \end{table}
 
@@ -81,11 +82,11 @@ deskriptore. Prikazana je točnost modela na dva testna skupa.}
 \label{table:msdtagging}
 \begin{tabular}{|l|c|c|}
 \hline
-Metoda             & \textsc{Set}   & \textsc{Wiki}  \\ \hline \hline
-HunPos             & 87.11          & 80.83          \\
-\textsc{Vwpos-1}   & 89.94          & 83.27          \\
-\textsc{Vwpos-2}   & \textbf{90.22} & \textbf{84.13} \\
-\textsc{Vwmsd-1}   & 89.19          & 82.22          \\
-\textsc{Vwmsd-2}   & 89.06          & 81.90          \\ \hline
+Metoda                               & \textsc{Set}   & \textsc{Wiki}  \\ \hline \hline
+HunPos \citep{agic2013lemmatization} & 87.11          & 80.83          \\
+\textsc{Vwpos-1}                     & 89.94          & 83.27          \\
+\textsc{Vwpos-2}                     & \textbf{90.22} & \textbf{84.13} \\
+\textsc{Vwmsd-1}                     & 89.19          & 82.22          \\
+\textsc{Vwmsd-2}                     & 89.06          & 81.90          \\ \hline
 \end{tabular}
 \end{table}

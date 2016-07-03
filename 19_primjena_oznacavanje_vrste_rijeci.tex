@@ -3,9 +3,9 @@ jezika i shodno tome ima vrlo jednostavnu implementaciju u okviru učenja
 pretraživanja. Problem je ilustriran na slici \ref{fig:postagging}. Za rečenicu
 u nekom jeziku (na slici je hrvatski) potrebno je svakoj znački dodijeliti
 oznaku vrste riječi kao što su imenica, glagol, pridjev i dr. Srednji redak
-pokazuje oznake koje daju više detalja o samoj riječi kao što su rod i množina
-imenice, glagolsko vrijeme i dr. Algoritam \ref{alg:postagging} pokazuje
-jednostavnost zadatka u okviru učenja pretraživanja.
+pokazuje oznake koje daju više detalja o gramatičkim značajkama riječi kao što
+su rod i množina imenice, glagolsko vrijeme i dr. Algoritam \ref{alg:postagging}
+pokazuje jednostavnost zadatka u okviru učenja pretraživanja.
 
 \begin{figure}
 \centering
@@ -39,7 +39,7 @@ prilog, glagol, imenicu, znakove interpunkcije i veznike.}
 
 Algoritam je skoro jednak algoritmu koji provjerava koliko je riječi u rečenici
 točno označeno. Točna oznaka je prisutna za svaku riječ u rečenici i proslijeđena
-funkciji \textsc{Predict} koja vraća odluku trenutne politike -- politika može biti
+funkciji \textsc{Predict}, koja vraća odluku trenutne politike -- politika može biti
 naučena ili referentna. U slučaju da je politika referentna, funkcija vraća upravo
 proslijeđenu oznaku. Nakon što je cijeli izlaz predviđen objavljuje se gubitak
 koji je u ovom slučaju broj riječi koje su netočno označene. Algoritam tijekom
@@ -52,7 +52,7 @@ okviru.
 
 Zanimljivo je usporediti vremenske složenosti uobičajenih pristupa s ovim. Svi
 pristupi opisani u poglavlju \ref{ch:pregled} za zaključivanje koriste
-Viterbijev algoritam čija je vremenska složenost $O(T M ^ k)$ gdje je $T$
+Viterbijev algoritam, čija je vremenska složenost $O(T M ^ k)$, gdje je $T$
 duljina rečenice, $M$ broj mogućih oznaka i oznaka ne ovisi o prijašnjim
 oznakama koje su $k$ ili više pozicija udaljene. U \lts{} okviru složenost
 zaključivanja je $O(T M k)$ -- ovdje je $k$ broj prijašnjih odluka kojima
@@ -74,8 +74,8 @@ razreda opada s $O(M)$ na $O(\log M)$. To bi automatski ubrzalo označavanje
 vrste riječi i vremenska složenost bi iznosila $O(k T \log M)$.
 
 Vremenska složenost algoritma učenja ovisi o parametrima algoritma. U slučaju
-algoritma \textsc{LOLS} (alg.~\ref{alg:lols}) funkcija \textsc{Run} zove se u
-liniji \ref{alg:lols:learned} i \ref{alg:lols:mixture} što bi upućivalo da je
+algoritma \textsc{LOLS} (alg.~\ref{alg:lols}), funkcija \textsc{Run} zove se u
+liniji \ref{alg:lols:learned} i \ref{alg:lols:mixture}, što bi upućivalo da je
 složenost učenja jednog primjera $O(T ^ 2 M k)$, ali raznim \textit{trikovima}
 moguće je to smanjiti na $O(T M k)$ -- ako funkcija gubitka ima dekompoziju
 preko niza odluka, onda \textit{rollout} nije potrebno izvršavati. Za detaljniji
@@ -100,7 +100,7 @@ opis čitatelja se upućuje na \citep{daume14lts}.
 \end{algorithm}
 
 Algoritam \ref{alg:postagging:multipass} prikazuje alternativnu implementaciju
-označivača vrste riječi. U ovom slučaju se za jednu rečenicu radi više prolaza u
+označivača vrste riječi. U ovom slučaju za jednu se rečenicu radi više prolaza u
 nadi da će prvi prolaz otkriti novu informaciju kojom bi sljedeći mogao
 popraviti napravljene pogreške. U tom slučaju odluke koje referentna politika vrši
 nisu samo točne oznake nego i odluka promjene oznake dodijeljene u prošlom
@@ -111,9 +111,9 @@ očuva prijašnju odluku. Zbog više prolaza moguće je uključiti predviđanja 
 su lijevo i desno od trenutne riječi, a logika je prepuštena funkciji
 \textsc{IzvuciSusjede}. Na samom kraju funkcija \textsc{RekonstruirajIzlaz} iz
 donesenih odluka rekonstruira pravi izlaz i ostatak je identičan originalnom
-algoritmu. Ovakav pristup gotovo je nemoguće napraviti s bilo kojom drugom
+algoritmu. Ovakav pristup gotovo je nemoguće napraviti bilo kojom drugom
 metodom, a da $\argmax$-problem ostane izračunljiv. Sve odluke u navedenoj
-inačici algoritma se i dalje vrše združeno u slučaju da se susjedi dodaju kao
+inačici algoritma i dalje se vrše združeno u slučaju da se susjedi dodaju kao
 značajke. Algoritam nije ekvivalentan pokretanju označivača vrste riječi više
 puta gdje drugo i sva sljedeća pokretanja imaju značajku vrste riječi prošlog
 prolaza.

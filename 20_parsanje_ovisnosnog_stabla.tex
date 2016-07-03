@@ -1,4 +1,4 @@
-Na slici \ref{fig:depparsing} je ilustriran problem parsiranja ovisnosnog
+Na slici \ref{fig:depparsing} ilustriran je problem parsanja ovisnosnog
 stabla. Za rečenicu koja ima označene vrste riječi potrebno je pronaći ovisnosno
 stablo. Trivijalno rješenje uključivalo bi učenje vjerojatnosti vezanih uz
 pojedinačne veze i pametnom enumeracijom svih mogućih stabala naći ono koje ima
@@ -32,34 +32,34 @@ ovisnosnog stabla označavaju veze o subjektu glagola ili objektu glagola
 \label{fig:depparsing}
 \end{figure}
 
-\citet{cer2010parsing} daju pregled metoda parsiranja ovisnosnih stabala. Prvi
-način je iskoristiti postojeće \bq{constituency}{?} parsere i iz njih dobivati
-ovisnosna stabla, ali sam postupak dobivanja \bq{constituency}{?} stabla je
+\citet{cer2010parsing} daju pregled metoda parsanja ovisnosnih stabala. Prvi
+način je iskoristiti postojeće konstituentske parsere i iz njih dobivati
+ovisnosna stabla, ali sam postupak dobivanja konstituentskog stabla je
 dugotrajan stoga je bolje razmotriti metode koje direktno izgrađuju ovisnosna
 stabla.
 
 \begin{itemize}
-  \item Koristeći CYK algoritam za parsanje vremenska složenost iznosi
-  $O(n^5)$ gdje je $n$ duljina rečenice;
+  \item Koristeći algoritam CYK za parsanje vremenska složenost iznosi
+  $O(n^5)$, gdje je $n$ duljina rečenice;
 
   \item Malo drugačija reprezentacija dopušta brži algoritam
   \citep{eisner1999efficient}. Vremensku složenost moguće je smanjiti na
   $O(n^4)$ i dodatno do $O(n^3)$, pretpostavljajući odvojeni korijen \engl{root}
-  stabla, što je česta pretpostavka u parsiranju ovisnosnog stabla;
+  stabla, što je česta pretpostavka u parsanju ovisnosnog stabla;
 
   \item Koristeći programiranje s uvjetima \engl{constraint programming} i
   naivan pristup -- pokušavajući između svih parova riječi odabrati odgovarajući
   brid ovisnosnog stabla -- moguće je složenost spustiti na $O(n^2)$
   \citep{covington2001fundamental};
 
-  \item Najveći skok je otkriće postupka parsiranja linearne $O(n + m)$
+  \item Najveći skok je otkriće postupka parsanja linearne $O(n + m)$
   vremenske složenosti čiji je razvoj opisan u \citep{nivre03efficient,
   zhang2011transition, bohnet2012transition} -- $n$ je duljina rečenice, a $m$
   veličina stabla (prijašnje metode ovise o veličini stabla, ali ona nije glavni
   faktor u vremenskoj složenosti). Ideja je inspirirana tranzicijskim parserom
   \engl{transition
   parser}.\footnote{\url{https://en.wikipedia.org/wiki/Shift-reduce_parser}} U
-  slučaju parsiranja stabla s usmjerenim bridovima \engl{directed tree} postoje
+  slučaju parsanja stabla s usmjerenim bridovima \engl{directed tree} postoje
   tri odluke koje je potrebno izvršavati -- pomak \engl{shift}, redukcija na
   lijevo \engl{reduce left} i redukcija na desno \engl{reduce right}. Za svaku
   odluku koristi se klasifikacijski postupak koji kao značajke koristi trenutno
@@ -81,7 +81,7 @@ izvršen niz odluka u kojima nisu sve odgovarale primjeru za učenje?
 obzirom na neke prethodne pogreške u odlučivanju. Referentna politika ima
 mogućnost prilagodbe i vrlo mali vremenski trošak. \citet{andor2016globally}
 argumentiraju da prisutnost optimalne politike ne rješava jaku prisutnost problema
-pristranosti oznakama kod parsiranja. Slika \ref{fig:shiftreduce} prikazuje kako
+pristranosti oznakama kod parsanja. Slika \ref{fig:shiftreduce} prikazuje kako
 tranzicijski parser izgrađuje stablo. Moguće je istovremeno donositi odluke o
 vrsti riječi i o vrsti usmjerenog brida za poboljšanje učinkovitosti modela. U
 tom slučaju bi operacija \textsc{Pomak} mogla imati pridruženu oznaku vrste
@@ -119,8 +119,8 @@ dovodi do brže konvergencije.
   \textsc{RedukcijaDesno}   & {[}\textbf{K} gore$_1$ {]}                          & {[}{]}                                                                      & \{(gore$_1$, Gore), \ldots, (gore$_1$, .~)\}  \\
   \textsc{RedukcijaDesno}   & {[}\textbf{K} {]}                                   & {[}{]}                                                                      & \{(gore$_1$, Gore), \ldots, (\textbf{K}, gore$_1$)\}  \\
   \end{tabular}
-  \caption[Primjer parsiranja ovisnosnog stabla koristeći tranzicijski
-  pristup.]{Primjer parsiranja ovisnosnog stabla koristeći tranzicijski pristup.
+  \caption[Primjer parsanja ovisnosnog stabla koristeći tranzicijski
+  pristup.]{Primjer parsanja ovisnosnog stabla koristeći tranzicijski pristup.
   \textbf{K} je korijen \engl{root}. Korištena je rečenica prisutna na slici
   \ref{fig:depparsing} i dobiven skup bridova odgovara prikazanom ovisnosnom
   stablu bez oznaka. Međuspremnik na početku sadrži cijelu rečenicu iz koje se

@@ -2,9 +2,8 @@ Za vrednovanje učinkovitosti koristi se mjera točnosti \engl{accuracy}. Korist
 se mjera bez oznaka \engla{unlabeled attachment score}{uas} za stablo koje nema
 označene bridove. Ako su usmjereni bridovi označeni, onda se koristi mjera
 točnost uzimajući oznake u obzir \engla{labeled attachment score}{las}. Za
-usporedbu se koriste rezultati dobiveni u \citep{agic2013three} koji su dobiveni
-MSTParser označivačem. Vrednovanje se vrši na testnom skupu u CoNLL-U
-formatu.\footnote{Datoteka \texttt{hr-ud-test.conllu} prisutna na poveznici
+usporedbu se koriste rezultati dobiveni u \citep{agic2013three}, koji su dobiveni
+označivačem MSTParser. Vrednovanje se vrši na testnom skupu u formatu CoNLL-U.\footnote{Datoteka \texttt{hr-ud-test.conllu} raspoloživa na poveznici
 \url{https://github.com/UniversalDependencies/UD_Croatian}} Rezultati nisu
 usporedivi na zadatku gdje se označavaju bridovi jer se koristi drugi podatkovni
 skup za MSTParser. Taj podatkovni skup ima samo 15 oznaka dok korišteni skup ima
@@ -15,13 +14,13 @@ tablicama je spojen \textsc{SETimes} i \textsc{Wiki}.
 Korištene značajke uključuju sufikse i prefikse do najveće duljine od pet
 znakova. To su jedine značajke koje je moguće kontrolirati izvan algoritma.
 Model nakon treniranja koristi više od milijardu zasebnih značajki (svaki
-jedinstveni sufiks i prefiks i interne značajke su u tom broju) dok je npr.~za
+jedinstveni sufiks i prefiks i interne značajke su u tom broju), dok je npr.~za
 označavanje vrste riječi taj broj oko 40 milijuna. Za pregled ostalih internih
 značajki čitatelja se upućuje na \citep{chang2015learning}. Kako je model
 prevelik, koristi se neuronska mreža s jednim skrivenim slojem od pet čvorova, a
 za regularizaciju se koristi postupak prati-regulariziranog-vođu \engla{follow
-the regularized leader}{ftrl} koji uključuje L1 i L2 regularizaciju. Prikazani
-rezultati koriste navedenu konfiguraciju inače bi rezultati bili lošiji jer je
+the regularized leader}{ftrl}, koji uključuje L1 i L2 regularizaciju. Prikazani
+rezultati koriste navedenu konfiguraciju, inače bi rezultati bili lošiji jer je
 skup za učenje premali s obzirom na broj značajki. \citet{chang2015learning} ne
 koriste sufikse i prefikse jer rade označavanje na jezicima koji imaju dovoljno
 podataka -- značajke su samo cijele riječi i oznaka vrste riječi.
@@ -38,14 +37,14 @@ oznake.
 
 \begin{table}
 \centering
-\caption{Rezultat ovisnosnog parsiranja.}
+\caption{Rezultat ovisnosnog parsanja.}
 \label{table:depparsing}
 \begin{tabular}{|l|c|c|}
 \hline
-Metoda               & \textsc{las}   & \textsc{uas}    \\ \hline \hline
-MSTParser      (POS) & 74.56          & 81.59           \\
-MSTParser      (MSD) & 77.49          & 83.58           \\
-\textsc{Vwdep} (POS) & 74.91          & 83.17           \\
-\textsc{Vwdep} (MSD) & \textbf{79.22} & \textbf{86.44}  \\ \hline
+Metoda                                & \textsc{las}   & \textsc{uas}    \\ \hline \hline
+MSTParser (POS) \citep{agic2013three} & 74.56          & 81.59           \\
+MSTParser (MSD) \citep{agic2013three} & 77.49          & 83.58           \\
+\textsc{Vwdep} (POS)                  & 74.91          & 83.17           \\
+\textsc{Vwdep} (MSD)                  & \textbf{79.22} & \textbf{86.44}  \\ \hline
 \end{tabular}
 \end{table}

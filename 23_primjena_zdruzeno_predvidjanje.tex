@@ -1,18 +1,18 @@
 Najmoćnija primjena metoda učenja pretraživanja je združeno predviđanje i učenje
 \engl{joint prediction and learning}. Zbog činjenice da je moguće koristiti bilo
-koju funkciju gubitka moguće je kombinirati više zadataka istovremeno. Trenutni
-označivači vrste riječi su postigli točnost od otprilike 97-98\%
+koju funkciju gubitka, moguće je kombinirati više zadataka istovremeno. Trenutni
+označivači vrste riječi postigli su točnost od otprilike 97--98\%
 \citep{manning2011part} i ne mogu više od toga. Jedan od razloga je taj što neke
 oznake nije lako odrediti bez informacije o sintaksi rečenice. U \lts{} okviru
 procjenu troška pojedine oznake vrste riječi moguće je proširiti tako da se
 nakon označene cijele rečenice izvrši ovisnosno parsanje. Gubitak koji je
-dobiven nakon parsiranja proslijedit će informaciju i poboljšati procjenu
+dobiven nakon parsanja proslijedit će informaciju i poboljšati procjenu
 troška za pojedine oznake vrste riječi. Primjena združenog predviđanja na ovom
 konkretnom zadatku postoji, ali brzina predviđanja i učenja nije ni približno
 zadovoljavajuća \citep{bohnet2012transition}.
 
 Problem prepoznavanja imenovanih entiteta i izlučivanje relacija između entiteta
-u tekstu, dva su zadatka koja bi bilo dobro raditi združeno. Očito učinkovitost
+u tekstu dva su zadatka koja bi bilo dobro raditi združeno. Očito učinkovitost
 izlučivanja relacija ovisi o tome koliko dobro su entiteti prepoznati.
 Propagiranje gubitka zadatka izlučivanja relacija bi trebalo dodatno poboljšati
 prepoznavanje entiteta. U \lts{} okviru moguće je, ako su problemi slijedno
@@ -21,8 +21,8 @@ zadatku, a nakon toga učiti na oba istovremeno. Tako se može izbjeći potreba 
 ogromnom količinom označenih podataka koji imaju oznake za oba zadatka. Ako se
 uči prepoznavanje imenovanih entiteta na skupu koji nema označene relacije, onda
 je prisutna lošija procjena troška pojedine odluke -- referentna politika nije
-optimalna, ali nije ni loša. Učenje na skupu podataka sa svim oznakama bi
-uvelo optimalnu politiku koja ne bi počinjala od nule za zadatak prepoznavanja
+optimalna, ali nije ni loša. Učenje na skupu podataka sa svim oznakama uvelo bi
+optimalnu politiku koja ne bi počinjala od nule za zadatak prepoznavanja
 imenovanih entiteta te bi onda bilo moguće popraviti krive procjene novim
 podacima na zadatku prepoznavanja entiteta.
 
@@ -32,12 +32,12 @@ je izbjegnuto korištenje značajki za probleme koji od tih značajki ne bi imal
 koristi. Ako se problemi rješavaju slijedno, kao što je slučaj kod označavanja
 vrste riječi s ovisnosnim parsanjem, onda je moguće stati sa zaključivanjem
 nakon izvršenog prvog zadatka. To omogućuje efikasno korištenje modela koji su
-združeni bez da se testiranje vrši združeno. Ovako nešto je vrlo rijetko u
+združeni, a da se testiranje ne vrši združeno. Ovako nešto je vrlo rijetko u
 literaturi i mnoštvo modela koje koristi algoritme dinamičkog programiranja mora
 raditi \textit{backtracking}. Bez potpune enumeracije ne postoji sigurnost da je
-pronađen najvjerojatniji niz odluka za prvi zadatak stoga je potrebno dohvatiti
+pronađen najvjerojatniji niz odluka za prvi zadatak, stoga je potrebno dohvatiti
 sve optimalne odluke za združeni zadatak. Ovisnosno parsanje zahtijeva puno
-više značajki i najbolji parseri ne mogu parsirati više od nekoliko tisuća
+više značajki i najbolji parseri ne mogu parsati više od nekoliko tisuća
 riječi po sekundi -- \citet{andor2016globally} opisuju združeni označivač i
 parser koji postiže najbolje rezultate, ali mu je brzina oko 600 riječi po
 sekundi na osobnom računalu unatoč tome što je složenost algoritma koji je u

@@ -7,8 +7,14 @@ jeziku \textsc{Python}, ali čitljivost smanjuje vremensku
 učinkovitost. Uzevši u obzir da je okvir učenja pretraživanja poprilično
 modularan, tijekom implementacije greške su uglavnom bile prisutne u
 obradi podataka i odabiru hiperparametara. \textit{Hashing trick} dozvoljava
-običan tekstualni format za svaku značajku stoga je ulazna datoteka vrlo
-jednostavna (dodatak \ref{appendix:data}).
+običan tekstni format za svaku značajku, stoga je ulazna datoteka vrlo
+jednostavna (dodatak \ref{appendix:data}). \textit{Hashing trick} je postupak
+izgradnje vektora značajki gdje se unaprijed zna dimenzionalnost vektora.
+Potrebna je \textit{hash} funkcija koja će dane riječi pretvoriti u indeks za
+konkretnu poziciju u vektoru. Više riječi može se preslikati u istu poziciju što
+upućuje na neizravnu regularizaciju. Uobičajena je praksa odabrati ogromnu
+dimenziju za vektor značajki i spremati značajke u rijedak vektor \engl{sparse
+vector}.
 
 Obrada podataka i njihova pretvorba u prikladan oblik vektora značajki za
 potrebe sustava Vowpal Wabbit izvršena je koristeći alate ljuske \engl{shell}.
@@ -56,8 +62,8 @@ za probleme obrađene u okviru ovog rada.
   \centering
   \includegraphics[scale=0.9]{tokenposec.pdf}
   \caption[Usporedba brzine označavanja metoda strukturnog
-  predviđanja.]{Usporedba brzine označavanja metoda strukturnog predviđanja.
-  Prikazani brojevi su u tisućama znački po sekundi. Slika se u izvornom obliku
-  nalazi u \citep{ltsicmltutorial}.}
+  predviđanja.]{Usporedba brzine označavanja metoda strukturnog predviđanja. Na
+  horizontalnoj osi prikazani brojevi su u tisućama znački po sekundi (brzina
+  označavanja). Slika se u izvornom obliku nalazi u \citep{ltsicmltutorial}.}
   \label{fig:ltsperf}
 \end{figure}
