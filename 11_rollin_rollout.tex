@@ -90,14 +90,25 @@ za vrednovanje odluka gdje su odluke predstavljene bridovima, a stanja čvorovim
 pretraživanja.]{Prikaz postupka \textit{rollin} i \textit{rollout} kod učenja
 pretraživanja. Ulaz $x \in \mathcal{X}$ vodi pretragu svojim značajkama. Kreće
 se iz stanja $P$ i dva se puta odabire srednja odluka od moguće tri koristeći
-odabranu politiku za \textit{rollin}. Sivi čvorovi se ne pretražuju. U koraku $R$ algoritam
-učenja odabire sve moguće odluke radeći odstupanje od jednog koraka i
-primjenjuje odabranu politiku u postupku \textit{rollout} za svaku moguću odluku dovoljno puta dok ne
-dođe do kraja. Na kraju pomoću potpunog niza odluka $y_z \in \mathcal{Y}$ dobiva
-se informacija o gubitku i ona se koristi kao procjena dobrote svake odluke.
-Nakon postupka moguće je zaključiti da se gornjom odlukom koja odstupa od
-odabranog srednjeg stanja može gubitak smanjiti za 1. Primjer preuzet iz
-\citep[str.~3]{daume15lols}}
+odabranu politiku za \textit{rollin}. Sivi čvorovi se ne pretražuju. U koraku
+$R$ algoritam učenja odabire sve moguće odluke radeći odstupanje od jednog
+koraka i primjenjuje odabranu politiku u postupku \textit{rollout} za svaku
+moguću odluku dovoljno puta dok ne dođe do kraja. Odstupanje od jednog koraka
+procjenjuje trošak za pojedinu odluku samo uzimajući tu odluku u obzir,
+nastavljajući niz odluka s postupkom \textit{rollout}. Odstupanje od dva koraka
+bi iz stanja $R$ procjenjivalo trošak za odluku tako da nakon izvedene odluke
+dolaskom u novo stanje izvrši sve moguće odluke u tom stanju i onda za svaku
+izvrši ostatak s postupkom \textit{rollout}. Inačica s odstupanjem od dva koraka
+bi bolje aproksimirala trošak, ali bi vremenski bila zahtjevnija -- odstupanje
+od jednog koraka zahtijeva izvršavanje postupka \textit{rollout} za svaku
+odluku, odstupanje od dva koraka zahtijevalo bi izvršavanje postupka
+\textit{rollout} za svaku moguću odluku nakon što se izvrši svaka moguća u
+stanju $R$, što vodi do kvadratne vremenske složenosti u ovisnosti o broju
+mogućih odluka. Na kraju izvršavanja postupka \textit{rollout} pomoću potpunog
+niza odluka $y_z \in \mathcal{Y}$ dobiva se informacija o gubitku i ona se
+koristi kao procjena dobrote svake odluke. Nakon postupka moguće je zaključiti
+da se gornjom odlukom koja odstupa od odabranog srednjeg stanja može gubitak
+smanjiti za 1. Primjer preuzet iz \citep[str.~3]{daume15lols}}
 \label{fig:rollinout}
 \end{figure}
 
