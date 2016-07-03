@@ -102,29 +102,35 @@ odabranog srednjeg stanja može gubitak smanjiti za 1. Primjer preuzet iz
 \end{figure}
 
 \cite{daume15lols} pokazuju da korištenje višerazrednog klasifikatora
-osjetljivog na trošak, koji ima dobre ograde žaljenja, ne garantira konzistentnu
-naučenu politiku za problem strukturnog predviđanja. Ovisno o načinu na koji se
-radi \textit{rollin} i \textit{rollout} i pretpostavci o tome kakva je
-referentna politika, moguće je dobiti nekonzistentnu redukciju. Rezultat je
-priložen na slici \ref{fig:policyresult}. Ovisno o tome koje se politike koriste
-u postupcima \textit{rollin} ili \textit{rollout}, moguće je dobiti naučenu
-politiku koja nije konzistentna (ima veliko strukturno žaljenje) ili politiku
-koja nije lokalno optimalna. U slučaju korištenja naučene politike za
-\textit{rollin} i \textit{rollout}, problem strukturnog predviđanja reducira se
-na problem podržanog učenja koji je puno teži jer se za učenje uopće ne koristi
-znanje referentne politike. Jedini dobar pristup kojim se postiže lokalna
-optimalnost i konzistentna redukcija je onaj u kojem se koristi mješovita
-politika za \textit{rollout} -- opis metode lokalno optimalnog učenja
-pretraživanja nalazi se u potpoglavlju \ref{ch:LOLS}. Ako se pretpostavi da je
-referentna politika optimalna i to je stvarno slučaj, onda će učenje koristeći
-\textit{rollin} s naučenom, a \textit{rollout} s referentnom rezultirati s
-konzistentnom i lokalno optimalnom naučenom politikom. Za mnoštvo problema nije
-lako definirati optimalnu politiku i zanimljiv je rezultat da upravo
-\textit{rollout} s mješovitom politikom ima garancije da će, ako je u prostoru
-odluka moguće raditi lokalno uspinjanje na vrh \engl{local hill climbing},
-naučena politika biti konstantno lošija od dane referentne politike ili će biti
-bolja od referentne politike. Takvu garanciju pristupi prije algoritma
-\textsc{LOLS} nisu imali. Problem je postojao čak i kod metode učenja
+osjetljivog na trošak, koji ima dobre ograde žaljenja (žaljenje mora biti
+konstantno tj.~neovisno o broju binarnih klasifikatora u redukciji), ne
+garantira konzistentnu naučenu politiku za problem strukturnog predviđanja.
+Ovisno o načinu na koji se radi \textit{rollin} i \textit{rollout} i
+pretpostavci o tome kakva je referentna politika, moguće je dobiti
+nekonzistentnu redukciju. Rezultat je priložen na slici \ref{fig:policyresult}.
+Ovisno o tome koje se politike koriste u postupcima \textit{rollin} ili
+\textit{rollout}, moguće je dobiti naučenu politiku koja nije konzistentna (ima
+veliko strukturno žaljenje tj.~žaljenje nije konstantno nego ovisi o duljini
+niza odluka) ili politiku koja nije lokalno optimalna. U slučaju korištenja
+naučene politike za \textit{rollin} i \textit{rollout}, problem strukturnog
+predviđanja reducira se na problem podržanog učenja koji je puno teži jer se za
+učenje uopće ne koristi znanje referentne politike.
+
+Jedini dobar pristup kojim se postiže lokalna optimalnost i konzistentna
+redukcija je onaj u kojem se koristi mješovita politika za \textit{rollout} --
+opis metode lokalno optimalnog učenja pretraživanja nalazi se u potpoglavlju
+\ref{ch:LOLS}. Ako se pretpostavi da je referentna politika optimalna i to je
+stvarno slučaj, onda će učenje koristeći \textit{rollin} s naučenom, a
+\textit{rollout} s referentnom rezultirati s konzistentnom i lokalno optimalnom
+naučenom politikom. Za mnoštvo problema nije lako definirati optimalnu politiku
+(nije lako iz podataka znati koji je sljedeći korak najbolji, npr.~prisutnost
+prijevoda nekog dokumenta nije dovoljna da znamo, u slučaju da dobijemo
+parcijalan prijevod dokumenta, koja riječ slijedi) i zanimljiv je rezultat da
+upravo \textit{rollout} s mješovitom politikom ima garancije da će, ako je u
+prostoru odluka moguće raditi lokalno uspinjanje na vrh \engl{local hill
+climbing}, naučena politika biti konstantno lošija od dane referentne politike
+ili će biti bolja od referentne politike. Takvu garanciju pristupi prije
+algoritma \textsc{LOLS} nisu imali. Problem je postojao čak i kod metode učenja
 pretraživanja \textsc{Searn}. Navedena karakteristika nije pretjerano korisna
 ako je referentna politika loša, u tom slučaju učenje se odvija kao da referenta
 politika ne postoji (informacija koju ona daje je beskorisna). Ako je lako

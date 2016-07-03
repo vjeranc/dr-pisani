@@ -3,7 +3,7 @@ Najmoćnija primjena metoda učenja pretraživanja je združeno predviđanje i u
 koju funkciju gubitka, moguće je kombinirati više zadataka istovremeno. Trenutni
 označivači vrste riječi postigli su točnost od otprilike 97--98\%
 \citep{manning2011part} i ne mogu više od toga. Jedan od razloga je taj što neke
-oznake nije lako odrediti bez informacije o sintaksi rečenice. U \lts{} okviru
+oznake nije lako odrediti bez informacije o sintaksi rečenice. U okviru \lts{}
 procjenu troška pojedine oznake vrste riječi moguće je proširiti tako da se
 nakon označene cijele rečenice izvrši ovisnosno parsanje. Gubitak koji je
 dobiven nakon parsanja proslijedit će informaciju i poboljšati procjenu
@@ -15,7 +15,7 @@ Problem prepoznavanja imenovanih entiteta i izlučivanje relacija između entite
 u tekstu dva su zadatka koja bi bilo dobro raditi združeno. Očito učinkovitost
 izlučivanja relacija ovisi o tome koliko dobro su entiteti prepoznati.
 Propagiranje gubitka zadatka izlučivanja relacija bi trebalo dodatno poboljšati
-prepoznavanje entiteta. U \lts{} okviru moguće je, ako su problemi slijedno
+prepoznavanje entiteta. U okviru \lts{} moguće je, ako su problemi slijedno
 povezani (prvo se izvršava jedan, a nakon njega drugi), učiti model na jednom
 zadatku, a nakon toga učiti na oba istovremeno. Tako se može izbjeći potreba za
 ogromnom količinom označenih podataka koji imaju oznake za oba zadatka. Ako se
@@ -26,7 +26,7 @@ optimalnu politiku koja ne bi počinjala od nule za zadatak prepoznavanja
 imenovanih entiteta te bi onda bilo moguće popraviti krive procjene novim
 podacima na zadatku prepoznavanja entiteta.
 
-Zbog činjenice da je za združeno predviđanje u \lts{} okviru potrebna samo
+Zbog činjenice da je za združeno predviđanje u okviru \lts{} potrebna samo
 združena procjena troška, za svaki se problem može koristiti zaseban model. Time
 je izbjegnuto korištenje značajki za probleme koji od tih značajki ne bi imali
 koristi. Ako se problemi rješavaju slijedno, kao što je slučaj kod označavanja

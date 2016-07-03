@@ -23,7 +23,7 @@ prilog, glagol, imenicu, znakove interpunkcije i veznike.}
 \end{figure}
 
 \begin{algorithm}
-\caption{Označavanje vrste riječi u \lts{} okviru.}\label{alg:postagging}
+\caption{Označavanje vrste riječi u radnom okviru \lts{}.}\label{alg:postagging}
 \begin{algorithmic}[1]
 \Function{\textsc{Izvrši}}{riječi}
 \State $\textit{izlaz} \gets \text{[]}$
@@ -54,7 +54,7 @@ Zanimljivo je usporediti vremenske složenosti uobičajenih pristupa s ovim. Svi
 pristupi opisani u poglavlju \ref{ch:pregled} za zaključivanje koriste
 Viterbijev algoritam, čija je vremenska složenost $O(T M ^ k)$, gdje je $T$
 duljina rečenice, $M$ broj mogućih oznaka i oznaka ne ovisi o prijašnjim
-oznakama koje su $k$ ili više pozicija udaljene. U \lts{} okviru složenost
+oznakama koje su $k$ ili više pozicija udaljene. U okviru \lts{} složenost
 zaključivanja je $O(T M k)$ -- ovdje je $k$ broj prijašnjih odluka kojima
 uvjetujemo trenutnu ($k$ je kod navedenih složenosti jednak, ali je kontekst
 drugačiji). Iz algoritma \ref{alg:postagging} može se primijetiti da se u
@@ -82,7 +82,7 @@ preko niza odluka, onda \textit{rollout} nije potrebno izvršavati. Za detaljnij
 opis čitatelja se upućuje na \citep{daume14lts}.
 
 \begin{algorithm}
-\caption{Označavanje vrste riječi u \lts{} okviru s više prolaza.}\label{alg:postagging:multipass}
+\caption{Označavanje vrste riječi u radnom okviru \lts{} s više prolaza.}\label{alg:postagging:multipass}
 \begin{algorithmic}[1]
 \Function{\textsc{Izvrši}}{riječi, P}
 \State $\textit{izlaz} \gets \text{[]}$
