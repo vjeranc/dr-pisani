@@ -68,7 +68,7 @@ ili srednji). Ovakva fleksibilnost čini bilo koji zadatak s dodatnim uvjetima
 \begin{algorithmic}[1]
 \Function{\textsc{Izvrši}}{riječi}
 \State $\textit{izlaz} \gets \text{[]}$
-\For{$n \gets 1$ \textbf{do} \Call{Len}{riječi}}
+\For{$n \gets 1$ \textbf{do} \Call{Duljina}{riječi}}
   \State \textit{ref} $\gets$ \text{riječi[n].točna\_oznaka}
   \State \textit{skupOznaka} $\gets \{B,O\}$
   \If{izlaz[n-1] = $B$ ili izlaz[n-1] = $I$}
@@ -89,7 +89,7 @@ ili srednji). Ovakva fleksibilnost čini bilo koji zadatak s dodatnim uvjetima
 \Function{\textsc{Izvrši}}{riječi}
 \State $\textit{izlaz} \gets \text{[]}$
 \State $\textit{prethodna} \gets 0$
-\For{$n \gets 1$ \textbf{do} \Call{Len}{riječi}}
+\For{$n \gets 1$ \textbf{do} \Call{Duljina}{riječi}}
   \If{(prethodna -= 1) $> 0$}
     \State \textbf{nastavi} \Comment{\textit{continue}}
   \EndIf

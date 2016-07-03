@@ -27,7 +27,7 @@ prilog, glagol, imenicu, znakove interpunkcije i veznike.}
 \begin{algorithmic}[1]
 \Function{\textsc{Izvrši}}{riječi}
 \State $\textit{izlaz} \gets \text{[]}$
-\For{$n \gets 1$ \textbf{do} \Call{Len}{riječi}}
+\For{$n \gets 1$ \textbf{do} \Call{Duljina}{riječi}}
   \State \textit{ref} $\gets$ \text{riječi[n].točna\_oznaka}
   \State \textit{izlaz[n]} $\gets$ \Call{Odluči}{riječi[n], ref, izlaz[:n-1]}
 \EndFor
@@ -87,7 +87,7 @@ opis čitatelja se upućuje na \citep{daume14lts}.
 \Function{\textsc{Izvrši}}{riječi, P}
 \State $\textit{izlaz} \gets \text{[]}$
 \For{$p \gets 1$ \textbf{do} P}
-  \For{$n \gets 1$ \textbf{do} \Call{Len}{riječi}}
+  \For{$n \gets 1$ \textbf{do} \Call{Duljina}{riječi}}
     \State \textit{ref} $\gets$ \Call{PravaOdluka}{riječi[n].točna\_oznaka, p, odluke[n,p$-$1]}
     \State \textit{odluke[n,p]} $\gets$ \Call{Odluči}{riječi[i], ref, \textsc{IzvuciSusjede}(odluke)}
   \EndFor

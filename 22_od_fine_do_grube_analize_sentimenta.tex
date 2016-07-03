@@ -54,7 +54,7 @@ vjerojatnosnim grafičkim modelom.
 \State $\textit{izlaz} \gets \text{[]}$
 \State \textit{dlabel} $\gets$ \Call{Odluči}{dokument, dokument.točna\_oznaka}
 \State \Call{Gubitak}{dlabel $\neq$ dokument.točna\_oznaka} \Comment{Izvještaj o parcijalnom gubitku.}
-\For{$n \gets 1$ \textbf{do} \Call{Len}{dokument}}
+\For{$n \gets 1$ \textbf{do} \Call{Duljina}{dokument}}
   \State \textit{ref} $\gets$ \text{dokument[n].točna\_oznaka}
   \State \textit{izlaz[n]} $\gets$ \Call{Odluči}{dokument[n], ref, izlaz[:n-1], dlabel}
 \EndFor
