@@ -1,8 +1,8 @@
 Markovljeve mreže maksimalne margine \engla{maximum margin Markov
 networks}{\mmmm{}} dopuštaju formulaciju problema strukturnog predviđanja kroz
-problem kvadratičnog programiranja \engl{quadratic programming} koristeći
+problem kvadratnog programiranja \engl{quadratic programming} koristeći
 formalizam stroja potpornih vektora za binarnu klasifikaciju. Formulacija
-\mmmm{} modela dana je u nastavku:
+modela \mmmm{} dana je u nastavku:
 
 \begin{equation}\label{eq:mmmm}
 \begin{aligned}
@@ -13,10 +13,10 @@ formalizam stroja potpornih vektora za binarnu klasifikaciju. Formulacija
 \end{equation}
 
 \noindent
-Bitno je naglasiti da \mmmm{} formulacija ima previše uvjeta. Za svaki primjer
+Bitno je naglasiti da formulacija \mmmm{} ima previše uvjeta. Za svaki primjer
 $(x_n, y_n)$ nad kojim se uči i za svaki netočni izlaz $\hat{y}$ potrebno je
 izgraditi uvjet. Moguće je uz određene pretpostavke o $\mathcal{Y}$ i
-$\mathbf{\Phi}$ zamijeniti eksponencijalan broj uvjeta s polinomijalnim. Zamjena
+$\mathbf{\Phi}$ zamijeniti eksponencijalan broj uvjeta polinomijalnim. Zamjena
 je moguća jedino u slučaju problema strukturnog predviđanja kod kojeg funkcija
 gubitka ima dekompoziciju preko niza -- u praksi je to uvijek Hammingov gubitak.
 
@@ -24,9 +24,9 @@ Za efikasno učenje i zaključivanje funkcija gubitka mora imati dekompoziciju
 preko niza odluka. Prethodan uvjet ograničava \mmmm{}, ali postoje dvije
 prednosti nad uvjetnim slučajnim poljima. \mmmm{} ne zahtijeva efikasan izračun
 normalizacijske particijske funkcije \ref{eq:crf} i može se primijeniti na
-probleme koji imaju drugačiju funkciju gubitka od Hamming gubitka. U praksi je
+probleme koji imaju drugačiju funkciju gubitka od Hammingovog gubitka. U praksi je
 moguće primijeniti \mmmm{} samo na probleme koji aproksimiraju Hammingov gubitak
-\textit{hinge} gubitkom.
+gubitkom zglobnice \engl(hinge loss).
 
 Čitatelja se upućuje na \citep{taskar2003maximum} za detaljniji pregled. S
 obzirom na to da je velike margine moguće aproksimirati jednostavnim tehnikama

@@ -3,7 +3,7 @@ machine}{ssvm} također se može primjenjivati na probleme strukturnog predviđa
 \citep{tsochantaridis2005large}. Vidljiva je velika sličnost s modelom \mmmm{}.
 Razlika je u tome da \mmmm{} skalira marginu koristeći gubitak, dok
 \textsc{ssvm} skalira \textit{slack} varijable koristeći gubitak. Problem
-kvadratičnog programiranja priložen je ispod.
+kvadratnog programiranja priložen je ispod.
 
 \begin{equation}\label{eq:ssvm}
 \begin{aligned}
@@ -14,14 +14,14 @@ kvadratičnog programiranja priložen je ispod.
 \end{equation}
 
 \noindent
-Funkcija koju je potrebno minimizirati je identična onoj u \mmmm{} formulaciji, a
+Funkcija koju je potrebno minimizirati identična je onoj u formulaciji \mmmm{}, a
 razlika je samo u prvom uvjetu. Intuitivnije je skalirati grešku tijekom učenja
-(\textit{slack} varijable) gubitkom nego skalirati marginu. Autori tvrde da je
+(rezervne \engl{slack} varijable) gubitkom nego skalirati marginu. Autori tvrde da je
 ovaj formalizam bolji od \mmmm{} jer će potonji tjerati sustav da razdvoji
 hipoteze koje uzrokuju velik gubitak čak i ako je te hipoteze teško zamijeniti
 istinom (npr.~riječi koje su imenice teško da će klasifikator ikad zamijeniti
 brojevima). Uz razlike u skaliranju, metode koriste drugačije algoritme učenja.
-Kod \mmmm{} modela moguće je, u slučaju dekompozicije funkcije gubitka, uvelike
+Kod modela \mmmm{} moguće je, u slučaju dekompozicije funkcije gubitka, uvelike
 smanjiti broj dodatnih uvjeta, dok kod modela \textsc{ssvm} to nije moguće.
 \citet{tsochantaridis2005large} navode da se uvjeti dodaju po potrebi i daju
 garancije da će takva strategija dovesti do dobrog rješenja u polinomnom broju
@@ -30,8 +30,8 @@ koraka.
 Glavna mana ovog formalizma je nemogućnost jednostavnog efikasnog učenja. Unatoč
 tome ovo je jedini formalizam u kojem nije potrebno da funkcija gubitka ima
 dekompoziciju preko strukture. Postoje gradijentne metode pomoću kojih je moguće
-učiti \mmmm{} i \textsc{ssvm} modele, ali one zahtijevaju, uz rješavanje
+učiti modele \mmmm{} i \textsc{ssvm}, ali one zahtijevaju, uz rješavanje
 $\argmax$-problema \ref{eq:argmaxproblem}, rješavanje takozvane \textit{pretrage
-proširene gubitkom}. Kod \mmmm{} modela ta je pretraga rješiva zbog mogućnosti
+proširene gubitkom}. Kod modela \mmmm{} ta je pretraga rješiva zbog mogućnosti
 dekompozicije funkcije gubitka, dok kod modela \textsc{ssvm} nije
 \citep{ratliff2006maximum}.

@@ -10,7 +10,7 @@ označavanje vrste riječi i ovisnosno parsanje. Zaključak je da algoritam
 \textsc{LOLS} bez obzira na kvalitetu referentne politike može postići rezultate
 koji su usporedivi s optimalnom politikom ili, u slučaju da referentna politika nije
 optimalna, bolji od referentne politike ako prostor pretraživanja dopušta
-uspinjanje brdom.
+uspinjanje na vrh.
 
 \begin{algorithm}
 \caption{Lokalno optimalno učenje pretraživanja (\textsc{LOLS})}\label{alg:lols}
@@ -50,7 +50,7 @@ algoritmom \ref{alg:searn}. Razlike su sljedeće:
 
   \item \textsc{Searn} koristi mješovitu politiku za \emph{rollin} i
   \emph{rollout} te miješanje radi na svakom stanju \engl{mix-per-state}.
-  \textsc{LOLS} miješanje radi samo na početku \emph{rollout} postupka
+  \textsc{LOLS} miješanje radi samo na početku postupka \emph{rollout}
   \engl{mix-per-roll}, a za \emph{rollin} uvijek koristi naučenu politiku;
 
   \item u slučaju algoritma \textsc{LOLS}, nije potrebno da je referentna politika
@@ -82,5 +82,5 @@ referentnom politikom može istu naučiti ili postati bolji. Čitatelja se upuć
 konzistentna (bez obzira kakva je referenta politika) redukcija binarne
 klasifikacije na problem združenog predviđanja gdje se za \textit{rollin}
 koristi naučena politika, a za \textit{rollout} stohastički odabir između naučene
-i referentne politike (odabir se radi prije \textit{rollout} postupka, a ne na
+i referentne politike (odabir se radi prije postupka \textit{rollout}, a ne na
 svakom stanju kao kod algoritma \textsc{Searn}).

@@ -1,5 +1,5 @@
 \citet{ross2011reduction} predstavljaju metodu učenja pretraživanja
-\textsc{DAgger} \engla{dataset aggregation}{DAgger} koja je po svojim
+\textsc{DAgger} \engla{dataset aggregation}{DAgger}, koja je po svojim
 karakteristikama bolja od algoritma \textsc{Searn}. Demonstriraju uspješnost na
 dva zadatka:
 \begin{itemize}
@@ -23,7 +23,7 @@ dubinom. Algoritam ima nekoliko razlika u usporedbi s algoritmom \textsc{Searn}:
   prolaza kroz skup za učenje;
   \item \textit{rollout} je eliminiran pretpostavljajući da se za svaku odluku
   može izračunati njen trošak, ali može se koristiti referentna politika ako se
-  trošak ne može izračunati (koristeći \textit{rollout} postupak);
+  trošak ne može izračunati (koristeći postupak \textit{rollout});
   \item nije potrebno držati više naučenih politika, nego se koristi samo politika
   naučena do trenutnog primjera.
 \end{itemize}
@@ -36,7 +36,7 @@ konzistentna.
 konzistentna (ako je referentna politika optimalna) redukcija binarne
 klasifikacije na problem združenog predviđanja gdje se za \textit{rollin}
 koristi referentna ili naučena politika (odabir se radi stohastički prije
-\textit{rollin} postupka, a ne na svakom stanju kao kod algoritma
+postupka \textit{rollin}, a ne na svakom stanju kao kod algoritma
 \textsc{Searn}), a za \textit{rollout} referenta politika (ako postoji
 dekompozicija funkcije gubitka, onda se \textit{rollout} ne bi izvršavao što je
 ekvivalentno kao da se koristi referentna politika kod koje funkcija gubitka ima

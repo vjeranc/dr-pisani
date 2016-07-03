@@ -1,4 +1,4 @@
-\citet*{daume15lols} uvode \textit{rollin} i \textit{rollout} terminologiju u
+\citet*{daume15lols} uvode terminologiju \textit{rollin} i \textit{rollout} u
 kontekst metoda učenja pretraživanja. Termin \textit{rollout} originalno je
 naziv za tehniku analize pozicija i poteza u igri
 \textit{backgammon}.\footnote{\url{https://en.wikipedia.org/wiki/Rollout_(backgammon)}}
@@ -6,7 +6,7 @@ Cilj je dovoljan broj puta krenuti od iste pozicije i odigravanjem (bacajući
 kocku) dolaziti do kraja igre i bilježiti rezultat svakog ishoda. Broj pobjeda i
 poraza daje procjenu o dobroti pozicije. U okviru podržanog učenja tehnika se
 koristi tako da se iz nekog stanja nasumično odabiru sljedeći potezi -- odabir
-može biti baziran na naučenoj politici. Nakon što se izvrši jedan niz poteza i
+može biti baziran na do tada naučenoj politici. Nakon što se izvrši jedan niz poteza i
 dobije rezultat, cijeli postupak se ponavlja počinjanjem iz istog stanja tako da
 je procjena o dobroti pozicije što bolja.
 
@@ -19,8 +19,8 @@ određenog stanja, a kako je na raspolaganju naučena i referentna politika dobr
 vidjeti koja strategija vodi do brzog i konzistentnog učenja -- hoće li se
 dolaziti do budućeg stanja referentnom ili naučenom politikom, a možda za svaki
 korak odabrati nekom vjerojatnošću jednu ili drugu. Na slici \ref{fig:rollinout}
-prikazan je postupak korištenja \textit{rollin} i \textit{rollout} politika za
-vrednovanje odluka gdje su odluke predstavljene bridovima, a stanja čvorovima.
+prikazan je postupak korištenja politika u postupku \textit{rollin} i \textit{rollout}
+za vrednovanje odluka gdje su odluke predstavljene bridovima, a stanja čvorovima.
 
 \begin{figure}
 \centering
@@ -90,9 +90,9 @@ vrednovanje odluka gdje su odluke predstavljene bridovima, a stanja čvorovima.
 pretraživanja.]{Prikaz postupka \textit{rollin} i \textit{rollout} kod učenja
 pretraživanja. Ulaz $x \in \mathcal{X}$ vodi pretragu svojim značajkama. Kreće
 se iz stanja $P$ i dva se puta odabire srednja odluka od moguće tri koristeći
-\textit{rollin} politiku. Sivi čvorovi se ne pretražuju. U koraku $R$ algoritam
+odabranu politiku za \textit{rollin}. Sivi čvorovi se ne pretražuju. U koraku $R$ algoritam
 učenja odabire sve moguće odluke radeći odstupanje od jednog koraka i
-primjenjuje \textit{rollout} politiku za svaku moguću odluku dovoljno puta dok ne
+primjenjuje odabranu politiku u postupku \textit{rollout} za svaku moguću odluku dovoljno puta dok ne
 dođe do kraja. Na kraju pomoću potpunog niza odluka $y_z \in \mathcal{Y}$ dobiva
 se informacija o gubitku i ona se koristi kao procjena dobrote svake odluke.
 Nakon postupka moguće je zaključiti da se gornjom odlukom koja odstupa od
@@ -106,29 +106,30 @@ osjetljivog na trošak, koji ima dobre ograde žaljenja, ne garantira konzistent
 naučenu politiku za problem strukturnog predviđanja. Ovisno o načinu na koji se
 radi \textit{rollin} i \textit{rollout} i pretpostavci o tome kakva je
 referentna politika, moguće je dobiti nekonzistentnu redukciju. Rezultat je
-priložen na slici \ref{fig:policyresult}. Ovisno o tome koje se \textit{rollin}
-ili \textit{rollout} politike koriste, moguće je dobiti naučenu politiku koja nije
-konzistentna (ima veliko strukturno žaljenje) ili politiku koja nije lokalno
-optimalna. U slučaju korištenja naučene politike za \textit{rollin} i
-\textit{rollout}, problem strukturnog predviđanja reducira se na problem
-podržanog učenja koji je puno teži jer se za učenje uopće ne koristi znanje
-referentne politike. Jedini dobar pristup kojim se postiže lokalna optimalnost i
-konzistentna redukcija je onaj u kojem se koristi mješovita politika za
-\textit{rollout} -- opis metode lokalno optimalnog učenja pretraživanja nalazi
-se u potpoglavlju \ref{ch:LOLS}. Ako se pretpostavi da je referentna politika
-optimalna i to je stvarno slučaj, onda će učenje koristeći \textit{rollin} s
-naučenom, a \textit{rollout} s referentnom rezultirati s konzistentnom i lokalno
-optimalnom naučenom politikom. Za mnoštvo problema nije lako definirati optimalnu
-politiku i zanimljiv je rezultat da upravo \textit{rollout} s mješovitom politikom
-ima garancije da će, ako je u prostoru odluka moguće raditi lokalno uspinjanje
-brdom \engl{local hill climbing}, naučena politika biti konstantno lošija od dane
-referentne politike ili će biti bolja od referentne politike. Takvu garanciju
-pristupi prije algoritma \textsc{LOLS} nisu imali. Problem je postojao čak i kod
-metode učenja pretraživanja \textsc{Searn}. Navedena karakteristika nije
-pretjerano korisna ako je referentna politika loša, u tom slučaju učenje se
-odvija kao da referenta politika ne postoji (informacija koju ona daje je
-beskorisna). Ako je lako raditi uspinjanje brdom u prostoru odluka, onda bi
-na problemu jednako dobro radilo i podržano učenje.
+priložen na slici \ref{fig:policyresult}. Ovisno o tome koje se politike koriste
+u postupcima \textit{rollin} ili \textit{rollout}, moguće je dobiti naučenu
+politiku koja nije konzistentna (ima veliko strukturno žaljenje) ili politiku
+koja nije lokalno optimalna. U slučaju korištenja naučene politike za
+\textit{rollin} i \textit{rollout}, problem strukturnog predviđanja reducira se
+na problem podržanog učenja koji je puno teži jer se za učenje uopće ne koristi
+znanje referentne politike. Jedini dobar pristup kojim se postiže lokalna
+optimalnost i konzistentna redukcija je onaj u kojem se koristi mješovita
+politika za \textit{rollout} -- opis metode lokalno optimalnog učenja
+pretraživanja nalazi se u potpoglavlju \ref{ch:LOLS}. Ako se pretpostavi da je
+referentna politika optimalna i to je stvarno slučaj, onda će učenje koristeći
+\textit{rollin} s naučenom, a \textit{rollout} s referentnom rezultirati s
+konzistentnom i lokalno optimalnom naučenom politikom. Za mnoštvo problema nije
+lako definirati optimalnu politiku i zanimljiv je rezultat da upravo
+\textit{rollout} s mješovitom politikom ima garancije da će, ako je u prostoru
+odluka moguće raditi lokalno uspinjanje na vrh \engl{local hill climbing},
+naučena politika biti konstantno lošija od dane referentne politike ili će biti
+bolja od referentne politike. Takvu garanciju pristupi prije algoritma
+\textsc{LOLS} nisu imali. Problem je postojao čak i kod metode učenja
+pretraživanja \textsc{Searn}. Navedena karakteristika nije pretjerano korisna
+ako je referentna politika loša, u tom slučaju učenje se odvija kao da referenta
+politika ne postoji (informacija koju ona daje je beskorisna). Ako je lako
+raditi uspinjanje na vrh u prostoru odluka, onda bi na problemu jednako dobro
+radilo i podržano učenje.
 
 % If you use beamer only pass "xcolor=table" option, i.e. \documentclass[xcolor=table]{beamer}
 \begin{figure}
@@ -144,14 +145,15 @@ na problemu jednako dobro radilo i podržano učenje.
 \textbf{Referentna}                                                  & \multicolumn{3}{c|}{\cellcolor[HTML]{FFCCC9}Nekonzistentna redukcija}                                                                                                                    \\ \hline
 \textbf{Naučena}                                             & \cellcolor[HTML]{FFCCC9}Nije lokalno optimalna               & \cellcolor[HTML]{C5F7C5}Dobra                                & \cellcolor[HTML]{FFCCC9}Podržano učenje                    \\ \hline
 \end{tabular}
-\caption[Rezultati analize načina učenja koristeći \textit{rollin} i
-\textit{rollout} politike.]{Rezultati teoretske analize načina učenja koristeći
-\textit{rollin} i \textit{rollout} politike. Ovisno o odabiru \textit{rollin} i
-\textit{rollout} para naučena politika može biti nekonzistentna ili bez svojstva
-lokalne optimalnosti, problem učenja politike se može svesti na podržano učenje
-ili naučena politika ipak može biti konzistentna i lokalno optimalna. Mješovita
-politika je politika kod koje se nekom vjerojatnošću bira referentna ili naučena.
-Tablica preuzeta iz \citep[str.~5]{daume15lols}}
+\caption[Rezultati teoretske analize načina učenja koristeći postupke
+\textit{rollin} i \textit{rollout}.]{Rezultati teoretske analize načina učenja
+koristeći postupke \textit{rollin} i \textit{rollout}. Ovisno o odabiru
+\textit{rollin} i \textit{rollout} para naučena politika može biti
+nekonzistentna ili bez svojstva lokalne optimalnosti, problem učenja politike se
+može svesti na podržano učenje ili naučena politika ipak može biti konzistentna
+i lokalno optimalna. Mješovita politika je politika kod koje se nekom
+vjerojatnošću bira referentna ili naučena. Tablica preuzeta iz
+\citep[str.~5]{daume15lols}}
 \label{fig:policyresult}
 \end{figure}
 

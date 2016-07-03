@@ -1,7 +1,7 @@
 \citet{daume06thesis} u svojoj doktorskoj disertaciji daje doprinos otkrićem
 prve metode učenja pretraživanja \textsc{Searn} \engla{search + learn}{Searn} --
-metoda kojom je binarna klasifikacija uspješno reducirana na problem strukturnog
-predviđanja i učenja.
+metoda kojom je problem strukturnog predviđanja i učenja uspješno reduciran na
+binarnu klasifikaciju.
 Metodu primjenjuje na mnoštvo problema u području obrade prirodnoga jezika:
 \begin{itemize}
   \item označavanje vrste riječi,
@@ -30,7 +30,7 @@ okviru učenja pretraživanja nedavno ostvarena
       \State Primijeniti $t$ puta politiku $\pi^{\text{in}} = \hat{\pi}_{I}$  i stići do $s_t$. \Comment{Rollin.}
       \ForAll{$a \in A(s_t)$}\label{alg:searn:action}
         \State Neka je  $\pi^{\text{out}} = \hat{\pi}_{I}$.\label{alg:searn:rolloutpolicy}
-        \State Procjeni trošak $c_{i,t}(a)$ koristeći $T-t-1$ puta politiku $\pi^{\text{out}}$. \Comment{Rollout.}\label{alg:searn:rollout}
+        \State Procjeni trošak $c_{i,t}(a)$ koristeći $T-t-1$ puta $\pi^{\text{out}}$. \Comment{Rollout.}\label{alg:searn:rollout}
       \EndFor
       \State Generiraj vektor značajki $\mathbf{\Phi}(x_i, s_t)$.
       \State Postavi $\Gamma = \Gamma \cup \{\langle c_{i,t}, \mathbf{\Phi}(x_i, s_t) \rangle\}$.
@@ -45,31 +45,40 @@ okviru učenja pretraživanja nedavno ostvarena
 
 Pseudokod \ref{alg:searn} prikazuje algoritam \textsc{Searn}. Algoritam radi
 više prolaza preko skupa za učenje određen brojem $P$. Za svaki primjer $\{x_i,
-y_i\}$ dolazi do nekog stanja $s_t$ koristeći \textit{rollin} politiku. Ona je pri
-prvom prolazu jednaka referentnoj politici, a u ostalim prolazima ta politika je
-stohastička mješavina između politika naučenih u svakom prolazu i referentne
-politike -- kod problema označavanja vrste riječi rezultat primjene
-\textit{rollin} politike je niz oznaka, a stanje $s_t$ je riječ u rečenici na
-mjestu $t$ koja još nije označena. Linija \ref{alg:searn:mixture} pokazuje
-izračun nove politike. Izračun ne radi interpolaciju naučenih težina, nego samo
-prilagođava vjerojatnosti odabira do tada naučenih politika. Vjerojatnost je veća
-za najnoviju naučenu politiku i polako se smanjuje s brojem prolaza (množi se s
-$1-\beta$ gdje je $\beta < 1$). Za procjenu troška donošenja odluke na stanju
-$s_t$ (npr.~odluka je određivanje vrste riječi na trenutnoj riječi) za svaku
-moguću odluku koristi se \textit{rollout} politika koja je također stohastička
-mješavina (linija \ref{alg:searn:action} i \ref{alg:searn:rolloutpolicy}). Ta se
-politika primjenjuje do kraja strukture koja se obrađuje i na kraju se izračuna
-dobiveni gubitak (linija \ref{alg:searn:rollout}). Nakon prošlog postupka za
-svaku moguću odluku kreira se primjer za učenje osjetljiv na trošak i stavlja se
-u skup. Nakon što je postupak kreiranja primjera gotov nauči se nova politika
-(linija \ref{alg:searn:train}). Višerazredni klasifikator koji se koristi mora
-biti osjetljiv na trošak, a moguće je koristiti bilo koji binarni klasifikator
-uz nekoliko izmjena na primjerima za učenje \citep{zadrozny2003cost,
-beygelzimer2005weighted, beygelzimer2005error}. Nakon učenja, zaključivanje se
-svodi na korištenje višerazrednog klasifikatora za svako stanje. Ako želimo da
+y_i\}$ dolazi do nekog stanja $s_t$ koristeći odabranu politiku za
+\textit{rollin}. Ona je pri prvom prolazu jednaka referentnoj politici, a u
+ostalim prolazima ta politika je stohastička mješavina između politika naučenih
+u svakom prolazu i referentne politike -- kod problema označavanja vrste riječi
+rezultat primjene odabrane politike za \textit{rollin} je niz oznaka, a stanje $s_t$ je
+riječ u rečenici na mjestu $t$ koja još nije označena. Linija
+\ref{alg:searn:mixture} pokazuje izračun nove politike. Izračun ne radi
+interpolaciju naučenih težina, nego samo prilagođava vjerojatnosti odabira do
+tada naučenih politika. Vjerojatnost je veća za najnoviju naučenu politiku i
+polako se smanjuje s brojem prolaza (množi se s $1-\beta$ gdje je $\beta < 1$).
+Za procjenu troška donošenja odluke na stanju $s_t$ (npr.~odluka je određivanje
+vrste riječi na trenutnoj riječi) za svaku moguću odluku u postupku \textit{rollout}
+koristi se politika koja je također stohastička mješavina (linija
+\ref{alg:searn:action} i \ref{alg:searn:rolloutpolicy}). Ta se politika
+primjenjuje do kraja strukture koja se obrađuje i na kraju se izračuna dobiveni
+gubitak (linija \ref{alg:searn:rollout}). Nakon prošlog postupka za svaku moguću
+odluku kreira se primjer za učenje osjetljiv na trošak i stavlja se u skup.
+Nakon što je postupak kreiranja primjera gotov nauči se nova politika (linija
+\ref{alg:searn:train}). Višerazredni klasifikator koji se koristi mora biti
+osjetljiv na trošak, a moguće je koristiti bilo koji binarni klasifikator uz
+nekoliko izmjena na skupu za učenje. Jedna od takvih izmjena može biti
+uzorkovanje primjera s obzirom na naveden trošak. Cilj je izgraditi skup za
+učenje koji će sadržavati manje primjera s malim troškom -- davajući time veći
+naglasak na one s velikim troškom i indirektno minimizirati klasifikacijski
+trošak. Takav skup može se izgraditi vjerojatnosnom interpretacijom troška
+(primjeri s većim troškom bi trebali biti vjerojatniji u reduciranom skupu).
+Prvi vidljivi problem je taj što se skup za učenje smanjuje.
+\citet{zadrozny2003cost} opisuju kako pravilno izvesti postupak za binarnu
+klasifikaciju, a \citet{beygelzimer2005weighted, beygelzimer2005error} opisuju
+prilagodbu za višerazrednu klasifikaciju. Nakon učenja, zaključivanje se svodi
+na korištenje višerazrednog klasifikatora za svako stanje. Ako želimo da
 donošenje trenutne odluke ovisi o prethodnim odlukama i značajkama iz budućih
-stanja, onda je potrebno tijekom učenja i korištenja naučenih politika samo dodati
-te odluke i značajke u vektorsku reprezentaciju trenutnog stanja (tijekom
+stanja, onda je potrebno tijekom učenja i korištenja naučenih politika samo
+dodati te odluke i značajke u vektorsku reprezentaciju trenutnog stanja (tijekom
 primjene stohastičke politike za vrijeme \textit{rollin} i \textit{rollout}
 postupka ta reprezentacija mora biti prisutna jer se kod primjene koristi
 odabrani višerazredni klasifikator).
@@ -95,38 +104,37 @@ implementacijskih detalja koji mogu, čak i kod nemogućnosti dekompozicije
 funkcije gubitka, smanjiti vremensku složenost učenja na $O(P N T M k)$
 \citep{daume14lts}.
 
-\textsc{Searn} zahtjeva postojanje optimalne politike (definicija
-\ref{def:optimalpolicy} u potpoglavlju \ref{ch:politikailocalopt}) za potrebe
-učenja. Ako politika nije optimalna, onda će učenje biti otežano. U slučaju bolje
+Za potrebe učenja, \textsc{Searn} zahtijeva da je referentna politika optimalna
+(definicija \ref{def:optimalpolicy} u potpoglavlju \ref{ch:politikailocalopt}).
+Ako politika nije optimalna, onda će učenje biti otežano. U slučaju bolje
 procjene troška određene odluke, potrebno je izvršiti \textit{rollout} nekoliko
-puta kako bi povećali vjerojatnost otkrića
-točnog niza odluka koji minimizira trošak. Primjer zadataka za koje nije lako
-izgraditi optimalnu politiku su ovisnosno parsanje i strojno prevođenje. Za
-ovisnosno parsanje nije jednostavno znati kako dovršiti stablo tako da se
-minimizira gubitak s obzirom na to da je došlo do niza pogrešaka u izgradnji
-parcijalnog stabla. Kod strojnog prevođenja teško je znati kako odrediti
-trenutnu riječ s obzirom na polovično preveden dokument. U slučaju da je
-dokument preveden krivo, ima više smisla staviti neku drugu riječ umjesto
-one koja je u zlatnom primjeru prisutna na toj poziciji. Kako bi se problem
-razriješio u okviru algoritma \textsc{Searn} korišten je Monte-Carlo algoritam
-za procjenu troška. Taj postupak usporava učenje, ali omogućava učenje bez
-optimalne politike. Problem je riješen u \citep{daume15lols} i postupak je opisan
-u potpoglavlju \ref{ch:LOLS}. Posljednji nedostatak algoritma je taj što se
-moraju čuvati sve naučene politike, pristupi opisani u sljedećim potpoglavljima
-nemaju to ograničenje.
+puta kako bi povećali vjerojatnost otkrića točnog niza odluka koji minimizira
+trošak. Primjer zadataka za koje nije lako izgraditi optimalnu politiku su
+ovisnosno parsanje i strojno prevođenje. Za ovisnosno parsanje nije jednostavno
+znati kako dovršiti stablo tako da se minimizira gubitak s obzirom na to da je
+došlo do niza pogrešaka u izgradnji parcijalnog stabla. Kod strojnog prevođenja
+teško je znati kako odrediti trenutnu riječ s obzirom na polovično preveden
+dokument. U slučaju da je dokument pogrešno preveden, ima više smisla staviti
+neku drugu riječ umjesto one koja je u zlatnom primjeru prisutna na toj
+poziciji. Kako bi se problem razriješio u okviru algoritma \textsc{Searn}
+korišten je Monte-Carlo algoritam za procjenu troška. Taj postupak usporava
+učenje, ali omogućava učenje bez optimalne politike. Problem je riješen u
+\citep{daume15lols} i postupak je opisan u potpoglavlju \ref{ch:LOLS}.
+Posljednji nedostatak algoritma je taj što se moraju čuvati sve naučene
+politike, pristupi opisani u sljedećim potpoglavljima nemaju to ograničenje.
 
 \citeauthor{daume06thesis} za potrebe svoje disertacije isprobava različite
 binarne klasifikatore:
 \begin{inlinelist}
   \item perceptron,
   \item logističku regresiju,
-  \item \textsc{svm} s linearnim kernelom i
-  \item \textsc{svm} s kvadratnim kernelom.
+  \item \textsc{svm} s linearnom jezgrom i
+  \item \textsc{svm} s kvadratnom jezgrom.
 \end{inlinelist}
 Izbor klasifikatora ovisi o zadatku. Ako je broj primjera ogroman, onda je bolje
-koristiti perceptron, logističku regresiju ili \textsc{svm} s linearnim
-kernelom. Ako je broj primjera mali, onda bi korištenje \textsc{svm} binarnog
-klasifikatora omogućilo što veće margine između odluka i povećalo točnost
+koristiti perceptron, logističku regresiju ili \textsc{svm} s linearnom jezgrom.
+Ako je broj primjera mali, onda bi korištenje binarnog klasifikatora
+\textsc{svm} omogućilo što veće margine između odluka i povećalo točnost
 (eksperimentalno utvrđeno u disertaciji). Moguće je koristiti i neuronske mreže
 s više slojeva, ali trenutno nije u literaturi zabilježeno korištenje. Odabire
 binarnih klasifikatora \citeauthor{daume06thesis} uspoređuje sa strukturnim
@@ -138,10 +146,10 @@ predviđanje, \textsc{Searn} leži između algoritama koji koriste globalnu
 normalizaciju, kao što su \mmmm{} i \textsc{crf}, i onih koji koriste lokalnu
 normalizaciju, opisani u \citep{punyakanok2001use}. Razlika između
 \textsc{Searn} i globalnih algoritama je u načinu na koji rješavaju nesigurnost.
-Kod globalnih algoritama, algoritam pretraživanja se koristi za vrijeme
+Kod globalnih algoritama, algoritam pretraživanja koristi se za vrijeme
 zaključivanja kako bi se razriješila nesigurnost. Kod algoritma \textsc{Searn},
 trošak za svaku odluku koji je prisutan tijekom učenja razrješava nesigurnost.
-Oba pristupa se razlikuju od lokalnih algoritama kod kojih se nesigurnost uopće
+Oba pristupa razlikuju se od lokalnih algoritama kod kojih se nesigurnost uopće
 ne razrješava.
 
 Sa šire perspektive strojnog učenja, \textsc{Searn} je pokazao povezanost između
@@ -159,6 +167,6 @@ algoritmom \textsc{LOLS} koji je opisan u poglavlju \ref{ch:LOLS}
 \textsc{Searn} se može opisati, koristeći terminologiju uvedenu u potpoglavljima
 \ref{ch:reductions}, \ref{ch:politikailocalopt} i \ref{ch:rollinrollout}, kao
 konzistentna (ako je referentna politika optimalna) redukcija binarne
-klasifikacije na problem združenog predviđanja gdje se za \textit{rollin} i
-\textit{rollout} politiku koristi stohastička mješavina između naučene i
-referentne politike.
+klasifikacije na problem združenog predviđanja, gdje se za postupke
+\textit{rollin} i \textit{rollout} koristi politika koja je stohastička
+mješavina između naučene i referentne politike.

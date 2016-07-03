@@ -1,16 +1,16 @@
-Redukcije u strojnom učenju postupak su za transformiranje jednostavnijih
-problema u složenije -- kao što je primjer redukcije problema binarne
-klasifikacije u problem višerazredne klasifikacije gdje se može koristiti
+Redukcije u strojnom učenju postupak su za transformiranje složenijih problema
+u jednostavnije -- kao što je primjer redukcije problema višerazredne
+klasifikacije u problem binarne klasifikacije gdje se može koristiti
 jedan-protiv-svih \engla{one-against-all}{ova} ili jedan-protiv-drugog
 \engla{one-against-one}{ovo} pristup korištenja binarnih klasifikatora. Za
 pristup \textsc{ova} potrebno je $n$ klasifikatora gdje je $n$ broj razreda, a
-\textsc{ovo} zahtijeva $\binom{n}{2}$ klasifikatora. Prethodni ima prednost u
+\textsc{ovo} zahtijeva $\binom{n}{2}$ klasifikatora. Prvi ima prednost u
 vremenu ako je broj razreda velik, a potonji ako je vektor gust za \textsc{ova},
 a rijedak za \textsc{ovo} (ako je moguće izbaciti značajke tj.~zadržati samo one
 koje su vezane za dva razreda koja uspoređujemo). Ostale prednosti ovise o samom
-problemu, a čak i o vrsti binarnog klasifikatora kojeg koristimo
+problemu, a čak i o vrsti binarnog klasifikatora koji koristimo
 \citep{milgram2006one}. Zanimljiv je primjer redukcija problema višerazredne
-klasifikacije stablom odluka \engl{decision tree} gdje se svaki razred može
+klasifikacije stablom odluka \engl{decision tree}, gdje se svaki razred može
 binarno kodirati, a bitovi predstavljaju niz da/ne odgovora o tome kojim bridom
 krenuti gdje bi se nakon $O(\log n)$ koraka potpuno kodirao razred
 \citep{beygelzimer2009error, daume2016one}. Ovo je eksponencijalno ubrzanje s
@@ -51,11 +51,11 @@ svojstvo kompozicije \citep{beygelzimer2005error}. Ako je moguće reducirati
 problem $X$ u problem $Y$ s ogradom $f$ i problem $Y$ u problem $Z$ s ogradom
 $g$, onda je kompozicija $X \circ Y$ redukcija s ogradom $f \circ g$. Navedeno
 svojstvo pojednostavljuje matematičku analizu ograda redukcije. Bitna je razlika
-između navedenih ograda što ako redukcija s ograničenjem pogreške kreira
+između navedenih ograda što, ako redukcija s ograničenjem pogreške kreira
 jednostavne probleme koji su šumoviti, onda su bilo kakve tvrdnje o težem
 problemu isprazne.
 
-Potrebno je znati je li redukcija konzistentna \engl{consistent} da bi se
+Potrebno je znati je li redukcija konzistentna \engl{consistent} da bismo se
 uvjerili da će redukcija raditi dobro \citep{beygelzimer2009error,
 daume15reductions}. Neformalno, redukcija koja transformira bilo koje optimalno
 rješenje za osnovni jednostavni problem u optimalno rješenje za složen
@@ -63,13 +63,13 @@ problem je \textit{konzistentna}. Ispostavlja se da su gore navedene jednostavne
 redukcije stablom odluke i pristup \textsc{ova} nekonzistentne. Navedene uvjete
 nekad je moguće zadovoljiti ne samo odabirom načina zaključivanja (\textsc{ovo},
 \textsc{ova} i dr.) nego i načinom učenja \citep{abe2004iterative,
-beygelzimer2005weighted} -- način učenja je glavni razlog mogućnosti redukcije
-višerazredne klasifikacije u strukturno predviđanje. Konzistentnost je osnovni
+beygelzimer2005weighted} -- način učenja glavni je razlog mogućnosti redukcije
+strukturnog predviđanja u višerazrednu klasifikaciju. Konzistentnost je osnovni
 uvjet za dobru redukciju, a redukcije s ograničenjem pogreške su, na žalost,
 uglavnom nekonzistentne. Čitatelja se upućuje na sustavni pregled zadnjih deset
 godina redukcija u strojnom učenju \citep{daume15reductions}.
 
-Redukcije su bitna sastavnica u najuspješnijim \lts{} metodama jer bez njih ne
+Redukcije su bitna sastavnica u najuspješnijim metodama \lts{} jer bez njih ne
 bi postojala informacija o tome zašto su toliko uspješne, nego bi
 pretpostavljali da koristimo heurističke metode. Heurističke metode prisutne su
 u izobilju kod primjena na probleme združenog predviđanja i bez teorije postoji
