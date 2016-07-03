@@ -14,15 +14,17 @@ kvadratnog programiranja priložen je ispod.
 \end{equation}
 
 \noindent
-Funkcija koju je potrebno minimizirati identična je onoj u formulaciji \mmmm{}, a
-razlika je samo u prvom uvjetu. Intuitivnije je skalirati grešku tijekom učenja
-(rezervne \engl{slack} varijable) gubitkom nego skalirati marginu. Autori tvrde da je
-ovaj formalizam bolji od \mmmm{} jer će potonji tjerati sustav da razdvoji
-hipoteze koje uzrokuju velik gubitak čak i ako je te hipoteze teško zamijeniti
-istinom (npr.~riječi koje su imenice teško da će klasifikator ikad zamijeniti
-brojevima). Uz razlike u skaliranju, metode koriste drugačije algoritme učenja.
-Kod modela \mmmm{} moguće je, u slučaju dekompozicije funkcije gubitka, uvelike
-smanjiti broj dodatnih uvjeta, dok kod modela \textsc{ssvm} to nije moguće.
+Funkcija koju je potrebno minimizirati identična je onoj u formulaciji \mmmm{},
+a razlika je samo u prvom uvjetu. Intuitivnije je skalirati grešku tijekom
+učenja (rezervne \engl{slack} varijable) gubitkom nego skalirati marginu. Autori
+tvrde da je ovaj formalizam bolji od \mmmm{} jer će potonji tjerati sustav da
+razdvoji hipoteze za koje je odabran velik gubitak čak i ako je te hipoteze
+teško zamijeniti istinom (npr.~zbog toga što je za imenice određen velik gubitak --
+jer želimo imenice točnije označavati -- formalizam \mmmm{} će, unatoč tome što
+je teško zamijeniti imenice brojevima, pokušavati povećati marginu). Uz razlike
+u skaliranju, metode koriste drugačije algoritme učenja. Kod modela \mmmm{}
+moguće je, u slučaju dekompozicije funkcije gubitka, uvelike smanjiti broj
+dodatnih uvjeta, dok kod modela \textsc{ssvm} to nije moguće.
 \citet{tsochantaridis2005large} navode da se uvjeti dodaju po potrebi i daju
 garancije da će takva strategija dovesti do dobrog rješenja u polinomnom broju
 koraka.
