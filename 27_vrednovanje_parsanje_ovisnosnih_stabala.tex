@@ -19,11 +19,18 @@ označavanje vrste riječi taj broj oko 40 milijuna. Za pregled ostalih internih
 značajki čitatelja se upućuje na \citep{chang2015learning}. Kako je model
 prevelik, koristi se neuronska mreža s jednim skrivenim slojem od pet čvorova, a
 za regularizaciju se koristi postupak prati-regulariziranog-vođu \engla{follow
-the regularized leader}{ftrl}, koji uključuje L1 i L2 regularizaciju. Prikazani
-rezultati koriste navedenu konfiguraciju, inače bi rezultati bili lošiji jer je
-skup za učenje premali s obzirom na broj značajki. \citet{chang2015learning} ne
-koriste sufikse i prefikse jer rade označavanje na jezicima koji imaju dovoljno
-podataka -- značajke su samo cijele riječi i oznaka vrste riječi.
+the regularized leader}{ftrl}, koji uključuje L1 i L2 regularizaciju. Algoritam
+\textsc{ftrl} postupak je regularizacije koji dopušta učenje primjer po primjer.
+Kao kod ostalih algoritama \textsc{ftl}, tijekom učenja nastaje više mogućih
+hipoteza (vektora težina za završni model) i vrši se odabir hipoteze koja za
+dani primjer daje najbolje predviđanje (skalarni produkt između težina hipoteze
+i vektora značajki koji daje najveću vrijednost). Nakon što je vođa odabran
+njegove se težine ažuriraju s regularizacijskim pravilom, gdje nastaje nova
+hipoteza, i postupak se ponavlja. Prikazani rezultati koriste navedenu
+konfiguraciju, inače bi rezultati bili lošiji jer je skup za učenje premali s
+obzirom na broj značajki. \citet{chang2015learning} ne koriste sufikse i
+prefikse jer rade označavanje na jezicima koji imaju dovoljno podataka --
+značajke su samo cijele riječi i oznaka vrste riječi.
 
 U tablici \ref{table:depparsing} prikazani su rezultati. Kako morfosintaktički
 deskriptori sadrže informaciju o sintaksi očekivano je da njihovo korištenje
