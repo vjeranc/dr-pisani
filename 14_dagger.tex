@@ -15,11 +15,11 @@ dubinom. Algoritam ima nekoliko razlika u usporedbi s algoritmom \textsc{Searn}:
   \item za \textit{rollin} se koristi naučena ili referentna politika (na prvom
   primjeru postoji samo referenta), dok \textsc{Searn} koristi mješavinu
   referentne i svih naučenih kroz više prolaza;
-  \item kod algoritma \textsc{Searn} mješavina se primijenjuje za svako stanje,
+  \item kod algoritma \textsc{Searn} mješavina se primjenjuje za svako stanje,
   a kod algoritma \textsc{DAgger} prije svakog primjera odabire se referentna
   ili naučena politika što rezultira time da se na nekim primjerima uči koristeći
   samo referentnu politiku za \textit{rollin}, a na nekima samo naučenu. Unatoč
-  tome što je algoritam moguće učiti primjer po primjer preporuča se više
+  tome što je algoritam moguće učiti primjer po primjer preporučuje se više
   prolaza kroz skup za učenje;
   \item \textit{rollout} je eliminiran pretpostavljajući da se za svaku odluku
   može izračunati njen trošak, ali može se koristiti referentna politika ako se
