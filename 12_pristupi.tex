@@ -9,12 +9,18 @@ poglavlju zahtijevaju sljedeće.
 
   \item \textbf{Dobar binarni klasifikator.} Za učenje pretraživanja potrebno je
   efikasno rješenje za problem višerazredne klasifikacije osjetljive na trošak.
-  Koristeći težinsku redukciju \textsc{ovo} ili \textsc{ova} \engl{weighted all-pairs or
-  one-against-all} iz \citep{beygelzimer2005error,
-  beygelzimer2005weighted} u kombinaciji s \textit{costing} algoritmom iz
-  \citep{zadrozny2003cost} moguće je koristiti bilo koji binarni klasifikator
-  bez korigiranja izvornog koda klasifikatora. Moguće je koristiti i pravi
-  višerazredni klasifikator osjetljiv na trošak bez navedenih tehnika redukcije;
+  Višerazredni klasifikator trebao bi za primjere kod kojih je definiran veliki
+  trošak pokušati njih pravilno klasificirati. Ako se inače minimizira točnost
+  klasifikatora, onda bi se kod klasifikatora osjetljivog na trošak trebao
+  minimizirati ukupan zbroj trošaka svih primjera. U tom slučaju moguće je da će
+  se smanjiti točnost na primjerima za koje je trošak mali, ali povećati na
+  onima gdje je trošak velik. Koristeći težinsku redukciju \textsc{ovo} ili
+  \textsc{ova} \engl{weighted all-pairs or one-against-all} iz
+  \citep{beygelzimer2005error, beygelzimer2005weighted} u kombinaciji s
+  \textit{costing} algoritmom iz \citep{zadrozny2003cost} moguće je koristiti
+  bilo koji binarni klasifikator bez korigiranja izvornog koda klasifikatora.
+  Moguće je koristiti i pravi višerazredni klasifikator osjetljiv na trošak bez
+  navedenih tehnika redukcije;
 
   \item \textbf{Dobro definiranu funkciju gubitka.} Ona može biti definirana na
   cijeloj strukturi koju predviđamo. Na primjer, može se između predviđenog i
