@@ -296,7 +296,7 @@ Here is an example of an example block.
     \State Generiraj vektor značajki $\mathbf{\Phi}(x_i, s_t)$.
     \State Postavi $\Gamma = \Gamma \cup \{\langle c_{i,t}, \mathbf{\Phi}(x_i, s_t) \rangle\}$.
   \EndFor
-  \State $\hat{\pi}_{i+1} \gets \textsc{Train}(\hat{\pi}_i, \Gamma)$.
+  \State $\hat{\pi}_{i+1} \gets \textsc{Nauči}(\hat{\pi}_i, \Gamma)$.
 \EndFor
 \State Vrati usrednjenu policu preko svih $\hat{\pi}_1, \hat{\pi}_2, \ldots, \hat{\pi}_N$.
 \end{algorithmic}

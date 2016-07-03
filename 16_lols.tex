@@ -22,15 +22,15 @@ uspinjanje na vrh.
   \State Generiraj referentnu politiku $\pi^{\text{ref}}$ temeljenu na $y_i$.
   \State Inicijaliziraj $\Gamma = \emptyset$. \Comment{skup primjera osjetljivih na trošak.}
   \ForAll{$t \in \{0,1,2,\ldots,T_i-1\}$}
-    \State Primijeniti $t$ puta politiku $\pi_{i}^{\text{in}} = \hat{\pi}_i$  i stići do $s_t$. \Comment{Rollin.} \label{alg:lols:learned}
+    \State Primijeniti $t$ puta politiku $\pi_{i}^{\text{in}} = \hat{\pi}_i$  i stići do $s_t$. \Comment{\textit{Rollin}.} \label{alg:lols:learned}
     \ForAll{$a \in A(s_t)$}
       \State Neka je  $\pi_{i}^{\text{out}} = \pi^{\text{ref}}$ s vjerojatnošću $\beta$, inače $\hat{\pi}_i$.
-      \State Procjeni trošak $c_{i,t}(a)$ koristeći $T-t-1$ puta politiku $\pi_{i}^{\text{out}}$. \Comment{Rollout.} \label{alg:lols:mixture}
+      \State Procjeni trošak $c_{i,t}(a)$ koristeći $T-t-1$ puta politiku $\pi_{i}^{\text{out}}$. \Comment{\textit{Rollout}.} \label{alg:lols:mixture}
     \EndFor
     \State Generiraj vektor značajki $\mathbf{\Phi}(x_i, s_t)$.
     \State Postavi $\Gamma = \Gamma \cup \{\langle c_{i,t}, \mathbf{\Phi}(x_i, s_t) \rangle\}$.
   \EndFor
-  \State $\hat{\pi}_{i+1} \gets \textsc{Train}(\hat{\pi}_i, \Gamma)$.
+  \State $\hat{\pi}_{i+1} \gets \textsc{Nauči}(\hat{\pi}_i, \Gamma)$.
 \EndFor
 \State Vrati usrednjenu politiku preko svih $\hat{\pi}_1, \hat{\pi}_2, \ldots, \hat{\pi}_N$.
 \end{algorithmic}

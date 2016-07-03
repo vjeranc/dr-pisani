@@ -38,7 +38,7 @@ osobna imena, imena privatnih organizacija, gradova, mjesta i dr.}
 
 Algoritam \ref{alg:namedentityrecognition:seq} pokazuje kako bi izgledala
 implementacija prepoznavanja imenovanih entiteta koristeći okvir učenja
-pretraživanja. Funkcija \textsc{Predict} prima skup mogućih oznaka za trenutnu
+pretraživanja. Funkcija \textsc{Odluči} prima skup mogućih oznaka za trenutnu
 riječ radi održavanja konzistentnosti. Kao i kod označavanja niza, vremenska
 složenost zaključivanja je $O(T M k)$, što je poboljšanje s obzirom na vremensku
 složenost vjerojatnosnih grafičkih modela. Algoritam
@@ -56,7 +56,7 @@ Sličan pristup ilustriran u algoritmu \ref{alg:namedentityrecognition:seq} mogl
 bismo iskoristiti za označavanje vrste riječi s morfosintaktičkim deskriptorom
 (oznaka vrste riječi koja uključuje atribute poput padeža, lica, roda i dr.).
 Umjesto da se cijeli deskriptor smatra potpunom oznakom, može se uvjetovati skup
-mogućih oznaka za trenutno donošenje odluke (poziv funkcije \textsc{Predict}).
+mogućih oznaka za trenutno donošenje odluke (poziv funkcije \textsc{Odluči}).
 Tako da, ako je riječ u prvom prolazu označena kao imenica, onda će za
 drugi prolaz biti ponuđene samo odluke vezane uz rod imenice (muški, ženski
 ili srednji). Ovakva fleksibilnost čini bilo koji zadatak s dodatnim uvjetima
@@ -66,7 +66,7 @@ ili srednji). Ovakva fleksibilnost čini bilo koji zadatak s dodatnim uvjetima
 \caption{Prepoznavanje imenovanih entiteta.}
 \label{alg:namedentityrecognition:seq}
 \begin{algorithmic}[1]
-\Function{\textsc{Run}}{riječi}
+\Function{\textsc{Izvrši}}{riječi}
 \State $\textit{izlaz} \gets \text{[]}$
 \For{$n \gets 1$ \textbf{do} \Call{Len}{riječi}}
   \State \textit{ref} $\gets$ \text{riječi[n].točna\_oznaka}
@@ -74,7 +74,7 @@ ili srednji). Ovakva fleksibilnost čini bilo koji zadatak s dodatnim uvjetima
   \If{izlaz[n-1] = $B$ ili izlaz[n-1] = $I$}
     \State skupOznaka += $\{I\}$
   \EndIf
-  \State \textit{izlaz[n]} $\gets$ \Call{Predict}{riječi[n], ref, skupOznaka}
+  \State \textit{izlaz[n]} $\gets$ \Call{Odluči}{riječi[n], ref, skupOznaka}
 \EndFor
 \State \Call{Gubitak}{\# izlaz[n] $\neq$ riječi[n].točna\_oznaka}
 \State \textbf{return} izlaz
@@ -86,15 +86,15 @@ ili srednji). Ovakva fleksibilnost čini bilo koji zadatak s dodatnim uvjetima
 \caption{Prepoznavanje imenovanih entiteta sa segmentacijom.}
 \label{alg:namedentityrecognition:segmentation}
 \begin{algorithmic}[1]
-\Function{\textsc{Run}}{riječi}
+\Function{\textsc{Izvrši}}{riječi}
 \State $\textit{izlaz} \gets \text{[]}$
 \State $\textit{prethodna} \gets 0$
 \For{$n \gets 1$ \textbf{do} \Call{Len}{riječi}}
   \If{(prethodna -= 1) $> 0$}
-    \State \textbf{nastavi} \Comment{continue}
+    \State \textbf{nastavi} \Comment{\textit{continue}}
   \EndIf
   \State \textit{ref} $\gets$ \text{riječi[n].točna\_oznaka}
-  \State \textit{izlaz[n]} $\gets$ \Call{Predict}{riječi[n], ref}
+  \State \textit{izlaz[n]} $\gets$ \Call{Odluči}{riječi[n], ref}
   \State prethodna = izlaz[n].duljina
 \EndFor
 \State \Call{Gubitak}{\# izlaz[n] $\neq$ riječi[n].točna\_oznaka}

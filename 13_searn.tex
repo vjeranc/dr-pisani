@@ -27,16 +27,16 @@ okviru učenja pretraživanja nedavno ostvarena
   \ForAll{$i \in \{1,2,\ldots,N\}$}
     \State Inicijaliziraj $\Gamma = \emptyset$. \Comment{skup primjera osjetljivih na trošak.}
     \ForAll{$t \in \{0,1,2,\ldots,T_i-1\}$}
-      \State Primijeniti $t$ puta politiku $\pi^{\text{in}} = \hat{\pi}_{I}$  i stići do $s_t$. \Comment{Rollin.}
+      \State Primijeniti $t$ puta politiku $\pi^{\text{in}} = \hat{\pi}_{I}$  i stići do $s_t$. \Comment{\textit{Rollin}.}
       \ForAll{$a \in A(s_t)$}\label{alg:searn:action}
         \State Neka je  $\pi^{\text{out}} = \hat{\pi}_{I}$.\label{alg:searn:rolloutpolicy}
-        \State Procjeni trošak $c_{i,t}(a)$ koristeći $T-t-1$ puta $\pi^{\text{out}}$. \Comment{Rollout.}\label{alg:searn:rollout}
+        \State Procjeni trošak $c_{i,t}(a)$ koristeći $T-t-1$ puta $\pi^{\text{out}}$. \Comment{\textit{Rollout}.}\label{alg:searn:rollout}
       \EndFor
       \State Generiraj vektor značajki $\mathbf{\Phi}(x_i, s_t)$.
       \State Postavi $\Gamma = \Gamma \cup \{\langle c_{i,t}, \mathbf{\Phi}(x_i, s_t) \rangle\}$.
     \EndFor
   \EndFor
-  \State $\hat{\pi}' \gets \textsc{Train}(\Gamma)$.\label{alg:searn:train}
+  \State $\hat{\pi}' \gets \textsc{Nauči}(\Gamma)$.\label{alg:searn:train}
   \State $\hat{\pi}_{I+1} \gets \beta \hat{\pi}' + (1-\beta) \hat{\pi}_{I}$. \label{alg:searn:mixture}
 \EndFor
 \State \Return $\hat{\pi}_{P}$ bez $\pi\ssymbol{1}$
