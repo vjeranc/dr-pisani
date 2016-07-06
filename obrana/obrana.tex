@@ -170,6 +170,58 @@
 
 \section{Uvod}
 
+\begin{frame}{Uvodni problem}
+  \begin{figure}
+  \centering
+  \scalebox{0.9}{\begin{dependency}[theme=copper]
+  \begin{deptext}
+    \textsc{Rgc} \& \textsc{Vmn3pf} \& \textsc{Ncfpnn} \& \textsc{Rgp} \& \textsc{Z} \& \textsc{Cs} \& \textsc{Cs} \& \textsc{Ncfpnn} \& \textsc{Vmn3pf} \& \textsc{Rgp} \& \textsc{Z} \\
+    Gore         \& gore            \& gore            \& gore         \& ,          \& nego        \& što         \& gore            \& gore            \& dolje        \& .          \\
+  \end{deptext}
+  \deproot{2}{root}
+  \depedge{2}{1}{advmod}
+  \depedge{2}{3}{nsub}
+  \depedge{2}{4}{advmod}
+  \depedge{4}{5}{punct}
+  \depedge{9}{6}{mark}
+  \depedge{6}{7}{mwe}
+  \depedge{5}{9}{acl}
+  \depedge{9}{8}{nsub}
+  \depedge{9}{10}{advmod}
+  \depedge{2}{11}{punct}
+  \end{dependency}}
+  \end{figure}
+\end{frame}
+
+\begin{frame}{Uvodni problem}{Kako ga riješiti?}
+  \begin{figure}
+  \centering
+  \scalebox{0.5}{\begin{dependency}[theme=copper]
+  \begin{deptext}
+    \textsc{Rgc} \& \textsc{Vmn3pf} \& \textsc{Ncfpnn} \& \textsc{Rgp} \& \textsc{Z} \& \textsc{Cs} \& \textsc{Cs} \& \textsc{Ncfpnn} \& \textsc{Vmn3pf} \& \textsc{Rgp} \& \textsc{Z} \\
+    Gore         \& gore            \& gore            \& gore         \& ,          \& nego        \& što         \& gore            \& gore            \& dolje        \& .          \\
+  \end{deptext}
+  \deproot{2}{root}
+  \depedge{2}{1}{advmod}
+  \depedge{2}{3}{nsub}
+  \depedge{2}{4}{advmod}
+  \depedge{4}{5}{punct}
+  \depedge{9}{6}{mark}
+  \depedge{6}{7}{mwe}
+  \depedge{5}{9}{acl}
+  \depedge{9}{8}{nsub}
+  \depedge{9}{10}{advmod}
+  \depedge{2}{11}{punct}
+  \end{dependency}}
+  \end{figure}
+  \begin{itemize}
+    \item<1-> Neovisna predviđanja.
+    \item<2-> Više zadataka.
+    \item<3-> Pretpostavi izračunljiv vjerojatnosni grafički model - optimiziraj.
+    \item<4-> Ručni (ad-hoc) pristup rješenju.
+  \end{itemize}
+\end{frame}
+
 \section{Pregled pristupa problemu združenog predviđanja}
 
 \begin{frame}{Združeno predviđanje}{i učenje}
@@ -295,6 +347,18 @@
     odluke ne može poboljšati učinkovitost naučene politike.
 
   \end{definition}
+\end{frame}
+
+\begin{frame}{Lokalno optimalna politika}{broj primjera za učenje?}
+  \begin{theorem} \label{th:localopt}
+
+    Pretpostavimo dostupnost algoritma koji ažurira politike koristeći odstupanje
+    od jednog koraka od trenutne politike. Onda postoji problem s prostorom
+    pretraživanja, razred politike i funkcija gubitka gdje takav algoritam mora
+    napraviti $\Omega(2^T)$ ažuriranja prije nego što nauči lokalno optimalnu
+    politiku.
+
+  \end{theorem}
 \end{frame}
 
 \begin{frame}{Malo o politici i učenju}
@@ -1037,6 +1101,40 @@ void run(Search::search& sch, vector<example*>& ec)
   \end{figure}
 \end{frame}
 
+\subsection{Ulazni podaci}
+
+\lstset{literate={ć}{{\'{c}}}1}
+
+\defverbatim[colored]\lstV{
+\begin{lstlisting}[basicstyle=\tiny\ttfamily]
+2 |w Proces proces 0:6 ulllll
+2 |w privatizacije privatizacije 0:13 lllllllllllll
+1 |w na na 0:2 ll
+2 |w Kosovu kosovu 0:6 ulllll
+1 |w pod pod 0:3 lll
+2 |w povećalom povećalom 0:9 lllllllll
+\end{lstlisting}
+}
+
+\defverbatim[colored]\lstD{
+\begin{lstlisting}[basicstyle=\tiny\ttfamily]
+6 1 |w Proces |p NOUN  NOUNCase=Nom NOUNGender=Masc NOUNNumber=Sing
+1 2 |w privatizacije |p NOUN  NOUNCase=Gen NOUNGender=Fem NOUNNumber=Sing
+4 3 |w na |p ADP  ADPCase=Loc
+6 2 |w Kosovu |p PROPN  PROPNCase=Loc PROPNGender=Neut PROPNNumber=Sing
+6 3 |w pod |p ADP  ADPCase=Ins
+0 4 |w povećalom |p NOUN  NOUNCase=Ins NOUNGender=Neut NOUNNumber=Sing
+\end{lstlisting}
+}
+
+\begin{frame}{Ulaz u VW}{Označavanje vrste riječi}
+  \lstV
+\end{frame}
+
+\begin{frame}{Ulaz u VW}{Ovisnosno parsanje}
+  \lstD
+\end{frame}
+
 \subsection{Rezultati}
 
 \begin{frame}{Rezultati}{POS}
@@ -1051,8 +1149,8 @@ void run(Search::search& sch, vector<example*>& ec)
   HunPos (Agić et al., 2013)           & 97.04          & 94.62          \\
   \textsc{Vwpos-1}                     & 98.18          & 96.20          \\
   \textsc{Vwpos-2}                     & \textbf{98.71} & 96.24          \\
-  \textsc{Vwmsd} 1                     & 98.31          & \textbf{96.57} \\
-  \textsc{Vwmsd} 2                     & 98.23          & 96.41          \\ \hline
+  \textsc{Vwmsd-1}                     & 98.31          & \textbf{96.57} \\
+  \textsc{Vwmsd-2}                     & 98.23          & 96.41          \\ \hline
   \end{tabular}
   \end{table}
 \end{frame}
@@ -1101,9 +1199,9 @@ MSTParser (MSD) (Agić i Merkler, 2013) & 77.49          & 83.58           \\
   \label{table:taggingjoint}
   \begin{tabular}{|l|l|l|l|l|}
   \hline
-  Metoda             & \textsc{\textunderscript{Set}{pos}} & \textsc{\textunderscript{Wiki}{pos}} & \textsc{\textunderscript{Set}{msd}} & \textsc{\textunderscript{Wiki}{msd}} \\ \hline \hline
-  \textsc{Vwpos-2}   & \textbf{98.71}                      & 96.24                                & 90.22                               & 84.13                 \\
-  \textsc{Vwjoint 1} & 98.69                               & \textbf{97.23}                       & \textbf{92.03}                      & \textbf{85.01}        \\ \hline
+  Metoda           & \textsc{\textunderscript{Set}{pos}} & \textsc{\textunderscript{Wiki}{pos}} & \textsc{\textunderscript{Set}{msd}} & \textsc{\textunderscript{Wiki}{msd}} \\ \hline \hline
+  \textsc{Vwpos-2} & \textbf{98.71}                      & 96.24                                & 90.22                               & 84.13                 \\
+  \textsc{Vwjoint} & 98.69                               & \textbf{97.23}                       & \textbf{92.03}                      & \textbf{85.01}        \\ \hline
   \end{tabular}
   \end{table}
   \begin{table}
