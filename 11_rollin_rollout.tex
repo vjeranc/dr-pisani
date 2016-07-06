@@ -95,10 +95,10 @@ $R$ algoritam učenja odabire sve moguće odluke radeći odstupanje od jednog
 koraka i primjenjuje odabranu politiku u postupku \textit{rollout} za svaku
 moguću odluku dovoljno puta dok ne dođe do kraja. Odstupanje od jednog koraka
 procjenjuje trošak za pojedinu odluku samo uzimajući tu odluku u obzir,
-nastavljajući niz odluka s postupkom \textit{rollout}. Odstupanje od dva koraka
+nastavljajući niz odluka postupkom \textit{rollout}. Odstupanje od dva koraka
 bi iz stanja $R$ procjenjivalo trošak za odluku tako da nakon izvedene odluke
 dolaskom u novo stanje izvrši sve moguće odluke u tom stanju i onda za svaku
-izvrši ostatak s postupkom \textit{rollout}. Inačica s odstupanjem od dva koraka
+izvrši ostatak postupkom \textit{rollout}. Inačica s odstupanjem od dva koraka
 bi bolje aproksimirala trošak, ali bi vremenski bila zahtjevnija -- odstupanje
 od jednog koraka zahtijeva izvršavanje postupka \textit{rollout} za svaku
 odluku, odstupanje od dva koraka zahtijevalo bi izvršavanje postupka
