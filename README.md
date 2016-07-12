@@ -13,6 +13,10 @@ Moja preporuka je sve datoteke staviti na
 [sharelatex](https://www.sharelatex.com/). U tom slučaju dovoljno je izabrati
 `diplomski.tex` kao glavnu datoteku i kliknuti na gumb `Compile`.
 
+Diplomski napisan za vrijeme pohađanja Fakulteta elektrotehnike i računarstva Sveučilišta u Zagrebu.
+
+Izvorni kod nije javno dostupan (moguće ga je naći na CD-u priloženom u radu).
+
 # Typed form of thesis
 
 Repository contains all files needed for generating `.pdf` of master's thesis.
@@ -27,3 +31,7 @@ My recommendation is to upload all of the files to
 [sharelatex](https://www.sharelatex.com/).
 In that case it's enough to select `diplomski.tex` as main file and click the
 `Compile` button.
+
+Thesis written while attending Faculty of Electrical Engineering and Computing, University of Zagreb.
+
+Source code isn't publicly available (it can be found on the CD at the back of the thesis).
