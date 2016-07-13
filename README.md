@@ -1,7 +1,7 @@
 # Pisani diplomski rad
 
 Repozitorij sadrži sve datoteke potrebne za generiranje `.pdf` oblika
-diplomskog rada.
+diplomskog rada. `.pdf` je prisutan u [`releases`](https://github.com/vjeranc/dr-pisani/releases) odjeljku.
 
 Glavna datoteka je `diplomski.tex`.
 
@@ -9,7 +9,7 @@ Za generiranje moguće je koristiti `pdflatex`.
 
 `preamble.tex` sadrži popis svih potrebnih paketa.
 
-Moja preporuka je sve datoteke staviti na 
+Moja preporuka je sve datoteke staviti na
 [sharelatex](https://www.sharelatex.com/). U tom slučaju dovoljno je izabrati
 `diplomski.tex` kao glavnu datoteku i kliknuti na gumb `Compile`.
 
@@ -19,7 +19,7 @@ Izvorni kod nije javno dostupan (moguće ga je naći na CD-u priloženom u radu)
 
 # Typed form of thesis
 
-Repository contains all files needed for generating `.pdf` of master's thesis.
+Repository contains all files needed for generating `.pdf` of master's thesis. `.pdf` can be find by clicking [`releases`](https://github.com/vjeranc/dr-pisani/releases).
 
 Main file is `diplomski.tex`.
 
