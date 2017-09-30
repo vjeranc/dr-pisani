@@ -32,7 +32,7 @@ prilog, glagol, imenicu, znakove interpunkcije i veznike.}
   \State \textit{izlaz[n]} $\gets$ \Call{Odluči}{riječi[n], ref, izlaz[:n-1]}
 \EndFor
 \State \Call{Gubitak}{\# izlaz[n] $\neq$ riječi[n].točna\_oznaka}
-\State \textbf{return} izlaz
+\Return izlaz
 \EndFunction
 \end{algorithmic}
 \end{algorithm}
@@ -94,7 +94,7 @@ opis čitatelja se upućuje na \citep{daume14lts}.
 \EndFor
 \State pravi\_izlaz $\gets$ \Call{RekonstruirajIzlaz}{odluke}
 \State \Call{Gubitak}{\# pravi\_izlaz[n] $\neq$ riječi[n].točna\_oznaka}
-\State \textbf{return} pravi\_izlaz
+\Return pravi\_izlaz
 \EndFunction
 \end{algorithmic}
 \end{algorithm}

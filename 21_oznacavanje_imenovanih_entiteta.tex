@@ -77,7 +77,7 @@ ili srednji). Ovakva fleksibilnost čini bilo koji zadatak s dodatnim uvjetima
   \State \textit{izlaz[n]} $\gets$ \Call{Odluči}{riječi[n], ref, skupOznaka}
 \EndFor
 \State \Call{Gubitak}{\# izlaz[n] $\neq$ riječi[n].točna\_oznaka}
-\State \textbf{return} izlaz
+\Return izlaz
 \EndFunction
 \end{algorithmic}
 \end{algorithm}
@@ -98,7 +98,7 @@ ili srednji). Ovakva fleksibilnost čini bilo koji zadatak s dodatnim uvjetima
   \State prethodna = izlaz[n].duljina
 \EndFor
 \State \Call{Gubitak}{\# izlaz[n] $\neq$ riječi[n].točna\_oznaka}
-\State \textbf{return} izlaz
+\Return izlaz
 \EndFunction
 \end{algorithmic}
 \end{algorithm}

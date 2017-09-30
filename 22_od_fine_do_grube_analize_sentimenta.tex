@@ -59,7 +59,7 @@ vjerojatnosnim grafičkim modelom.
   \State \textit{izlaz[n]} $\gets$ \Call{Odluči}{dokument[n], ref, izlaz[:n-1], dlabel}
 \EndFor
 \State \Call{Gubitak}{\# izlaz[n] $\neq$ dokument[n].točna\_oznaka}
-\State \textbf{return} izlaz
+\Return izlaz
 \EndFunction
 \end{algorithmic}
 \end{algorithm}

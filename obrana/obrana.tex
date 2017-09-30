@@ -97,7 +97,7 @@
 \algrenewtext{EndWhile}{\textbf{kraj petlje}}
 \algrenewtext{EndIf}{\textbf{kraj}}
 \algrenewtext{EndFunction}{\textbf{kraj funkcije}}
-\algrenewcommand{\algorithmicreturn}{\textbf{vrati}}
+\algrenewcommand{\algorithmicreturn}{\State \textbf{vrati}}
 
 \algdef{SE}[WHILE]{While}{EndWhile}[1]
   {\algorithmicwhile\ #1\ \textbf{ponavljaj}}
@@ -766,7 +766,7 @@
     \State \textit{izlaz[n]} $\gets$ \Call{Odluči}{riječi[n], ref, izlaz[:n-1]}
   \EndFor
   \State \Call{Gubitak}{\# izlaz[n] $\neq$ riječi[n].točna\_oznaka}
-  \State \textbf{return} izlaz
+  \Return izlaz
   \EndFunction
   \end{algorithmic}
   \end{algorithm}
@@ -785,7 +785,7 @@
   \EndFor
   \State pravi\_izlaz $\gets$ \Call{RekonstruirajIzlaz}{odluke}
   \State \Call{Gubitak}{\# pravi\_izlaz[n] $\neq$ riječi[n].točna\_oznaka}
-  \State \textbf{return} pravi\_izlaz
+  \Return pravi\_izlaz
   \EndFunction
   \end{algorithmic}
   \end{algorithm}
@@ -907,7 +907,7 @@ void run(Search::search& sch, vector<example*>& ec)
     \State \textit{izlaz[n]} $\gets$ \Call{Odluči}{riječi[n], ref, skupOznaka}
   \EndFor
   \State \Call{Gubitak}{\# izlaz[n] $\neq$ riječi[n].točna\_oznaka}
-  \State \textbf{return} izlaz
+  \Return izlaz
   \EndFunction
   \end{algorithmic}
   \end{algorithm}
@@ -928,7 +928,7 @@ void run(Search::search& sch, vector<example*>& ec)
     \State prethodna = izlaz[n].duljina
   \EndFor
   \State \Call{Gubitak}{\# izlaz[n] $\neq$ riječi[n].točna\_oznaka}
-  \State \textbf{return} izlaz
+  \Return izlaz
   \EndFunction
   \end{algorithmic}
   \end{algorithm}
@@ -1061,7 +1061,7 @@ void run(Search::search& sch, vector<example*>& ec)
     \State \textit{izlaz[n]} $\gets$ \Call{Odluči}{dokument[n], ref, izlaz[:n-1], dlabel}
   \EndFor
   \State \Call{Gubitak}{\# izlaz[n] $\neq$ dokument[n].točna\_oznaka}
-  \State \textbf{return} izlaz
+  \Return izlaz
   \EndFunction
   \end{algorithmic}
   \end{algorithm}
