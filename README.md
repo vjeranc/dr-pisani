@@ -5,10 +5,7 @@ diplomskog rada. `.pdf` je prisutan u [`releases`](https://github.com/vjeranc/dr
 
 Glavna datoteka je `diplomski.tex`.
 
-Za generiranje moguće je koristiti `pdflatex`.
-
-Koraci:
-`pdflatex diplomski.tex; bibtex diplomski.aux; pdflatex diplomski.tex; pdflatex diplomski.tex`
+Za generiranje moguće je koristiti `pdflatex`. Pokrenite `Makefile`.
 
 `preamble.tex` sadrži popis svih potrebnih paketa.
 
@@ -26,12 +23,7 @@ Repository contains all files needed for generating `.pdf` of master's thesis. `
 
 Main file is `diplomski.tex`.
 
-`pdflatex` can be used for generation.
-
-Steps:
-`pdflatex diplomski.tex; bibtex diplomski.aux; pdflatex diplomski.tex; pdflatex diplomski.tex`
-
-
+`pdflatex` can be used for generation. Run the `Makefile`.
 
 `preamble.tex` contains the list of all necessary packages.
 
