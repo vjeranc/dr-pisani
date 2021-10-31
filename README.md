@@ -7,6 +7,9 @@ Glavna datoteka je `diplomski.tex`.
 
 Za generiranje moguće je koristiti `pdflatex`.
 
+Koraci:
+`pdflatex diplomski.tex; bibtex diplomski.aux; pdflatex diplomski.tex; pdflatex diplomski.tex`
+
 `preamble.tex` sadrži popis svih potrebnih paketa.
 
 Moja preporuka je sve datoteke staviti na
@@ -24,6 +27,11 @@ Repository contains all files needed for generating `.pdf` of master's thesis. `
 Main file is `diplomski.tex`.
 
 `pdflatex` can be used for generation.
+
+Steps:
+`pdflatex diplomski.tex; bibtex diplomski.aux; pdflatex diplomski.tex; pdflatex diplomski.tex`
+
+
 
 `preamble.tex` contains the list of all necessary packages.
 
